@@ -1,0 +1,85 @@
+﻿@using System.Data;
+@model IEnumerable<OpekuvaObj>
+
+
+<style>
+    .btn {
+        width: 100px;
+        height: 40px;
+        background: #00BCD4;
+        border-style: solid;
+        border-color: white;
+        color: white;
+    }
+
+    .gridborder {
+        border-top: 1px solid #DED8D8;
+    }
+</style>
+
+<div style="border: 1px solid #DED8D8; width: 500px; font-family: Arial;">
+    @using (@Html.BeginForm(null, null, FormMethod.Post,
+     new { enctype = "multipart/form-data" }))
+    {
+        if (TempData["Message"] != null)
+        {
+
+            <p style="font-family: Arial; font-size: 16px; font-weight: 200; color: red">@TempData["Message"]</p>
+        }
+        <table>
+            <tr>
+                <td style="padding-bottom: 5px" colspan="3">
+                    <h2 style="color: #47bfed">Lataa ja poista projektin tiedostokansiosta </h2>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 50px;">
+                    <b style="color: #FF5722">Tiedosto: </b>
+                </td>
+                <td>
+                    <input type="file" name="files" id="files" accept="image/png, image/jpeg" />
+                </td>
+                <td>
+                    <input type="submit" class="btn" name="submit" />
+                </td>
+            </tr>
+
+        </table>
+
+    }
+    <table class="gridborder row-borderhover order-column dataTable no-footer">
+        <tr>
+            <th class="sorting_asc">
+                @Html.DisplayNameFor(model => model.Tiedosto)
+            </th>
+            <th class="sorting">
+                @Html.DisplayNameFor(model => model.Koko)
+            </th>
+            <th class="sorting">
+                @Html.DisplayNameFor(model => model.Tyyppi)
+            </th>
+            <th class="sorting"></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="sorting_1">
+                    @Html.DisplayFor(modelItem => item.Tiedosto)
+                </td>
+                <td class="sorting_1">
+                    @Html.DisplayFor(modelItem => item.Koko)
+                </td>
+                <td class="sorting_1">
+                    @Html.DisplayFor(modelItem => item.Tyyppi)
+                </td>
+                <th class="sorting">
+                    @Html.ActionLink("Poista", "Delete", new { fileName = item.Tiedosto })
+                </th>
+            </tr>
+
+        }
+    </table>
+</div>
+
+
