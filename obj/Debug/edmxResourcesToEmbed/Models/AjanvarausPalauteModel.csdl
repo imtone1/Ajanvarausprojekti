@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="aikapalauteModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Ajat">
+    <Key>
+      <PropertyRef Name="aika_id" />
+    </Key>
+    <Property Name="aika_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="alku_aika" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="kesto_id" Type="Int32" Nullable="false" />
+    <Property Name="opettaja_id" Type="Int32" Nullable="false" />
+    <Property Name="aihe" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="paikka" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Kestot" Relationship="Self.FK_kestot" FromRole="Ajat" ToRole="Kestot" />
+    <NavigationProperty Name="Opettajat" Relationship="Self.FK_opettajanaika" FromRole="Ajat" ToRole="Opettajat" />
+    <NavigationProperty Name="Varaukset" Relationship="Self.FK_varausaika" FromRole="Ajat" ToRole="Varaukset" />
+  </EntityType>
+  <EntityType Name="Kayttajatunnukset">
+    <Key>
+      <PropertyRef Name="kayttajatunnus_id" />
+    </Key>
+    <Property Name="kayttajatunnus_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="kayttajatunnus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="salasana" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="opettaja_id" Type="Int32" Nullable="false" />
+    <Property Name="oikeudet_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Yllapitooikeudet" Relationship="Self.FK_oikeudet" FromRole="Kayttajatunnukset" ToRole="Yllapitooikeudet" />
+    <NavigationProperty Name="Opettajat" Relationship="Self.FK_opentunnus" FromRole="Kayttajatunnukset" ToRole="Opettajat" />
+  </EntityType>
+  <EntityType Name="Kestot">
+    <Key>
+      <PropertyRef Name="kesto_id" />
+    </Key>
+    <Property Name="kesto_id" Type="Int32" Nullable="false" />
+    <Property Name="kesto" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Ajat" Relationship="Self.FK_kestot" FromRole="Kestot" ToRole="Ajat" />
+  </EntityType>
+  <EntityType Name="Opettajat">
+    <Key>
+      <PropertyRef Name="opettaja_id" />
+    </Key>
+    <Property Name="opettaja_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sahkoposti" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="etunimi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="sukunimi" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nimike" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="kuva" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="opeimage" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="Ajat" Relationship="Self.FK_opettajanaika" FromRole="Opettajat" ToRole="Ajat" />
+    <NavigationProperty Name="Kayttajatunnukset" Relationship="Self.FK_opentunnus" FromRole="Opettajat" ToRole="Kayttajatunnukset" />
+    <NavigationProperty Name="Palautteet" Relationship="Self.FK_palautteet" FromRole="Opettajat" ToRole="Palautteet" />
+  </EntityType>
+  <EntityType Name="Palautetyypit">
+    <Key>
+      <PropertyRef Name="palautetyyppi_id" />
+    </Key>
+    <Property Name="palautetyyppi_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="palautetyyppi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Palautteet" Relationship="Self.FK_palautetyyppi" FromRole="Palautetyypit" ToRole="Palautteet" />
+  </EntityType>
+  <EntityType Name="Palautteet">
+    <Key>
+      <PropertyRef Name="palaute_id" />
+    </Key>
+    <Property Name="palaute_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="palaute" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="palaute_pvm" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="palautetyyppi_id" Type="Int32" />
+    <Property Name="opettaja_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Opettajat" Relationship="Self.FK_palautteet" FromRole="Palautteet" ToRole="Opettajat" />
+    <NavigationProperty Name="Palautetyypit" Relationship="Self.FK_palautetyyppi" FromRole="Palautteet" ToRole="Palautetyypit" />
+  </EntityType>
+  <EntityType Name="Varaukset">
+    <Key>
+      <PropertyRef Name="varaus_id" />
+    </Key>
+    <Property Name="varaus_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="varaaja_nimi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="varattu_pvm" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="aika_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Ajat" Relationship="Self.FK_varausaika" FromRole="Varaukset" ToRole="Ajat" />
+  </EntityType>
+  <EntityType Name="Yllapitooikeudet">
+    <Key>
+      <PropertyRef Name="oikeudet_id" />
+    </Key>
+    <Property Name="oikeudet_id" Type="Int32" Nullable="false" />
+    <Property Name="oikeudet" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Kayttajatunnukset" Relationship="Self.FK_oikeudet" FromRole="Yllapitooikeudet" ToRole="Kayttajatunnukset" />
+  </EntityType>
+  <Association Name="FK_kestot">
+    <End Role="Kestot" Type="Self.Kestot" Multiplicity="1" />
+    <End Role="Ajat" Type="Self.Ajat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kestot">
+        <PropertyRef Name="kesto_id" />
+      </Principal>
+      <Dependent Role="Ajat">
+        <PropertyRef Name="kesto_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_opettajanaika">
+    <End Role="Opettajat" Type="Self.Opettajat" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Ajat" Type="Self.Ajat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Opettajat">
+        <PropertyRef Name="opettaja_id" />
+      </Principal>
+      <Dependent Role="Ajat">
+        <PropertyRef Name="opettaja_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_varausaika">
+    <End Role="Ajat" Type="Self.Ajat" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Varaukset" Type="Self.Varaukset" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ajat">
+        <PropertyRef Name="aika_id" />
+      </Principal>
+      <Dependent Role="Varaukset">
+        <PropertyRef Name="aika_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_oikeudet">
+    <End Role="Yllapitooikeudet" Type="Self.Yllapitooikeudet" Multiplicity="1" />
+    <End Role="Kayttajatunnukset" Type="Self.Kayttajatunnukset" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Yllapitooikeudet">
+        <PropertyRef Name="oikeudet_id" />
+      </Principal>
+      <Dependent Role="Kayttajatunnukset">
+        <PropertyRef Name="oikeudet_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_opentunnus">
+    <End Role="Opettajat" Type="Self.Opettajat" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Kayttajatunnukset" Type="Self.Kayttajatunnukset" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Opettajat">
+        <PropertyRef Name="opettaja_id" />
+      </Principal>
+      <Dependent Role="Kayttajatunnukset">
+        <PropertyRef Name="opettaja_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_palautteet">
+    <End Role="Opettajat" Type="Self.Opettajat" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Palautteet" Type="Self.Palautteet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Opettajat">
+        <PropertyRef Name="opettaja_id" />
+      </Principal>
+      <Dependent Role="Palautteet">
+        <PropertyRef Name="opettaja_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_palautetyyppi">
+    <End Role="Palautetyypit" Type="Self.Palautetyypit" Multiplicity="0..1" />
+    <End Role="Palautteet" Type="Self.Palautteet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Palautetyypit">
+        <PropertyRef Name="palautetyyppi_id" />
+      </Principal>
+      <Dependent Role="Palautteet">
+        <PropertyRef Name="palautetyyppi_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="aikapalauteEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Ajat" EntityType="Self.Ajat" />
+    <EntitySet Name="Kayttajatunnukset" EntityType="Self.Kayttajatunnukset" />
+    <EntitySet Name="Kestot" EntityType="Self.Kestot" />
+    <EntitySet Name="Opettajat" EntityType="Self.Opettajat" />
+    <EntitySet Name="Palautetyypit" EntityType="Self.Palautetyypit" />
+    <EntitySet Name="Palautteet" EntityType="Self.Palautteet" />
+    <EntitySet Name="Varaukset" EntityType="Self.Varaukset" />
+    <EntitySet Name="Yllapitooikeudet" EntityType="Self.Yllapitooikeudet" />
+    <AssociationSet Name="FK_kestot" Association="Self.FK_kestot">
+      <End Role="Kestot" EntitySet="Kestot" />
+      <End Role="Ajat" EntitySet="Ajat" />
+    </AssociationSet>
+    <AssociationSet Name="FK_opettajanaika" Association="Self.FK_opettajanaika">
+      <End Role="Opettajat" EntitySet="Opettajat" />
+      <End Role="Ajat" EntitySet="Ajat" />
+    </AssociationSet>
+    <AssociationSet Name="FK_varausaika" Association="Self.FK_varausaika">
+      <End Role="Ajat" EntitySet="Ajat" />
+      <End Role="Varaukset" EntitySet="Varaukset" />
+    </AssociationSet>
+    <AssociationSet Name="FK_oikeudet" Association="Self.FK_oikeudet">
+      <End Role="Yllapitooikeudet" EntitySet="Yllapitooikeudet" />
+      <End Role="Kayttajatunnukset" EntitySet="Kayttajatunnukset" />
+    </AssociationSet>
+    <AssociationSet Name="FK_opentunnus" Association="Self.FK_opentunnus">
+      <End Role="Opettajat" EntitySet="Opettajat" />
+      <End Role="Kayttajatunnukset" EntitySet="Kayttajatunnukset" />
+    </AssociationSet>
+    <AssociationSet Name="FK_palautteet" Association="Self.FK_palautteet">
+      <End Role="Opettajat" EntitySet="Opettajat" />
+      <End Role="Palautteet" EntitySet="Palautteet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_palautetyyppi" Association="Self.FK_palautetyyppi">
+      <End Role="Palautetyypit" EntitySet="Palautetyypit" />
+      <End Role="Palautteet" EntitySet="Palautteet" />
+    </AssociationSet>
+    <FunctionImport Name="Poistarivit" />
+  </EntityContainer>
+</Schema>

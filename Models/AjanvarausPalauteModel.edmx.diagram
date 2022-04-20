@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1c3cc9928c2642269ab29ed3f14b56f0" Name="Diagram1">
+        <EntityTypeShape EntityType="aikapalauteModel.Ajat" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="aikapalauteModel.Kayttajatunnukset" Width="1.5" PointX="6" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="aikapalauteModel.Kestot" Width="1.5" PointX="0.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="aikapalauteModel.Opettajat" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="aikapalauteModel.Palautetyypit" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="aikapalauteModel.Palautteet" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="aikapalauteModel.Varaukset" Width="1.5" PointX="5.25" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="aikapalauteModel.Yllapitooikeudet" Width="1.5" PointX="3.75" PointY="12.125" IsExpanded="true" />
+        <AssociationConnector Association="aikapalauteModel.FK_kestot" ManuallyRouted="false" />
+        <AssociationConnector Association="aikapalauteModel.FK_opettajanaika" ManuallyRouted="false" />
+        <AssociationConnector Association="aikapalauteModel.FK_varausaika" ManuallyRouted="false" />
+        <AssociationConnector Association="aikapalauteModel.FK_oikeudet" ManuallyRouted="false" />
+        <AssociationConnector Association="aikapalauteModel.FK_opentunnus" ManuallyRouted="false" />
+        <AssociationConnector Association="aikapalauteModel.FK_palautteet" ManuallyRouted="false" />
+        <AssociationConnector Association="aikapalauteModel.FK_palautetyyppi" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
