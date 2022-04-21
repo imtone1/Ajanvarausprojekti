@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using System.Threading;
 
 namespace Ajanvarausprojekti
 {
@@ -16,6 +17,8 @@ namespace Ajanvarausprojekti
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            //paivamaaramuotoilut suomalaisittain
+            Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("fi-FI");  
         }
     }
 }
