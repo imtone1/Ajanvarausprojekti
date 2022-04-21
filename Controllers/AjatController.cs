@@ -136,13 +136,14 @@ namespace Ajanvarausprojekti.Controllers
 
         public ActionResult AikaListaus()
         {
-            var ajatLista = from a in db.Ajat 
-                            join v in db.Varaukset on a.aika_id equals v.aika_id
-                            join op in db.Opettajat on a.opettaja_id equals op.opettaja_id
-                            join k in db.Kestot on a.kesto_id equals k.kesto_id
-
-                            // where-lause
-                            orderby a.alku_aika
+                //left join, jotta näkyisi kaikki ajat, myös ne joissa ei varausta
+                var ajatLista = from a in db.Ajat
+                join op in db.Opettajat on a.opettaja_id equals op.opettaja_id
+            join k in db.Kestot on a.kesto_id equals k.kesto_id
+            join v in db.Varaukset on a.aika_id equals v.aika_id
+            into gj from varaus in gj.DefaultIfEmpty()
+            // where-lause  opettaja id tähän?
+            orderby a.alku_aika
 
                             select new ajatListaData
                             {
@@ -152,8 +153,8 @@ namespace Ajanvarausprojekti.Controllers
                                 Aihe = a.aihe,
                                 Paikka = a.paikka,
                                 opettaja_id = (int)a.opettaja_id,
-                                Varaaja = v.varaaja_nimi,
-                                Varauspvm = (DateTime)v.varattu_pvm,
+                                Varaaja = varaus.varaaja_nimi,
+                                Varauspvm = (DateTime)varaus.varattu_pvm,
 
                             };
             return View(ajatLista);
