@@ -1,0 +1,58 @@
+﻿@model Ajanvarausprojekti.Models.Ajat
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Ajat</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.alku_aika)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.alku_aika)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.aihe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.aihe)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.paikka)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.paikka)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Kestot.kesto_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kestot.kesto_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Opettajat.sahkoposti)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Opettajat.sahkoposti)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.aika_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

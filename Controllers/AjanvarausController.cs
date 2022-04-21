@@ -5,16 +5,17 @@ using System.Web;
 using System.Web.Mvc;
 using Ajanvarausprojekti.Models;
 
+
 namespace Ajanvarausprojekti.Controllers
 {
     public class AjanvarausController : Controller
     {
-        
+        private aikapalauteEntities db = new aikapalauteEntities();
         // GET: Ajanvaraus
         public ActionResult Index()
         {
             //luodaan db olio
-            aikapalauteEntities db = new aikapalauteEntities();
+
             List<Ajat> model = db.Ajat.ToList();
 
             //poistetaan/vapautetaan olio db, koska muuten luodaan liian monta oliota/tietokantayhteyksia
@@ -23,6 +24,7 @@ namespace Ajanvarausprojekti.Controllers
             return View(model);
         }
 
+       
         // GET: Ajanvaraus/Details/5
         public ActionResult Details(int id)
         {
