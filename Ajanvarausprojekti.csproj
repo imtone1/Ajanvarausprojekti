@@ -364,6 +364,7 @@
     <Content Include="Views\Ajat\Edit.cshtml" />
     <Content Include="Views\Ajat\Index.cshtml" />
     <Content Include="Views\Ajat\AikaListaus.cshtml" />
+    <Content Include="Views\Ajat\VarausListaus.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
