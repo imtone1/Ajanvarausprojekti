@@ -46,7 +46,7 @@
             @Html.DisplayFor(modelItem => item.aika_id)
         </td>*@
     <td>
-        @Html.DisplayFor(modelItem => item.Alkuaika)
+        @Html.ValueFor(modelItem => item.Alkuaika, "{0:d} {0:t}")
     </td>
     <td>
     @Html.DisplayFor(modelItem => item.Kesto)
@@ -69,7 +69,7 @@
         @Html.DisplayFor(modelItem => item.Varaaja)
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.Varauspvm)
+        @Html.ValueFor(modelItem => item.Varauspvm, "{0:d}")
     </td>
     
     <td>
