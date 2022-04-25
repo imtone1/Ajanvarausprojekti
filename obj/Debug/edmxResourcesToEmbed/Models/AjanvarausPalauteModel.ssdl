@@ -17,7 +17,7 @@
     </Key>
     <Property Name="kayttajatunnus_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="kayttajatunnus" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="salasana" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="salasana" Type="varchar" MaxLength="200" Nullable="false" />
     <Property Name="opettaja_id" Type="int" Nullable="false" />
     <Property Name="oikeudet_id" Type="int" Nullable="false" />
   </EntityType>
