@@ -90,42 +90,42 @@ namespace Ajanvarausprojekti.Controllers
         //}
 
         // GET: Login/Create
-        //public ActionResult Create()
-        //{ 
-        //    ViewBag.OpettajaID = new SelectList(db.Opettajat, "opettaja_id", "etunimi");
-        //        ViewBag.OikeudetID = new SelectList(db.Yllapitooikeudet, "oikeudet_id", "oikeudet");
-        //    return View();
-        //}
+        public ActionResult Create()
+        { 
+            ViewBag.opettaja_id = new SelectList(db.Opettajat, "opettaja_id", "etunimi");
+                ViewBag.oikeudet_id = new SelectList(db.Yllapitooikeudet, "oikeudet_id", "oikeudet");
+            return View();
+        }
 
-        //// POST: Login/Create
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create([Bind(Include = "kayttajatunnus, salasana, opettaja_id, oikeudet_id")] Kayttajatunnukset kayttaja)
-        //{
-        //    try
-        //    {
-        //        if (ModelState.IsValid)
-        //        {
-        //            db.Kayttajatunnukset.Add(kayttaja);
-        //            db.SaveChanges();
-        //            return RedirectToAction("Index");
-        //        }
+        // POST: Login/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "kayttajatunnus, salasana, opettaja_id, oikeudet_id")] Kayttajatunnukset kayttaja)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    db.Kayttajatunnukset.Add(kayttaja);
+                    db.SaveChanges();
+                    return RedirectToAction("Login", "Login");
+                }
 
-        //        ViewBag.OpettajaID = new SelectList(db.Opettajat, "opettaja_id", "etunimi", "sukunimi", kayttaja.opettaja_id);
-        //        ViewBag.OikeudetID = new SelectList(db.Yllapitooikeudet, "oikeudet_id", "oikeudet", kayttaja.oikeudet_id);
-
-                
-        //        return View(kayttaja);
-
+                ViewBag.opettaja_id = new SelectList(db.Opettajat, "opettaja_id", "etunimi", "sukunimi", kayttaja.opettaja_id);
+                ViewBag.oikeudet_id = new SelectList(db.Yllapitooikeudet, "oikeudet_id", "oikeudet", kayttaja.oikeudet_id);
 
                 
-        //    }
-        //    catch
-        //    {
-        //        return RedirectToAction("Index");
+                return View(kayttaja);
+
+
                 
-        //    }
-        //}
+            }
+            catch
+            {
+                return RedirectToAction("Index", "Home");
+                
+            }
+        }
 
        
 
