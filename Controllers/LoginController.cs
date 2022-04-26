@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using Ajanvarausprojekti.Functions;
 using Ajanvarausprojekti.Models;
 
 namespace Ajanvarausprojekti.Controllers
@@ -19,12 +21,13 @@ namespace Ajanvarausprojekti.Controllers
         [HttpPost]
         public ActionResult Authorize(Kayttajatunnukset LoginModel)
         {
-            //luodaan db olio
-            
-
+            //salasanan hash
+            var crpwd = "";
+            var salt = Hmac.GenerateSalt();
+            var hmac1 = Hmac.ComputeHMAC_SHA256(Encoding.UTF8.GetBytes(LoginModel.salasana), salt);
           
             //Haetaan käyttäjän/Loginin tiedot annetuilla tunnustiedoilla tietokannasta LINQ -kyselyllä
-            var LoggedUser = db.Kayttajatunnukset.SingleOrDefault(x => x.kayttajatunnus == LoginModel.kayttajatunnus && x.salasana == LoginModel.salasana);
+            var LoggedUser = db.Kayttajatunnukset.SingleOrDefault(x => x.kayttajatunnus == LoginModel.kayttajatunnus && x.salasana == crpwd);
              
             //jemmaan tämän >ei vielä käytetä missään
             //var opettaja = from o in db.Opettajat
@@ -73,7 +76,7 @@ namespace Ajanvarausprojekti.Controllers
             return RedirectToAction("Index", "Home"); //Uloskirjautumisen jälkeen pääsivulle
         }
 
-        
+
         //// GET: Login
         //public ActionResult Index()
         //{
@@ -86,27 +89,45 @@ namespace Ajanvarausprojekti.Controllers
         //    return View();
         //}
 
-        //// GET: Login/Create
+        // GET: Login/Create
         //public ActionResult Create()
-        //{
+        //{ 
+        //    ViewBag.OpettajaID = new SelectList(db.Opettajat, "opettaja_id", "etunimi");
+        //        ViewBag.OikeudetID = new SelectList(db.Yllapitooikeudet, "oikeudet_id", "oikeudet");
         //    return View();
         //}
 
         //// POST: Login/Create
         //[HttpPost]
-        //public ActionResult Create(FormCollection collection)
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create([Bind(Include = "kayttajatunnus, salasana, opettaja_id, oikeudet_id")] Kayttajatunnukset kayttaja)
         //{
         //    try
         //    {
-        //        // TODO: Add insert logic here
+        //        if (ModelState.IsValid)
+        //        {
+        //            db.Kayttajatunnukset.Add(kayttaja);
+        //            db.SaveChanges();
+        //            return RedirectToAction("Index");
+        //        }
 
-        //        return RedirectToAction("Index");
+        //        ViewBag.OpettajaID = new SelectList(db.Opettajat, "opettaja_id", "etunimi", "sukunimi", kayttaja.opettaja_id);
+        //        ViewBag.OikeudetID = new SelectList(db.Yllapitooikeudet, "oikeudet_id", "oikeudet", kayttaja.oikeudet_id);
+
+                
+        //        return View(kayttaja);
+
+
+                
         //    }
         //    catch
         //    {
-        //        return View();
+        //        return RedirectToAction("Index");
+                
         //    }
         //}
+
+       
 
         //// GET: Login/Edit/5
         //public ActionResult Edit(int id)
