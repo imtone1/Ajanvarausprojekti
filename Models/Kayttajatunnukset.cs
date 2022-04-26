@@ -23,6 +23,9 @@ namespace Ajanvarausprojekti.Models
         [DataType(DataType.Password)]
         [Required(ErrorMessage = "Anna salasana!")]
         public string salasana { get; set; }
+        //[Compare("salasana", ErrorMessage = "Annetut eivät vastaa toisiaan.")]
+        //[DataType(DataType.Password)]
+        //public string vahvistaSalasana { get; set; }
         public int opettaja_id { get; set; }
         public int oikeudet_id { get; set; }
 

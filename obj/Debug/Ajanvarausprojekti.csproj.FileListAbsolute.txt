@@ -61,4 +61,3 @@ C:\Users\irata\source\repos\Ajanvarausprojekti\bin\EntityFramework.dll
 C:\Users\irata\source\repos\Ajanvarausprojekti\bin\EntityFramework.SqlServer.dll
 C:\Users\irata\source\repos\Ajanvarausprojekti\bin\EntityFramework.xml
 C:\Users\irata\source\repos\Ajanvarausprojekti\bin\EntityFramework.SqlServer.xml
-C:\Users\irata\source\repos\Ajanvarausprojekti\obj\Debug\Ajanvarausprojekti.csproj.AssemblyReference.cache
