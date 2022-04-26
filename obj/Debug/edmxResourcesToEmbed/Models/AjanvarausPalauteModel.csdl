@@ -20,7 +20,7 @@
     </Key>
     <Property Name="kayttajatunnus_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="kayttajatunnus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="salasana" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="salasana" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="opettaja_id" Type="Int32" Nullable="false" />
     <Property Name="oikeudet_id" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Yllapitooikeudet" Relationship="Self.FK_oikeudet" FromRole="Kayttajatunnukset" ToRole="Yllapitooikeudet" />
