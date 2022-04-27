@@ -16,8 +16,11 @@ namespace Ajanvarausprojekti.Models
     public partial class Kayttajatunnukset
     {
         public int kayttajatunnus_id { get; set; }
-
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "Etunimi annettava.")]
+        //[Required(ErrorMessage = "Etunimi annettava.)]
+        
         [Required(ErrorMessage = "Anna käyttäjätunnus!")]
+        [StringLength(50, ErrorMessage = "Käyttäjätunnus ei voi olla yli 50 merkkiä pitkä!")]
         public string kayttajatunnus { get; set; }
 
         [DataType(DataType.Password)]

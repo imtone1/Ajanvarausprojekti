@@ -2,3 +2,6 @@
 *.suo
 *.user
 *.userosscache
+bin
+obj
+packages

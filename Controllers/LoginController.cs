@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Ajanvarausprojekti.Functions;
 using Ajanvarausprojekti.Models;
+using Ajanvarausprojekti.Services;
 
 namespace Ajanvarausprojekti.Controllers
 {
@@ -13,6 +15,79 @@ namespace Ajanvarausprojekti.Controllers
     {
 
         private aikapalauteEntities db = new aikapalauteEntities();
+
+
+        public ActionResult Create()
+        {
+            ViewBag.opettaja_id = new SelectList(db.Opettajat, "opettaja_id", "etunimi");
+            ViewBag.oikeudet_id = new SelectList(db.Yllapitooikeudet, "oikeudet_id", "oikeudet");
+
+
+            return View();
+        }
+
+        // POST: Create
+      [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "kayttajatunnus, salasana, opettaja_id, oikeudet_id")] Kayttajatunnukset kayttaja)
+        {
+
+            LoginService lService = new LoginService();
+
+            if (ModelState.IsValid)
+            {
+                var testForUser = from k in db.Kayttajatunnukset
+                            where k.kayttajatunnus == kayttaja.kayttajatunnus
+                            select k;
+
+                
+                if (testForUser.Any())
+                {
+                    ViewBag.Kayttajaolemassa = "Käyttäjää ei lisätty! Kyseinen käyttäjätunnus on jo olemassa järjestelmässä.";
+                }
+
+                else
+                {
+                    
+                    string kryptattuSalasana = lService.md5_string(kayttaja.salasana);
+
+                   kayttaja = new Kayttajatunnukset
+                    {
+                        kayttajatunnus = kayttaja.kayttajatunnus,
+                        opettaja_id = kayttaja.opettaja_id,
+                        oikeudet_id = kayttaja.oikeudet_id,
+                        salasana = kryptattuSalasana,
+                    };
+
+                    db.Kayttajatunnukset.Add(kayttaja);
+                    db.SaveChanges();
+
+                    //tämä itapu sovelluksesta, näyttäisi liittyvän sähköpostin lähettämiseen
+                   
+                    //string hash = kayttaja.salasana;
+
+                    //string hyperlink = "<a href=\"" + "https://localhost:44388/login/NewPassword/?email=" + kayttaja.Sahkoposti + "&hash=" + hash + "\">Luo uusi salasana</a>";
+                    //var body = "<b><p>Hei,</p></b><br>" +
+                    //    "Sinulle on luotu tunnukset Careerian Digihelpissä! Seuraavaksi sinun tulee luoda itsellesi uusi salasana." +
+                    //    "<p>Siirry sivustolle: " + hyperlink + "</p><br><br>Terveisin, <br> Digihelppi</p><br> +" +
+                    //    "Tähän viestiin ei voi vastata.";
+                    //var message = new MailMessage();
+                    //message.To.Add(new MailAddress(kayttajat.Sahkoposti));
+                    //message.Subject = "Salasanan uusiminen";
+                    //message.Body = string.Format(body);
+                    //message.IsBodyHtml = true;
+
+                    //using (var smtp = new SmtpClient())
+                    //{
+                    //    await smtp.SendMailAsync(message);
+                    //    return RedirectToAction("Index");
+                    //}
+                }
+            }
+
+            
+            return RedirectToAction("Index", "Home");
+        }
         public ActionResult Login()
         {
             return View();
@@ -25,7 +100,8 @@ namespace Ajanvarausprojekti.Controllers
             var crpwd = "";
             var salt = Hmac.GenerateSalt();
             var hmac1 = Hmac.ComputeHMAC_SHA256(Encoding.UTF8.GetBytes(LoginModel.salasana), salt);
-          
+            crpwd = (Convert.ToBase64String(hmac1));
+
             //Haetaan käyttäjän/Loginin tiedot annetuilla tunnustiedoilla tietokannasta LINQ -kyselyllä
             var LoggedUser = db.Kayttajatunnukset.SingleOrDefault(x => x.kayttajatunnus == LoginModel.kayttajatunnus && x.salasana == crpwd);
              
@@ -77,11 +153,11 @@ namespace Ajanvarausprojekti.Controllers
         }
 
 
-        //// GET: Login
-        //public ActionResult Index()
-        //{
-        //    return View();
-        //}
+        // GET: Login
+        public ActionResult Index()
+        {
+            return View();
+        }
 
         //// GET: Login/Details/5
         //public ActionResult Details(int id)
@@ -90,44 +166,52 @@ namespace Ajanvarausprojekti.Controllers
         //}
 
         // GET: Login/Create
-        public ActionResult Create()
-        { 
-            ViewBag.opettaja_id = new SelectList(db.Opettajat, "opettaja_id", "etunimi");
-                ViewBag.oikeudet_id = new SelectList(db.Yllapitooikeudet, "oikeudet_id", "oikeudet");
-            return View();
-        }
+        //public ActionResult Create()
+        //{
+        //    ViewBag.opettaja_id = new SelectList(db.Opettajat, "opettaja_id", "etunimi");
+        //    ViewBag.oikeudet_id = new SelectList(db.Yllapitooikeudet, "oikeudet_id", "oikeudet");
+        //    return View();
+        //}
 
-        // POST: Login/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "kayttajatunnus, salasana, opettaja_id, oikeudet_id")] Kayttajatunnukset kayttaja)
-        {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    db.Kayttajatunnukset.Add(kayttaja);
-                    db.SaveChanges();
-                    return RedirectToAction("Login", "Login");
-                }
-
-                ViewBag.opettaja_id = new SelectList(db.Opettajat, "opettaja_id", "etunimi", "sukunimi", kayttaja.opettaja_id);
-                ViewBag.oikeudet_id = new SelectList(db.Yllapitooikeudet, "oikeudet_id", "oikeudet", kayttaja.oikeudet_id);
-
-                
-                return View(kayttaja);
+        //// POST: Login/Create
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create([Bind(Include = "kayttajatunnus, salasana, opettaja_id, oikeudet_id")] Kayttajatunnukset kayttaja)
+        //{
+        //    try
+        //    {
+        //        if (ModelState.IsValid)
+        //        {
+        //            //var crpwd = "";
+        //            //var salt = Hmac.GenerateSalt();
+        //            //var hmac1 = Hmac.ComputeHMAC_SHA256(Encoding.UTF8.GetBytes(kayttaja.salasana), salt);
+        //            //crpwd = (Convert.ToBase64String(hmac1));
 
 
-                
-            }
-            catch
-            {
-                return RedirectToAction("Index", "Home");
-                
-            }
-        }
+        //            db.Kayttajatunnukset.Add(kayttaja);
+        //            db.SaveChanges();
+        //            return RedirectToAction("Login", "Login");
+        //        }
 
-       
+        //        ViewBag.opettaja_id = new SelectList(db.Opettajat, "opettaja_id", "etunimi", "sukunimi", kayttaja.opettaja_id);
+        //        ViewBag.oikeudet_id = new SelectList(db.Yllapitooikeudet, "oikeudet_id", "oikeudet", kayttaja.oikeudet_id);
+
+
+        //        return View(kayttaja);
+
+
+
+        //    }
+        //    catch
+        //    {
+        //        return RedirectToAction("Index", "Home");
+
+        //    }
+        //}
+
+
+
+
 
         //// GET: Login/Edit/5
         //public ActionResult Edit(int id)
