@@ -127,8 +127,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\AjanvarausController.cs" />
-    <Compile Include="Controllers\AjatController.cs" />
+    <Compile Include="Controllers\VarausController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -357,14 +356,9 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\Ajanvaraus\Index.cshtml" />
-    <Content Include="Views\Ajat\Create.cshtml" />
-    <Content Include="Views\Ajat\Delete.cshtml" />
-    <Content Include="Views\Ajat\Details.cshtml" />
-    <Content Include="Views\Ajat\Edit.cshtml" />
-    <Content Include="Views\Ajat\Index.cshtml" />
-    <Content Include="Views\Ajat\AikaListaus.cshtml" />
-    <Content Include="Views\Ajat\VarausListaus.cshtml" />
+    <Content Include="Views\Varaus\Index.cshtml" />
+    <Content Include="Views\Varaus\AikaListaus.cshtml" />
+    <Content Include="Views\Varaus\VarausListaus.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

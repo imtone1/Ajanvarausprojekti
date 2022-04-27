@@ -11,7 +11,7 @@ using Ajanvarausprojekti.ViewModels;
 
 namespace Ajanvarausprojekti.Controllers
 {
-    public class AjatController : Controller
+    public class VarausController : Controller
     {
         private aikapalauteEntities db = new aikapalauteEntities();
 

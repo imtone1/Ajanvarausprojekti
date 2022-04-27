@@ -1,0 +1,95 @@
+﻿@model IEnumerable<Ajanvarausprojekti.ViewModels.ajatListaData>
+
+
+<h2>Listaan varaukset/varatut ajat</h2>
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
+
+
+@* Datepicker html:lla *@
+<label for="startDate">Valitse pvm</label>
+<input id="startDate" class="form-control" type="date" />
+
+<table class="table">
+    <tr>
+        @*<th>
+                @Html.DisplayNameFor(model => model.aika_id)
+            </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Alkuaika)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Kesto)
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.kesto_id)
+            </th>*@
+        @*<th>
+                @Html.DisplayNameFor(model => model.opettaja_id)
+            </th>*@
+
+        <th>
+            @Html.DisplayNameFor(model => model.Paikka)
+        </th>
+
+        @*<th>
+                @Html.DisplayNameFor(model => model.varaus_id)
+            </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Varaaja)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Varauspvm)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Aihe)
+        </th>
+        @*<th></th>*@
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.aika_id)
+                </td>*@
+            <td>
+                @Html.ValueFor(modelItem => item.Alkuaika, "{0:d} {0:t}")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kesto)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.kesto_id)
+                </td>*@
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.opettaja_id)
+                </td>*@
+
+            <td>
+                <a href="@item.Paikka">Paikkalinkki</a>
+                @*@Html.DisplayFor(modelItem => item.Paikka)*@
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.varaus_id)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Varaaja)
+            </td>
+            <td>
+                @Html.ValueFor(modelItem => item.Varauspvm, "{0:d}")
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Aihe)
+            </td>
+            @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>*@
+        </tr>
+    }
+
+</table>
