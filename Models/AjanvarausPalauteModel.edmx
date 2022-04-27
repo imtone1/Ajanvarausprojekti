@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="aikapalauteModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="aikapalauteModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Ajat">
           <Key>
             <PropertyRef Name="aika_id" />
@@ -22,7 +22,7 @@
           </Key>
           <Property Name="kayttajatunnus_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="kayttajatunnus" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="salasana" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="salasana" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="opettaja_id" Type="int" Nullable="false" />
           <Property Name="oikeudet_id" Type="int" Nullable="false" />
         </EntityType>
@@ -209,8 +209,7 @@
             <End Role="Varaukset" EntitySet="Varaukset" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="aikapalauteModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -234,7 +233,7 @@
           </Key>
           <Property Name="kayttajatunnus_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="kayttajatunnus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="salasana" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="salasana" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="opettaja_id" Type="Int32" Nullable="false" />
           <Property Name="oikeudet_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Yllapitooikeudet" Relationship="Self.FK_oikeudet" FromRole="Kayttajatunnukset" ToRole="Yllapitooikeudet" />
