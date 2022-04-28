@@ -56,10 +56,11 @@
     color: var(--white-color);
 }
 
-
-body {
-    padding-bottom: 20px;
+.footer-logo {
+    max-height: 35%;
+    height: auto;
 }
+
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
