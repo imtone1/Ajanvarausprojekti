@@ -8,12 +8,12 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    @{ 
+    @{
         Html.RenderPartial("_NavbarLoggedOut");
     }
-    
 
-    <div class="container body-content">
+
+    <div class="container">
         @RenderBody()
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
@@ -38,10 +38,11 @@
                 </div>
             </div>
         </div>
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
     </div>
+
+    @{
+        Html.RenderPartial("_FooterLoggedOut");
+    }
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

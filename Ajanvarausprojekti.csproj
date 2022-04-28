@@ -360,6 +360,7 @@
     <Content Include="Views\Ajanvaraus\Index.cshtml" />
     <Content Include="Views\Shared\_NavbarLoggedOut.cshtml" />
     <Content Include="Views\Shared\_NavbarLoggedIn.cshtml" />
+    <Content Include="Views\Shared\_FooterLoggedOut.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
