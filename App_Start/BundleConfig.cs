@@ -25,7 +25,7 @@ namespace Ajanvarausprojekti
             
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      "~/Content/tiviOhjaus.css",
                       "~/Content/site.css"));
 
     
