@@ -27,8 +27,6 @@ namespace Ajanvarausprojekti.Controllers
             return View(model);
         }
 
-       
-
         // GET: Palaute/Details/5
         public ActionResult Details(int id)
         {
