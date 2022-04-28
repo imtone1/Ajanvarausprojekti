@@ -1,4 +1,63 @@
-﻿body {
+﻿@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+:root {
+    --primary-color: #D7AF4D;
+    --primary-color-hover: #DFBE71;
+    --black-color: #11100C;
+    --white-color: #FFFFFF;
+    --light-grey: #e7e7e9;
+    --dark-grey: #a4a4a6;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--black-color);
+    border: none;
+    
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-color-hover);
+    color: var(--black-color);
+}
+
+.btn-outline-primary {
+    border: .1rem var(--primary-color) solid;
+    color: var(--black-color);
+}
+
+.btn-outline-primary:hover {
+    border: .1rem var(--primary-color) solid;
+    background-color: var(--primary-color);
+    color: var(--black-color);
+}
+
+.bg-primary {
+    background-color: var(--primary-color);
+}
+
+.bg-dark {
+    background-color: var(--black-color);
+}
+
+.bg-white {
+    background-color: var(--white-color);
+}
+
+.text-primary {
+    color: var(--primary-color);
+}
+
+.text-dark {
+    color: var(--black-color);
+}
+
+.text-white {
+    color: var(--white-color);
+}
+
+
+body {
     padding-bottom: 20px;
 }
 
