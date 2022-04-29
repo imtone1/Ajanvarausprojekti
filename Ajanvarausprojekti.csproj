@@ -193,6 +193,8 @@
     <Content Include="Content\Images\Careerian logo.JPG" />
     <Content Include="Content\Images\careerian-tiviohjaus-logo.png" />
     <Content Include="Content\Images\careerian-tiviohjaus-logo-musta.png" />
+    <Content Include="Content\Images\favicon-16x16.png" />
+    <Content Include="Content\Images\favicon-32x32.png" />
     <Content Include="Content\Images\IMG_0069_1920x1080.jpg" />
     <Content Include="Content\Images\vaaka-valkoisella-pohjalla.JPG" />
     <Content Include="Content\tiviOhjaus.css" />
