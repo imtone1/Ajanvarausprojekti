@@ -1,29 +1,29 @@
-﻿<div class="bg-black container-fluid">
-    <footer class="d-flex flex-wrap justify-content-between">
-        <div class="container pt-4">
-            <div class="row">
-                <div class="col-lg-4">
-                    <img src="~/Content/Images/vaaka-valkoisella-pohjalla.jpg" class="img-fluid footer-logo" alt="...">
-                </div>
-                <div class="col-lg-8">
-                    <ul class="nav list-inline justify-content-md-end">
-                        <li class="nav-link"><a class="nav-link text-white" href="#">Tietosuoja</a></li>
-                        <li class="nav-link"><a class="nav-link text-white" href="#">Käyttöehdot</a></li>
-                        <li class="nav-link"><a class="nav-link text-white" href="/Home/About">Tietoa palvelusta</a></li>
-                        <li class="nav-link"><a class="nav-link text-white" href="/Home/Contact">Yhteystiedot</a></li>
-                        <li class="nav-link">
-                            <a class="nav-link text-white" data-bs-toggle="modal" data-bs-target="#LoginRuutu">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" fill="currentColor" class=" bi bi-box-arrow-left me-1" viewBox="0 0 16 16" alignment-baseline="middle">
-                                    <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z" />
-                                    <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z" />
-                                </svg>Kirjaudu ulos
-                            </a>
-                        </li>
-                    </ul>
+﻿<div class="bg-black container-fluid pt-4">
+    <footer class="container">
+        <div class="row ">
+            <div class="col-12 flex-column col-md-2">
+                <div class="d-flex flex-column align-items-center flex-md-row">
+                    <img src="~/Content/Images/vaaka-valkoisella-pohjalla.jpg" class="w-75" alt="...">
                 </div>
             </div>
-            <div class="d-flex justify-content-center mt-4">
-                <p class="text-white">&copy; CAREERIA @DateTime.Now.Year</p>
+            <div class="col-sm-12 col-md-10">
+                <ul class="nav flex-column align-items-center flex-md-row justify-content-md-end">
+                    <li class="nav-link"><a class="nav-link text-white" href="#">Tietosuoja</a></li>
+                    <li class="nav-link"><a class="nav-link text-white" href="#">Käyttöehdot</a></li>
+                    <li class="nav-link"><a class="nav-link text-white" href="/Home/About">Tietoa palvelusta</a></li>
+                    <li class="nav-link"><a class="nav-link text-white" href="/Home/Contact">Yhteystiedot</a></li>
+                    <li class="btn">
+                        <button class="btn btn-link text-white text-decoration-none" data-bs-toggle="modal" data-bs-target="#LoginRuutu">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" fill="currentColor" class=" bi bi-box-arrow-left me-1" viewBox="0 0 16 16" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z" />
+                                <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z" />
+                            </svg>Kirjaudu ulos opettajien näkymästä
+                        </button>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-12">
+                <p class="d-flex align-items-center text-white justify-content-center">&copy; CAREERIA @DateTime.Now.Year</p>
             </div>
         </div>
     </footer>
