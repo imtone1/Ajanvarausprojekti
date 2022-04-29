@@ -33,6 +33,15 @@
     color: var(--black-color);
 }
 
+/*
+    .bg-hero {
+    background-image: url(/Content/Images/IMG_0069_1920x1080.jpg);
+    background-size: cover;
+    background-position: center;
+}
+*/
+
+
 .bg-primary {
     background-color: var(--primary-color);
 }
