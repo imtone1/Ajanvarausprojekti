@@ -191,6 +191,8 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\Images\Careerian logo.JPG" />
+    <Content Include="Content\Images\careerian-tiviohjaus-logo.png" />
+    <Content Include="Content\Images\careerian-tiviohjaus-musta.png" />
     <Content Include="Content\Images\vaaka-valkoisella-pohjalla.JPG" />
     <Content Include="Content\tiviOhjaus.css" />
     <Content Include="favicon.ico" />

@@ -15,11 +15,8 @@
     @RenderBody()
 
 
-    <div class="container">
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-            Launch static backdrop modal
-        </button>
+    <div class="container vh-100">
+
 
         <!-- Modal -->
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -40,6 +37,8 @@
             </div>
         </div>
     </div>
+
+
 
     @{
         Html.RenderPartial("_FooterLoggedOut");
