@@ -9,6 +9,10 @@
     --dark-grey: #a4a4a6;
 }
 
+*{
+    font-family: Roboto, sans-serif;
+}
+
 .btn-primary {
     background-color: var(--primary-color);
     color: var(--black-color);
@@ -31,6 +35,15 @@
     background-color: var(--primary-color);
     color: var(--black-color);
 }
+
+/*
+    .bg-hero {
+    background-image: url(/Content/Images/IMG_0069_1920x1080.jpg);
+    background-size: cover;
+    background-position: center;
+}
+*/
+
 
 .bg-primary {
     background-color: var(--primary-color);
@@ -56,27 +69,56 @@
     color: var(--white-color);
 }
 
-.footer-logo {
-    max-height: 35%;
-    height: auto;
+.navbar .nav-item .nav-link {
+    position: relative;
 }
 
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+.navbar .nav-item {
+    margin-left: 2rem;
 }
+
+.navbar .nav-item .nav-link::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: .1rem;
+    background-color: var(--primary-color);
+    transition: all 0.5s ease;
+    transform: scale(0);
+}
+
+.navbar .nav-item .nav-link.active::before,
+.navbar .nav-item .nav-link:hover::before 
+{
+    transform: scale(1);
+}
+
+.logo-musta {
+    max-width: initial;
+}
+
+
+/* Set padding to keep content from hitting the edges 
+    .body-content {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+*/
 
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
-*/
+
 .dl-horizontal dt {
     white-space: normal;
 }
+*/
 
-/* Set width on the form input elements since they're 100% wide by default */
+/* Set width on the form input elements since they're 100% wide by default 
 input,
 select,
 textarea {
     max-width: 280px;
 }
+*/
