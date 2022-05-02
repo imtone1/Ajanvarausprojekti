@@ -13,14 +13,21 @@ namespace Ajanvarausprojekti.Controllers
         // GET: Ajanvaraus
         public ActionResult Index()
         {
-            //luodaan db olio
-            aikapalauteEntities db = new aikapalauteEntities();
-            List<Ajat> model = db.Ajat.ToList();
+            if (Session["Admin"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            else
+            {
+                //luodaan db olio
+                aikapalauteEntities db = new aikapalauteEntities();
+                List<Ajat> model = db.Ajat.ToList();
 
-            //poistetaan/vapautetaan olio db, koska muuten luodaan liian monta oliota/tietokantayhteyksia
-            db.Dispose();
+                //poistetaan/vapautetaan olio db, koska muuten luodaan liian monta oliota/tietokantayhteyksia
+                db.Dispose();
 
-            return View(model);
+                return View(model);
+            }
         }
 
         // GET: Ajanvaraus/Details/5
