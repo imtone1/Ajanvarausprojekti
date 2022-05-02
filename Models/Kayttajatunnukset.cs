@@ -11,15 +11,23 @@ namespace Ajanvarausprojekti.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Kayttajatunnukset
     {
         public int kayttajatunnus_id { get; set; }
+
+        [Required(ErrorMessage = "Anna käyttäjätunnus!")]
+        [StringLength(50, ErrorMessage = "Käyttäjätunnus ei voi olla yli 50 merkkiä pitkä!")]
         public string kayttajatunnus { get; set; }
+
+        [DataType(DataType.Password)]
+        [Required(ErrorMessage = "Anna salasana!")]
         public string salasana { get; set; }
         public int opettaja_id { get; set; }
         public int oikeudet_id { get; set; }
-    
+        public string LoginErrorMessage { get; set; }
+
         public virtual Yllapitooikeudet Yllapitooikeudet { get; set; }
         public virtual Opettajat Opettajat { get; set; }
     }
