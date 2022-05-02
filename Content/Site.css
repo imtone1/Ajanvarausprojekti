@@ -7,6 +7,9 @@
     --white-color: #FFFFFF;
     --light-grey: #e7e7e9;
     --dark-grey: #a4a4a6;
+}
+
+*{
     font-family: Roboto, sans-serif;
 }
 
@@ -90,6 +93,10 @@
 .navbar .nav-item .nav-link:hover::before 
 {
     transform: scale(1);
+}
+
+.logo-musta {
+    max-width: initial;
 }
 
 
