@@ -10,6 +10,7 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
+
     @{
         Html.RenderPartial("_NavbarLoggedOut");
     }
@@ -21,9 +22,9 @@
         Html.RenderPartial("_FooterLoggedOut");
     }
 
+
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-
     @RenderSection("scripts", required: false)
 </body>
 </html>

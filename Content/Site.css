@@ -66,23 +66,52 @@
     color: var(--white-color);
 }
 
-
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+.navbar .nav-item .nav-link {
+    position: relative;
 }
+
+.navbar .nav-item {
+    margin-left: 2rem;
+}
+
+.navbar .nav-item .nav-link::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: .1rem;
+    background-color: var(--primary-color);
+    transition: all 0.5s ease;
+    transform: scale(0);
+}
+
+.navbar .nav-item .nav-link.active::before,
+.navbar .nav-item .nav-link:hover::before 
+{
+    transform: scale(1);
+}
+
+
+/* Set padding to keep content from hitting the edges 
+    .body-content {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+*/
 
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
-*/
+
 .dl-horizontal dt {
     white-space: normal;
 }
+*/
 
-/* Set width on the form input elements since they're 100% wide by default */
+/* Set width on the form input elements since they're 100% wide by default 
 input,
 select,
 textarea {
     max-width: 280px;
 }
+*/
