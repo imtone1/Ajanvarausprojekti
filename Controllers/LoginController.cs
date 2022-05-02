@@ -163,7 +163,7 @@ namespace Ajanvarausprojekti.Controllers
                 Session["UserName"] = LoggedUser.kayttajatunnus;
                     Session["LoginID"] = LoggedUser.kayttajatunnus_id;
                     Session["Opettaja"] = LoggedUser.Opettajat.etunimi.ToString();
-                    Session["OpettajaID"] = LoggedUser.Opettajat.opettaja_id.ToString();
+                    Session["OpettajaID"] = LoggedUser.Opettajat.opettaja_id;
                     //Session["AccessLevel"] = LoggedUser.oikeudet_id;
              
                     //tarkistetaan oikeudet 1 on superuser
