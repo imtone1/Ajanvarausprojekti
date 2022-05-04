@@ -10,6 +10,7 @@ namespace Ajanvarausprojekti.Controllers
     {
         public ActionResult Index()
         {
+            ViewBag.LoginError = 0;
             return View();
         }
 

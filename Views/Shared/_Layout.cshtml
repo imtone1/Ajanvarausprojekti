@@ -11,16 +11,26 @@
 </head>
 <body>
 
-    @{
-        Html.RenderPartial("_NavbarLoggedOut");
-    }
+    @{ if (Session["UserName"] == null)
+        {
+            Html.RenderPartial("_NavbarLoggedOut");
+        }
+        else
+        {
+            Html.RenderPartial("_NavbarLoggedIn");
+        } }
 
     @RenderBody()
 
 
-    @{
-        Html.RenderPartial("_FooterLoggedOut");
-    }
+    @{ if (Session["UserName"] == null)
+        {
+            Html.RenderPartial("_FooterLoggedOut");
+        }
+        else
+        {
+            Html.RenderPartial("_FooterLoggedIn");
+        } }
 
 
     @Scripts.Render("~/bundles/jquery")

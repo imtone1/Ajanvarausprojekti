@@ -375,6 +375,7 @@
     <Content Include="Views\Login\LogOut.cshtml" />
     <Content Include="Views\Varaus\AikaListaus.cshtml" />
     <Content Include="Views\Varaus\VarausListaus.cshtml" />
+    <Content Include="Views\Login\_LoginModal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
