@@ -196,10 +196,17 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\Images\business.png" />
     <Content Include="Content\Images\careerian-tiviohjaus-logo.png" />
     <Content Include="Content\Images\careerian-tiviohjaus-logo-musta.png" />
     <Content Include="Content\Images\favicon-16x16.png" />
     <Content Include="Content\Images\favicon-32x32.png" />
+    <Content Include="Content\Images\portrait-example.jpg" />
+    <Content Include="Content\Images\woman-1920x1080.jpg" />
+    <Content Include="Content\Images\sateenvarjo-logo.png" />
+    <Content Include="Content\Images\tools.png" />
+    <Content Include="Content\Images\woman-mountain.png" />
+    <Content Include="Content\Images\woman-sitting.png" />
     <Content Include="Content\tiviOhjaus.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />

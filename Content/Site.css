@@ -13,16 +13,43 @@
     font-family: Roboto, sans-serif;
 }
 
-.btn-primary {
+.btn.btn-primary {
     background-color: var(--primary-color);
     color: var(--black-color);
     border: none;
-    
+    padding: .4rem;
 }
 
-.btn-primary:hover {
+.btn.btn-primary.focus,
+.btn.btn-primary:focus {
+    background-color: var(--black-color);
+    color: var(--primary-color);
+    padding: .4rem;
+}
+
+.btn.btn-primary:hover {
     background-color: var(--primary-color-hover);
     color: var(--black-color);
+
+}
+
+.btn.btn-primary:active {
+    background-color: var(--black-color);
+    color: var(--primary-color);
+
+}
+
+.btn.btn-primary.active.focus,
+.btn.btn-primary.active:focus,
+.btn.btn-primary.active:hover,
+.btn.btn-primary.active.focus,
+.btn.btn-primary.active:focus,
+.btn.btn-primary.active:focus {
+    background-color: var(--black-color);
+    color: var(--primary-color);
+    outline: none;
+    border: none;
+    box-shadow: none;
 }
 
 .btn-outline-primary {
@@ -36,17 +63,21 @@
     color: var(--black-color);
 }
 
-/*
-    .bg-hero {
-    background-image: url(/Content/Images/IMG_0069_1920x1080.jpg);
-    background-size: cover;
-    background-position: center;
+.btn-secondary {
+    border: none;
+    background-color: var(--black-color);
+    color: var(--white-color);
 }
-*/
+
+
+.bg-hero {
+    background-color: var(--light-grey);
+    background: url(/Content/Images/woman-sitting.png);
+}
 
 
 .bg-primary {
-    background-color: var(--primary-color);
+    background-color: var(--primary-color)!important;
 }
 
 .bg-dark {
@@ -98,6 +129,20 @@
 .logo-musta {
     max-width: initial;
 }
+
+.round-img {
+    width: 10em;
+    height: 10em;
+    background-image: url('Images/portrait-example.jpg');
+    background-size: cover;
+    display: flex;
+    align-self: center;
+    border-radius: 125px;
+    -webkit-border-radius: 125px;
+    -moz-border-radius: 125px;
+}
+
+
 
 
 /* Set padding to keep content from hitting the edges 
