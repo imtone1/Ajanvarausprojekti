@@ -1,5 +1,14 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+@section scripts {
+    <script type="text/javascript">
+$(window).on('load', function () { if
+(@ViewBag.LoginError == 1) {
+$('#LoginRuutu').modal('show');
+}
+});
+    </script>
+}
 
-
+@{ Html.RenderPartial("~/Views/Login/_LoginModal.cshtml"); }

@@ -8,21 +8,29 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    @{
-        Html.RenderPartial("_NavbarLoggedOut");
-    }
+
+
+    @{ if (Session["UserName"] == null)
+        {
+            Html.RenderPartial("_NavbarLoggedOut");
+        }
+        else
+        {
+            Html.RenderPartial("_NavbarLoggedIn");
+        } }
 
     @RenderBody()
 
 
-    <div class="container">
+    @* Tyhjä modaali *@
+    <!--<div class="container">-->
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        <!--<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
             Launch static backdrop modal
-        </button>
+        </button>-->
 
         <!-- Modal -->
-        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <!--<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -39,11 +47,17 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
 
-    @{
-        Html.RenderPartial("_FooterLoggedOut");
-    }
+    @{ if (Session["UserName"] == null)
+        {
+            Html.RenderPartial("_FooterLoggedOut");
+        }
+        else
+        {
+            Html.RenderPartial("_FooterLoggedIn");
+        } }
+   
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
