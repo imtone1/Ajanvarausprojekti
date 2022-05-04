@@ -16,17 +16,19 @@ $('#LoginRuutu').modal('show');
 <section class="container-fluid vh-100 bg-hero">
 
 </section>
+
+
 @section scripts{
     <script>
         //Tänne jqueryt
     </script>
 }
 
-<!--Hero section-->
-<section class="container-fluid vh-100 bg-hero pb-sm-5 pt-sm-0">
+<!-------------------------Hero section---------------------------------->
+<section class="container-fluid vh-100 bg-hero pb-sm-5 pt-sm-0 pt-md-5">
     <div class="container py-md-5">
         <div class="col-md-6 pt-md-5">
-            <div class="d-flex flex-column justify-content-evenly ">
+            <div class="d-flex flex-column justify-content-evenly">
                 <h1 class="display-3 fw-bold pt-5">Careerian Tivi-ohjaus</h1>
                 <p class="lead fs-md-5 my-md-3">Varaa ohjausaika tai anna palautetta Careerian tieto- ja viestintätekniikan opettajille.</p>
                 <div class="d-md-inline-flex">
@@ -38,18 +40,18 @@ $('#LoginRuutu').modal('show');
     </div>
 </section>
 
-<!--Ohjausajan varaus-->
+<!----------------------Ohjausajan varaus-osio--------------------------->
 <section class="container mt-5 mb-5" id="ohjausaika">
-    <h2 class="display-5 fw-bolder">Ohjausajan varaus</h2>
+    <h2 class="display-6 fw-bolder">Ohjausajan varaus</h2>
     <p class="lead">Kenelle tivi-opettajalle haluat varata ajan?</p>
     
     <div id="accordion">
         <!--Tähän foreach-->
-        <!--Kuvakortti-->
+        <!--Opettajien kuvakortti-->
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
             <div class="col">
-                <div class="card bg-black text-white d-flex justify-content-center text-center pt-1">
-                    <div class="round-img" alt="..."></div>
+                <div class="card bg-black text-white d-flex justify-content-center text-center pt-3">
+                    <div class="round-img"></div>
                     <div class="card-body">
                         <h5 class="card-title fw-light">Opettajan nimi</h5>
                         <a class="btn btn-primary" ype="button" data-bs-toggle="collapse" data-bs-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample">Varaa aika</a>
@@ -86,16 +88,19 @@ $('#LoginRuutu').modal('show');
                                 <h4 class=" text-center">26.5</h4>
                             </div>
                             <div class="col-md-11">
-                                <button class="btn btn-primary">
-                                    11.00-11.30
-                                </button>
+                                <div>
+                                    <button class="btn btn-primary" type="submit">
+                                        11.00-11.30
+                                    </button>
+                                </div>
+                            </div>
+                            <div>
+                                <a href="#" class="btn d-grid text-decoration-none btn-outline-primary mt-3">Valitse ja jatka</a>
                             </div>
                         </div>
                     </div>
 
                 </div>
-
-
 
             </div>
         </div>
@@ -103,3 +108,39 @@ $('#LoginRuutu').modal('show');
 
     </div><!--id accordion end tag-->
 </section>
+
+<!-------------------------------Palautelomakeosio------------------------->
+<form class="container-fluid bg-black" id="palaute">
+    <div class="container">
+        <h2 class="text-white display-6 fw-bolder">Anna palautetta opetuksesta</h2>
+        <div class="row">
+            <div class="col bg-primary">
+                <p>
+                    Haluatko antaa palautetta Careerian tieto- ja viestintätekniikan opetukseksesta tai onko sinulla
+                    kehitysehdotuksia, miten voisimme parantaa toimintaamme? Voit antaa palautteen anonyymisti. Jos haluat, että
+                    sinuun ollaan yhteydessä, jätä palautteen loppuun yhteystietosi.
+                </p>
+            </div>
+            <div class="col">
+                <p class="text-white">Tivi-opettaja, jota palaute koskee</p>
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Valitse opettaja...</option>
+                    <option value="1">Ope1</option>
+                    <option value="2">Ope2</option>
+                    <option value="3">Ope3</option>
+                </select>
+                <p class="text-white">Palautteen aihe</p>
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Valitse aihe...</option>
+                    <option value="1">Aihe1</option>
+                    <option value="2">Aihe2</option>
+                    <option value="3">Aihe3</option>
+                </select>
+            </div>
+            <div class="mb-3 ms-0 ps-0">
+                <label for="exampleFormControlTextarea1" class="form-label text-white">Example textarea</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+        </div>
+    </div>
+</form>

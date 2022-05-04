@@ -73,6 +73,13 @@
 .bg-hero {
     background-color: var(--light-grey);
     background: url(/Content/Images/woman-sitting.png);
+    background-size: cover;
+}
+
+.bg-hero-contact {
+    background-color: var(--light-grey);
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)
+    ), url(/Content/Images/valot.jpg);
 }
 
 
@@ -89,7 +96,7 @@
 }
 
 .text-primary {
-    color: var(--primary-color);
+    color: var(--primary-color)!important;
 }
 
 .text-dark {

@@ -202,6 +202,7 @@
     <Content Include="Content\Images\favicon-16x16.png" />
     <Content Include="Content\Images\favicon-32x32.png" />
     <Content Include="Content\Images\portrait-example.jpg" />
+    <Content Include="Content\Images\valot.jpg" />
     <Content Include="Content\Images\woman-1920x1080.jpg" />
     <Content Include="Content\Images\sateenvarjo-logo.png" />
     <Content Include="Content\Images\tools.png" />
