@@ -18,6 +18,9 @@ namespace Ajanvarausprojekti.Models
         public string varaaja_nimi { get; set; }
         public System.DateTime varattu_pvm { get; set; }
         public int aika_id { get; set; }
+        public string varaaja_sahkoposti { get; set; }
+        public string id_hash { get; set; }
+        public string aihe { get; set; }
     
         public virtual Ajat Ajat { get; set; }
     }
