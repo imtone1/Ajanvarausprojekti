@@ -70,6 +70,9 @@
           <Property Name="varaaja_nimi" Type="varchar" MaxLength="50" />
           <Property Name="varattu_pvm" Type="datetime" Nullable="false" />
           <Property Name="aika_id" Type="int" Nullable="false" />
+          <Property Name="varaaja_sahkoposti" Type="varchar" MaxLength="250" />
+          <Property Name="id_hash" Type="varchar" MaxLength="350" />
+          <Property Name="aihe" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="Yllapitooikeudet">
           <Key>
@@ -291,6 +294,9 @@
           <Property Name="varattu_pvm" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="aika_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Ajat" Relationship="Self.FK_varausaika" FromRole="Varaukset" ToRole="Ajat" />
+          <Property Name="varaaja_sahkoposti" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="id_hash" Type="String" MaxLength="350" FixedLength="false" Unicode="false" />
+          <Property Name="aihe" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Yllapitooikeudet">
           <Key>
@@ -503,6 +509,9 @@
           <EntitySetMapping Name="Varaukset">
             <EntityTypeMapping TypeName="aikapalauteModel.Varaukset">
               <MappingFragment StoreEntitySet="Varaukset">
+                <ScalarProperty Name="aihe" ColumnName="aihe" />
+                <ScalarProperty Name="id_hash" ColumnName="id_hash" />
+                <ScalarProperty Name="varaaja_sahkoposti" ColumnName="varaaja_sahkoposti" />
                 <ScalarProperty Name="varaus_id" ColumnName="varaus_id" />
                 <ScalarProperty Name="varaaja_nimi" ColumnName="varaaja_nimi" />
                 <ScalarProperty Name="varattu_pvm" ColumnName="varattu_pvm" />
