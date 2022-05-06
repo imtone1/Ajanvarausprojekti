@@ -106,6 +106,13 @@
     width: auto;
 }
 
+.bg-hero-about {
+    background-color: var(--light-grey);
+    background: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5) ), url(/Content/Images/people.jpg) no-repeat fixed;
+    background-size: cover;
+    background-position: bottom;
+}
+
 .bg-primary {
     background-color: var(--primary-color) !important;
 }
@@ -172,6 +179,9 @@
     -moz-border-radius: 125px;
 }
 
+.border-primary {
+    border: 1px solid var(--primary-color)!important;
+}
 
 
 
