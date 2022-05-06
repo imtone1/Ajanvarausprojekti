@@ -46,6 +46,10 @@
 
 }
 
+.btn .btn-primary:active:hover {
+    background-color: var(--black-color);
+}
+
 .btn.btn-primary.active.focus,
 .btn.btn-primary.active:focus,
 .btn.btn-primary.active:hover,
