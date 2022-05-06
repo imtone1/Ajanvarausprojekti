@@ -177,7 +177,7 @@ namespace Ajanvarausprojekti.Controllers
                     ViewBag.LoggedStatus = "In";
                     ViewBag.LoginError = 0;
                    
-                    return RedirectToAction("Index", "Home"); //Tässä määritellään mihin onnistunut kirjautuminen johtaa --> Home/Index
+                    return RedirectToAction("Index", "Varaus"); //Tässä määritellään mihin onnistunut kirjautuminen johtaa --> Home/Index
 
              
             }

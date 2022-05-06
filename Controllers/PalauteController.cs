@@ -27,6 +27,20 @@ namespace Ajanvarausprojekti.Controllers
             return View(model);
         }
 
+        public ActionResult _Index()
+        {
+            //luodaan db olio
+            aikapalauteEntities db = new aikapalauteEntities();
+
+            //Listataan kaikki palautteet Palaute-näkymän Index-sivulle (Vews-Palaute-Index)
+            List<Palautteet> model = db.Palautteet.ToList();
+
+            //poistetaan/vapautetaan olio db, koska muuten luodaan liian monta oliota/tietokantayhteyksia
+            db.Dispose();
+
+            return PartialView("_Index", model);
+        }
+
         // GET: Palaute/Details/5
         public ActionResult Details(int id)
         {
