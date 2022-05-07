@@ -38,7 +38,7 @@ namespace Ajanvarausprojekti.Controllers
                                 Varauspvm = (DateTime)varaus.varattu_pvm,
 
                             };
-            return View(ajatLista);
+            return PartialView("_AikaListaus", ajatLista);
         }
 
         public ActionResult VarausListaus()
@@ -52,14 +52,12 @@ namespace Ajanvarausprojekti.Controllers
                 //Sessiosta otetaan kirjautuneen opettajan id
                 var opeid = Session["OpettajaID"];
                 int opeOikID = int.Parse(opeid.ToString());
-                //left join, jotta näkyisi kaikki ajat, myös ne joissa ei varausta
+                //Näkyy kirjautuneen opettajan ajat sekä tämänpäiväset tai tulevat ajat
                 var ajatLista = from a in db.Ajat
                                 join op in db.Opettajat on a.opettaja_id equals op.opettaja_id
                                 join k in db.Kestot on a.kesto_id equals k.kesto_id
                                 join v in db.Varaukset on a.aika_id equals v.aika_id
-                                //into gj
-                                //from varaus in gj.DefaultIfEmpty()
-                                where op.opettaja_id == opeOikID
+                                where op.opettaja_id == opeOikID && a.alku_aika >= DateTime.Today
                                 orderby a.alku_aika
 
                                 select new ajatListaData
@@ -74,7 +72,7 @@ namespace Ajanvarausprojekti.Controllers
                                     Varauspvm = (DateTime)v.varattu_pvm,
 
                                 };
-                return View(ajatLista);
+                return PartialView("_VarausListaus", ajatLista);
             }
 
 
@@ -96,11 +94,11 @@ namespace Ajanvarausprojekti.Controllers
         //Alla olevaa koodia voi käyttää pohjana tai olla käyttämättä kokonaan. Saa poistaa, jos ei tarvetta.
         // GET: Ajat
 
-        //public ActionResult Index()
-        //{
-        //    var ajat = db.Ajat.Include(a => a.Kestot).Include(a => a.Opettajat);
-        //    return View(ajat.ToList());
-        //}
+        public ActionResult Index()
+        {
+           
+            return View();
+        }
 
         //// GET: Ajat/Details/5
         //public ActionResult Details(int? id)

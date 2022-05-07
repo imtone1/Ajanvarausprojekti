@@ -377,6 +377,10 @@
     <Content Include="Views\Varaus\AikaListaus.cshtml" />
     <Content Include="Views\Varaus\VarausListaus.cshtml" />
     <Content Include="Views\Login\_LoginModal.cshtml" />
+    <Content Include="Views\Varaus\_AikaListaus.cshtml" />
+    <Content Include="Views\Varaus\_VarausListaus.cshtml" />
+    <Content Include="Views\Varaus\Index.cshtml" />
+    <Content Include="Views\Home\_About.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

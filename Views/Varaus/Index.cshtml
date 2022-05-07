@@ -1,0 +1,18 @@
+﻿@model Ajanvarausprojekti.ViewModels.ajatListaData
+
+
+@* jos actionresult view ja samassa kontrollerissa *@
+
+
+@Html.Action("VarausListaus");
+
+@Html.Action("AikaListaus");
+
+
+@* Jos staattinen ja eri kontrollerissa *@
+
+@Html.Partial("~/Views/Home/_About.cshtml");
+
+@* Jos action result ja eri kontrollerissa Tämä alla oleva ei toimi, koska poistin tekemäni palautteetkontrollerin partialviewn*@
+
+@*@Html.Action("_Index", "Palaute");*@
