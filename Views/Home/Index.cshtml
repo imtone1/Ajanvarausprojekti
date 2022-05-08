@@ -16,7 +16,7 @@ $('#LoginRuutu').modal('show');
 
 
 <!-------------------------Hero section---------------------------------->
-<section class="container-fluid vh-100 bg-hero pb-5 pt-sm-0 pt-md-5">
+<section class="container-fluid vh-100 bg-hero pb-md-5 pt-5">
     <div class="container py-md-5">
         <div class="col-md-6 pt-md-5">
             <div class="d-flex flex-column justify-content-evenly">
@@ -46,6 +46,10 @@ $('#LoginRuutu').modal('show');
                     <div class="round-img"></div>
                     <div class="card-body">
                         <h5 class="card-title fw-light">Opettajan nimi</h5>
+                        <!--Alla oleva button on vielä kortin sisällä, sillä sitä pitäisi muokata css:llä
+                            (asettaa miinusmarginaaleja jotka pitäisi sitten joka näyttökoolle säätää erikseen) mikäli sen
+                            haluaisi sijoittuvan kortin alareunan päälle kuten käyttöliittymäsuunnitelmassa. Mahd. aikaa vievä juttu
+                            joka ei ole ainakaan vielä tässä vaiheessa oleellista.-->
                         <a class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample">Varaa aika</a>
                     </div>
                 </div>
@@ -59,15 +63,15 @@ $('#LoginRuutu').modal('show');
                     <div class="progress" style="height: 1px; background-color: var(--primary-color);">
                         <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
-                    <button type="button" class=" top-0 start-0 translate-middle btn btn-sm btn-primary rounded-pill d-flex justify-content-center align-items-center" style="width: 2.5rem; height: 2.5rem;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="black" class="bi bi-check2" viewBox="0 0 16 16">
+                    <button type="button" class=" top-0 start-0 p-0 m-0 translate-middle btn btn-sm btn-primary rounded-pill d-flex justify-content-center align-items-center" style="width: 3.4rem; height: 3.4rem;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="auto" fill="black" class="bi bi-check2 m-0 p-0" viewBox="0 0 16 16">
                             <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
                         </svg>
                     </button>
-                    <button type="button" class="position-absolute top-0 start-50 translate-middle btn btn-sm btn-outline-primary bg-white rounded-pill d-flex justify-content-center align-items-center" style="width: 2.5rem; height: 2.5rem;">
+                    <button type="button" class="position-absolute top-0 start-50 translate-middle btn btn-sm btn-outline-primary bg-white rounded-pill d-flex justify-content-center align-items-center" style="width: 3.4rem; height: 3.4rem;">
 
                     </button>
-                    <button type="button" class="position-absolute top-0 start-100 translate-middle btn btn-sm btn-outline-primary bg-white rounded-pill d-flex justify-content-center align-items-center" style="width: 2.5rem; height: 2.5rem;">
+                    <button type="button" class="position-absolute top-0 start-100 translate-middle btn btn-sm btn-outline-primary bg-white rounded-pill d-flex justify-content-center align-items-center" style="width: 3.4rem; height: 3.4rem;">
 
                     </button>
                 </div>
@@ -104,7 +108,7 @@ $('#LoginRuutu').modal('show');
 <!-------------------------------Palautelomakeosio------------------------->
 <form class="container-fluid bg-black mt-5" id="palaute">
     <div class="container">
-        <h2 class="text-white display-6 fw-bolder pt-5">Anna palautetta opetuksesta</h2>
+            <h2 class="text-white display-6 fw-bolder pt-5 mx-0 px-0">Anna palautetta opetuksesta</h2>
         <div class="row">
             <div class="col bg-primary py-4 px-5">
                 <p>
@@ -114,14 +118,14 @@ $('#LoginRuutu').modal('show');
                 </p>
             </div>
             <div class="col p-0 ps-md-3">
-                <p class="text-white">Tivi-opettaja, jota palaute koskee</p>
+                <p class="text-white mb-0 mt-2">Tivi-opettaja, jota palaute koskee</p>
                 <select class="form-select" aria-label="Default select example">
                     <option selected>Valitse opettaja...</option>
                     <option value="1">Ope1</option>
                     <option value="2">Ope2</option>
                     <option value="3">Ope3</option>
                 </select>
-                <p class="text-white">Palautteen aihe</p>
+                <p class="text-white mt-4 mb-0">Palautteen aihe</p>
                 <select class="form-select" aria-label="Default select example">
                     <option selected>Valitse aihe...</option>
                     <option value="1">Aihe1</option>
@@ -129,10 +133,10 @@ $('#LoginRuutu').modal('show');
                     <option value="3">Aihe3</option>
                 </select>
             </div>
-            <div class="ms-0 ps-0 pt-4">
+            <div class="ms-0 ps-0 pt-4 px-0">
                 <label for="exampleFormControlTextarea1" class="form-label text-white">Palautteesi</label>
-                <textarea class="form-control" name="palaute" id="exampleFormControlTextarea1" rows="3" placeholder="Kirjoita palautteesi tähän..."></textarea>
-                <div class="d-flex justify-content-end align-self-end align-items-end mt-4 pb-3">
+                <textarea class="form-control mx-0" name="palaute" id="exampleFormControlTextarea1" rows="4" placeholder="Kirjoita palautteesi tähän..."></textarea>
+                <div class="d-flex justify-content-end align-self-end align-items-end mt-4 pb-5">
                     <button href="#" class="btn btn-primary ms-md-3" type="submit">Anna palautetta</button>
                 </div>
             </div>
