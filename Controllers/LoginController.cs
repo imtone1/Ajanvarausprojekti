@@ -135,9 +135,36 @@ namespace Ajanvarausprojekti.Controllers
             return RedirectToAction("Index", "Home");}
             catch
             {
+
                 return View();
             }
         }
+
+        //Irina: Saa käyttää tai jos varausten create on tehty niin saa poistaa. Tämä liittyy varauksen luomiseen, kesken, koska testataakseen salasanan generoimisen olisi pitänyt tehdä kokonaan varausten luomisen.
+        //public ActionResult GeneroiSalasana()
+        //{
+
+        //    return View();
+
+        //}
+
+        //// POST: 
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult GeneroiSalasana(Varaukset varaus)
+        //{
+        //    try
+        //    {
+        //        LoginService lServicee = new LoginService();
+        //        string varausSalasana = lServicee.GeneratePassword(3, 3, 3);
+
+        //        if (ModelState.IsValid)
+        //        {
+        //            var testForPass = from v in db.Varaukset
+        //                              where k.kayttajatunnus == kayttaja.kayttajatunnus
+        //                              select k;
+
+
 
         public ActionResult Login()
         {
