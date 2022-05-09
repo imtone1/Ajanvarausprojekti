@@ -38,7 +38,7 @@ namespace Ajanvarausprojekti.Controllers
                                 Varauspvm = (DateTime)varaus.varattu_pvm,
 
                             };
-            return View(ajatLista);
+            return PartialView("_AikaListaus", ajatLista);
         }
 
         public ActionResult VarausListaus()
@@ -52,14 +52,12 @@ namespace Ajanvarausprojekti.Controllers
                 //Sessiosta otetaan kirjautuneen opettajan id
                 var opeid = Session["OpettajaID"];
                 int opeOikID = int.Parse(opeid.ToString());
-                //left join, jotta näkyisi kaikki ajat, myös ne joissa ei varausta
+                //Näkyy kirjautuneen opettajan ajat sekä tämänpäiväset tai tulevat ajat
                 var ajatLista = from a in db.Ajat
                                 join op in db.Opettajat on a.opettaja_id equals op.opettaja_id
                                 join k in db.Kestot on a.kesto_id equals k.kesto_id
                                 join v in db.Varaukset on a.aika_id equals v.aika_id
-                                //into gj
-                                //from varaus in gj.DefaultIfEmpty()
-                                where op.opettaja_id == opeOikID
+                                where op.opettaja_id == opeOikID && a.alku_aika >= DateTime.Today
                                 orderby a.alku_aika
 
                                 select new ajatListaData
@@ -74,7 +72,7 @@ namespace Ajanvarausprojekti.Controllers
                                     Varauspvm = (DateTime)v.varattu_pvm,
 
                                 };
-                return View(ajatLista);
+                return PartialView("_VarausListaus", ajatLista);
             }
 
 
@@ -96,11 +94,11 @@ namespace Ajanvarausprojekti.Controllers
         //Alla olevaa koodia voi käyttää pohjana tai olla käyttämättä kokonaan. Saa poistaa, jos ei tarvetta.
         // GET: Ajat
 
-        //public ActionResult Index()
-        //{
-        //    var ajat = db.Ajat.Include(a => a.Kestot).Include(a => a.Opettajat);
-        //    return View(ajat.ToList());
-        //}
+        public ActionResult Index()
+        {
+
+            return View();
+        }
 
         //// GET: Ajat/Details/5
         //public ActionResult Details(int? id)
@@ -179,28 +177,81 @@ namespace Ajanvarausprojekti.Controllers
         //    return View(ajat);
         //}
 
-        //// GET: Ajat/Delete/5
+        public ActionResult VarausPoisto()
+        {
+            //var varaus = db.Varaukset;
+
+            return PartialView();
+        }
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Varaukset varaus = db.Varaukset.Find(id);
+            if (varaus == null)
+            {
+                return HttpNotFound();
+            }
+            return View(varaus);
+        }
+
+
+        [HttpPost]
+        //[ValidateAntiForgeryToken]
+        public ActionResult VarausPoisto(Varaukset varaus)
+        {
+            var varaaja = db.Varaukset.SingleOrDefault(x => x.id_hash == varaus.id_hash);
+            
+            if (varaaja != null)
+            {
+                
+                int varausID = (from v in db.Varaukset
+                                    where v.id_hash== varaaja.id_hash
+                                    select v.varaus_id).Take(1).SingleOrDefault();
+               
+                int varaus_id = varaaja.varaus_id;
+
+                Varaukset varauspoisto = db.Varaukset.Find(varausID);
+                db.Varaukset.Remove(varauspoisto);
+                db.SaveChanges();
+                return RedirectToAction("Index", "Home");
+           
+            //return RedirectToAction("DeleteConfirmed", "Varaus", varausID); //Tässä määritellään mihin onnistunut toiminto johtaa
+            }
+            else
+            {
+                return View("Error");
+            }
+
+        }
+
+       
+        // GET: Ajat/Delete/5
         //public ActionResult Delete(int? id)
         //{
         //    if (id == null)
         //    {
         //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         //    }
-        //    Ajat ajat = db.Ajat.Find(id);
-        //    if (ajat == null)
+
+        //    Varaukset varaus = db.Varaukset.Find(id);
+        //    if (varaus == null)
         //    {
         //        return HttpNotFound();
         //    }
-        //    return View(ajat);
+        //    return View(varaus);
         //}
 
-        //// POST: Ajat/Delete/5
+        // POST: Ajat/Delete/5
         //[HttpPost, ActionName("Delete")]
         //[ValidateAntiForgeryToken]
         //public ActionResult DeleteConfirmed(int id)
         //{
-        //    Ajat ajat = db.Ajat.Find(id);
-        //    db.Ajat.Remove(ajat);
+        //    Varaukset varaus = db.Varaukset.Find(id);
+        //    db.Varaukset.Remove(varaus);
         //    db.SaveChanges();
         //    return RedirectToAction("Index");
         //}

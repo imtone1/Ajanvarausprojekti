@@ -7,9 +7,24 @@
     <link rel=icon href="~/Content/Images/favicon-32x32.png" sizes="32x32" type="image/vnd.microsoft.icon">
     <title>@ViewBag.Title | Careerian Tivi-Ohjaus</title>
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+
+    @section scripts {
+        
+        
+        <script type="text/javascript">
+@Scripts.Render("~/bundles/modernizr")
+$(window).on('load', function () { if
+(@ViewBag.LoginError == 1) {
+$('#LoginRuutu').modal('show');
+}
+});
+
+        </script>
+    }
 </head>
 <body>
+    @{ Html.RenderPartial("~/Views/Login/_LoginModal.cshtml"); }
+   
 
     @{ if (Session["UserName"] == null)
         {
@@ -19,6 +34,7 @@
         {
             Html.RenderPartial("_NavbarLoggedIn");
         } }
+
 
     @RenderBody()
 

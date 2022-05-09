@@ -1,7 +1,6 @@
 ﻿@{
     ViewBag.Title = "Koti";
 }
-
 @section scripts {
     <script type="text/javascript">
          //Tämä tässä, jos tulee useampi modaali eikä toimikaan, poistetaan myöhemmin, jos ei tarvita
@@ -10,11 +9,16 @@
       //          $('.modal').modal('hide');
       //      $('#'+id).modal('show');
       //}
+
+
+
         $(document).on('load', function () { if
 (@ViewBag.LoginError == 1) {
 $('#VarausRuutu').modal('show');
 }
 });
+
+
     </script>
 }
 @*<button class="btn nav-link text-uppercase" data-bs-toggle="modal" data-bs-target="#VarausRuutu">Varaukset poisto</button>*@
@@ -153,3 +157,6 @@ $('#VarausRuutu').modal('show');
 <div class="container-fluid bg-index-btm">
 
 </div>
+
+@Html.Action("VarausPoisto", "Varaus");
+
