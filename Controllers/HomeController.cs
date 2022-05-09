@@ -37,5 +37,10 @@ namespace Ajanvarausprojekti.Controllers
         {
             return View();
         }
+
+        public ActionResult OpettajienSivu()
+        {
+            return View();
+        }
     }
 }

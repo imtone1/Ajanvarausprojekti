@@ -388,10 +388,8 @@
     <Content Include="Views\Varaus\AikaListaus.cshtml" />
     <Content Include="Views\Varaus\VarausListaus.cshtml" />
     <Content Include="Views\Login\_LoginModal.cshtml" />
-
     <Content Include="Views\Home\Privacy.cshtml" />
     <Content Include="Views\Home\Terms.cshtml" />
-
     <Content Include="Views\Varaus\_AikaListaus.cshtml" />
     <Content Include="Views\Varaus\_VarausListaus.cshtml" />
     <Content Include="Views\Varaus\Index.cshtml" />
@@ -400,7 +398,7 @@
     <Content Include="Views\Varaus\PoistaVaraus.cshtml" />
     <Content Include="Views\Varaus\VarausPoisto.cshtml" />
     <Content Include="Views\Shared\View.cshtml" />
-
+    <Content Include="Views\Home\OpettajienSivu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
