@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Ajanvarausprojekti.Models.Palautteet>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Uusimmat Palautteet</h2>
+
+
+<div>
+    <table class="table">
+        <tr>
+            <th>Päivämäärä</th>
+            <th>Aihe</th>
+            <th>Palaute</th>
+        </tr>
+
+        @foreach (var item in Model.Reverse().Take(5))
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.palaute_pvm)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Palautetyypit.palautetyyppi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.palaute)
+                </td>
+                <td><button class="getPalauteId" data-palauteid="@item.palaute_id">jatketaan</button></td>
+
+            </tr>
+        }
+
+    </table>
+</div>
