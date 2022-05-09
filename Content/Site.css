@@ -11,18 +11,59 @@
 
 *{
     font-family: Roboto, sans-serif;
+    margin-left: 0;
+    margin-right: 0;
 }
 
 .btn-primary {
+    padding-top: .7rem!important;
+    padding-bottom: .7rem!important;
+    padding-left: 1rem!important;
+    padding-right: 1rem!important;
+}
+
+.btn.btn-primary {
     background-color: var(--primary-color);
     color: var(--black-color);
     border: none;
-    
+    padding: .5rem;
 }
 
-.btn-primary:hover {
+.btn.btn-primary.focus,
+.btn.btn-primary:focus {
+    background-color: var(--black-color);
+    color: var(--primary-color);
+    padding: .5rem;
+    box-shadow: none;
+}
+
+.btn.btn-primary:hover {
     background-color: var(--primary-color-hover);
     color: var(--black-color);
+
+}
+
+.btn.btn-primary:active {
+    background-color: var(--black-color);
+    color: var(--primary-color);
+
+}
+
+.btn .btn-primary:active:hover {
+    background-color: var(--black-color);
+}
+
+.btn.btn-primary.active.focus,
+.btn.btn-primary.active:focus,
+.btn.btn-primary.active:hover,
+.btn.btn-primary.active.focus,
+.btn.btn-primary.active:focus,
+.btn.btn-primary.active:focus {
+    background-color: var(--black-color);
+    color: var(--primary-color);
+    outline: none;
+    border: none;
+    box-shadow: none;
 }
 
 .btn-outline-primary {
@@ -36,17 +77,47 @@
     color: var(--black-color);
 }
 
-/*
-    .bg-hero {
-    background-image: url(/Content/Images/IMG_0069_1920x1080.jpg);
-    background-size: cover;
-    background-position: center;
+.btn-secondary {
+    border: none;
+    background-color: var(--black-color);
+    color: var(--white-color);
 }
-*/
 
+
+.bg-hero {
+    background-color: var(--light-grey);
+    background: url(/Content/Images/woman-sitting.png) no-repeat fixed;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: auto;
+    background-size: cover;
+}
+
+.bg-hero-contact {
+    background-color: var(--light-grey);
+    background:  url(/Content/Images/keyboard.jpg);
+    background-size: cover;
+}
+
+.bg-index-btm {
+    background-color: var(--light-grey);
+    background: url(/Content/Images/woman-1920x1080.jpg) fixed;
+    background-size: cover;
+    background-position: left;
+    height: 75vh;
+    width: auto;
+}
+
+.bg-hero-about {
+    background-color: var(--light-grey);
+    background: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5) ), url(/Content/Images/people.jpg) no-repeat fixed;
+    background-size: cover;
+    background-position: bottom;
+}
 
 .bg-primary {
-    background-color: var(--primary-color);
+    background-color: var(--primary-color) !important;
 }
 
 .bg-dark {
@@ -58,7 +129,7 @@
 }
 
 .text-primary {
-    color: var(--primary-color);
+    color: var(--primary-color)!important;
 }
 
 .text-dark {
@@ -98,6 +169,55 @@
 .logo-musta {
     max-width: initial;
 }
+
+.round-img {
+    width: 10em;
+    height: 10em;
+    background-image: url('Images/portrait-example.jpg');
+    background-size: cover;
+    display: flex;
+    align-self: center;
+    border-radius: 125px;
+    -webkit-border-radius: 125px;
+    -moz-border-radius: 125px;
+}
+
+.border-primary {
+    border: 1px solid var(--primary-color)!important;
+}
+
+
+.accordion-button {
+    color: var(--black-color);
+    background-color: var(--primary-color);
+}
+
+.accordion-button:not(.collapsed){
+    color: var(--black-color);
+    background-color: var(--primary-color);
+}
+
+.accordion-button::after {
+    background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%2311100C'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !important;
+}
+
+.accordion-button:focus {
+    
+    box-shadow: none;
+}
+
+.form-select:focus {
+    box-shadow: none;
+    
+}
+
+.select-input {
+    color: black;
+}
+
+
+
+
 
 
 /* Set padding to keep content from hitting the edges 

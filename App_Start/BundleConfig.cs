@@ -20,13 +20,14 @@ namespace Ajanvarausprojekti
                         "~/Scripts/modernizr-*"));
 
             //MUUTETTU ScriptBundle > Bundle
+            //4.5.2022: Vaihdoin bootstrap.js -> bootstrap.bundle.js sillä muuten dropdown listit ei toimi
             bundles.Add(new Bundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js"));
+                      "~/Scripts/bootstrap.bundle.js"));
             
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/Site.css"));
 
     
 

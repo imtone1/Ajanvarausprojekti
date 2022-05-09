@@ -6,51 +6,63 @@
     <div class="modal fade" id="LoginRuutu" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="LoginRuutuLabel">TÄHÄN LOGO</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    @using (Html.BeginForm("Authorize", "Login", FormMethod.Post, new { id = "loginForm" }))
-                    {
-                        @Html.AntiForgeryToken()
-
-                        <div class="form-horizontal">
-                            <h4>Kirjaudu sisään</h4>
-
-                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                            @Html.HiddenFor(model => model.kayttajatunnus_id)
-
-                            <div class="form-group">
-                                <label class="control-label col-md-2">Käyttäjätunnus</label>
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.kayttajatunnus, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.kayttajatunnus, "", new { @class = "text-danger" })
-                                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col mt-1 ms-2 me-0 pe-0 pb-5">
+                            <div class="d-flex justify-content-end align-items-end">
+                                <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-header border-0 d-flex flex-column justify-content-center align-items-center text-center">
+                                <h5 class="modal-title" id="LoginRuutuLabel"><img src="~/Content/Images/careerian-tiviohjaus-logo.png" class="d-flex justify-content-center align-items-center w-75 h-auto" alt="Careerian Tivi-ohjaus Logo" aria-label="Careerian Tivi-Ohjaus"><span class="fw-light pt-3 fs-6 text-uppercase">Opettajille</span></h5>
                             </div>
 
-                            <div class="form-group">
-                                <label class="control-label col-md-2">Salasana</label>
+                            <div class="modal-body mt-3">
+                                @using (Html.BeginForm("Authorize", "Login", FormMethod.Post, new { id = "loginForm" }))
+                                {
+                                    @Html.AntiForgeryToken()
 
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.salasana, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.salasana, "", new { @class = "text-danger" })
-                                </div>
+                                    <div class="form-horizontal">
+                                        <h4>Kirjaudu sisään</h4>
+
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        @Html.HiddenFor(model => model.kayttajatunnus_id)
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-2">Käyttäjätunnus</label>
+                                            <div class="col-md-10">
+                                                @Html.EditorFor(model => model.kayttajatunnus, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.kayttajatunnus, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-2">Salasana</label>
+
+                                            <div class="col-md-10">
+                                                @Html.EditorFor(model => model.salasana, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.salasana, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                        <label class="text-danger">
+                                            @Html.DisplayFor(model => model.LoginErrorMessage)
+                                        </label>
+                                    </div>
+                                }
+
+                                <!-- Jos tätä käytetään niin tulee viiva ja button siirtyy oik. puolella. Modal footer -->
+                                @*<div class="modal-footer">*@
+
+                                <button type="submit" form="loginForm" class="btn btn-primary">Kirjaudu sisään</button>
+                                @*</div>*@
                             </div>
-
-                            <label class="text-danger">
-                                @Html.DisplayFor(model => model.LoginErrorMessage)
-                            </label>
                         </div>
-                    }
-
-                    <!-- Jos tätä käytetään niin tulee viiva ja button siirtyy oik. puolella. Modal footer -->
-                    @*<div class="modal-footer">*@
-
-                    <button type="submit" form="loginForm" class="btn btn-primary">Kirjaudu sisään</button>
-
-                    @*</div>*@
+                        <div class="col-5 d-none d-sm-block pe-0">
+                            <img src="~/Content/Images/tools.png" class="img-fluid h-100 w-auto" alt="Alternate Text" />
+                        </div>
+                    </div>
                 </div>
+
             </div>
         </div>
     </div>
