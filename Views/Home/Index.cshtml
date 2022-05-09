@@ -3,7 +3,6 @@
 }
 @section scripts {
     <script type="text/javascript">
-
          //Tämä tässä, jos tulee useampi modaali eikä toimikaan, poistetaan myöhemmin, jos ei tarvita
       //      function launch_modal(id) {
       //          // Hide all modals using class if required.
@@ -22,7 +21,7 @@ $('#VarausRuutu').modal('show');
 
     </script>
 }
-<button class="btn nav-link text-uppercase" data-bs-toggle="modal" data-bs-target="#VarausRuutu">Varaukset poisto</button>
+@*<button class="btn nav-link text-uppercase" data-bs-toggle="modal" data-bs-target="#VarausRuutu">Varaukset poisto</button>*@
 
 
 @{ Html.RenderPartial("~/Views/Login/_LoginModal.cshtml"); }
@@ -49,7 +48,7 @@ $('#VarausRuutu').modal('show');
 <section class="container mt-5 mb-5 pb-5" id="ohjausaika">
     <h2 class="display-6 fw-bolder">Ohjausajan varaus</h2>
     <p class="lead">Kenelle tivi-opettajalle haluat varata ajan?</p>
-    
+
     <div id="accordion">
         <!--Tähän foreach-->
         <!--Opettajien kuvakortti-->
@@ -82,10 +81,8 @@ $('#VarausRuutu').modal('show');
                         </svg>
                     </button>
                     <button type="button" class="placeholder-glow position-absolute top-0 start-50 translate-middle btn btn-sm btn-outline-primary bg-white rounded-pill d-flex justify-content-center align-items-center" style="width: 3.4rem; height: 3.4rem;">
-
                     </button>
                     <button type="button" class="placeholder-glow position-absolute top-0 start-100 translate-middle btn btn-sm btn-outline-primary bg-white rounded-pill d-flex justify-content-center align-items-center" style="width: 3.4rem; height: 3.4rem;">
-
                     </button>
                 </div>
 
@@ -121,7 +118,7 @@ $('#VarausRuutu').modal('show');
 <!-------------------------------Palautelomakeosio------------------------->
 <form class="container-fluid bg-black mt-5" id="palaute">
     <div class="container">
-            <h2 class="text-white display-6 fw-bolder pt-5 mx-0 px-0">Anna palautetta opetuksesta</h2>
+        <h2 class="text-white display-6 fw-bolder pt-5 mx-0 px-0">Anna palautetta opetuksesta</h2>
         <div class="row">
             <div class="col bg-primary py-4 px-5">
                 <p>
@@ -157,9 +154,7 @@ $('#VarausRuutu').modal('show');
     </div>
 </form>
 
-<div class="container-fluid bg-index-btm">
-    
-</div>
+<div class="container-fluid bg-index-btm"></div>
 
-@Html.Action("VarausPoisto", "Varaus");
+@Html.Action("VarausPoisto", "Varaus")
 
