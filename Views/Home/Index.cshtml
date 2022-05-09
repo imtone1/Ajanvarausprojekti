@@ -4,13 +4,21 @@
 
 @section scripts {
     <script type="text/javascript">
-$(window).on('load', function () { if
+         //Tämä tässä, jos tulee useampi modaali eikä toimikaan, poistetaan myöhemmin, jos ei tarvita
+      //      function launch_modal(id) {
+      //          // Hide all modals using class if required.
+      //          $('.modal').modal('hide');
+      //      $('#'+id).modal('show');
+      //}
+        $(document).on('load', function () { if
 (@ViewBag.LoginError == 1) {
-$('#LoginRuutu').modal('show');
+$('#VarausRuutu').modal('show');
 }
 });
     </script>
 }
+@*<button class="btn nav-link text-uppercase" data-bs-toggle="modal" data-bs-target="#VarausRuutu">Varaukset poisto</button>*@
+
 
 @{ Html.RenderPartial("~/Views/Login/_LoginModal.cshtml"); }
 
@@ -36,7 +44,7 @@ $('#LoginRuutu').modal('show');
 <section class="container mt-5 mb-5 pb-5" id="ohjausaika">
     <h2 class="display-6 fw-bolder">Ohjausajan varaus</h2>
     <p class="lead">Kenelle tivi-opettajalle haluat varata ajan?</p>
-    
+
     <div id="accordion">
         <!--Tähän foreach-->
         <!--Opettajien kuvakortti-->
@@ -69,10 +77,8 @@ $('#LoginRuutu').modal('show');
                         </svg>
                     </button>
                     <button type="button" class="placeholder-glow position-absolute top-0 start-50 translate-middle btn btn-sm btn-outline-primary bg-white rounded-pill d-flex justify-content-center align-items-center" style="width: 3.4rem; height: 3.4rem;">
-
                     </button>
                     <button type="button" class="placeholder-glow position-absolute top-0 start-100 translate-middle btn btn-sm btn-outline-primary bg-white rounded-pill d-flex justify-content-center align-items-center" style="width: 3.4rem; height: 3.4rem;">
-
                     </button>
                 </div>
 
@@ -108,7 +114,7 @@ $('#LoginRuutu').modal('show');
 <!-------------------------------Palautelomakeosio------------------------->
 <form class="container-fluid bg-black mt-5" id="palaute">
     <div class="container">
-            <h2 class="text-white display-6 fw-bolder pt-5 mx-0 px-0">Anna palautetta opetuksesta</h2>
+        <h2 class="text-white display-6 fw-bolder pt-5 mx-0 px-0">Anna palautetta opetuksesta</h2>
         <div class="row">
             <div class="col bg-primary py-4 px-5">
                 <p>
@@ -145,5 +151,5 @@ $('#LoginRuutu').modal('show');
 </form>
 
 <div class="container-fluid bg-index-btm">
-    
+
 </div>
