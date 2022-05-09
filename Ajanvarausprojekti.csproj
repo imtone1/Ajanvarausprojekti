@@ -201,6 +201,7 @@
     <Content Include="Content\Images\careerian-tiviohjaus-logo-musta.png" />
     <Content Include="Content\Images\favicon-16x16.png" />
     <Content Include="Content\Images\favicon-32x32.png" />
+    <Content Include="Content\Images\keyboard.jpg" />
     <Content Include="Content\Images\people.jpg" />
     <Content Include="Content\Images\portrait-example.jpg" />
     <Content Include="Content\Images\tietokone-390392.jpg" />

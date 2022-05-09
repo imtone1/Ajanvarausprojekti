@@ -96,8 +96,8 @@
 
 .bg-hero-contact {
     background-color: var(--light-grey);
-    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)
-    ), url(/Content/Images/valot.jpg) fixed;
+    background:  url(/Content/Images/keyboard.jpg);
+    background-size: cover;
 }
 
 .bg-index-btm {
