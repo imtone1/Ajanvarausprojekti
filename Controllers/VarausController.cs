@@ -96,7 +96,7 @@ namespace Ajanvarausprojekti.Controllers
 
         public ActionResult Index()
         {
-           
+
             return View();
         }
 
@@ -177,28 +177,81 @@ namespace Ajanvarausprojekti.Controllers
         //    return View(ajat);
         //}
 
-        //// GET: Ajat/Delete/5
+        public ActionResult VarausPoisto()
+        {
+            //var varaus = db.Varaukset;
+
+            return PartialView();
+        }
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Varaukset varaus = db.Varaukset.Find(id);
+            if (varaus == null)
+            {
+                return HttpNotFound();
+            }
+            return View(varaus);
+        }
+
+
+        [HttpPost]
+        //[ValidateAntiForgeryToken]
+        public ActionResult VarausPoisto(Varaukset varaus)
+        {
+            var varaaja = db.Varaukset.SingleOrDefault(x => x.id_hash == varaus.id_hash);
+            
+            if (varaaja != null)
+            {
+                
+                int varausID = (from v in db.Varaukset
+                                    where v.id_hash== varaaja.id_hash
+                                    select v.varaus_id).Take(1).SingleOrDefault();
+               
+                int varaus_id = varaaja.varaus_id;
+
+                Varaukset varauspoisto = db.Varaukset.Find(varausID);
+                db.Varaukset.Remove(varauspoisto);
+                db.SaveChanges();
+                return RedirectToAction("Index", "Home");
+           
+            //return RedirectToAction("DeleteConfirmed", "Varaus", varausID); //Tässä määritellään mihin onnistunut toiminto johtaa
+            }
+            else
+            {
+                return View("Error");
+            }
+
+        }
+
+       
+        // GET: Ajat/Delete/5
         //public ActionResult Delete(int? id)
         //{
         //    if (id == null)
         //    {
         //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         //    }
-        //    Ajat ajat = db.Ajat.Find(id);
-        //    if (ajat == null)
+
+        //    Varaukset varaus = db.Varaukset.Find(id);
+        //    if (varaus == null)
         //    {
         //        return HttpNotFound();
         //    }
-        //    return View(ajat);
+        //    return View(varaus);
         //}
 
-        //// POST: Ajat/Delete/5
+        // POST: Ajat/Delete/5
         //[HttpPost, ActionName("Delete")]
         //[ValidateAntiForgeryToken]
         //public ActionResult DeleteConfirmed(int id)
         //{
-        //    Ajat ajat = db.Ajat.Find(id);
-        //    db.Ajat.Remove(ajat);
+        //    Varaukset varaus = db.Varaukset.Find(id);
+        //    db.Varaukset.Remove(varaus);
         //    db.SaveChanges();
         //    return RedirectToAction("Index");
         //}

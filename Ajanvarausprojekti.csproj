@@ -381,6 +381,10 @@
     <Content Include="Views\Varaus\_VarausListaus.cshtml" />
     <Content Include="Views\Varaus\Index.cshtml" />
     <Content Include="Views\Home\_About.cshtml" />
+    <Content Include="Views\Varaus\_VarausPoisto.cshtml" />
+    <Content Include="Views\Varaus\PoistaVaraus.cshtml" />
+    <Content Include="Views\Varaus\VarausPoisto.cshtml" />
+    <Content Include="Views\Shared\View.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
