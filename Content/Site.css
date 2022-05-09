@@ -182,6 +182,18 @@
     -moz-border-radius: 125px;
 }
 
+.round-img-ope {
+    width: 8em;
+    height: 8em;
+    background-image: url('Images/portrait-example.jpg');
+    background-size: cover;
+    display: flex;
+    align-self: flex-end;
+    border-radius: 125px;
+    -webkit-border-radius: 125px;
+    -moz-border-radius: 125px;
+}
+
 .border-primary {
     border: 1px solid var(--primary-color)!important;
 }
@@ -215,10 +227,34 @@
     color: black;
 }
 
+.page-link {
+  color: var(--black-color);
+}
 
+.bg-opesivu {
+    background-color: var(--light-grey);
+    background: url(/Content/Images/tools.png) no-repeat;
+    background-size: initial;
+    background-position-x: right;
+    background-position-y: bottom;
+    height: 85vh;
 
+}
 
+table {
+    width: 100%
+}
 
+td {
+    white-space: nowrap;
+}
+
+.td-truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    max-width: 0;
+}
 
 /* Set padding to keep content from hitting the edges 
     .body-content {

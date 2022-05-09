@@ -1,4 +1,144 @@
 ﻿
 @{
-    ViewBag.Title = "OpettajienSivu";
+    ViewBag.Title = "Opettajille";
 }
+
+@section scripts {
+    <script type="text/javascript">
+        //tulostaa eri viestin riippuen kellonajasta
+        var tunnit = new Date().getHours();
+        var viesti;
+        var aamu = ('Huomenta');
+        var paiva = ('Päivää');
+        var ilta = ('Iltaa');
+
+        if (tunnit >= 0 && tunnit < 12) {
+            viesti = aamu;
+
+        } else if (tunnit >= 12 && tunnit < 17) {
+            viesti = paiva;
+
+        } else if (tunnit >= 17 && tunnit < 24) {
+            viesti = ilta;
+        }
+        $('.tervehdys').append(viesti);
+    </script>
+}
+
+
+<section class="container">
+    <div class="row">
+        <div class="col-md-7 mt-5">
+            <h2 class="mb-3">Tulevat ohjausajat</h2>
+            <table class="table table-hover table-responsive caption">
+                <caption>Tulevat ohjausajat</caption>
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">AikaID</th>
+                        <th scope="col">Päivämäärä</th>
+                        <th scope="col">Kellonaika</th>
+                        <th scope="col">Opiskelija</th>
+                        <th scope="col">Sähköposti</th>
+                        <th scope="col">Aihe</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>9.5.2022</td>
+                        <td>12:00</td>
+                        <td>Jenni</td>
+                        <td>jenni.korhonen@gmail.com</td>
+                        <!--Alla oleva td-truncate-luokka tekee aiheen loppuun kolme pistettä mikäli tekstin pituus on liian pitkä sopiakseen soluun. Huom! Bootstrap 5:n oma text-truncate-luokka vaatii toimiakseen display: inline-block or display: block eli ei käy taulukkoon!-->
+                        <td class="td-truncate">HOKS</td>
+                        <td>
+                            <p>
+                                <a href="#TÄHÄN-POISTA-LINKKI">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.3rem" height="1.3rem" fill="var(--primary-color)" class="bi bi-trash3" viewBox="0 0 16 16">
+                                        <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
+                                    </svg>
+                                </a>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>9.5.2022</td>
+                        <td>12:30</td>
+                        <td></td>
+                        <td>lauri.tormanen@outlook.com</td>
+                        <td class="td-truncate">Haluan apua tehtäviin ja sitten haluan jutella niitä ja näitä.</td>
+                        <td>
+                            <p>
+                                <a href="#TÄHÄN-POISTA-LINKKI">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.3rem" height="1.3rem" fill="var(--primary-color)" class="bi bi-trash3" viewBox="0 0 16 16">
+                                        <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
+                                    </svg>
+                                </a>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>10.5.2022</td>
+                        <td>13:00</td>
+                        <td>Roope</td>
+                        <td></td>
+                        <td class="td-truncate">Näyttökeskustelu</td>
+                        <td>
+                            <p>
+                                <a href="#TÄHÄN-POISTA-LINKKI">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.3rem" height="1.3rem" fill="var(--primary-color)" class="bi bi-trash3" viewBox="0 0 16 16">
+                                        <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
+                                    </svg>
+                                </a>
+                            </p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-end">
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="col-md-5 bg-opesivu px-0">
+
+            <div class="card mx-5 border-0 bg-transparent">
+                <div class="row g-0">
+                    <div class="col-md-5">
+                        <div class="card-body mt-4">
+                            <h4 class="card-title fw-bold"><span class="tervehdys"></span> Ope!</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-7 d-flex justify-content-end mt-4">
+                        <div class="round-img-ope "></div>
+                    </div>
+                </div>
+                <div class="d-flex flex-column w-50">
+                    <a href="#palaute" class="btn btn-primary ms-md-3">Anna palautetta</a>
+
+                    <a href="#ohjausaika" class="btn btn-primary ms-md-3 mt-3">Varaa ohjausaika</a>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+</section>
+
