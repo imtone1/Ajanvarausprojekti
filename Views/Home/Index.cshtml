@@ -2,6 +2,32 @@
     ViewBag.Title = "Koti";
 }
 @* Kaikki scriptit tähän sectioniin *@
+
+@*Onnistunut palautteenanto-modaali*@
+@if (TempData["Success"] != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            $("#PalauteOnnistui").modal("show"); {
+                setTimeout(function () { $("#PalauteOnnistui").modal("hide"); }, 2000)
+            };
+        };
+    </script>
+}
+
+@*Epäonnistunut palautteenanto-modaali, mitään palautetta ei olla kirjoitettu*@
+@if (TempData["Error"] != null)
+{
+    <script type="text/javascript">
+
+        window.onload = function () {
+            $("#PalauteEiOnnistunut").modal("show"); {
+                setTimeout(function () { $("#PalauteEiOnnistunut").modal("hide"); }, 2000)
+            };
+        };
+    </script>
+}
+
 @section scripts {
     <script type="text/javascript">
          //Tämä tässä, jos tulee useampi modaali eikä toimikaan, poistetaan myöhemmin, jos ei tarvita
@@ -159,3 +185,9 @@ $('#VarausRuutu').modal('show');
 @* Varaajan varauksen poisto toiminto, kutsuu modaali-ikkunan. Button ja modaali kaipaa muotoilua*@
 @Html.Action("VarausPoisto", "Varaus")
 
+
+@*Palautteenantoon liittyvien modaali-ikkunoiden renderöinti*@
+
+@{ Html.RenderPartial("~/Views/Palaute/_SuccessModal.cshtml"); }
+
+@{ Html.RenderPartial("~/Views/Palaute/_ErrorModal.cshtml"); }

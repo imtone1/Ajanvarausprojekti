@@ -395,10 +395,13 @@
     <Content Include="Views\Varaus\VarausPoisto.cshtml" />
     <Content Include="Views\Shared\View.cshtml" />
     <Content Include="Views\SuperUser\LisaaOpettaja.cshtml" />
+    <Content Include="Views\Palaute\Index.cshtml" />
+    <Content Include="Views\Palaute\Create.cshtml" />
+    <Content Include="Views\Palaute\_SuccessModal.cshtml" />
+    <Content Include="Views\Palaute\_ErrorModal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Palaute\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
