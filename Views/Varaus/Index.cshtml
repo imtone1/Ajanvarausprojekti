@@ -1,13 +1,39 @@
 ﻿@model Ajanvarausprojekti.ViewModels.ajatListaData
 
 
+@{
+    ViewBag.Title = "Opettajille";
+}
+
+@section scripts {
+    <script type="text/javascript">
+        //tulostaa eri sivun ylälaidan tervehdyskorttiin eri tervehdysviestin riippuen kellonajasta
+        var tunnit = new Date().getHours();
+        var viesti;
+        var aamu = ('Huomenta');
+        var paiva = ('Päivää');
+        var ilta = ('Iltaa');
+
+        if (tunnit >= 0 && tunnit < 12) {
+            viesti = aamu;
+
+        } else if (tunnit >= 12 && tunnit < 18) {
+            viesti = paiva;
+
+        } else if (tunnit >= 18 && tunnit < 24) {
+            viesti = ilta;
+        }
+        $('.tervehdys').append(viesti);
+    </script>
+}
+
 
 <section class="container">
     <div class="row flex-column-reverse flex-md-column-reverse flex-lg-row">
         <div class="col-md-12 col-lg-7 mt-lg-5 table-responsive-md">
             <h2 class="mb-3">Tulevat ohjausajat</h2>
 
-            @* jos actionresult view ja samassa kontrollerissa *@
+            @* Varauksien listaustaulukko tulee tähän, actionresult view ja samassa kontrollerissa *@
             @Html.Action("VarausListaus")
 
 
