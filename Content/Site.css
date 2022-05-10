@@ -194,8 +194,20 @@
     -moz-border-radius: 125px;
 }
 
+.round-img-ope-pieni {
+    width: 4em;
+    height: 4em;
+    background-image: url('Images/portrait-example.jpg');
+    background-size: cover;
+    display: flex;
+    align-self: flex-end;
+    border-radius: 125px;
+    -webkit-border-radius: 125px;
+    -moz-border-radius: 125px;
+}
+
 .border-primary {
-    border: 1px solid var(--primary-color)!important;
+    border: 1px solid var(--primary-color) !important;
 }
 
 
@@ -238,11 +250,10 @@
     background-position-x: right;
     background-position-y: bottom;
     height: 85vh;
-
 }
 
 table {
-    width: 100%
+    width: 100%;
 }
 
 td {
@@ -255,6 +266,46 @@ td {
     width: 100%;
     max-width: 0;
 }
+
+caption {
+    padding-bottom: 0;
+}
+
+.page-link:hover {
+    color: black;
+}
+
+
+@media (max-width:340px) {
+    .round-img-ope {
+        width: 5em;
+        height: 5em;
+    }
+
+    .bg-opesivu {
+        height: 50vh;
+    }
+
+}
+
+@media (max-width:760px){
+    .round-img-ope {
+        margin-right: 1em;
+        margin-top: 1em;
+    }
+}
+
+@media (max-width:992px) {
+    .bg-opesivu {
+        width: 100%;
+        background-size: cover;
+        height: 80vh;
+        margin-bottom: 1rem;
+    }
+}
+
+
+
 
 /* Set padding to keep content from hitting the edges 
     .body-content {
