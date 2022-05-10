@@ -1,95 +1,97 @@
-﻿@model Ajanvarausprojekti.Models.Kayttajatunnukset
+﻿@* Tämä sivu poistetaan lopullisessa versiossa. Testausmielessä jätetty vielä tähän. *@
 
-@{
-    ViewBag.Title = "Create";
-}
+@*@model Ajanvarausprojekti.Models.Kayttajatunnukset
 
-@section Scripts{
-    @Scripts.Render("~/bundles/jqueryval")
-    <script>
-        $(function () {
-            
-            var salasana = "";
-            var vahvistus = "";
-            $("#salasanaInput").change(function () {
-                salasana = $('#salasanaInput').val();
-              
-            })
-            $("#vahvistusInput").change(function () {
-                vahvistus = $('#vahvistusInput').val();
-            
-                if (salasana !== vahvistus) {
-                    $("#varoitus").text("Salasanat eivät täsmää!");
+    @{
+        ViewBag.Title = "Create";
+    }
 
-                }
-                else {
-                    $("#varoitus").text("")
-                }
-            })
-        })</script>
-}
+    @section Scripts{
+        @Scripts.Render("~/bundles/jqueryval")
+        <script>
+            $(function () {
+
+                var salasana = "";
+                var vahvistus = "";
+                $("#salasanaInput").change(function () {
+                    salasana = $('#salasanaInput').val();
+
+                })
+                $("#vahvistusInput").change(function () {
+                    vahvistus = $('#vahvistusInput').val();
+
+                    if (salasana !== vahvistus) {
+                        $("#varoitus").text("Salasanat eivät täsmää!");
+
+                    }
+                    else {
+                        $("#varoitus").text("")
+                    }
+                })
+            })</script>
+    }
 
 
-<h2>Create</h2>
+    <h2>Create</h2>
 
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
 
-<div class="form-horizontal">
-    <h4>Kayttajatunnukset</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(model => model.kayttajatunnus, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.kayttajatunnus, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.kayttajatunnus, "", new { @class = "text-danger" })
+    <div class="form-horizontal">
+        <h4>Kayttajatunnukset</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.kayttajatunnus, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.kayttajatunnus, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.kayttajatunnus, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.salasana, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.salasana, new { htmlAttributes = new { @class = "form-control", @id = "salasanaInput" } })
+                @Html.ValidationMessageFor(model => model.salasana, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class = "control-label col-md-2"></label>
+            <div class="col-md-10">
+                <input class = "form-control" id = "vahvistusInput" type="password" />
+                <p class = "text-danger" id="varoitus"></p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.opettaja_id, "opettaja_id", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("opettaja_id", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.opettaja_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.oikeudet_id, "oikeudet_id", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("oikeudet_id", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.oikeudet_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
         </div>
     </div>
+    }
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.salasana, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.salasana, new { htmlAttributes = new { @class = "form-control", @id = "salasanaInput" } })
-            @Html.ValidationMessageFor(model => model.salasana, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="form-group">
-        <label class = "control-label col-md-2"></label>
-        <div class="col-md-10">
-            <input class = "form-control" id = "vahvistusInput" type="password" />
-            <p class = "text-danger" id="varoitus"></p>
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.opettaja_id, "opettaja_id", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownList("opettaja_id", null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.opettaja_id, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.oikeudet_id, "oikeudet_id", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownList("oikeudet_id", null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.oikeudet_id, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
-        </div>
-    </div>
-</div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>*@
 
 
