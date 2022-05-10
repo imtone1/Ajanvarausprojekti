@@ -9,21 +9,17 @@ namespace Ajanvarausprojekti.Controllers
 {
     public class PalauteController : Controller
     {
-        //Huom! tietokantayhteys voidaan luoda täällä ylätasollakin jolloin se näkyy jokaiseen metodiin.
-        //Mutta muistetaan vapauttaa olio sitten disposella aina kun sitä on käytetty.
+        //Luodaan tietokantayhteys ylätasolla jolloin se näkyy jokaiseen metodiin
+        aikapalauteEntities db = new aikapalauteEntities();
+
+        //vapautetaan olio lopussa omalla metodillaan. Tällöin sitä ei tarvitse vapauttaa jokaisessa metodissa erikseen.
 
         // GET: Palaute
         public ActionResult Index()
         {
-            //luodaan db olio
-            aikapalauteEntities db = new aikapalauteEntities();
 
             //Listataan kaikki palautteet Palaute-näkymän Index-sivulle (Vews-Palaute-Index)
             List<Palautteet> model = db.Palautteet.ToList();
-
-            //poistetaan/vapautetaan olio db, koska muuten luodaan liian monta oliota/tietokantayhteyksia
-            db.Dispose();
-
             return View(model);
         }
 
@@ -36,23 +32,69 @@ namespace Ajanvarausprojekti.Controllers
         // GET: Palaute/Create
         public ActionResult Create()
         {
+            //luodaan muuttuja kokonimi, jonka avulla saadaan Views/Palaute/Create- tiedoston dropdown-listaan näkymään opettajan koko nimi
+
+            var kokonimi = db.Opettajat;
+            IEnumerable<SelectListItem> selectNimiList = from k in kokonimi
+                                                         select new SelectListItem
+                                                         {
+                                                             Value = k.opettaja_id.ToString(),
+                                                             Text = k.etunimi + " " + k.sukunimi
+                                                         };
+            ViewBag.Kokonimi = new SelectList(selectNimiList, "Value", "Text");
+
+            //ViewBag.opettaja_id = new SelectList(db.Opettajat, "opettaja_id", "etunimi");
+            ViewBag.palautetyyppi_id = new SelectList(db.Palautetyypit, "palautetyyppi_id", "palautetyyppi");
+
             return View();
         }
 
         // POST: Palaute/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "palaute_id,palaute,palautetyyppi_id,opettaja_id")] Palautteet palautteet)
         {
-            try
+            if (palautteet.palaute != null)
             {
-                // TODO: Add insert logic here
+                if (ModelState.IsValid)
+                {
+                    //Talletetaan palautteen antohetkeksi tämän hetken kellonaika
+                    palautteet.palaute_pvm = DateTime.Now;
 
-                return RedirectToAction("Index");
+                    //Tallentaa muutokset tietokantaan
+                    db.Palautteet.Add(palautteet);
+                    db.SaveChanges();
+
+                    //Annetaan tieto onnistuneesta palautteesta TempDatalle modaali-ikkunaa varten
+                    TempData["Success"] = "Paljon kiitoksia palautteestasi!";
+                    return RedirectToAction("Index", "Home");
+
+                }
+                ViewBag.Kokonimi = new SelectList(db.Opettajat, "etunimi", "sukunimi", palautteet.opettaja_id);
+                //ViewBag.opettaja_id = new SelectList(db.Opettajat, "opettaja_id", "etunimi", palautteet.opettaja_id);
+                ViewBag.palautetyyppi_id = new SelectList(db.Palautetyypit, "palautetyyppi_id", "palautetyyppi", palautteet.palautetyyppi_id);
+
+
+                //Annetaan tieto epäonnistuneesta palautteesta TempDatalle modaali-ikkunaa varten
+                TempData["Error"] = "Hups! Jokin meni nyt pieleen!";
+                return RedirectToAction("Index", "Home");
+
+                //return View(palautteet);
             }
-            catch
+            else
             {
-                return View();
+                ViewBag.Kokonimi = new SelectList(db.Opettajat, "etunimi", "sukunimi", palautteet.opettaja_id);
+                // ViewBag.opettaja_id = new SelectList(db.Opettajat, "opettaja_id", "etunimi", palautteet.opettaja_id);
+                ViewBag.palautetyyppi_id = new SelectList(db.Palautetyypit, "palautetyyppi_id", "palautetyyppi", palautteet.palautetyyppi_id);
+
+
+                //Annetaan tieto epäonnistuneesta palautteesta TempDatalle modaali-ikkunaa varten
+                TempData["Error"] = "Hups! Jokin meni nyt pieleen!";
+                return RedirectToAction("Index", "Home");
+
+                //return View(palautteet);
             }
+
         }
 
         // GET: Palaute/Edit/5
@@ -98,5 +140,16 @@ namespace Ajanvarausprojekti.Controllers
                 return View();
             }
         }
+
+        //vapautetaan tietokantayhteys Disposella
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
     }
 }

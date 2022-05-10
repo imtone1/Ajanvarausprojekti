@@ -22,5 +22,6 @@ namespace Ajanvarausprojekti.Models
     
         public virtual Opettajat Opettajat { get; set; }
         public virtual Palautetyypit Palautetyypit { get; set; }
+
     }
 }
