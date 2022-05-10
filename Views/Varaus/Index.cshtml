@@ -1,17 +1,28 @@
 ﻿@model Ajanvarausprojekti.ViewModels.ajatListaData
 
 
-@* jos actionresult view ja samassa kontrollerissa *@
+
+<section class="container">
+    <div class="row flex-column-reverse flex-md-column-reverse flex-lg-row">
+        <div class="col-md-12 col-lg-7 mt-lg-5 table-responsive-md">
+            <h2 class="mb-3">Tulevat ohjausajat</h2>
+
+            @* jos actionresult view ja samassa kontrollerissa *@
+            @Html.Action("VarausListaus")
 
 
-@Html.Action("VarausListaus");
-
-@Html.Action("AikaListaus");
 
 
-@* Jos staattinen ja eri kontrollerissa *@
+        </div>
+    </div>
+</section>
+@*
+        @Html.Action("AikaListaus");
 
-@Html.Partial("~/Views/Home/_About.cshtml");
+
+        Jos staattinen ja eri kontrollerissa
+
+    @Html.Partial("~/Views/Home/_About.cshtml");*@
 
 @* Jos action result ja eri kontrollerissa Tämä alla oleva ei toimi, koska poistin tekemäni palautteetkontrollerin partialviewn*@
 
