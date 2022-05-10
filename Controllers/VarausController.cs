@@ -12,8 +12,10 @@ namespace Ajanvarausprojekti.Controllers
 {
     public class VarausController : Controller
     {
+        //Tätä ei saa täältä poistaa, sitä käytetään kaikkialla kontrollerissa
         private aikapalauteEntities db = new aikapalauteEntities();
 
+        //Irina: AikaListaus on kokeiluversio, tarkoitettu pohjaksi, lopullisessa voi poistaa, jos tule käyttöön
         public ActionResult AikaListaus()
         {
             //left join, jotta näkyisi kaikki ajat, myös ne joissa ei varausta
@@ -41,6 +43,7 @@ namespace Ajanvarausprojekti.Controllers
             return PartialView("_AikaListaus", ajatLista);
         }
 
+        //Irina: listaa varaukset, joissa nykyisen open id
         public ActionResult VarausListaus()
         {
             if (Session["Admin"] == null)
@@ -78,6 +81,66 @@ namespace Ajanvarausprojekti.Controllers
 
         }
 
+
+        public ActionResult Index()
+        {
+
+            return View();
+        }
+
+        //Irina: tällä käyttäjä pystyy poistamaan varaukset
+        public ActionResult VarausPoisto()
+        {
+            //var varaus = db.Varaukset;
+
+            return PartialView();
+        }
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Varaukset varaus = db.Varaukset.Find(id);
+            if (varaus == null)
+            {
+                return HttpNotFound();
+            }
+            return View(varaus);
+        }
+
+
+        [HttpPost]
+        //[ValidateAntiForgeryToken]
+        public ActionResult VarausPoisto(Varaukset varaus)
+        {
+            var varaaja = db.Varaukset.SingleOrDefault(x => x.id_hash == varaus.id_hash);
+            
+            if (varaaja != null)
+            {
+                
+                int varausID = (from v in db.Varaukset
+                                    where v.id_hash== varaaja.id_hash
+                                    select v.varaus_id).Take(1).SingleOrDefault();
+               
+                int varaus_id = varaaja.varaus_id;
+
+                Varaukset varauspoisto = db.Varaukset.Find(varausID);
+                db.Varaukset.Remove(varauspoisto);
+                db.SaveChanges();
+                return RedirectToAction("Index", "Home");
+           
+            //return RedirectToAction("DeleteConfirmed", "Varaus", varausID); //Tässä määritellään mihin onnistunut toiminto johtaa
+            }
+            else
+            {
+                return View("Error");
+            }
+
+        }
+
+
         //Dispose pakko olla, sitä ei saa poistaa
         protected override void Dispose(bool disposing)
         {
@@ -89,17 +152,8 @@ namespace Ajanvarausprojekti.Controllers
         }
 
 
-
-
         //Alla olevaa koodia voi käyttää pohjana tai olla käyttämättä kokonaan. Saa poistaa, jos ei tarvetta.
         // GET: Ajat
-
-        public ActionResult Index()
-        {
-
-            return View();
-        }
-
         //// GET: Ajat/Details/5
         //public ActionResult Details(int? id)
         //{
@@ -177,58 +231,6 @@ namespace Ajanvarausprojekti.Controllers
         //    return View(ajat);
         //}
 
-        public ActionResult VarausPoisto()
-        {
-            //var varaus = db.Varaukset;
-
-            return PartialView();
-        }
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            Varaukset varaus = db.Varaukset.Find(id);
-            if (varaus == null)
-            {
-                return HttpNotFound();
-            }
-            return View(varaus);
-        }
-
-
-        [HttpPost]
-        //[ValidateAntiForgeryToken]
-        public ActionResult VarausPoisto(Varaukset varaus)
-        {
-            var varaaja = db.Varaukset.SingleOrDefault(x => x.id_hash == varaus.id_hash);
-            
-            if (varaaja != null)
-            {
-                
-                int varausID = (from v in db.Varaukset
-                                    where v.id_hash== varaaja.id_hash
-                                    select v.varaus_id).Take(1).SingleOrDefault();
-               
-                int varaus_id = varaaja.varaus_id;
-
-                Varaukset varauspoisto = db.Varaukset.Find(varausID);
-                db.Varaukset.Remove(varauspoisto);
-                db.SaveChanges();
-                return RedirectToAction("Index", "Home");
-           
-            //return RedirectToAction("DeleteConfirmed", "Varaus", varausID); //Tässä määritellään mihin onnistunut toiminto johtaa
-            }
-            else
-            {
-                return View("Error");
-            }
-
-        }
-
-       
         // GET: Ajat/Delete/5
         //public ActionResult Delete(int? id)
         //{

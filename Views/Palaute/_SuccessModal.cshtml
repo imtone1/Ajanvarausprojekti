@@ -1,0 +1,28 @@
+﻿@model Ajanvarausprojekti.Models.Palautteet
+
+
+<div class="container">
+
+    @*Modal: palaute onnistui*@
+    <div class="modal fade" id="PalauteOnnistui" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="LoginRuutuLabel">TÄHÄN LOGO</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                @*Modaalin otsikko*@
+                <div class="modal-header">
+                    @*//TempData Success tuo viestin PalauteControllerilta = Paljon kiitoksia palautteestasi!*@
+                    <h1>@TempData["Success"]</h1>
+                </div>
+
+                @*Modaalin bodyosion kuva*@
+                <div class="modal-body">
+                    <div>Kuva</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
