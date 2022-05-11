@@ -1,4 +1,4 @@
-@{
+﻿@{
     ViewBag.Title = "Koti";
 }
 @* Kaikki scriptit tähän sectioniin *@
@@ -20,7 +20,6 @@
 {
     <script type="text/javascript">
 
-
         window.onload = function () {
             $("#PalauteEiOnnistunut").modal("show"); {
                 setTimeout(function () { $("#PalauteEiOnnistunut").modal("hide"); }, 2000)
@@ -31,7 +30,6 @@
 
 @section scripts {
     <script type="text/javascript">
-
          //Tämä tässä, jos tulee useampi modaali eikä toimikaan, poistetaan myöhemmin, jos ei tarvita
       //      function launch_modal(id) {
       //          // Hide all modals using class if required.
@@ -50,10 +48,8 @@ $('#VarausRuutu').modal('show');
 
     </script>
 }
-
 @* Tämä on button joka avaa varauksen poistoikkunan. Button ja modaali kaipaa muotoilua. *@
 <button class="btn nav-link text-uppercase" data-bs-toggle="modal" data-bs-target="#VarausRuutu">Varaukset poisto</button>
-
 
 
 
@@ -193,6 +189,5 @@ $('#VarausRuutu').modal('show');
 @*Palautteenantoon liittyvien modaali-ikkunoiden renderöinti*@
 
 @{ Html.RenderPartial("~/Views/Palaute/_SuccessModal.cshtml"); }
-
 
 @{ Html.RenderPartial("~/Views/Palaute/_ErrorModal.cshtml"); }
