@@ -51,11 +51,6 @@ $('#VarausRuutu').modal('show');
     </script>
 }
 
-@* Tämä on button joka avaa varauksen poistoikkunan. Button ja modaali kaipaa muotoilua. *@
-<button class="btn nav-link text-uppercase" data-bs-toggle="modal" data-bs-target="#VarausRuutu">Varaukset poisto</button>
-
-
-
 
 <!-------------------------Hero section---------------------------------->
 <section class="container-fluid vh-100 bg-hero pb-md-5 pt-5">
@@ -68,6 +63,9 @@ $('#VarausRuutu').modal('show');
                     <a href="#ohjausaika" class="btn btn-primary m2-3">Varaa ohjausaika</a>
                     <div class="my-3"></div><!--Tämä tyhjä div tässä sen takia, että mobiilissa tulisi väli nappuloiden välille-->
                     <a href="#palaute" class="btn btn-primary ms-md-3 h-100">Anna palautetta</a>
+                    <div class="my-3"></div><!--Tämä tyhjä div tässä sen takia, että mobiilissa tulisi väli nappuloiden välille-->
+                    @* Poista varaus nappula *@
+                    <a class="btn btn-primary ms-md-3 h-100" data-bs-toggle="modal" data-bs-target="#VarausRuutu">Poista varauksesi</a>
                 </div>
             </div>
         </div>
