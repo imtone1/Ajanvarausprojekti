@@ -16,25 +16,27 @@
 }
 
 .btn-primary {
-    padding-top: .7rem!important;
-    padding-bottom: .7rem!important;
-    padding-left: 1rem!important;
-    padding-right: 1rem!important;
+    padding-top: .7em!important;
+    padding-bottom: .7em!important;
+    padding-left: 1em!important;
+    padding-right: 1em!important;
 }
 
 .btn.btn-primary {
     background-color: var(--primary-color);
     color: var(--black-color);
     border: none;
-    padding: .5rem;
+    padding: .5em;
 }
 
 .btn.btn-primary.focus,
 .btn.btn-primary:focus {
     background-color: var(--black-color);
     color: var(--primary-color);
-    padding: .5rem;
+    padding: .5em;
     box-shadow: none;
+    border: 1px var(--primary-color) solid;
+
 }
 
 .btn.btn-primary:hover {
@@ -43,14 +45,14 @@
 
 }
 
+.btn.btn-primary:active:hover {
+    background-color: var(--black-color);
+    color: var(--white-color);
+}
+
 .btn.btn-primary:active {
     background-color: var(--black-color);
     color: var(--primary-color);
-
-}
-
-.btn .btn-primary:active:hover {
-    background-color: var(--black-color);
 }
 
 .btn.btn-primary.active.focus,
@@ -128,6 +130,10 @@
     background-color: var(--white-color);
 }
 
+.bg-grey {
+    background-color: var(--dark-grey);
+}
+
 .text-primary {
     color: var(--primary-color)!important;
 }
@@ -182,8 +188,32 @@
     -moz-border-radius: 125px;
 }
 
+.round-img-ope {
+    width: 8em;
+    height: 8em;
+    background-image: url('Images/portrait-example.jpg');
+    background-size: cover;
+    display: flex;
+    align-self: flex-end;
+    border-radius: 125px;
+    -webkit-border-radius: 125px;
+    -moz-border-radius: 125px;
+}
+
+.round-img-ope-pieni {
+    width: 4em;
+    height: 4em;
+    background-image: url('Images/portrait-example.jpg');
+    background-size: cover;
+    display: flex;
+    align-self: flex-end;
+    border-radius: 125px;
+    -webkit-border-radius: 125px;
+    -moz-border-radius: 125px;
+}
+
 .border-primary {
-    border: 1px solid var(--primary-color)!important;
+    border: 1px solid var(--primary-color) !important;
 }
 
 
@@ -215,7 +245,104 @@
     color: black;
 }
 
+.page-link {
+  color: var(--black-color);
+}
 
+.bg-opesivu {
+    background-color: var(--light-grey);
+    background: url(/Content/Images/tools.png) no-repeat;
+    background-size: initial;
+    background-position-x: right;
+    background-position-y: bottom;
+    height: 85vh;
+}
+
+
+.bg-ohjausajat {
+    background-color: var(--light-grey);
+    background: url(/Content/Images/sateenvarjo-logo.png) no-repeat;
+    background-size: initial;
+    background-position-x: center;
+    background-position-y: top;
+    height: 100vh;
+}
+
+.bg-UusiAika {
+    background-color: var(--light-grey);
+    background: url(/Content/Images/business.png) no-repeat;
+    background-size: initial;
+    background-position-x: left;
+    background-position-y: bottom;
+    height: 85vh;
+}
+
+table {
+    width: 100%;
+}
+
+td {
+    white-space: nowrap;
+}
+
+.td-truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    max-width: 0;
+}
+
+caption {
+    padding-bottom: 0;
+}
+
+.page-link:hover {
+    color: black;
+}
+
+
+.table > :not(caption) > * > *{
+    background:none;
+}
+
+
+@media (max-width:340px) {
+    .round-img-ope {
+        width: 5em;
+        height: 5em;
+    }
+
+    .bg-opesivu {
+        height: 50vh;
+    }
+
+}
+
+
+@media (max-width: 575px){
+    .bg-ohjausajat {
+        background-position-x: left;
+        background-position-y: bottom;
+        height: 75vh;
+    }
+}
+
+
+@media (max-width:760px){
+    .round-img-ope {
+        margin-right: 1em;
+        margin-top: 1em;
+    }
+}
+
+@media (max-width:992px) {
+    .bg-opesivu {
+        width: 100%;
+        background-size: cover;
+        height: 80vh;
+        margin-bottom: 1rem;
+    }
+}
 
 
 
