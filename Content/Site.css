@@ -258,6 +258,7 @@
     height: 85vh;
 }
 
+
 .bg-ohjausajat {
     background-color: var(--light-grey);
     background: url(/Content/Images/sateenvarjo-logo.png) no-repeat;
@@ -299,6 +300,7 @@ caption {
     color: black;
 }
 
+
 .table > :not(caption) > * > *{
     background:none;
 }
@@ -316,6 +318,7 @@ caption {
 
 }
 
+
 @media (max-width: 575px){
     .bg-ohjausajat {
         background-position-x: left;
@@ -323,6 +326,7 @@ caption {
         height: 75vh;
     }
 }
+
 
 @media (max-width:760px){
     .round-img-ope {

@@ -68,7 +68,7 @@ namespace Ajanvarausprojekti.Controllers
                                     aika_id = (int)a.aika_id,
                                     Alkuaika = (DateTime)a.alku_aika,
                                     Kesto = (int)k.kesto,
-                                    Aihe = a.aihe,
+                                    Aihe = v.aihe,
                                     Paikka = a.paikka,
                                     opettaja_id = (int)a.opettaja_id,
                                     Varaaja = v.varaaja_nimi,
