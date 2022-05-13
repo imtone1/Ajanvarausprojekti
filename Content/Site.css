@@ -34,8 +34,10 @@
     background-color: var(--black-color);
     color: var(--primary-color);
     padding: .5em;
+
     box-shadow: 1px 1px 8px var(--primary-color);
     border: 1px var(--primary-color) solid;
+
 }
 
 .btn.btn-primary:hover {
@@ -340,6 +342,7 @@ caption {
 }
 
 
+
 input[type="date" i]:focus {
     box-shadow: 1px 1px 8px;
     color: var(--primary-color);
@@ -355,9 +358,6 @@ input[type="time" i]:focus {
 .page-link:active{
     box-shadow: 1px 1px 8px var(--primary-color);
 }
-
-
-
 
 @media (max-width:340px) {
     .round-img-ope {
@@ -379,10 +379,12 @@ input[type="time" i]:focus {
         height: 75vh;
     }
 
+
     .bg-opesivu-btm {
         background-position-x: left;
         background-position-y: bottom;
     }
+
 }
 
 

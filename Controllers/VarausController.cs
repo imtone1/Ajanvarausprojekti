@@ -46,9 +46,9 @@ namespace Ajanvarausprojekti.Controllers
         //Irina: listaa varaukset, joissa nykyisen open id
         public ActionResult VarausListaus()
         {
-            if (Session["Admin"] == null)
+            if (Session["UserName"] == null)
             {
-                return RedirectToAction("Login", "Login");
+                return RedirectToAction("Index", "Home");
             }
             else
             {

@@ -26,133 +26,16 @@
 }
 
 <!---------------------------------TULEVAT OHJAUSAJAT JA TERVEHDYS/KUVAOSIO ALKAA TÄSTÄ------------------------------------------------>
+
 <!-------------------------------Tulevat ohjausajat-taulukko------------------------------------>
 <section class="container">
     <div class="row flex-column-reverse flex-md-column-reverse flex-lg-row">
         <div class="col-md-12 col-lg-7 mt-lg-5 table-responsive-md">
             <h2 class="mb-3">Tulevat ohjausajat</h2>
-            <table class="table table-sm table-hover caption">
-                <caption>Tulevat ohjausajat</caption>
-                <thead class="table-dark bg-black">
-                    <tr>
-                        <th scope="col">Päivämäärä</th>
-                        <th scope="col">Kellonaika</th>
-                        <th scope="col">Opiskelija</th>
-                        <th scope="col">Sähköposti</th>
-                        <th scope="col">Aihe</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td scope="row">9.5.2022</td>
-                        <td>12:00</td>
-                        <td>Jenni</td>
-                        <td>jenni.korhonen@gmail.com</td>
-                        <!--Alle luomani td-truncate-luokka tekee aiheen loppuun kolme pistettä mikäli tekstin pituus on liian pitkä sopiakseen soluun. Huom! Bootstrap 5:n oma text-truncate-luokka vaatii toimiakseen display: inline-block or display: block eli ei käy taulukkoon!-->
-                        <td class="td-truncate">HOKS</td>
-                        <td>
-                            <p>
-                                <a href="#">
-                                    <!--Tämä on tarkastele varauksen tietoja-nappi-->
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.3rem" height="1.3rem" fill="var(--primary-color)" class="bi bi-card-list" viewBox="0 0 16 16">
-                                        <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z" />
-                                        <path d="M5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 5 8zm0-2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-1-5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zM4 8a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm0 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z" />
-                                    </svg>
-                                </a>
-                            </p>
-                        </td>
-                        <td>
-                            <p>
-                                <a href="#">
-                                    <!--Tämä on peru/poista-nappi.-->
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.1rem" height="1.1rem" fill="var(--primary-color)" class="bi bi-calendar-x" viewBox="0 0 16 16">
-                                        <path d="M6.146 7.146a.5.5 0 0 1 .708 0L8 8.293l1.146-1.147a.5.5 0 1 1 .708.708L8.707 9l1.147 1.146a.5.5 0 0 1-.708.708L8 9.707l-1.146 1.147a.5.5 0 0 1-.708-.708L7.293 9 6.146 7.854a.5.5 0 0 1 0-.708z" />
-                                        <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
-                                    </svg>
-                                </a>
-                            </p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td scope="row">9.5.2022</td>
-                        <td>12:30</td>
-                        <td></td>
-                        <td>lauri.tormanen@outlook.com</td>
-                        <td class="td-truncate">Haluan apua tehtäviin ja sitten haluan jutella niitä ja näitä.</td>
-                        <td>
-                            <p>
-                                <a href="#">
-                                    <!--Tämä on tarkastele varauksen tietoja-nappi-->
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.3rem" height="1.3rem" fill="var(--primary-color)" class="bi bi-card-list" viewBox="0 0 16 16">
-                                        <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z" />
-                                        <path d="M5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 5 8zm0-2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-1-5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zM4 8a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm0 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z" />
-                                    </svg>
-                                </a>
-                            </p>
-                        </td>
-                        <td>
-                            <p>
-                                <a href="#">
-                                    <!--Tämä on peru/poista-nappi.-->
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.1rem" height="1.1rem" fill="var(--primary-color)" class="bi bi-calendar-x" viewBox="0 0 16 16">
-                                        <path d="M6.146 7.146a.5.5 0 0 1 .708 0L8 8.293l1.146-1.147a.5.5 0 1 1 .708.708L8.707 9l1.147 1.146a.5.5 0 0 1-.708.708L8 9.707l-1.146 1.147a.5.5 0 0 1-.708-.708L7.293 9 6.146 7.854a.5.5 0 0 1 0-.708z" />
-                                        <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
-                                    </svg>
-                                </a>
-                            </p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td scope="row">10.5.2022</td>
-                        <td>13:00</td>
-                        <td>Roope</td>
-                        <td></td>
-                        <td class="td-truncate">Näyttökeskustelu</td>
-                        <td>
-                            <p>
-                                <a href="#">
-                                    <!--Tämä on tarkastele varauksen tietoja-nappi-->
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.3rem" height="1.3rem" fill="var(--primary-color)" class="bi bi-card-list" viewBox="0 0 16 16">
-                                        <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z" />
-                                        <path d="M5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 5 8zm0-2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-1-5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zM4 8a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm0 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z" />
-                                    </svg>
-                                </a>
-                            </p>
-                        </td>
-                        <td>
-                            <p>
-                                <a href="#">
-                                    <!--Tämä on peru/poista-nappi.-->
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.1rem" height="1.1rem" fill="var(--primary-color)" class="bi bi-calendar-x" viewBox="0 0 16 16">
-                                        <path d="M6.146 7.146a.5.5 0 0 1 .708 0L8 8.293l1.146-1.147a.5.5 0 1 1 .708.708L8.707 9l1.147 1.146a.5.5 0 0 1-.708.708L8 9.707l-1.146 1.147a.5.5 0 0 1-.708-.708L7.293 9 6.146 7.854a.5.5 0 0 1 0-.708z" />
-                                        <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
-                                    </svg>
-                                </a>
-                            </p>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <!--Sivunumerokomponentti-->
-            <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-end">
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+
+
+            @Html.Action("VarausListaus", "Varaus")
+
         </div>
 
 
@@ -163,7 +46,7 @@
                 <div class="row">
                     <div class="col-sm-7 col-6">
                         <div class="card-body d-sm-inline-flex mt-lg-4">
-                            <h4 class="card-title fw-bold"><span class="tervehdys"></span> Ope!</h4>
+                            <h4 class="card-title fw-bold"><span class="tervehdys"></span> @Session["Opettaja"]</h4>
                         </div>
                     </div>
                     <div class="col-sm-5 col-6 d-sm-inline-flex d-flex justify-content-end mt-lg-4">
@@ -188,7 +71,7 @@
 <section class="container-fluid bg-black pt-4 pb-5 mb-5 mt-5">
     <div class="container">
         <div class="d-flex justify-content-between w-100">
-            <h2 class="text-white pb-5" id="LisaaAika">Varattavissa olevat ohjausajat</h2>
+            <h2 class="text-white pb-5">Varattavissa olevat ohjausajat</h2>
             <a href="#" class="ms-3 mt-1 d-flex justify-content-end">
                 <svg xmlns="http://www.w3.org/2000/svg" width="2.9rem" height="2.9rem" fill="var(--black-color)" class="bi bi-plus bg-primary rounded-3" viewBox="0 0 16 16">
                     <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
@@ -367,6 +250,161 @@
                     </ul>
                 </nav>
             </div>
+                    <button class="placeholder-glow btn btn-primary text-center w-100 mt-3 mt-md-0 ms-md-3" type="button">
+                        11.00-11.30
+                    </button>
+
+                    <button class="placeholder-glow btn btn-primary text-center w-100 mt-3 mt-md-0 ms-md-3" type="button">
+                        11.00-11.30
+                    </button>
+
+                    <button class="placeholder-glow btn btn-primary text-center w-100 mt-3 mt-md-0 ms-md-3" type="button">
+                        11.00-11.30
+                    </button>
+
+                    <a href="#" class="mt-3 mt-md-0 ms-sm-0 ms-md-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="2.9rem" height="2.9rem" fill="var(--black-color)" class="bi bi-pencil bg-white rounded-3 p-2 mt-3 mt-md-0" viewBox="0 0 16 16">
+                            <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
+                        </svg>
+                    </a>
+                    <a href="#" class="mt-3 mt-md-0 ms-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="2.9rem" height="2.9rem" fill="var(--black-color)" class="bi bi-x-lg bg-white rounded-3 p-2 mt-3 mt-md-0" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z" />
+                            <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!---------------------------------VARATTAVISSA OLEVAT OHJAUSAJAT (HAASTAVAMPI) LOPPUU TÄHÄN------------------------------------------------>
+<!----------------------------VARATTAVISSA OLEVAT OHJAUSAJAT (SIMPPELIMPI) ALKAA TÄSTÄ--------------------------------------------------->
+<section class="container-fluid bg-black pt-lg-3 mb-5">
+    <div class="container pt-lg-5">
+        <div class="row gy-5 gy-lg-0 pb-lg-0 flex-column-reverse flex-md-column-reverse flex-lg-row">
+            <div class="col-md-12 col-lg-7 table-responsive-md vh-100 pe-lg-5">
+                <div class="d-flex justify-content-between w-100">
+                    <h2 class="text-white pb-5">Varattavissa olevat ohjausajat</h2>
+                    <a href="#" class="ms-3 mt-1 d-flex justify-content-end">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" fill="var(--black-color)" class="bi bi-plus bg-primary rounded-3" viewBox="0 0 16 16">
+                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                        </svg>
+                    </a>
+                </div>
+                <table class="table table-dark table-hover caption table-bordered">
+                    <caption>Tulevat ohjausajat</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Päivämäärä</th>
+                            <th scope="col">Alkuaika</th>
+                            <th scope="col">Päättymisaika</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td scope="row">9.5.2022</td>
+                            <td>12:00</td>
+                            <td>12:30</td>
+                            <td>
+                                <p>
+                                    <a href="#" class="mt-3 mt-sm-0 ms-3">
+                                        <!--Tämä on tarkastele ohjausaikaa-nappi-->
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" fill="var(--black-color)" class="bi bi-pencil bg-white rounded-3 p-2 mt-3" viewBox="0 0 16 16">
+                                            <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
+                                        </svg>
+                                    </a>
+                                </p>
+                            </td>
+                            <td>
+                                <p>
+                                    <a href="#" class="mt-3 mt-sm-0 ms-3">
+                                        <!--Tämä on poista ohjausaika-nappi-->
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" fill="var(--black-color)" class="bi bi-x-lg bg-white rounded-3 p-2 mt-3" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z" />
+                                            <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z" />
+                                        </svg>
+                                    </a>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td scope="row">9.5.2022</td>
+                            <td>13:00</td>
+                            <td>13:45</td>
+                            <td>
+                                <p>
+                                    <a href="#" class="mt-3 mt-sm-0 ms-3">
+                                        <!--Tämä on tarkastele ohjausaikaa-nappi-->
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" fill="var(--black-color)" class="bi bi-pencil bg-white rounded-3 p-2 mt-3" viewBox="0 0 16 16">
+                                            <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
+                                        </svg>
+                                    </a>
+                                </p>
+                            </td>
+                            <td>
+                                <p>
+                                    <a href="#" class="mt-3 mt-sm-0 ms-3">
+                                        <!--Tämä on poista ohjausaika-nappi-->
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" fill="var(--black-color)" class="bi bi-x-lg bg-white rounded-3 p-2 mt-3" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z" />
+                                            <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z" />
+                                        </svg>
+                                    </a>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td scope="row">10.5.2022</td>
+                            <td>13:00</td>
+                            <td>14:00</td>
+                            <td>
+                                <p>
+                                    <a href="#" class="mt-3 mt-sm-0 ms-3">
+                                        <!--Tämä on tarkastele ohjausaikaa-nappi-->
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" fill="var(--black-color)" class="bi bi-pencil bg-white rounded-3 p-2 mt-3" viewBox="0 0 16 16">
+                                            <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
+                                        </svg>
+                                    </a>
+                                </p>
+                            </td>
+                            <td>
+                                <p>
+                                    <a href="#" class="mt-3 mt-sm-0 ms-3">
+                                        <!--Tämä on poista ohjausaika-nappi-->
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" fill="var(--black-color)" class="bi bi-x-lg bg-white rounded-3 p-2 mt-3" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z" />
+                                            <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z" />
+                                        </svg>
+                                    </a>
+                                </p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!--Sivunumerokomponentti-->
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-end">
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
 
             <!--Sateenvarjokuva-->
             <div class="col-lg-5 bg-ohjausajat mb-sm-3 px-0 img-fluid">
@@ -376,6 +414,7 @@
     </div>
 </section>
 <!---------------------------------VARATTAVISSA OLEVAT OHJAUSAJAT (SIMPPELIMPI) LOPPUU TÄHÄN------------------------------------------------>
+
 <!---------------------------------LISÄÄ UUSI AIKA VARATTAVAKSI ALKAA TÄSTÄ----------------------------------------------------------------->
 <section class="container-fluid bg-UusiAika">
     <div class="container d-flex justify-content-end">
@@ -534,5 +573,6 @@
     </div>
 </section>
 <!---------------------------------------------------UUSIMMAT PALAUTTEET LOPPUU TÄHÄN------------------------------------------------------>
+
 
 <div class="container-fluid bg-opesivu-btm"></div><!--Sivun alareunan taustakuva-->
