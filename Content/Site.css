@@ -136,6 +136,15 @@
     width: auto;
 }
 
+.bg-opesivu-btm {
+    background-color: var(--light-grey);
+    background: url(/Content/Images/work.jpg) no-repeat;
+    background-size: cover;
+    background-position: bottom;
+    height: 75vh;
+    width: auto;
+}
+
 .bg-hero-about {
     background-color: var(--light-grey);
     background: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5) ), url(/Content/Images/people.jpg) no-repeat fixed;
@@ -350,8 +359,8 @@ input[type="time" i]:focus {
 
 
 
-    @media (max-width:340px) {
-        .round-img-ope {
+@media (max-width:340px) {
+    .round-img-ope {
         width: 5em;
         height: 5em;
     }
@@ -368,6 +377,11 @@ input[type="time" i]:focus {
         background-position-x: left;
         background-position-y: bottom;
         height: 75vh;
+    }
+
+    .bg-opesivu-btm {
+        background-position-x: left;
+        background-position-y: bottom;
     }
 }
 
