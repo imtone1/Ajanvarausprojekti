@@ -40,7 +40,14 @@ namespace Ajanvarausprojekti.Controllers
 
         public ActionResult OpettajienSivu()
         {
-            return View();
+            if (Session["UserName"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return View();
+            }
         }
     }
 }
