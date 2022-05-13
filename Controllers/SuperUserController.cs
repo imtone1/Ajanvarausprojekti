@@ -23,25 +23,32 @@ namespace Ajanvarausprojekti.Controllers
         //Irina: Lisaa uuden opettajan ja tälle käyttäjätunnuksen ja oikeudet, basicuser defaultina
         public ActionResult LisaaOpettaja()
         {
+            if (Session["Admin"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
 
 
-            ViewBag.oikeudet_id = new SelectList(db.Yllapitooikeudet, "oikeudet_id", "oikeudet");
+                ViewBag.oikeudet_id = new SelectList(db.Yllapitooikeudet, "oikeudet_id", "oikeudet");
 
-            var createOpe = from o in db.Opettajat
-                            join k in db.Kayttajatunnukset on o.opettaja_id equals k.opettaja_id
+                var createOpe = from o in db.Opettajat
+                                join k in db.Kayttajatunnukset on o.opettaja_id equals k.opettaja_id
 
-                            select new UusiOpe
-                            {
-                                opettaja_id = (int)o.opettaja_id,
-                                etunimi = o.etunimi,
-                                sukunimi = o.sukunimi,
-                                nimike = o.nimike,
-                                sahkoposti = o.sahkoposti,
-                                kayttajatunnus = k.kayttajatunnus,
-                                salasana = k.salasana,
-                                oikeudet_id = k.oikeudet_id,
+                                select new UusiOpe
+                                {
+                                    opettaja_id = (int)o.opettaja_id,
+                                    etunimi = o.etunimi,
+                                    sukunimi = o.sukunimi,
+                                    nimike = o.nimike,
+                                    sahkoposti = o.sahkoposti,
+                                    kayttajatunnus = k.kayttajatunnus,
+                                    salasana = k.salasana,
+                                    oikeudet_id = k.oikeudet_id,
 
-                            };
+                                };
+            }
             return View();
         }
         // POST: Create
