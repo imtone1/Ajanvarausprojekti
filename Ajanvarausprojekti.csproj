@@ -383,7 +383,6 @@
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Login\LogOut.cshtml" />
     <Content Include="Views\Varaus\AikaListaus.cshtml" />
-    <Content Include="Views\Varaus\VarausListaus.cshtml" />
     <Content Include="Views\Login\_LoginModal.cshtml" />
     <Content Include="Views\Home\Privacy.cshtml" />
     <Content Include="Views\Home\Terms.cshtml" />
