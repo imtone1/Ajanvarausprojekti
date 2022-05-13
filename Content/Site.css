@@ -9,7 +9,7 @@
     --dark-grey: #a4a4a6;
 }
 
-*{
+* {
     font-family: Roboto, sans-serif;
     margin-left: 0;
     margin-right: 0;
@@ -34,7 +34,8 @@
     background-color: var(--black-color);
     color: var(--primary-color);
     padding: .5em;
-    box-shadow: none;
+
+    box-shadow: 1px 1px 8px var(--primary-color);
     border: 1px var(--primary-color) solid;
 
 }
@@ -65,18 +66,44 @@
     color: var(--primary-color);
     outline: none;
     border: none;
-    box-shadow: none;
+    box-shadow: 1px 1px 8px var(--primary-color);
 }
 
-.btn-outline-primary {
+.btn.btn-outline-primary {
     border: .1rem var(--primary-color) solid;
     color: var(--black-color);
 }
 
-.btn-outline-primary:hover {
+.btn.btn-outline-primary:hover {
     border: .1rem var(--primary-color) solid;
     background-color: var(--primary-color);
     color: var(--black-color);
+}
+
+.btn.btn-outline-primary:active:hover {
+    background-color: var(--black-color);
+    color: var(--white-color);
+}
+
+.btn.btn-outline-primary:active {
+    background-color: var(--black-color);
+    color: var(--primary-color);
+    box-shadow: 1px 1px 8px var(--primary-color);
+}
+
+.btn.btn-outline-primary.active.focus,
+.btn.btn-outline-primary.active:focus,
+.btn.btn-outline-primary.active:hover,
+.btn.btn-outline-primary.active.focus,
+.btn.btn-outline-primary.active:focus,
+.btn.btn-outline-primary.active:focus {
+    background-color: var(--black-color);
+    color: var(--primary-color);
+    box-shadow: 1px 1px 8px var(--primary-color);
+}
+
+.input-group .btn:focus {
+    box-shadow: 1px 1px 8px var(--primary-color);
 }
 
 .btn-secondary {
@@ -107,6 +134,15 @@
     background: url(/Content/Images/woman-1920x1080.jpg) fixed;
     background-size: cover;
     background-position: left;
+    height: 75vh;
+    width: auto;
+}
+
+.bg-opesivu-btm {
+    background-color: var(--light-grey);
+    background: url(/Content/Images/work.jpg) no-repeat;
+    background-size: cover;
+    background-position: bottom;
     height: 75vh;
     width: auto;
 }
@@ -232,13 +268,13 @@
 }
 
 .accordion-button:focus {
-    
-    box-shadow: none;
+    box-shadow: 1px 1px 8px;
+    color: var(--primary-color);
 }
 
 .form-select:focus {
-    box-shadow: none;
-    
+    box-shadow: 1px 1px 8px;
+    color: var(--primary-color);
 }
 
 .select-input {
@@ -306,6 +342,23 @@ caption {
 }
 
 
+
+input[type="date" i]:focus {
+    box-shadow: 1px 1px 8px;
+    color: var(--primary-color);
+}
+
+input[type="time" i]:focus {
+    box-shadow: 1px 1px 8px;
+    color: var(--primary-color);
+}
+
+.page-link:focus,
+.page-link:hover,
+.page-link:active{
+    box-shadow: 1px 1px 8px var(--primary-color);
+}
+
 @media (max-width:340px) {
     .round-img-ope {
         width: 5em;
@@ -325,6 +378,13 @@ caption {
         background-position-y: bottom;
         height: 75vh;
     }
+
+
+    .bg-opesivu-btm {
+        background-position-x: left;
+        background-position-y: bottom;
+    }
+
 }
 
 
@@ -341,6 +401,18 @@ caption {
         background-size: cover;
         height: 80vh;
         margin-bottom: 1rem;
+    }
+}
+
+@media (max-width: 1252px) {
+    .bg-UusiAika {
+        background-size: cover;
+    }
+
+    .custom-bg-mobile {
+        background-color: white;
+        padding-left: 1em;
+        padding-right: 1em;
     }
 }
 
