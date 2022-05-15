@@ -10,13 +10,13 @@ namespace Ajanvarausprojekti.ViewModels
     public class UusiOpe
     {
         public int opettaja_id { get; set; }
-        [Required(ErrorMessage = "Etunimi ei voi olla tyhjä!")]
+        [Required(ErrorMessage = "Etunimi on annettava")]
         public string etunimi { get; set; }
-        [Required(ErrorMessage = "Etunimi ei voi olla tyhjä!")]
+        [Required(ErrorMessage = "Sukunimi on annettava")]
         public string sukunimi { get; set; }
-        [Required(ErrorMessage = "Nimike ei voi olla tyhjä!")]
+        [Required(ErrorMessage = "Nimike on annettava")]
         public string nimike { get; set; }
-        [Required(ErrorMessage = "Sähköposti ei voi olla tyhjä!")]
+        [Required(ErrorMessage = "Sähköposti on annettava")]
         public string sahkoposti { get; set; }
         public Image opeimage { get; set; }
 

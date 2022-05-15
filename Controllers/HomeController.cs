@@ -8,6 +8,7 @@ namespace Ajanvarausprojekti.Controllers
 {
     public class HomeController : Controller
     {
+       
         public ActionResult Index()
         {
             ViewBag.LoginError = 0;
