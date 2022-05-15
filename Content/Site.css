@@ -9,32 +9,35 @@
     --dark-grey: #a4a4a6;
 }
 
-*{
+* {
     font-family: Roboto, sans-serif;
     margin-left: 0;
     margin-right: 0;
 }
 
 .btn-primary {
-    padding-top: .7rem!important;
-    padding-bottom: .7rem!important;
-    padding-left: 1rem!important;
-    padding-right: 1rem!important;
+    padding-top: .7em!important;
+    padding-bottom: .7em!important;
+    padding-left: 1em!important;
+    padding-right: 1em!important;
 }
 
 .btn.btn-primary {
     background-color: var(--primary-color);
     color: var(--black-color);
     border: none;
-    padding: .5rem;
+    padding: .5em;
 }
 
 .btn.btn-primary.focus,
 .btn.btn-primary:focus {
     background-color: var(--black-color);
     color: var(--primary-color);
-    padding: .5rem;
-    box-shadow: none;
+    padding: .5em;
+
+    box-shadow: 1px 1px 8px var(--primary-color);
+    border: 1px var(--primary-color) solid;
+
 }
 
 .btn.btn-primary:hover {
@@ -43,14 +46,14 @@
 
 }
 
+.btn.btn-primary:active:hover {
+    background-color: var(--black-color);
+    color: var(--white-color);
+}
+
 .btn.btn-primary:active {
     background-color: var(--black-color);
     color: var(--primary-color);
-
-}
-
-.btn .btn-primary:active:hover {
-    background-color: var(--black-color);
 }
 
 .btn.btn-primary.active.focus,
@@ -63,18 +66,44 @@
     color: var(--primary-color);
     outline: none;
     border: none;
-    box-shadow: none;
+    box-shadow: 1px 1px 8px var(--primary-color);
 }
 
-.btn-outline-primary {
+.btn.btn-outline-primary {
     border: .1rem var(--primary-color) solid;
     color: var(--black-color);
 }
 
-.btn-outline-primary:hover {
+.btn.btn-outline-primary:hover {
     border: .1rem var(--primary-color) solid;
     background-color: var(--primary-color);
     color: var(--black-color);
+}
+
+.btn.btn-outline-primary:active:hover {
+    background-color: var(--black-color);
+    color: var(--white-color);
+}
+
+.btn.btn-outline-primary:active {
+    background-color: var(--black-color);
+    color: var(--primary-color);
+    box-shadow: 1px 1px 8px var(--primary-color);
+}
+
+.btn.btn-outline-primary.active.focus,
+.btn.btn-outline-primary.active:focus,
+.btn.btn-outline-primary.active:hover,
+.btn.btn-outline-primary.active.focus,
+.btn.btn-outline-primary.active:focus,
+.btn.btn-outline-primary.active:focus {
+    background-color: var(--black-color);
+    color: var(--primary-color);
+    box-shadow: 1px 1px 8px var(--primary-color);
+}
+
+.input-group .btn:focus {
+    box-shadow: 1px 1px 8px var(--primary-color);
 }
 
 .btn-secondary {
@@ -109,6 +138,15 @@
     width: auto;
 }
 
+.bg-opesivu-btm {
+    background-color: var(--light-grey);
+    background: url(/Content/Images/work.jpg) no-repeat;
+    background-size: cover;
+    background-position: bottom;
+    height: 75vh;
+    width: auto;
+}
+
 .bg-hero-about {
     background-color: var(--light-grey);
     background: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5) ), url(/Content/Images/people.jpg) no-repeat fixed;
@@ -126,6 +164,10 @@
 
 .bg-white {
     background-color: var(--white-color);
+}
+
+.bg-grey {
+    background-color: var(--dark-grey);
 }
 
 .text-primary {
@@ -226,13 +268,13 @@
 }
 
 .accordion-button:focus {
-    
-    box-shadow: none;
+    box-shadow: 1px 1px 8px;
+    color: var(--primary-color);
 }
 
 .form-select:focus {
-    box-shadow: none;
-    
+    box-shadow: 1px 1px 8px;
+    color: var(--primary-color);
 }
 
 .select-input {
@@ -248,6 +290,25 @@
     background: url(/Content/Images/tools.png) no-repeat;
     background-size: initial;
     background-position-x: right;
+    background-position-y: bottom;
+    height: 85vh;
+}
+
+
+.bg-ohjausajat {
+    background-color: var(--light-grey);
+    background: url(/Content/Images/sateenvarjo-logo.png) no-repeat;
+    background-size: initial;
+    background-position-x: center;
+    background-position-y: top;
+    height: 100vh;
+}
+
+.bg-UusiAika {
+    background-color: var(--light-grey);
+    background: url(/Content/Images/business.png) no-repeat;
+    background-size: initial;
+    background-position-x: left;
     background-position-y: bottom;
     height: 85vh;
 }
@@ -276,6 +337,28 @@ caption {
 }
 
 
+.table > :not(caption) > * > *{
+    background:none;
+}
+
+
+
+input[type="date" i]:focus {
+    box-shadow: 1px 1px 8px;
+    color: var(--primary-color);
+}
+
+input[type="time" i]:focus {
+    box-shadow: 1px 1px 8px;
+    color: var(--primary-color);
+}
+
+.page-link:focus,
+.page-link:hover,
+.page-link:active{
+    box-shadow: 1px 1px 8px var(--primary-color);
+}
+
 @media (max-width:340px) {
     .round-img-ope {
         width: 5em;
@@ -287,6 +370,23 @@ caption {
     }
 
 }
+
+
+@media (max-width: 575px){
+    .bg-ohjausajat {
+        background-position-x: left;
+        background-position-y: bottom;
+        height: 75vh;
+    }
+
+
+    .bg-opesivu-btm {
+        background-position-x: left;
+        background-position-y: bottom;
+    }
+
+}
+
 
 @media (max-width:760px){
     .round-img-ope {
@@ -301,6 +401,18 @@ caption {
         background-size: cover;
         height: 80vh;
         margin-bottom: 1rem;
+    }
+}
+
+@media (max-width: 1252px) {
+    .bg-UusiAika {
+        background-size: cover;
+    }
+
+    .custom-bg-mobile {
+        background-color: white;
+        padding-left: 1em;
+        padding-right: 1em;
     }
 }
 

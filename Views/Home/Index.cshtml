@@ -1,4 +1,4 @@
-@{
+﻿@{
     ViewBag.Title = "Koti";
 }
 @* Kaikki scriptit tähän sectioniin *@
@@ -40,21 +40,22 @@
       //}
 
 
-        //Tämä avaa varauksen modaalin
-        $(document).on('load', function () { if
+        //Tämä avaa varauksen modaalin on load, jos on kirjautunut ei taida edes toimia
+        @*$(document).on('load', function () { if
 (@ViewBag.LoginError == 1) {
 $('#VarausRuutu').modal('show');
 }
-});
+        });*@
 
+        //tama avaa varauksen poiston modaalin clickauksella
+        $(function () {
+            $("varausmodal").click(function () {
+                $("#VarausRuutu").modal("show");
+            });
+        });
 
     </script>
 }
-
-@* Tämä on button joka avaa varauksen poistoikkunan. Button ja modaali kaipaa muotoilua. *@
-<button class="btn nav-link text-uppercase" data-bs-toggle="modal" data-bs-target="#VarausRuutu">Varaukset poisto</button>
-
-
 
 
 <!-------------------------Hero section---------------------------------->
@@ -68,6 +69,9 @@ $('#VarausRuutu').modal('show');
                     <a href="#ohjausaika" class="btn btn-primary m2-3">Varaa ohjausaika</a>
                     <div class="my-3"></div><!--Tämä tyhjä div tässä sen takia, että mobiilissa tulisi väli nappuloiden välille-->
                     <a href="#palaute" class="btn btn-primary ms-md-3 h-100">Anna palautetta</a>
+                    <div class="my-3"></div><!--Tämä tyhjä div tässä sen takia, että mobiilissa tulisi väli nappuloiden välille-->
+                    @* Poista varaus nappula *@
+                    <a class="btn btn-primary ms-md-3 h-100" id="varausmodal" data-bs-toggle="modal" data-bs-target="#VarausRuutu">Poista varauksesi</a>
                 </div>
             </div>
         </div>
@@ -196,3 +200,4 @@ $('#VarausRuutu').modal('show');
 
 
 @{ Html.RenderPartial("~/Views/Palaute/_ErrorModal.cshtml"); }
+

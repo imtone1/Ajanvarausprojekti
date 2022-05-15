@@ -1,7 +1,7 @@
 ﻿@model Ajanvarausprojekti.ViewModels.UusiOpe
 
 @{
-    ViewBag.Title = "LisaaOpettaja";
+    ViewBag.Title = "Lisaa uusi opettaja";
 }
 
 @* Kaikki scriptit pitää sijoittaa tähän sectioniin muuten ei toimi *@
@@ -19,9 +19,11 @@
                 vahvistus = $('#vahvistusInput').val();
                 if (salasana !== vahvistus) {
                     $("#varoitus").text("Salasanat eivät täsmää!");
+                    $("#LisaaOpeButton").hide();
                 }
                 else {
                     $("#varoitus").text("")
+                    $("#LisaaOpeButton").show();
                 }
             })
         })
@@ -30,7 +32,7 @@
 }
 
 
-<h2>LisaaOpettaja</h2>
+<h2>Lisää uuden opettajan</h2>
 
 
 @using (Html.BeginForm())
@@ -38,7 +40,7 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>UusiOpe</h4>
+        <h4>Uusi opettaja</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
@@ -93,7 +95,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label col-md-2"></label>
+            <label class="control-label col-md-2">Vahvista salasana</label>
             <div class="col-md-10">
                 <input class="form-control" id="vahvistusInput" type="password" />
                 <p class="text-danger" id="varoitus"></p>
@@ -113,7 +115,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input id="LisaaOpeButton" type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
     </div>

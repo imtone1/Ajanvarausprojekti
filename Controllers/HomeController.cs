@@ -8,6 +8,7 @@ namespace Ajanvarausprojekti.Controllers
 {
     public class HomeController : Controller
     {
+       
         public ActionResult Index()
         {
             ViewBag.LoginError = 0;
@@ -40,7 +41,14 @@ namespace Ajanvarausprojekti.Controllers
 
         public ActionResult OpettajienSivu()
         {
-            return View();
+            if (Session["UserName"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return View();
+            }
         }
     }
 }
