@@ -402,40 +402,15 @@ input[type="time" i]:focus {
     }
 }
 
-@media (max-width:992px) {
+@media (max-width:978px) {
     .bg-opesivu {
         width: 100%;
         background-size: cover;
         height: 80vh;
         margin-bottom: 1rem;
     }
-}
-
-@media (max-width: 1252px) {
-    .bg-UusiAika {
-        background-size: cover;
-    }
-
-    .custom-bg-mobile {
-        background-color: white;
-        padding-left: 1em;
-        padding-right: 1em;
-    }
 
 }
-
-@media (max-width: 2000px) {
-    .bg-opesivu {
-       height: 100px;
-    }
-
-    .bg-ohjausajat {
-        height: 100px;
-    }
-}
-
-
-
 
 /* Set padding to keep content from hitting the edges 
     .body-content {
