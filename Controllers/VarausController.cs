@@ -1,4 +1,5 @@
 ﻿using Ajanvarausprojekti.Models;
+using Ajanvarausprojekti.Services;
 using Ajanvarausprojekti.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -195,12 +196,15 @@ namespace Ajanvarausprojekti.Controllers
                     else
                     {
 
+                        LoginService lService = new LoginService();
+                        string salasanaRandom = lService.GeneratePassword(3,3,3);
+
                         //Luodaan varaus
                         Varaukset varauksesi = new Varaukset
                         {
                             varaaja_sahkoposti = varaus.Varaaja,
                             aihe = varaus.Aihe,
-                            id_hash = varaus.id_hash,
+                            id_hash = salasanaRandom,
                             aika_id = varaus.aika_id,
                             varattu_pvm = DateTime.Now
                         };
