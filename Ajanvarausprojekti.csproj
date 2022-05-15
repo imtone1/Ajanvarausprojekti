@@ -266,6 +266,7 @@
     <Content Include="Models\AjanvarausPalauteModel.edmx.diagram">
       <DependentUpon>AjanvarausPalauteModel.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\tiviohjaus - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
@@ -399,7 +400,9 @@
     <Content Include="Views\Palaute\Create.cshtml" />
     <Content Include="Views\Palaute\_SuccessModal.cshtml" />
     <Content Include="Views\Palaute\_ErrorModal.cshtml" />
+
     <Content Include="Views\Home\Index.cshtml" />
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
