@@ -57,6 +57,12 @@
                     <a href="#LisaaAika" class="btn btn-primary ms-3">Lisää ohjausaikoja</a><!--Button hypähtää klikatessa tällä hetkellä haastavampaan Varattavissa olevat ohjausajat kohtaan.-->
 
                     <a href="#TarkastelePalaute" class="btn btn-primary ms-3 mt-3">Tarkastele palautteita</a><!--Button hypähtää klikatessa Uusimmat palautteet kohtaan-->
+
+                    @{ if (Session["Admin"] != null)
+                        {
+                            <a href="/SuperUser/LisaaOpettaja" class="btn btn-primary ms-3 mt-3">Lisää uusi opettaja</a><!--Button hypähtää klikatessa uuden opettajan lisäykseen-->
+                                     }
+                    }
                 </div>
             </div>
 
