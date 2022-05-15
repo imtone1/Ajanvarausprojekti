@@ -145,6 +145,7 @@
     background-position: bottom;
     height: 75vh;
     width: auto;
+    background-position-y: top;
 }
 
 .bg-hero-about {
@@ -288,29 +289,35 @@
 .bg-opesivu {
     background-color: var(--light-grey);
     background: url(/Content/Images/tools.png) no-repeat;
-    background-size: initial;
+    background-size: cover;
     background-position-x: right;
     background-position-y: bottom;
-    height: 85vh;
+    min-height: 100vh;
 }
 
 
 .bg-ohjausajat {
     background-color: var(--light-grey);
     background: url(/Content/Images/sateenvarjo-logo.png) no-repeat;
-    background-size: initial;
+    background-size: cover;
     background-position-x: center;
-    background-position-y: top;
-    height: 100vh;
+    background-position-y: center;
+    min-height: 100vh;
 }
 
 .bg-UusiAika {
     background-color: var(--light-grey);
     background: url(/Content/Images/business.png) no-repeat;
-    background-size: initial;
+    background-size: cover;
+    background-position-x: center;
+    background-position-y: center;
+    min-height: 100vh;
+}
+
+.bg-opesivu-btm {
+    background-size: cover;
     background-position-x: left;
     background-position-y: bottom;
-    height: 85vh;
 }
 
 table {
@@ -413,6 +420,17 @@ input[type="time" i]:focus {
         background-color: white;
         padding-left: 1em;
         padding-right: 1em;
+    }
+
+}
+
+@media (max-width: 2000px) {
+    .bg-opesivu {
+       height: 100px;
+    }
+
+    .bg-ohjausajat {
+        height: 100px;
     }
 }
 
