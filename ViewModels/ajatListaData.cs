@@ -20,5 +20,7 @@
 
         public int Kesto { get; set; }
 
+        public string id_hash { get; set; }
+
     }
 }
