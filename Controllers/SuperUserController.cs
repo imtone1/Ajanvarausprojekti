@@ -3,6 +3,7 @@ using Ajanvarausprojekti.Services;
 using Ajanvarausprojekti.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Helpers;
@@ -175,8 +176,98 @@ namespace Ajanvarausprojekti.Controllers
 
         }
 
-        //Dispose pakko olla, tätä ei saa poistaa!
-        protected override void Dispose(bool disposing)
+        public ActionResult Kuvalisays()
+        {
+            ViewBag.oikeudet_id = new SelectList(db.Yllapitooikeudet, "oikeudet_id", "oikeudet");
+            var createOpe = from o in db.Opettajat
+                            join k in db.Kayttajatunnukset on o.opettaja_id equals k.opettaja_id
+
+                            select new UusiOpe
+                            {
+                                opettaja_id = (int)o.opettaja_id,
+                                etunimi = o.etunimi,
+                                sukunimi = o.sukunimi,
+                                nimike = o.nimike,
+                                sahkoposti = o.sahkoposti,
+                                kayttajatunnus = k.kayttajatunnus,
+                                salasana = k.salasana,
+                                oikeudet_id = k.oikeudet_id,
+
+                            };
+            //List<UusiOpe> OpekuvaObjFiles = new List<UusiOpe>();
+            //foreach (string strfile in Directory.GetFiles(Server.MapPath("~/Opekuvat")))
+            //{
+            //    FileInfo fi = new FileInfo(strfile);
+            //    UusiOpe obj = new UusiOpe();
+            //    obj.Tiedosto = fi.Name;
+            //    obj.Koko = fi.Length;
+            //    obj.Tyyppi = fi.Extension;
+            //    OpekuvaObjFiles.Add(obj);
+            //}
+            
+
+           
+            return View();
+        }
+
+        //public ActionResult Delete(string fileName)
+        //{
+        //    string fullPath = Path.Combine(Server.MapPath("~/Opekuvat"), fileName);
+        //    byte[] fileBytes = System.IO.File.ReadAllBytes(fullPath);
+
+        //    if (System.IO.File.Exists(fullPath))
+        //    {
+        //        System.IO.File.Delete(fullPath);
+        //    }
+
+        //    return RedirectToAction("Index", "Home");
+
+        //}
+        [HttpPost]
+        public ActionResult Kuvalisays(UusiOpe uusiope, HttpPostedFileBase file)
+        {
+            try
+            {
+                if (file.ContentLength > 0)
+                {
+                    string _FileName = Path.GetFileName(file.FileName);
+                    string _path = Path.Combine(Server.MapPath("~/Opekuvat"), _FileName);
+                    file.SaveAs(_path);
+   
+                }
+
+                string _FileName1 = Path.GetFileName(file.FileName);
+                Opettajat luoopettaja = new Opettajat
+            {
+                sahkoposti = uusiope.sahkoposti,
+                etunimi = uusiope.etunimi,
+                sukunimi = uusiope.sukunimi,
+                nimike = uusiope.nimike,
+                kuva="/Opekuva/"+_FileName1
+            };
+                    db.Opettajat.Add(luoopettaja);
+            db.SaveChanges();
+
+                ViewBag.Message = "File Uploaded Successfully!!";
+                return RedirectToAction("Index", "Home"); 
+            }
+            catch
+            {
+                ViewBag.Message = "File upload failed!!";
+                return View();
+            }
+            
+
+         
+
+            
+            //TempData["Message"] = "tiedosto tallennettu onnistuneesti";
+           
+        }
+    
+    
+    //Dispose pakko olla, tätä ei saa poistaa!
+    protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
@@ -258,4 +349,11 @@ namespace Ajanvarausprojekti.Controllers
         //    }
         //}
     }
+}
+public class OpekuvaObj
+{
+    public IEnumerable<HttpPostedFileBase> files { get; set; }
+    public string Tiedosto { get; set; }
+    public long Koko { get; set; }
+    public string Tyyppi { get; set; }
 }

@@ -28,5 +28,10 @@ namespace Ajanvarausprojekti.ViewModels
         public string salasana { get; set; }
         public int oikeudet_id { get; set; }
         public int kayttajatunnus_id { get; set; }
+
+        public IEnumerable<HttpPostedFileBase> files { get; set; }
+        public string Tiedosto { get; set; }
+        public long Koko { get; set; }
+        public string Tyyppi { get; set; }
     }
 }
