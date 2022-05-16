@@ -40,22 +40,23 @@ namespace Ajanvarausprojekti.Controllers
                                 select new UusiOpe
                                 {
                                     opettaja_id = (int)o.opettaja_id,
+                                    kuva = o.kuva,
                                     etunimi = o.etunimi,
                                     sukunimi = o.sukunimi,
                                     nimike = o.nimike,
                                     sahkoposti = o.sahkoposti,
                                     kayttajatunnus = k.kayttajatunnus,
                                     salasana = k.salasana,
-                                    oikeudet_id = k.oikeudet_id,
+                                    oikeudet_id = k.oikeudet_id
 
                                 };
             }
             return View();
         }
-        // POST: Create
+        //Irina: POST: Lisaa uuden opettajan ja tälle käyttäjätunnuksen, oikeudet ja kuva Opekuvat kansioon. Basicuser defaultina
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult LisaaOpettaja([Bind(Include = "kayttajatunnus, salasana, oikeudet_id, sahkoposti, etunimi, sukunimi, nimike")] UusiOpe uusiope)
+        public ActionResult LisaaOpettaja(UusiOpe uusiope, HttpPostedFileBase file)
         {
             //mietinnässä vielä kannattaako tätä try catch jakaa pienempiin osiin
             try
@@ -76,17 +77,29 @@ namespace Ajanvarausprojekti.Controllers
 
                     else
                     {
-                        //Luodaan ope
-                        Opettajat luoopettaja = new Opettajat
+                        //Kuvan tallennus kansioon
+                        if (file.ContentLength > 0)
+                        {
+                            string _FileName = Path.GetFileName(file.FileName);
+                            string _path = Path.Combine(Server.MapPath("~/Opekuvat"), _FileName);
+                            file.SaveAs(_path);
+
+                        }
+
+                        string _FileName1 = Path.GetFileName(file.FileName);
+                         //Luodaan ope
+                         Opettajat luoopettaja = new Opettajat
                         {
                             sahkoposti = uusiope.sahkoposti,
                             etunimi = uusiope.etunimi,
                             sukunimi = uusiope.sukunimi,
-                            nimike = uusiope.nimike
+                            nimike = uusiope.nimike,
+                            kuva = "/Opekuvat/" + _FileName1
                         };
-
                         db.Opettajat.Add(luoopettaja);
                         db.SaveChanges();
+
+
 
                         LoginService lService = new LoginService();
                         string kryptattuSalasana = lService.md5_string(uusiope.salasana);
@@ -99,7 +112,7 @@ namespace Ajanvarausprojekti.Controllers
 
                         if (opekayttis != null)
                         {
-
+                            //luodaan käyttäjätunnuksen opelle
                             Kayttajatunnukset kayttis = new Kayttajatunnukset
                             {
                                 kayttajatunnus = uusiope.kayttajatunnus,
@@ -164,52 +177,29 @@ namespace Ajanvarausprojekti.Controllers
                     }
 
                 }
+
+                //ONNISTUNUT MODAALI
+                //Annetaan tieto varauksen onnistumisesta TempDatalle modaali-ikkunaa varten
+                TempData["Successi"] = "Opettajan lisäys onnistui!";
+                TempData["BodyText1"] = "Lisäämäsi opettaja saa pian antamaasi sähköpostiosoitteeseen varausvahvistuksen.";
+                TempData["BodyText2"] = "";
                 //jos ope tallennus onnistuu lähettää userin tähän
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("OpettajienSivu", "Home");
             }
             catch
             {
-
+                //EionnistunutModaali
+                //Annetaan tieto, että jokin meni pieleen TempDatalle modaali-ikkunaa varten
+                TempData["Errori"] = "Hups! Jokin meni nyt pieleen!";
+                TempData["BodyText1"] = "Opettajan lisäys epäonnistui.";
                 ViewBag.Status = "Syöttämissäsi tiedoissa jo jokin virhe.";
                 return View();
             }
 
         }
 
-        public ActionResult Kuvalisays()
-        {
-            ViewBag.oikeudet_id = new SelectList(db.Yllapitooikeudet, "oikeudet_id", "oikeudet");
-            var createOpe = from o in db.Opettajat
-                            join k in db.Kayttajatunnukset on o.opettaja_id equals k.opettaja_id
-
-                            select new UusiOpe
-                            {
-                                opettaja_id = (int)o.opettaja_id,
-                                etunimi = o.etunimi,
-                                sukunimi = o.sukunimi,
-                                nimike = o.nimike,
-                                sahkoposti = o.sahkoposti,
-                                kayttajatunnus = k.kayttajatunnus,
-                                salasana = k.salasana,
-                                oikeudet_id = k.oikeudet_id,
-
-                            };
-            //List<UusiOpe> OpekuvaObjFiles = new List<UusiOpe>();
-            //foreach (string strfile in Directory.GetFiles(Server.MapPath("~/Opekuvat")))
-            //{
-            //    FileInfo fi = new FileInfo(strfile);
-            //    UusiOpe obj = new UusiOpe();
-            //    obj.Tiedosto = fi.Name;
-            //    obj.Koko = fi.Length;
-            //    obj.Tyyppi = fi.Extension;
-            //    OpekuvaObjFiles.Add(obj);
-            //}
-            
-
-           
-            return View();
-        }
-
+       
+        //Irina: Opekuvan poisto, tulee myöhemmin käyttöön
         //public ActionResult Delete(string fileName)
         //{
         //    string fullPath = Path.Combine(Server.MapPath("~/Opekuvat"), fileName);
@@ -223,51 +213,11 @@ namespace Ajanvarausprojekti.Controllers
         //    return RedirectToAction("Index", "Home");
 
         //}
-        [HttpPost]
-        public ActionResult Kuvalisays(UusiOpe uusiope, HttpPostedFileBase file)
-        {
-            try
-            {
-                if (file.ContentLength > 0)
-                {
-                    string _FileName = Path.GetFileName(file.FileName);
-                    string _path = Path.Combine(Server.MapPath("~/Opekuvat"), _FileName);
-                    file.SaveAs(_path);
-   
-                }
 
-                string _FileName1 = Path.GetFileName(file.FileName);
-                Opettajat luoopettaja = new Opettajat
-            {
-                sahkoposti = uusiope.sahkoposti,
-                etunimi = uusiope.etunimi,
-                sukunimi = uusiope.sukunimi,
-                nimike = uusiope.nimike,
-                kuva="/Opekuva/"+_FileName1
-            };
-                    db.Opettajat.Add(luoopettaja);
-            db.SaveChanges();
+      
 
-                ViewBag.Message = "File Uploaded Successfully!!";
-                return RedirectToAction("Index", "Home"); 
-            }
-            catch
-            {
-                ViewBag.Message = "File upload failed!!";
-                return View();
-            }
-            
-
-         
-
-            
-            //TempData["Message"] = "tiedosto tallennettu onnistuneesti";
-           
-        }
-    
-    
-    //Dispose pakko olla, tätä ei saa poistaa!
-    protected override void Dispose(bool disposing)
+        //Dispose pakko olla, tätä ei saa poistaa!
+        protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
@@ -350,10 +300,4 @@ namespace Ajanvarausprojekti.Controllers
         //}
     }
 }
-public class OpekuvaObj
-{
-    public IEnumerable<HttpPostedFileBase> files { get; set; }
-    public string Tiedosto { get; set; }
-    public long Koko { get; set; }
-    public string Tyyppi { get; set; }
-}
+

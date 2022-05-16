@@ -405,7 +405,6 @@
     <Content Include="Views\Varaus\_OnnistuiModaali.cshtml" />
     <Content Include="Views\Varaus\_TeeVaraus.cshtml" />
     <Content Include="Views\Varaus\TeeVaraus.cshtml" />
-    <Content Include="Views\SuperUser\Kuvalisays.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
