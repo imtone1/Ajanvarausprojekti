@@ -150,7 +150,7 @@
 
 .bg-hero-about {
     background-color: var(--light-grey);
-    background: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5) ), url(/Content/Images/people.jpg) no-repeat fixed;
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(/Content/Images/people.jpg) no-repeat fixed;
     background-size: cover;
     background-position: bottom;
 }
@@ -349,7 +349,6 @@ caption {
 }
 
 
-
 input[type="date" i]:focus {
     box-shadow: 1px 1px 8px;
     color: var(--primary-color);
@@ -366,68 +365,62 @@ input[type="time" i]:focus {
     box-shadow: 1px 1px 8px var(--primary-color);
 }
 
-@media (max-width:340px) {
-    .round-img-ope {
-        width: 5em;
-        height: 5em;
-    }
+    @media (max-width:340px) {
+        .round-img-ope {
+            width: 5em;
+            height: 5em;
+        }
 
-    .bg-opesivu {
-        height: 50vh;
-    }
-
-}
-
-
-@media (max-width: 575px){
-    .bg-ohjausajat {
-        background-position-x: left;
-        background-position-y: bottom;
-        height: 75vh;
+        .bg-opesivu {
+            height: 50vh;
+        }
     }
 
 
-    .bg-opesivu-btm {
-        background-position-x: left;
-        background-position-y: bottom;
+    @media (max-width: 575px) {
+        .bg-ohjausajat {
+            background-position-x: left;
+            background-position-y: bottom;
+            height: 75vh;
+        }
+
+
+        .bg-opesivu-btm {
+            background-position-x: left;
+            background-position-y: bottom;
+        }
     }
 
-}
 
-
-@media (max-width:760px){
-    .round-img-ope {
-        margin-right: 1em;
-        margin-top: 1em;
-    }
-}
-
-@media (max-width:978px) {
-    .bg-opesivu {
-        width: 100%;
-        background-size: cover;
-        height: 80vh;
-        margin-bottom: 1rem;
+    @media (max-width:760px) {
+        .round-img-ope {
+            margin-right: 1em;
+            margin-top: 1em;
+        }
     }
 
-}
-
-/* Set padding to keep content from hitting the edges 
+    @media (max-width:978px) {
+        .bg-opesivu {
+            width: 100%;
+            background-size: cover;
+            height: 80vh;
+            margin-bottom: 1rem;
+        }
+    }
+    /* Set padding to keep content from hitting the edges 
     .body-content {
         padding-left: 15px;
         padding-right: 15px;
     }
 */
-
-/* Override the default bootstrap behavior where horizontal description lists 
+    /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 
 .dl-horizontal dt {
     white-space: normal;
 }
 */
-
-/* Set width on the form input elements since they're 100% wide by default 
+    /* Set width on the form input elements since they're 100% wide by default 
 input,
 select,
 textarea {

@@ -31,95 +31,213 @@
     </script>
 }
 
-
-<h2>Lisää uuden opettajan</h2>
-
-
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-
-    <div class="form-horizontal">
-        <h4>Uusi opettaja</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-        <p class="text-danger text-">@ViewBag.Status</p>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.etunimi, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.etunimi, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.etunimi, "", new { @class = "text-danger" })
-            </div>
+<section class="container mt-5">
+    <h1>Ylläpito ja asetukset</h1>
+    <hr />
+    <h2>Omat tiedot</h2>
+    <form class="row g-3">
+        <div class="col-md-6">
+            <label for="staticUsername" class="col-sm-2 col-form-label">Käyttäjätunnus</label>
+            <input type="text" class="form-control" id="staticUsername" placeholder="Käyttäjätunnus" aria-label="Käyttäjätunnus">
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.sukunimi, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.sukunimi, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.sukunimi, "", new { @class = "text-danger" })
-            </div>
+        <div class="col-md-6">
+            <label for="firstName" class="col-sm-2 col-form-label">Etunimi</label>
+            <input type="text" class="form-control" placeholder="Etunimi" aria-label="First name">
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.nimike, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.nimike, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.nimike, "", new { @class = "text-danger" })
-            </div>
+        <div class="col-md-6">
+            <label for="lastName" class="col-sm-2 col-form-label">Sukunimi</label>
+            <input type="text" class="form-control" placeholder="Sukunimi" aria-label="Last name">
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.sahkoposti, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.sahkoposti, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.sahkoposti, "", new { @class = "text-danger" })
-            </div>
+        <div class="col-md-6">
+            <label for="inputEmail4" class="col-sm-2 col-form-label">Email</label>
+            <input type="email" class="form-control" placeholder="Email" id="inputEmail4" aria-label="Email">
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.kayttajatunnus, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.kayttajatunnus, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.kayttajatunnus, "", new { @class = "text-danger" })
-                <p class="text-danger text-">@ViewBag.Kayttajaolemassa</p>
-            </div>
+        <div class="col-md-6">
+            <label for="inputPassword" class="col-sm-2 col-form-label">Salasana</label>
+            <input type="password" class="form-control" placeholder="Salasana" id="inputPassword" aria-label="Salasana">
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.salasana, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.salasana, new { htmlAttributes = new { @class = "form-control", @id = "salasanaInput" } })
-                @Html.ValidationMessageFor(model => model.salasana, "", new { @class = "text-danger" })
-            </div>
+        <div class="col-12 d-flex justify-content-end">
+            <button type="submit" class="btn btn-primary">Tallenna muutokset</button>
         </div>
-        <div class="form-group">
-            <label class="control-label col-md-2">Vahvista salasana</label>
-            <div class="col-md-10">
-                <input class="form-control" id="vahvistusInput" type="password" />
-                <p class="text-danger" id="varoitus"></p>
-            </div>
+    </form>
+</section>
+
+
+
+
+<section class="container mt-5">
+    <h2>Käyttäjähallinta</h2>
+    <div class="row">
+        <div class="col-md-5 d-flex flex-column justify-content-center align-items-center">
+            <table class="table table-borderless d-flex flex-column justify-content-center align-items-center">
+                <thead>
+                    <tr>
+                        <th scope="col">Käyttäjät</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">Ope Ykkönen</th>
+                        <td>
+                            <a href="#">
+                                <!--Tämä on muokkaa opettajaa-nappi-->
+                                <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" fill="var(--black-color)" class="bi bi-pencil bg-primary rounded-3 p-2 mt-3 mt-md-0" viewBox="0 0 16 16">
+                                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
+                                </svg>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="#">
+                                <!--Tämä on poista opettaja-nappi-->
+                                <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" fill="var(--black-color)" class="bi bi-x-lg bg-primary rounded-3 p-2 mt-3 mt-md-0" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z" />
+                                    <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z" />
+                                </svg>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Ope Kakkonen</th>
+                        <td>
+                            <a href="#">
+                                <!--Tämä on muokkaa opettajaa-nappi-->
+                                <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" fill="var(--black-color)" class="bi bi-pencil bg-primary rounded-3 p-2 mt-3 mt-md-0" viewBox="0 0 16 16">
+                                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
+                                </svg>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="#">
+                                <!--Tämä on poista opettaja-nappi-->
+                                <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" fill="var(--black-color)" class="bi bi-x-lg bg-primary rounded-3 p-2 mt-3 mt-md-0" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z" />
+                                    <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z" />
+                                </svg>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Ope Kolmonen</th>
+                        <td>
+                            <a href="#">
+                                <!--Tämä on muokkaa opettajaa-nappi-->
+                                <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" fill="var(--black-color)" class="bi bi-pencil bg-primary rounded-3 p-2 mt-3 mt-md-0" viewBox="0 0 16 16">
+                                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
+                                </svg>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="#">
+                                <!--Tämä on poista opettaja-nappi-->
+                                <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" fill="var(--black-color)" class="bi bi-x-lg bg-primary rounded-3 p-2 mt-3 mt-md-0" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z" />
+                                    <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z" />
+                                </svg>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.oikeudet_id, "oikeudet_id", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.oikeudet_id, new List<SelectListItem>
-                  { new SelectListItem{Text="Basic oikeudet", Value="2",Selected =true },
-                    new SelectListItem{Text="Admin oikeudet", Value="1"}}, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.oikeudet_id, "", new { @class = "text-danger" })
-
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input id="LisaaOpeButton" type="submit" value="Create" class="btn btn-default" />
-            </div>
+        <div class="col-md-7">
+            <img src="~/Content/Images/woman-mountain.png" class="img-fluid" alt="Alternate Text" />
         </div>
     </div>
-}
+
+ 
+
+
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Uusi opettaja</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <p class="text-danger text-">@ViewBag.Status</p>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.etunimi, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.etunimi, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.etunimi, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.sukunimi, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.sukunimi, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.sukunimi, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.nimike, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.nimike, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.nimike, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.sahkoposti, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.sahkoposti, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.sahkoposti, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.kayttajatunnus, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.kayttajatunnus, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.kayttajatunnus, "", new { @class = "text-danger" })
+                    <p class="text-danger text-">@ViewBag.Kayttajaolemassa</p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.salasana, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.salasana, new { htmlAttributes = new { @class = "form-control", @id = "salasanaInput" } })
+                    @Html.ValidationMessageFor(model => model.salasana, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">Vahvista salasana</label>
+                <div class="col-md-10">
+                    <input class="form-control" id="vahvistusInput" type="password" />
+                    <p class="text-danger" id="varoitus"></p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.oikeudet_id, "oikeudet_id", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.oikeudet_id, new List<SelectListItem>
+                      { new SelectListItem{Text="Basic oikeudet", Value="2",Selected =true },
+                        new SelectListItem{Text="Admin oikeudet", Value="1"}}, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.oikeudet_id, "", new { @class = "text-danger" })
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input id="LisaaOpeButton" type="submit" value="Lisää uusi opettaja" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    }
+</section>
+
+
 
 @* Kommenteissa oleva ActionLink Back to List saa poistaa, jos ei tarvita *@
 @*<div>
