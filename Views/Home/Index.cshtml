@@ -3,33 +3,57 @@
 }
 @* Kaikki scriptit tähän sectioniin *@
 
-@*Onnistunut palautteenanto-modaali*@
-@if (TempData["Success"] != null)
-{
-    <script type="text/javascript">
-        window.onload = function () {
-            $("#PalauteOnnistui").modal("show"); {
-                setTimeout(function () { $("#PalauteOnnistui").modal("hide"); }, 2000)
-            };
-        };
-    </script>
-}
-
-@*Epäonnistunut palautteenanto-modaali, mitään palautetta ei olla kirjoitettu*@
-@if (TempData["Error"] != null)
-{
-    <script type="text/javascript">
-
-
-        window.onload = function () {
-            $("#PalauteEiOnnistunut").modal("show"); {
-                setTimeout(function () { $("#PalauteEiOnnistunut").modal("hide"); }, 2000)
-            };
-        };
-    </script>
-}
-
 @section scripts {
+    @*Onnistunut palautteenanto-modaali*@
+    @if (TempData["Success"] != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                $("#PalauteOnnistui").modal("show"); {
+                    setTimeout(function () { $("#PalauteOnnistui").modal("hide"); }, 2000)
+                };
+            };
+        </script>
+    }
+
+    @*Epäonnistunut palautteenanto-modaali, mitään palautetta ei olla kirjoitettu*@
+    @if (TempData["Error"] != null)
+    {
+        <script type="text/javascript">
+
+
+            window.onload = function () {
+                $("#PalauteEiOnnistunut").modal("show"); {
+                    setTimeout(function () { $("#PalauteEiOnnistunut").modal("hide"); }, 2000)
+                };
+            };
+        </script>
+    }
+    @*Onnistunut varaus -modaali*@
+    @if (TempData["Successi"] != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                $("#OnnistunutModaali").modal("show"); {
+                    setTimeout(function () { $("#OnnistunutModaali").modal("hide"); }, 3000)
+                };
+            };
+        </script>
+    }
+
+    @*Varaus epäonnistui -modaali*@
+    @if (TempData["Errori"] != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                $("#EiOnnistunutModaali").modal("show"); {
+                    setTimeout(function () { $("#EiOnnistunutModaali").modal("hide"); }, 3000)
+                };
+            };
+        </script>
+    }
+
+
     <script type="text/javascript">
 
          //Tämä tässä, jos tulee useampi modaali eikä toimikaan, poistetaan myöhemmin, jos ei tarvita
@@ -201,3 +225,6 @@ $('#VarausRuutu').modal('show');
 
 @{ Html.RenderPartial("~/Views/Palaute/_ErrorModal.cshtml"); }
 
+@{ Html.RenderPartial("~/Views/Varaus/_EiOnnistunutModaali.cshtml"); }
+
+@{ Html.RenderPartial("~/Views/Varaus/_OnnistuiModaali.cshtml"); }

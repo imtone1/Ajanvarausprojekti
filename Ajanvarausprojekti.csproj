@@ -400,9 +400,11 @@
     <Content Include="Views\Palaute\Create.cshtml" />
     <Content Include="Views\Palaute\_SuccessModal.cshtml" />
     <Content Include="Views\Palaute\_ErrorModal.cshtml" />
-
     <Content Include="Views\Home\Index.cshtml" />
-
+    <Content Include="Views\Varaus\_EiOnnistunutModaali.cshtml" />
+    <Content Include="Views\Varaus\_OnnistuiModaali.cshtml" />
+    <Content Include="Views\Varaus\_TeeVaraus.cshtml" />
+    <Content Include="Views\Varaus\TeeVaraus.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

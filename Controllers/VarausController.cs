@@ -1,4 +1,5 @@
 ﻿using Ajanvarausprojekti.Models;
+using Ajanvarausprojekti.Services;
 using Ajanvarausprojekti.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 
 namespace Ajanvarausprojekti.Controllers
@@ -139,7 +141,177 @@ namespace Ajanvarausprojekti.Controllers
             }
 
         }
+        // GET: Ajat/Create
+        public ActionResult TeeVaraus()
+        {
+            ViewBag.aika_id = new SelectList(db.Ajat, "aika_id", "aika_id");
 
+            //left join, jotta näkyisi kaikki ajat, myös ne joissa ei varausta
+            var ajatLista = from a in db.Ajat
+                            join op in db.Opettajat on a.opettaja_id equals op.opettaja_id
+                            join k in db.Kestot on a.kesto_id equals k.kesto_id
+                            join v in db.Varaukset on a.aika_id equals v.aika_id
+                            into gj
+                            from varaus in gj.DefaultIfEmpty()
+                                // where-lause  opettaja id tähän jos halutaan, että tietyn opettajan ajat näkyisivät
+                            orderby a.alku_aika
+
+                            select new ajatListaData
+                            {
+                                aika_id = (int)a.aika_id,
+                                Alkuaika = (DateTime)a.alku_aika,
+                                Kesto = (int)k.kesto,
+                                Aihe = varaus.aihe,
+                                Paikka = a.paikka,
+                                opettaja_id = (int)a.opettaja_id,
+                                Varaaja = varaus.varaaja_sahkoposti,
+                                Varauspvm = (DateTime)varaus.varattu_pvm,
+                                id_hash = varaus.id_hash
+
+
+                            };
+            return View();
+        }
+
+        // POST: Varaukset/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult TeeVaraus([Bind(Include = "aika_id, Varaaja, Aihe, id_hash")] ajatListaData varaus)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    //Tarkistaa onko aika jo varattu                    
+                    var testForID = from a in db.Varaukset
+                                    where a.aika_id == varaus.aika_id
+                                    select a;
+
+                    if (testForID.Any())
+                    {
+                        ViewBag.Status = "Tämä aika on jo varattu.";
+                        return View();
+                    }
+
+                    else
+                    {
+
+                        LoginService lService = new LoginService();
+                        string salasanaRandom = lService.GeneratePassword(3,3,3);
+
+                        //Luodaan varaus
+                        Varaukset varauksesi = new Varaukset
+                        {
+                            varaaja_sahkoposti = varaus.Varaaja,
+                            aihe = varaus.Aihe,
+                            id_hash = salasanaRandom,
+                            aika_id = varaus.aika_id,
+                            varattu_pvm = DateTime.Now
+                        };
+                        db.Varaukset.Add(varauksesi);
+                        db.SaveChanges();
+
+                      
+
+                        //Tarkistetaan onko olemassa ja mikä on tän open id  
+                        var ajatOpe = (from op in db.Opettajat
+                                       join a in db.Ajat on op.opettaja_id equals a.opettaja_id
+                                       where varaus.aika_id == a.aika_id
+                                       select op).FirstOrDefault();
+
+
+                        if (ajatOpe != null)
+                        {
+                            //Tarkistetaan onko olemassa ja mikä on tän open id  
+                            var varausAika = (from op in db.Opettajat
+                                              join a in db.Ajat on op.opettaja_id equals a.opettaja_id
+                                              where varaus.aika_id == a.aika_id
+                                              select a).FirstOrDefault();
+
+                            //Irina: sähköpostilähetys
+                            try
+                            {
+                                //Configuring webMail class to send emails  
+                                //gmail smtp server  
+                                WebMail.SmtpServer = "smtp.gmail.com";
+                                //gmail port to send emails  
+                                WebMail.SmtpPort = 587;
+                                WebMail.SmtpUseDefaultCredentials = true;
+                                //sending emails with secure protocol  
+                                WebMail.EnableSsl = true;
+                                //EmailId used to send emails from application  
+                                WebMail.UserName = "tivisovellus@gmail.com";
+                                WebMail.Password = "1hAn5!VAiO1k9";
+
+
+                                //Sender email address.  
+                                WebMail.From = "tivisovellus@gmail.com";
+
+                                // Send email
+                                WebMail.Send(to: ajatOpe.sahkoposti,
+                                            subject: "Ohjausaika varattu Tivi-ohjaussovelluksen kautta",
+                                            body: "<b><p>Hei!</p></b><br>" +
+                                            "<p>Sinulle on tehty ohjausajanvaraus Tivi-ohjaus-sovelluksen kautta ajalle " + varausAika.alku_aika.ToShortDateString() + " " + varausAika.alku_aika.ToShortTimeString() + ". (kesto " + varausAika.kesto_id + " minuuttia.</p><br><p>Paikkana on " + varausAika.paikka + "</p><br><p>Ongelmatilanteissa voit olla yhteydessä sovelluksen pääkäyttäjään Simo Sireniin.</p><br><br>Terveisin, <br> Tivi-ohjaus</p><br>" +
+                                            "Tähän viestiin ei voi vastata.", isBodyHtml: true
+                                        );
+                                ViewBag.Status = "Sähköposti lähetetty. Tarkista sähköpostisi, myös roskapostiviesteistä.";
+                                // Send email
+                                WebMail.Send(to: varaus.Varaaja,
+                                            subject: "Varausvahvistus: Ohjausaika TiVi-opettajalle",
+                                            body: "<b><p>Hei!</p></b><br>" +
+                                            "Olet tehnyt ohjausajanvarauksen opettajalle Tivi-ohjaus-sovelluksen kautta." +
+                                            "<p>Jos haluat perua ajan, voit tehdä sen peruutuskoodin avulla Tivi-ohjaus-sovelluksen kautta.<p><br><p>Peruutuskoodisi:  " + varauksesi.id_hash + "</p><br>Terveisin, <br> Tivi-ohjaus</p><br>" +
+                                            "Tähän viestiin ei voi vastata.", isBodyHtml: true
+                                        );
+                                ViewBag.Status = "Sähköposti lähetetty. Tarkista sähköpostisi, myös roskapostiviesteistä.";
+
+
+                            }
+                            catch (Exception)
+                            {
+                                ViewBag.Status = "Et ole antanut sähköpostiosoitetta.";
+
+                            }
+
+
+                        }
+                        else
+                        {
+                            ViewBag.Status = "Opettajaa ei löytynyt";
+                        }
+                    }
+                 //ONNISTUNUT MODAALI
+                //Annetaan tieto varauksen onnistumisesta TempDatalle modaali-ikkunaa varten
+                TempData["Successi"] = "Varaus onnistui!";
+                TempData["BodyText1"] = "Saat pian antamaasi sähköpostiosoitteeseen varausvahvistuksen.";
+                TempData["BodyText2"] = "Voit tarvittaessa perua varauksen sähköpostissa olevalla peruutuskoodilla.";
+                //jos ope tallennus onnistuu lähettää userin tähän
+                  
+                    //jos ope tallennus onnistuu lähettää userin tähän
+                    return RedirectToAction("Index", "Home");
+                       
+
+                }
+
+                //Tähän mennee, jos model ei ole validi
+
+                //EionnistunutModaali
+                    //Annetaan tieto, että jokin meni pieleen TempDatalle modaali-ikkunaa varten
+                    TempData["Errori"] = "Hups! Jokin meni nyt pieleen!";
+                    TempData["BodyText1"] = "Varauksen lähetys epäonnistui.";
+                    
+                return RedirectToAction("Index", "Home");
+
+            }
+            catch
+            {
+                //EPAONNISTUNUT MODAALI
+                //Annetaan tieto, että jokin meni pieleen TempDatalle modaali-ikkunaa varten
+                TempData["Errori"] = "Hups! Jokin meni nyt pieleen!";
+                return RedirectToAction("Index", "Home");
+            }
+
+        }
 
         //Dispose pakko olla, sitä ei saa poistaa
         protected override void Dispose(bool disposing)

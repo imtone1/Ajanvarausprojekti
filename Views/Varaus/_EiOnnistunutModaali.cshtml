@@ -1,0 +1,29 @@
+﻿@model Ajanvarausprojekti.ViewModels.ajatListaData
+
+<div class="container">
+
+    @*Modal: varaus epäonnistui*@
+    <div class="modal fade" id="EiOnnistunutModaali" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                @*Modaalin otsikko*@
+                <div class="modal-header">
+                    @*//TempData EpaonnistunutVaraus tuo viestin VarausControllerilta = Hups! Jokin meni nyt pieleen!*@
+                    <h1>@TempData["Errori"]</h1>
+                </div>
+
+                @*Modaalin bodyosion kuva*@
+                <div class="modal-body">
+                   
+                    <div>
+                        <iframe src="https://embed.lottiefiles.com/animation/90569"></iframe>
+                        <p>@TempData["BodyText1"]</p>
+                        <p>Ole hyvä ja yritä hetken päästä uudelleen.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,32 @@
+﻿@model Ajanvarausprojekti.ViewModels.ajatListaData
+
+
+<div class="container">
+
+    @*Modal: varaus onnistui*@
+    <div class="modal fade" id="OnnistunutModaali" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                @*Modaalin otsikko*@
+                <div class="modal-header">
+                    @*//TempData OnnistunutVaraus tuo viestin VarausControllerilta = Varaus onnistui!*@
+                    <h1>@TempData["Successi"]</h1>
+                </div>
+
+                @*Modaalin bodyosion kuva*@
+                <div class="modal-body">
+                    
+                </div>
+                <div>
+                    <iframe src="https://embed.lottiefiles.com/animation/97240"></iframe>
+                    <p>
+                        @TempData["BodyText1"]<br />
+                        @TempData["BodyText2"]
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
