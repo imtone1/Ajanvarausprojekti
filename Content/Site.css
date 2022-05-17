@@ -183,15 +183,15 @@
     color: var(--white-color);
 }
 
-.navbar .nav-item .nav-link {
+.navbar-nav .nav-item .nav-link {
     position: relative;
 }
 
-.navbar .nav-item {
+.navbar-nav .nav-item {
     margin-left: 2rem;
 }
 
-.navbar .nav-item .nav-link::before {
+.navbar-nav .nav-item .nav-link::before {
     content: '';
     position: absolute;
     left: 0;
@@ -203,8 +203,8 @@
     transform: scale(0);
 }
 
-.navbar .nav-item .nav-link.active::before,
-.navbar .nav-item .nav-link:hover::before 
+.navbar.nav .nav-item .nav-link.active::before,
+.navbar-nav .nav-item .nav-link:hover::before 
 {
     transform: scale(1);
 }
@@ -268,15 +268,16 @@
     background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%2311100C'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !important;
 }
 
-.accordion-button:focus {
+/*Box shadow yms.-jutut kommentoidut for now*/
+/*.accordion-button:focus {
     box-shadow: 1px 1px 8px;
     color: var(--primary-color);
-}
+}*/
 
-.form-select:focus {
+/*.form-select:focus {
     box-shadow: 1px 1px 8px;
     color: var(--primary-color);
-}
+}*/
 
 .select-input {
     color: black;
@@ -348,8 +349,8 @@ caption {
     background:none;
 }
 
-
-input[type="date" i]:focus {
+/*Box shadow yms.-jutut kommentoidut for now*/
+/*input[type="date" i]:focus {
     box-shadow: 1px 1px 8px;
     color: var(--primary-color);
 }
@@ -359,11 +360,37 @@ input[type="time" i]:focus {
     color: var(--primary-color);
 }
 
+input[type="email" i]:focus {
+    box-shadow: 1px 1px 8px;
+    color: var(--primary-color);
+}
+
+input[type="password" i]:focus {
+    box-shadow: 1px 1px 8px;
+    color: var(--primary-color);
+}
+
+input[type="text" i]:focus {
+    box-shadow: 1px 1px 8px;
+    color: var(--primary-color);
+}
+
+select .form-control:focus {
+    box-shadow: 1px 1px 8px;
+    color: var(--primary-color);
+}
+
 .page-link:focus,
 .page-link:hover,
 .page-link:active{
     box-shadow: 1px 1px 8px var(--primary-color);
 }
+
+select:focus {
+    border-color: gray;
+    outline: none;
+    box-shadow: 1px 1px 8px var(--primary-color);
+}*/
 
     @media (max-width:340px) {
         .round-img-ope {
