@@ -487,6 +487,25 @@
 </section>
 <!---------------------------------------------------LISÄÄ UUSI AIKA VARATTAVAKSI LOPPUU TÄHÄN-------------------------------------------->
 <!---------------------------------------------------UUSIMMAT PALAUTTEET ALKAA TÄSTÄ------------------------------------------------------>
+<script type="text/javascript">
+        $(function () {
+            $(".getPalauteModal").click(function () {
+                let palaute_id = $(this).data("palauteid");
+                console.log("Klikkasit palautetta: " + palaute_id);
+                var url = "/Palaute/_Details/?id=" + palaute_id;
+                console.log(url);
+
+                $("#Modaltesti").append(" <b>Avataan palautteen " + palaute_id + "tietoja...</b>");
+
+                var $detailDivDetails = $("#Modaltesti");
+                $.get(url, function (data) {
+                    $detailDivDetails.replaceWith(data);
+                    $("#palauteModaltesti").modal("show");
+                });
+            });
+        });
+    </script>
+
 <section class="container-fluid bg-black pt-lg-3 pb-5 ">
     <div class="container pt-5">
         <div class="col-12 table-responsive-md">
@@ -609,6 +628,14 @@
         </div>
     </div>
 </section>
+
+@{ @Html.Action("_LueViisi", "Palaute"); }
+
+@using (Html.BeginForm("_LueKaikki", "Palaute", FormMethod.Get))
+{
+    <button>Palautteet</button>
+}
+
 <!---------------------------------------------------UUSIMMAT PALAUTTEET LOPPUU TÄHÄN------------------------------------------------------>
 
 

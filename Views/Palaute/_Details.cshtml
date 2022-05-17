@@ -1,0 +1,30 @@
+﻿@model Ajanvarausprojekti.Models.Palautteet
+
+<div class="modal fade" id="palauteModaltesti">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>@Html.DisplayFor(model => model.palaute_id)</h2>
+                <div class="modal-body">
+                    @using (Html.BeginForm("_Details", "Palaute", FormMethod.Post, new { id = "editForm" }))
+                    {
+                        @Html.AntiForgeryToken()
+                    }
+                    <table cellpadding="0" cellspacing="0" border="0">
+                        @*<tr>
+                            <td valign="top"><b>@Html.DisplayNameFor(model => model.palaute_id):</b></td>
+                            </tr>*@
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(model => model.palaute)
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
