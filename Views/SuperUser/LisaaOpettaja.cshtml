@@ -80,7 +80,7 @@
         </div>
         <div class="col-md-6">
             <label for="inputPassword" class="col-sm-2 col-form-label">Salasana</label>
-            <input type="password" class="form-control"  id="inputPassword" aria-label="Salasana">
+            <input type="password" class="form-control" id="inputPassword" aria-label="Salasana">
         </div>
         <div class="col-md-6">
             <label for="vahvistusInput" class="col-sm-5 col-form-label">Vahvista uusi salasana</label>
@@ -215,11 +215,6 @@
                 @Html.ValidationMessageFor(model => model.sahkoposti, "", new { @class = "text-danger" })
             </div>
         </div>
-        <div>
-            @Html.TextBox("file", "Kuva", new { type = "file", accept = "image/png, image/jpeg", id = "file", onchange = "Filevalidation()" }) <br />
-            <p id="size"></p>
-            @ViewBag.Message
-        </div>
 
 
                 <div class="form-group">
@@ -333,6 +328,14 @@
                         { new SelectListItem{Text="Basic oikeudet", Value="2",Selected =true },
                           new SelectListItem{Text="Admin oikeudet", Value="1"}}, new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.oikeudet_id, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-6">
+                        <label for="file" class="col-sm-5 col-form-label">Lisää profiilikuva</label>
+                        <div class="col-sm-5">
+                            @Html.TextBox("file", "Kuva", new { type = "file", accept = "image/png, image/jpeg", id = "file", onchange = "Filevalidation()" }) <br />
+                            <p id="size"></p>
+                            @ViewBag.Message
+                        </div>
                     </div>
                     <div class="col-12 d-flex justify-content-end mt-3">
                         <button id="LisaaOpeButton" type="submit" class="btn btn-primary">Lisää uusi opettaja</button>
