@@ -242,26 +242,21 @@ namespace Ajanvarausprojekti.Controllers
         // GET: Palaute/Delete/5
         public ActionResult _Delete(int? id)
         {
-
-            aikapalauteEntities db = new aikapalauteEntities();
-
             if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             Palautteet palautteet = db.Palautteet.Find(id);
             if (palautteet == null) return HttpNotFound();
-            return PartialView("_Delete", palautteet);
+            return PartialView(palautteet);
         }
 
         // POST: Palaute/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("_Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            aikapalauteEntities db = new aikapalauteEntities();
-
             Palautteet palautteet = db.Palautteet.Find(id);
             db.Palautteet.Remove(palautteet);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("LueKaikki");
         }
 
 

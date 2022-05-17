@@ -20,21 +20,28 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.palaute)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.palaute_pvm)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.palautetyyppi)
-        </td>
-        <td>
-            @Html.ActionLink("Delete", "_Delete", new { id=item.palaute_id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.palaute)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.palaute_pvm)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.palautetyyppi)
+            </td>
+            <td>
+                @Html.ActionLink("Delete", "_Delete", new { id = item.palaute_id })
+            </td>
+        </tr>
+    }
 
 </table>
+<li>
+    @using (Html.BeginForm("OpettajienSivu", "Home", FormMethod.Get))
+    {
+        <button class="btn btn-primary ms-3">Takaisin</button>
+    }
+</li>
