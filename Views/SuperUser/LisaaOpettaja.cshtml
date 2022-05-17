@@ -8,7 +8,7 @@
 @section Scripts{
     @Scripts.Render("~/bundles/jqueryval")
     <script>
-    //Tarkistetaan, että salasanat täsmää
+        //Tarkistetaan, että salasanat täsmää
         $(function () {
             var salasana = "";
             var vahvistus = "";
@@ -27,6 +27,32 @@
                 }
             })
         })
+
+        Filevalidation = () => {
+            const fi = document.getElementById('file');
+            // Check if any file is selected.
+            if (fi.files.length > 0) {
+                for (const i = 0; i <= fi.files.length - 1; i++) {
+
+                    const fsize = fi.files.item(i).size;
+                    const file = Math.round((fsize / 1024));
+                    // The size of the file.
+                    if (file >= 4096) {
+                        alert(
+                            "Tiedosto on liian suuri. Tiedoston pitää olla vähemmän kuin 4 MB.");
+                        $("#LisaaOpeButton").hide();
+                        //Tämä kommenteissa lisätään jos täytyy tarkistaa onko tiedosto liian pieni
+                        //} else if (file < 2048) {
+                    //    alert(
+                    //        "Tiedosto on liian pieni. Valitse yli 2 MB tiedosto.");
+                    } else {
+                        document.getElementById('size').innerHTML = '<b>Tiedostokoko: '
+                            + file + '</b> KB';
+                        $("#LisaaOpeButton").show();
+                    }
+                }
+            }
+        }
 
     </script>
 }
@@ -150,6 +176,10 @@
     </div>
 
 
+@using (Html.BeginForm("LisaaOpettaja", "SuperUser", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
     <!--Alkuperäinen lisää uusi käyttäjä-lomake.-->
     @*@using (Html.BeginForm())
         {
@@ -177,6 +207,20 @@
                         @Html.ValidationMessageFor(model => model.sukunimi, "", new { @class = "text-danger" })
                     </div>
                 </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.sahkoposti, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.sahkoposti, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.sahkoposti, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div>
+            @Html.TextBox("file", "Kuva", new { type = "file", accept = "image/png, image/jpeg", id = "file", onchange = "Filevalidation()" }) <br />
+            <p id="size"></p>
+            @ViewBag.Message
+        </div>
+
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.nimike, htmlAttributes: new { @class = "control-label col-md-2" })

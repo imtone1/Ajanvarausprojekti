@@ -64,13 +64,6 @@
       //}
 
 
-        //Tämä avaa varauksen modaalin on load, jos on kirjautunut ei taida edes toimia
-        @*$(document).on('load', function () { if
-(@ViewBag.LoginError == 1) {
-$('#VarausRuutu').modal('show');
-}
-        });*@
-
         //tama avaa varauksen poiston modaalin clickauksella
         $(function () {
             $("varausmodal").click(function () {
