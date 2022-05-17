@@ -283,9 +283,6 @@
     *@
 
     <!--Nykyinen Lisää uusi käyttäjä-lomake. Onko ok?-->
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
         <div class="container mt-5">
             <div class="row">
 
@@ -345,6 +342,7 @@
         </div>
     }
 </section>
+}
 @* Kommenteissa oleva ActionLink Back to List saa poistaa, jos ei tarvita *@
 @*<div>
         @Html.ActionLink("Back to List", "Index")
