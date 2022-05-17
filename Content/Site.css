@@ -150,7 +150,7 @@
 
 .bg-hero-about {
     background-color: var(--light-grey);
-    background: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5) ), url(/Content/Images/people.jpg) no-repeat fixed;
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(/Content/Images/people.jpg) no-repeat fixed;
     background-size: cover;
     background-position: bottom;
 }
@@ -183,15 +183,15 @@
     color: var(--white-color);
 }
 
-.navbar .nav-item .nav-link {
+.navbar-nav .nav-item .nav-link {
     position: relative;
 }
 
-.navbar .nav-item {
+.navbar-nav .nav-item {
     margin-left: 2rem;
 }
 
-.navbar .nav-item .nav-link::before {
+.navbar-nav .nav-item .nav-link::before {
     content: '';
     position: absolute;
     left: 0;
@@ -203,8 +203,8 @@
     transform: scale(0);
 }
 
-.navbar .nav-item .nav-link.active::before,
-.navbar .nav-item .nav-link:hover::before 
+.navbar.nav .nav-item .nav-link.active::before,
+.navbar-nav .nav-item .nav-link:hover::before 
 {
     transform: scale(1);
 }
@@ -268,15 +268,16 @@
     background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%2311100C'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !important;
 }
 
-.accordion-button:focus {
+/*Box shadow yms.-jutut kommentoidut for now*/
+/*.accordion-button:focus {
     box-shadow: 1px 1px 8px;
     color: var(--primary-color);
-}
+}*/
 
-.form-select:focus {
+/*.form-select:focus {
     box-shadow: 1px 1px 8px;
     color: var(--primary-color);
-}
+}*/
 
 .select-input {
     color: black;
@@ -348,14 +349,33 @@ caption {
     background:none;
 }
 
-
-
-input[type="date" i]:focus {
+/*Box shadow yms.-jutut kommentoidut for now*/
+/*input[type="date" i]:focus {
     box-shadow: 1px 1px 8px;
     color: var(--primary-color);
 }
 
 input[type="time" i]:focus {
+    box-shadow: 1px 1px 8px;
+    color: var(--primary-color);
+}
+
+input[type="email" i]:focus {
+    box-shadow: 1px 1px 8px;
+    color: var(--primary-color);
+}
+
+input[type="password" i]:focus {
+    box-shadow: 1px 1px 8px;
+    color: var(--primary-color);
+}
+
+input[type="text" i]:focus {
+    box-shadow: 1px 1px 8px;
+    color: var(--primary-color);
+}
+
+select .form-control:focus {
     box-shadow: 1px 1px 8px;
     color: var(--primary-color);
 }
@@ -366,68 +386,68 @@ input[type="time" i]:focus {
     box-shadow: 1px 1px 8px var(--primary-color);
 }
 
-@media (max-width:340px) {
-    .round-img-ope {
-        width: 5em;
-        height: 5em;
-    }
+select:focus {
+    border-color: gray;
+    outline: none;
+    box-shadow: 1px 1px 8px var(--primary-color);
+}*/
 
-    .bg-opesivu {
-        height: 50vh;
-    }
+    @media (max-width:340px) {
+        .round-img-ope {
+            width: 5em;
+            height: 5em;
+        }
 
-}
-
-
-@media (max-width: 575px){
-    .bg-ohjausajat {
-        background-position-x: left;
-        background-position-y: bottom;
-        height: 75vh;
+        .bg-opesivu {
+            height: 50vh;
+        }
     }
 
 
-    .bg-opesivu-btm {
-        background-position-x: left;
-        background-position-y: bottom;
+    @media (max-width: 575px) {
+        .bg-ohjausajat {
+            background-position-x: left;
+            background-position-y: bottom;
+            height: 75vh;
+        }
+
+
+        .bg-opesivu-btm {
+            background-position-x: left;
+            background-position-y: bottom;
+        }
     }
 
-}
 
-
-@media (max-width:760px){
-    .round-img-ope {
-        margin-right: 1em;
-        margin-top: 1em;
-    }
-}
-
-@media (max-width:978px) {
-    .bg-opesivu {
-        width: 100%;
-        background-size: cover;
-        height: 80vh;
-        margin-bottom: 1rem;
+    @media (max-width:760px) {
+        .round-img-ope {
+            margin-right: 1em;
+            margin-top: 1em;
+        }
     }
 
-}
-
-/* Set padding to keep content from hitting the edges 
+    @media (max-width:978px) {
+        .bg-opesivu {
+            width: 100%;
+            background-size: cover;
+            height: 80vh;
+            margin-bottom: 1rem;
+        }
+    }
+    /* Set padding to keep content from hitting the edges 
     .body-content {
         padding-left: 15px;
         padding-right: 15px;
     }
 */
-
-/* Override the default bootstrap behavior where horizontal description lists 
+    /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 
 .dl-horizontal dt {
     white-space: normal;
 }
 */
-
-/* Set width on the form input elements since they're 100% wide by default 
+    /* Set width on the form input elements since they're 100% wide by default 
 input,
 select,
 textarea {
