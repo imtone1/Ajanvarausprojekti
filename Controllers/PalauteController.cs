@@ -143,10 +143,38 @@ namespace Ajanvarausprojekti.Controllers
             }
         }
 
-        public ActionResult _LueKaikki()
+        public ActionResult LueKaikki()
         {
-            List<Palautteet> model = db.Palautteet.ToList();
-            return PartialView("_LueKaikki", model);
+            if (Session["UserName"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                //Sessiosta otetaan kirjautuneen opettajan id
+                var opeid = Session["OpettajaID"];
+                int opeOikID = int.Parse(opeid.ToString());
+                //Näkyy kirjautuneen opettajan palautteet
+                var palauteLista = from p in db.Palautteet
+                                   join pt in db.Palautetyypit on p.palautetyyppi_id equals pt.palautetyyppi_id
+                                   join op in db.Opettajat on p.opettaja_id equals op.opettaja_id
+                                   where op.opettaja_id == opeOikID
+
+                                   orderby p.palaute_pvm
+
+                                   select new palauteListaData
+                                   {
+                                       palaute_id = (int)p.palaute_id,
+                                       palaute_pvm = (DateTime)p.palaute_pvm,
+                                       palautetyyppi_id = p.palautetyyppi_id,
+                                       palautetyyppi = pt.palautetyyppi,
+                                       palaute = p.palaute,
+                                       opettaja_id = (int)op.opettaja_id,
+                                       sukunimi = op.sukunimi,
+                                       etunimi = op.etunimi,
+                                   };
+                return View("LueKaikki", palauteLista);
+            }
         }
         public ActionResult _LueViisi()
         {
