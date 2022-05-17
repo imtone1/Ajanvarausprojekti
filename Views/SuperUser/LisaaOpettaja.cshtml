@@ -332,7 +332,7 @@
                     <div class="col-md-6">
                         <label for="file" class="col-sm-5 col-form-label">Lisää profiilikuva</label>
                         <div class="col-sm-5">
-                            @Html.TextBox("file", "Kuva", new { type = "file", accept = "image/png, image/jpeg", id = "file", onchange = "Filevalidation()" }) <br />
+                            @Html.TextBox("file", "Kuva", new { type = "file", accept = "image/png, image/jpeg", id = "file", onchange = "Filevalidation()", @class="form-control" }) <br />
                             <p id="size"></p>
                             @ViewBag.Message
                         </div>
