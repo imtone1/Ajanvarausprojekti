@@ -141,7 +141,7 @@ namespace Ajanvarausprojekti.Controllers
             }
 
         }
-        // GET: Ajat/Create
+        // Irina: Tee varauksen (aika_id tulee vielä itse syöttää)
         public ActionResult TeeVaraus()
         {
             ViewBag.aika_id = new SelectList(db.Ajat, "aika_id", "aika_id");
@@ -173,7 +173,7 @@ namespace Ajanvarausprojekti.Controllers
             return View();
         }
 
-        // POST: Varaukset/Create
+        // Irina: POST: Varaukset/TeeVaraus
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult TeeVaraus([Bind(Include = "aika_id, Varaaja, Aihe, id_hash")] ajatListaData varaus)
@@ -195,12 +195,21 @@ namespace Ajanvarausprojekti.Controllers
 
                     else
                     {
-
+                        //salasana Random
                         LoginService lService = new LoginService();
-                        string salasanaRandom = lService.GeneratePassword(3,3,3);
 
-                        //Luodaan varaus
-                        Varaukset varauksesi = new Varaukset
+                        string salasanaRandom = lService.GeneratePassword(3, 3, 3);
+                        
+                        var testForSalasana = from a in db.Varaukset
+                                        where a.id_hash == salasanaRandom
+                                        select a;
+                        while (testForSalasana.Any())
+                        {
+                            salasanaRandom = lService.GeneratePassword(3, 3, 3);
+                        }
+                        
+                            //Luodaan varaus
+                            Varaukset varauksesi = new Varaukset
                         {
                             varaaja_sahkoposti = varaus.Varaaja,
                             aihe = varaus.Aihe,
