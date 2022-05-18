@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Ajanvarausprojekti.Models;
+using Ajanvarausprojekti.ViewModels;
 
 namespace Ajanvarausprojekti.Controllers
 {
@@ -141,8 +143,123 @@ namespace Ajanvarausprojekti.Controllers
             }
         }
 
-        //vapautetaan tietokantayhteys Disposella
-        protected override void Dispose(bool disposing)
+        public ActionResult LueKaikki()
+        {
+            if (Session["UserName"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                //Sessiosta otetaan kirjautuneen opettajan id
+                var opeid = Session["OpettajaID"];
+                int opeOikID = int.Parse(opeid.ToString());
+                //Näkyy kirjautuneen opettajan palautteet
+                var palauteLista = from p in db.Palautteet
+                                   join pt in db.Palautetyypit on p.palautetyyppi_id equals pt.palautetyyppi_id
+                                   join op in db.Opettajat on p.opettaja_id equals op.opettaja_id
+                                   where op.opettaja_id == opeOikID
+
+                                   orderby p.palaute_pvm
+
+                                   select new palauteListaData
+                                   {
+                                       palaute_id = (int)p.palaute_id,
+                                       palaute_pvm = (DateTime)p.palaute_pvm,
+                                       palautetyyppi_id = p.palautetyyppi_id,
+                                       palautetyyppi = pt.palautetyyppi,
+                                       palaute = p.palaute,
+                                       opettaja_id = (int)op.opettaja_id,
+                                       sukunimi = op.sukunimi,
+                                       etunimi = op.etunimi,
+                                   };
+                return View("LueKaikki", palauteLista);
+            }
+        }
+        public ActionResult _LueViisi()
+        {
+            if (Session["UserName"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                //Sessiosta otetaan kirjautuneen opettajan id
+                var opeid = Session["OpettajaID"];
+                int opeOikID = int.Parse(opeid.ToString());
+                //Näkyy kirjautuneen opettajan palautteet
+                var palauteLista = from p in db.Palautteet
+                                join pt in db.Palautetyypit on p.palautetyyppi_id equals pt.palautetyyppi_id
+                                join op in db.Opettajat on p.opettaja_id equals op.opettaja_id
+                                where op.opettaja_id == opeOikID
+
+                                orderby p.palaute_pvm
+
+                                select new palauteListaData
+                                {
+                                    palaute_id = (int)p.palaute_id,
+                                    palaute_pvm = (DateTime)p.palaute_pvm,
+                                    palautetyyppi_id = p.palautetyyppi_id,
+                                    palautetyyppi = pt.palautetyyppi,
+                                    palaute = p.palaute,
+                                    opettaja_id = (int)op.opettaja_id,
+                                    sukunimi = op.sukunimi,
+                                    etunimi = op.etunimi,
+                                };
+                return PartialView("_LueViisi", palauteLista);
+            }
+        }
+
+
+        public ActionResult _Details(int? id)
+        {
+            if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            var palauteLista = from p in db.Palautteet
+                               join pt in db.Palautetyypit on p.palautetyyppi_id equals pt.palautetyyppi_id
+                               join op in db.Opettajat on p.opettaja_id equals op.opettaja_id
+
+                               orderby p.palaute_id
+
+                               select new palauteListaData
+                               {
+                                   palaute_id = (int)p.palaute_id,
+                                   palaute_pvm = (DateTime)p.palaute_pvm,
+                                   palautetyyppi_id = p.palautetyyppi_id,
+                                   palautetyyppi = pt.palautetyyppi,
+                                   palaute = p.palaute,
+                                   opettaja_id = (int)op.opettaja_id,
+                                   sukunimi = op.sukunimi,
+                                   etunimi = op.etunimi,
+                               };
+            ViewBag.palaute_id = new SelectList(db.Palautteet);
+            return PartialView("_Details", palauteLista);
+        }
+
+
+
+        // GET: Palaute/Delete/5
+        public ActionResult _Delete(int? id)
+        {
+            if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            Palautteet palautteet = db.Palautteet.Find(id);
+            if (palautteet == null) return HttpNotFound();
+            return PartialView(palautteet);
+        }
+
+        // POST: Palaute/Delete/5
+        [HttpPost, ActionName("_Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Palautteet palautteet = db.Palautteet.Find(id);
+            db.Palautteet.Remove(palautteet);
+            db.SaveChanges();
+            return RedirectToAction("LueKaikki");
+        }
+
+
+//vapautetaan tietokantayhteys Disposella
+protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
