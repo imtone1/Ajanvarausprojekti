@@ -56,12 +56,12 @@
 
     <script type="text/javascript">
 
-         //Tämä tässä, jos tulee useampi modaali eikä toimikaan, poistetaan myöhemmin, jos ei tarvita
-      //      function launch_modal(id) {
-      //          // Hide all modals using class if required.
-      //          $('.modal').modal('hide');
-      //      $('#'+id).modal('show');
-      //}
+        //Tämä tässä, jos tulee useampi modaali eikä toimikaan, poistetaan myöhemmin, jos ei tarvita
+        //      function launch_modal(id) {
+        //          // Hide all modals using class if required.
+        //          $('.modal').modal('hide');
+        //      $('#'+id).modal('show');
+        //}
 
 
         //tama avaa varauksen poiston modaalin clickauksella
@@ -167,43 +167,11 @@
 </section>
 
 <!-------------------------------Palautelomakeosio------------------------->
-<form class="container-fluid bg-black mt-5" id="palaute">
-    <div class="container">
-        <h2 class="text-white display-6 fw-bolder pt-5 mx-0 px-0">Anna palautetta opetuksesta</h2>
-        <div class="row">
-            <div class="col bg-primary py-4 px-5">
-                <p>
-                    Haluatko antaa palautetta Careerian tieto- ja viestintätekniikan opetukseksesta tai onko sinulla
-                    kehitysehdotuksia, miten voisimme parantaa toimintaamme? Voit antaa palautteen anonyymisti. Jos haluat, että
-                    sinuun ollaan yhteydessä, kirjoita yhteystietosi palautteen loppuun.
-                </p>
-            </div>
-            <div class="col p-0 ps-md-3">
-                <p class="text-white mb-0 mt-2">Tivi-opettaja, jota palaute koskee</p>
-                <select class="form-select" aria-label="Default select example">
-                    <option selected>Valitse opettaja...</option>
-                    <option value="1">Ope1</option>
-                    <option value="2">Ope2</option>
-                    <option value="3">Ope3</option>
-                </select>
-                <p class="text-white mt-4 mb-0">Palautteen aihe</p>
-                <select class="form-select" aria-label="Default select example">
-                    <option selected>Valitse aihe...</option>
-                    <option value="1">Aihe1</option>
-                    <option value="2">Aihe2</option>
-                    <option value="3">Aihe3</option>
-                </select>
-            </div>
-            <div class="ms-0 ps-0 pt-4 px-0">
-                <label for="exampleFormControlTextarea1" class="form-label text-white">Palautteesi</label>
-                <textarea class="form-control mx-0" name="palaute" id="exampleFormControlTextarea1" rows="4" placeholder="Kirjoita palautteesi tähän..."></textarea>
-                <div class="d-flex justify-content-end align-self-end align-items-end mt-4 pb-5">
-                    <button href="#" class="btn btn-primary ms-md-3" type="submit">Anna palautetta</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</form>
+
+<div id="palaute">
+@Html.Action("_Create", "Palaute")
+</div>
+
 
 <div class="container-fluid bg-index-btm"></div>
 

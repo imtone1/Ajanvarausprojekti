@@ -11,10 +11,13 @@ namespace Ajanvarausprojekti.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Palautteet
     {
         public int palaute_id { get; set; }
+
+        [DataType(DataType.MultilineText)]
         public string palaute { get; set; }
         public System.DateTime palaute_pvm { get; set; }
         public Nullable<int> palautetyyppi_id { get; set; }
