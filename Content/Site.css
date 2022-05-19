@@ -123,16 +123,6 @@
     background-size: cover;
 }
 
-.animation-ease-in {
-    animation: ease-in 1s ease-in forwards;
-    opacity: 0;
-}
-
-.animation-move-down {
-    animation: moveDown 1s ease-in-out forwards;
-    opacity: 0;
-}
-
 .bg-hero-contact {
     background-color: var(--light-grey);
     background: url(/Content/Images/keyboard.jpg);
@@ -359,6 +349,16 @@ caption {
 
 .table > :not(caption) > * > *{
     background:none;
+}
+
+.animation-ease-in {
+    animation: ease-in 1s ease-in forwards;
+    opacity: 0;
+}
+
+.animation-move-down {
+    animation: moveDown 1s ease-in-out forwards;
+    opacity: 0;
 }
 
 /*Box shadow yms.-jutut kommentoidut for now*/
