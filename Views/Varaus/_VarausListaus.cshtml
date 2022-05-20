@@ -4,7 +4,6 @@
 @*@Html.DisplayFor(modelItem => item.Paikka)
 @Html.DisplayFor(modelItem => item.Kesto)*@
 
-<!-------------------------------Tulevat ohjausajat-taulukko------------------------------------>
 
 
 <table class="table table-sm table-hover caption">
@@ -30,9 +29,9 @@
                             <td>@Html.ValueFor(modelItem => item.Varaaja)</td>
                             <!--Alle luomani td-truncate-luokka tekee aiheen loppuun kolme pistettä mikäli tekstin pituus on liian pitkä sopiakseen soluun. Huom! Bootstrap 5:n oma text-truncate-luokka vaatii toimiakseen display: inline-block or display: block eli ei käy taulukkoon!-->
                             <td class="td-truncate">@Html.ValueFor(modelItem => item.Aihe)<td>
-<td>
+                            <td>
                                 <p>
-                                    <a href="#">
+                                    <a class="getOrderId btn" data-varaus_id="@item.varaus_id">
                                         <!--Tämä on tarkastele varauksen tietoja-nappi-->
                                         <svg xmlns="http://www.w3.org/2000/svg" width="1.3rem" height="1.3rem" fill="var(--primary-color)" class="bi bi-card-list" viewBox="0 0 16 16">
                                             <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z" />
