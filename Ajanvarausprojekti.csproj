@@ -398,9 +398,6 @@
     <Content Include="Views\Home\OpettajienSivu.cshtml" />
     <Content Include="Views\SuperUser\LisaaOpettaja.cshtml" />
     <Content Include="Views\Palaute\Index.cshtml" />
-    <Content Include="Views\Palaute\Create.cshtml" />
-    <Content Include="Views\Palaute\_SuccessModal.cshtml" />
-    <Content Include="Views\Palaute\_ErrorModal.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Varaus\_EiOnnistunutModaali.cshtml" />
     <Content Include="Views\Varaus\_OnnistuiModaali.cshtml" />
@@ -410,6 +407,7 @@
     <Content Include="Views\Palaute\_LueViisi.cshtml" />
     <Content Include="Views\Palaute\_Details.cshtml" />
     <Content Include="Views\Palaute\_Delete.cshtml" />
+    <Content Include="Views\Palaute\_Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
