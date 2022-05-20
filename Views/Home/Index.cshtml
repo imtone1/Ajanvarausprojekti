@@ -4,32 +4,7 @@
 @* Kaikki scriptit tähän sectioniin *@
 
 @section scripts {
-    @*Onnistunut palautteenanto-modaali*@
-    @if (TempData["Success"] != null)
-    {
-        <script type="text/javascript">
-            window.onload = function () {
-                $("#PalauteOnnistui").modal("show"); {
-                    setTimeout(function () { $("#PalauteOnnistui").modal("hide"); }, 2000)
-                };
-            };
-        </script>
-    }
-
-    @*Epäonnistunut palautteenanto-modaali, mitään palautetta ei olla kirjoitettu*@
-    @if (TempData["Error"] != null)
-    {
-        <script type="text/javascript">
-
-
-            window.onload = function () {
-                $("#PalauteEiOnnistunut").modal("show"); {
-                    setTimeout(function () { $("#PalauteEiOnnistunut").modal("hide"); }, 2000)
-                };
-            };
-        </script>
-    }
-    @*Onnistunut varaus -modaali*@
+    @*Onnistunut -modaali (varaus, palaute)*@
     @if (TempData["Successi"] != null)
     {
         <script type="text/javascript">
@@ -41,7 +16,7 @@
         </script>
     }
 
-    @*Varaus epäonnistui -modaali*@
+    @*Epäonnistunut -modaali (varaus, palaute)*@
     @if (TempData["Errori"] != null)
     {
         <script type="text/javascript">
