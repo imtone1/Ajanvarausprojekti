@@ -1,0 +1,76 @@
+﻿@model Ajanvarausprojekti.Models.Palautteet
+
+<div style="background-color:black">
+    <!-------------------------------Palautelomakeosio------------------------->
+    @using (Html.BeginForm("_Create", "Palaute", FormMethod.Post, new { id = "palauteForm" }))
+    {
+        @Html.AntiForgeryToken()
+
+
+        <form class="container-fluid bg-black mt-5" id="palaute">
+            <div class="container">
+                <h2 class="text-white display-6 fw-bolder pt-5 mx-0 px-0">Anna palautetta opetuksesta</h2>
+                <div class="row">
+
+                    <div class="col bg-primary py-4 px-5">
+                        <p>
+                            Haluatko antaa palautetta Careerian tieto- ja viestintätekniikan opetukseksesta tai onko sinulla
+                            kehitysehdotuksia, miten voisimme parantaa toimintaamme? Voit antaa palautteen anonyymisti. Jos haluat, että
+                            sinuun ollaan yhteydessä, kirjoita yhteystietosi palautteen loppuun.
+                        </p>
+                    </div>
+
+                    <div class="col p-0 ps-md-3">
+
+                        @*Opettajan valinta - otsikko*@
+
+                        @Html.LabelFor(model => model.opettaja_id, "Tivi-opettaja, jota palaute koskee", htmlAttributes: new { @class = "text-white mb-0 mt-2" })
+
+                        @*Opettajan valinta - listaus kontrollerin puolelta*@
+
+                        @Html.DropDownList("opettaja_id", (List<SelectListItem>)ViewBag.opeSelectList, new { @class = "form-select" })
+
+                        @*Opettajan valinta - error-messagen kenttä, ei vielä toiminnassa*@
+
+                        @Html.ValidationMessageFor(model => model.opettaja_id, "", new { @class = "text-danger" })
+
+
+                        @*Palautetyypin valinta - otsikko*@
+
+                        @Html.LabelFor(model => model.palautetyyppi_id, "Palautteen aihe", htmlAttributes: new { @class = "text-white mt-4 mb-0" })
+
+                        @*Palautetyypin valinta - listaus kontrollerin puolelta*@
+
+                        @Html.DropDownList("palautetyyppi_id", (List<SelectListItem>)ViewBag.PalauteSelectList, new { @class = "form-select" })
+
+                        @*Palautetyypin valinta - error-messagen kenttä, ei vielä toiminnassa*@
+
+                        @Html.ValidationMessageFor(model => model.palautetyyppi_id, "", new { @class = "text-danger" })
+
+                    </div>
+
+                    <div class="ms-0 ps-0 pt-4 px-0">
+
+                        @*Palautteen kirjoitus - otsikko*@
+
+                        @Html.LabelFor(model => model.palaute, "Palautteesi", htmlAttributes: new { @class = "form-label text-white" })
+
+                        @*Palautteen kirjoitus - tekstikenttä kirjoittamista varten*@
+
+                        @Html.EditorFor(model => model.palaute, new { htmlAttributes = new { @rows = "4", @class = "form-control mx-0", @name = "palaute", @id = "exampleFormControlTextarea1", @placeholder = "Kirjoita palautteesi tähän..." } })
+
+                        @*Palautteen kirjoitus - error-messagen kenttä, ei vielä toiminnassa*@
+
+                        @Html.ValidationMessageFor(model => model.palaute, "", new { @class = "text-danger" })
+
+                        <div class="d-flex justify-content-end align-self-end align-items-end mt-4 pb-5">
+                            <input type="submit" value="Anna palautetta"  form="palauteForm" class="btn btn-primary ms-md-3" />
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </form>
+    }
+
+</div>
