@@ -32,69 +32,79 @@ namespace Ajanvarausprojekti.Controllers
         }
 
         // GET: Palaute/Create
-        public ActionResult Create()
+        public ActionResult _Create()
         {
-            //luodaan muuttuja kokonimi, jonka avulla saadaan Views/Palaute/Create- tiedoston dropdown-listaan näkymään opettajan koko nimi
 
-            var kokonimi = db.Opettajat;
-            IEnumerable<SelectListItem> selectNimiList = from k in kokonimi
-                                                         select new SelectListItem
-                                                         {
-                                                             Value = k.opettaja_id.ToString(),
-                                                             Text = k.etunimi + " " + k.sukunimi
-                                                         };
-            ViewBag.Kokonimi = new SelectList(selectNimiList, "Value", "Text");
+            //luodaan uusi opettajan valintaan liittyvä lista, jonka avulla saadaan pudotusvalikkoon näkymään oletusteksi "Valitse opettaja..."
+            //lista myös näyttää open etunimi+sukunimi
 
-            //ViewBag.opettaja_id = new SelectList(db.Opettajat, "opettaja_id", "etunimi");
-            ViewBag.palautetyyppi_id = new SelectList(db.Palautetyypit, "palautetyyppi_id", "palautetyyppi");
+            List<SelectListItem> opetListItems = db.Opettajat.Select(o => new SelectListItem()
+            {
+                Text = o.etunimi + " " + o.sukunimi,
+                Value = o.opettaja_id.ToString(),
+            }).ToList();
 
-            return View();
+            opetListItems.Insert(0, new SelectListItem() { Text = "Valitse opettaja...", Value = "0", Selected = true });
+            ViewBag.opeSelectList = opetListItems;
+
+
+            //luodaan uusi palautteen aiheeseen liittyvä lista, jonka avulla saadaan pudotusvalikkoon näkymään oletusteksti "Valitse aihe..."
+
+            List<SelectListItem> palauteListItems = db.Palautetyypit.Select(p => new SelectListItem()
+            {
+                Text = p.palautetyyppi,
+                Value = p.palautetyyppi_id.ToString()
+            }).ToList();
+
+            palauteListItems.Insert(0, new SelectListItem() { Text = "Valitse aihe...", Value = "0", Selected = true });
+            ViewBag.PalauteSelectList = palauteListItems;
+
+            return PartialView();
         }
 
         // POST: Palaute/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "palaute_id,palaute,palautetyyppi_id,opettaja_id")] Palautteet palautteet)
+        public ActionResult _Create([Bind(Include = "palaute_id,palaute,palautetyyppi_id,opettaja_id")] Palautteet palautteet)
         {
-            if (palautteet.palaute != null)
+            try
             {
-                if (ModelState.IsValid)
+                if (palautteet.palaute != null && palautteet.opettaja_id != 0 && palautteet.palautetyyppi_id != 0)
                 {
-                    //Talletetaan palautteen antohetkeksi tämän hetken kellonaika
-                    palautteet.palaute_pvm = DateTime.Now;
+                    if (ModelState.IsValid)
+                    {
+                        //Talletetaan palautteen antohetkeksi tämän hetken kellonaika
+                        palautteet.palaute_pvm = DateTime.Now;
 
-                    //Tallentaa muutokset tietokantaan
-                    db.Palautteet.Add(palautteet);
-                    db.SaveChanges();
+                        //Tallentaa muutokset tietokantaan
+                        db.Palautteet.Add(palautteet);
+                        db.SaveChanges();
 
-                    //Annetaan tieto onnistuneesta palautteesta TempDatalle modaali-ikkunaa varten
-                    TempData["Success"] = "Paljon kiitoksia palautteestasi!";
+                        //Annetaan tieto onnistuneesta palautteesta TempDatalle modaali-ikkunaa varten
+                        TempData["Successi"] = "Paljon kiitoksia palautteestasi!";
+                        return RedirectToAction("Index", "Home");
+
+                    }
+
+                    //Annetaan tieto epäonnistuneesta palautteesta TempDatalle modaali-ikkunaa varten
+                    TempData["Errori"] = "Palautteen lähetys epäonnistui.";
                     return RedirectToAction("Index", "Home");
 
                 }
-                ViewBag.Kokonimi = new SelectList(db.Opettajat, "etunimi", "sukunimi", palautteet.opettaja_id);
-                //ViewBag.opettaja_id = new SelectList(db.Opettajat, "opettaja_id", "etunimi", palautteet.opettaja_id);
-                ViewBag.palautetyyppi_id = new SelectList(db.Palautetyypit, "palautetyyppi_id", "palautetyyppi", palautteet.palautetyyppi_id);
+                else
+                {
 
+                    //Annetaan tieto epäonnistuneesta palautteesta TempDatalle modaali-ikkunaa varten
+                    TempData["Errori"] = "Palautteen lähetys epäonnistui.";
+                    return RedirectToAction("Index", "Home");
 
-                //Annetaan tieto epäonnistuneesta palautteesta TempDatalle modaali-ikkunaa varten
-                TempData["Error"] = "Hups! Jokin meni nyt pieleen!";
-                return RedirectToAction("Index", "Home");
-
-                //return View(palautteet);
+                }
             }
-            else
+            catch
             {
-                ViewBag.Kokonimi = new SelectList(db.Opettajat, "etunimi", "sukunimi", palautteet.opettaja_id);
-                // ViewBag.opettaja_id = new SelectList(db.Opettajat, "opettaja_id", "etunimi", palautteet.opettaja_id);
-                ViewBag.palautetyyppi_id = new SelectList(db.Palautetyypit, "palautetyyppi_id", "palautetyyppi", palautteet.palautetyyppi_id);
-
-
                 //Annetaan tieto epäonnistuneesta palautteesta TempDatalle modaali-ikkunaa varten
-                TempData["Error"] = "Hups! Jokin meni nyt pieleen!";
+                TempData["Errori"] = "Palautteen lähetys epäonnistui.";
                 return RedirectToAction("Index", "Home");
-
-                //return View(palautteet);
             }
 
         }
