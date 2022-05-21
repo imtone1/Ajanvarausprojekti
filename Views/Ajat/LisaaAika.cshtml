@@ -30,7 +30,10 @@
             @Html.LabelFor(model => model.kesto_id, "Kesto", htmlAttributes: new { @class = "control-label col-md-2" })
 
             <div class="col-md-10">
-                @Html.DropDownList("kesto_id", null, htmlAttributes: new { @class = "form-control" })
+                @*@Html.DropDownList("kesto_id", null, htmlAttributes: new { @class = "form-control" })*@
+
+                @Html.DropDownList("kesto_id", (List<SelectListItem>)ViewBag.kestoSelectList, htmlAttributes: new { @class = "form-select  mb-4" })
+
                 @Html.ValidationMessageFor(model => model.kesto_id, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -95,14 +98,17 @@
 
                         <div class="mb-4">
                             <p class="text-black mb-0">Kesto</p>
-                            @Html.DropDownList("kesto_id", null, htmlAttributes: new { @class = "form-control" })
-                            <select class="form-select  mb-4" aria-label="Default select example">
+                            @*@Html.DropDownList("kesto_id", null, htmlAttributes: new { @class = "form-control" })*@
+
+                            @Html.DropDownList("kesto_id", (List<SelectListItem>)ViewBag.kestoSelectList, htmlAttributes: new { @class = "form-select  mb-4" })
+
+                            @*<select class="form-select  mb-4" aria-label="Default select example">
                                 <option selected>Valitse kesto...</option>
                                 <option value="1">30 min</option>
                                 <option value="2">45 min</option>
                                 <option value="3">60 min</option>
                                 <option value="3">90 min</option>
-                            </select>
+                            </select>*@
 
                             <button href="#" class="btn btn-outline-primary w-100" type="submit">Lähetä</button>
                         </div>

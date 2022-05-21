@@ -28,8 +28,8 @@ namespace Ajanvarausprojekti.Controllers
                 Text = k.kesto.ToString(),
                 Value = k.kesto_id.ToString()
             }).ToList();
-            kestoListItems.Insert(0, new SelectListItem() { Text = "Valitse aihe...", Value = "0", Selected = true });
-            ViewBag.PalauteSelectList = kestoListItems;
+            kestoListItems.Insert(0, new SelectListItem() { Text = "Valitse kesto...", Value = null, Selected = true });
+            ViewBag.kestoSelectList = kestoListItems;
 
             ViewBag.kesto_id = new SelectList(db.Kestot, "kesto_id", "kesto_id");
             ViewBag.opettaja_id = new SelectList(db.Opettajat, "opettaja_id", "sahkoposti");
