@@ -13,35 +13,47 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
 
-        <div class="form-group">
+        @*<div class="form-group">
                 @Html.LabelFor(model => model.alku_aika, "Päivämäärä", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.alku_aika, new { htmlAttributes = new { @class = "date" } })
                     @Html.ValidationMessageFor(model => model.alku_aika, "", new { @class = "text-danger" })
                 </div>
-            </div>
+            </div>*@
+
+        @*<div class="form-group">
+                <div class="mb-4">
+                    <label for="startDate">Päivämäärä</label>
+                    <input id="startDate" class="form-control" type="date"/>
+                </div>
+
+
+                <div class="mb-4">
+                    <label for="startDate">Kellonaika</label>
+                    <input id="startTime" class="form-control" type="time"/>
+                </div>
+            </div>*@
 
         <div class="form-group">
             <div class="mb-4">
                 <label for="startDate">Päivämäärä</label>
-                <input id="startDate" class="form-control" type="date" value="@Request.Form["startDate"]" />
+                @Html.TextBoxFor(a => a.startDate, new { @class = "form-control", @id="startDate", @type="date" })
             </div>
 
 
             <div class="mb-4">
                 <label for="startDate">Kellonaika</label>
-                <input id="startTime" class="form-control" type="time" value="@Request.Form["startTime"]" />
+                @Html.TextBoxFor(a => a.startTime, new { @class = "form-control", @id = "startDate", @type = "time" })
             </div>
         </div>
 
 
-        <!--<div class="form-group">
-            Valitse päivä : @Html.TextBoxFor(s => s.startDate)
-            <input type="submit"--> @*value="Generate report"*@ <!--/>
+        @*<div class="form-group">
+                Valitse päivä : @Html.TextBoxFor(a => a.startDate)
 
-            Valitse kello : @Html.TextBoxFor(s => s.startTime)
-            <input type="submit"--> @*value="Generate report"*@ <!--/>
-        </div>-->
+                Valitse kello : @Html.TextBoxFor(a => a.startTime)
+
+            </div>*@
 
 
 
@@ -143,7 +155,7 @@
                                     <option value="3">90 min</option>
                                 </select>*@
 
-                        <button href="#" class="btn btn-outline-primary w-100" type="submit">Tallenna aika</button>
+                            <button href="#" class="btn btn-outline-primary w-100" type="submit">Tallenna aika</button>
                         </div>
                     </div>
                 </div>
