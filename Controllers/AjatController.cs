@@ -18,7 +18,20 @@ namespace Ajanvarausprojekti.Controllers
             return View();
         }
 
+        // GET: Ohjausaika/Create
+        public ActionResult LisaaAika()
+        {
+            return View();
+        }
 
+
+        // POST: Ohjausaika/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult LisaaAika([Bind(Include = "aika_id,alku_aika,kesto_id,opettaja_id")] Ajat ajat)
+        {
+            return View();
+        }
 
 
 
