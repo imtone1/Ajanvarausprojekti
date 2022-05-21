@@ -75,6 +75,7 @@ namespace Ajanvarausprojekti.Controllers
                                     opettaja_id = (int)a.opettaja_id,
                                     Varaaja = v.varaaja_nimi,
                                     Varauspvm = (DateTime)v.varattu_pvm,
+                                    varaus_id=v.varaus_id
 
                                 };
                 return PartialView("_VarausListaus", ajatLista);
@@ -82,6 +83,7 @@ namespace Ajanvarausprojekti.Controllers
 
 
         }
+
 
 
         public ActionResult Index()
@@ -322,6 +324,23 @@ namespace Ajanvarausprojekti.Controllers
 
         }
 
+
+       //Irina:yksittäisen varauksen tarkempi kuvaus
+        // GET: Varaukset/Details/5
+        public ActionResult _VarausListModal(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Varaukset varaus = db.Varaukset.Find(id);
+            if (varaus == null)
+            {
+                return HttpNotFound();
+            }
+            return PartialView("_VarausListModal",varaus);
+        }
+
         //Dispose pakko olla, sitä ei saa poistaa
         protected override void Dispose(bool disposing)
         {
@@ -333,22 +352,7 @@ namespace Ajanvarausprojekti.Controllers
         }
 
 
-        //Alla olevaa koodia voi käyttää pohjana tai olla käyttämättä kokonaan. Saa poistaa, jos ei tarvetta.
-        // GET: Ajat
-        //// GET: Ajat/Details/5
-        //public ActionResult Details(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Ajat ajat = db.Ajat.Find(id);
-        //    if (ajat == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(ajat);
-        //}
+
 
         //// GET: Ajat/Create
         //public ActionResult Create()

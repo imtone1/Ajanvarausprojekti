@@ -408,6 +408,7 @@
     <Content Include="Views\Palaute\_Details.cshtml" />
     <Content Include="Views\Palaute\_Delete.cshtml" />
     <Content Include="Views\Palaute\_Create.cshtml" />
+    <Content Include="Views\Varaus\_VarausListModal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
