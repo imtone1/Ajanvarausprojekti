@@ -36,15 +36,15 @@ namespace Ajanvarausprojekti.Controllers
         {
             if (ModelState.IsValid)
             {
-                //var startDate = Request["startDate"];
-                //var startTime = Request["startTime"];
+                var startDate = Request["startDate"];
+                var startTime = Request["startTime"];
                 //ajat.alku_aika = startDate + startTime;
 
-                var startDate = Convert.ToDateTime(Request["startDate"]);
-                var startTime = Convert.ToDateTime(Request["startTime"]);
+                var startDate2 = Convert.ToDateTime(Request["startDate"]);
+                var startTime2 = Convert.ToDateTime(Request["startTime"]);
                 
 
-                ajat.alku_aika = startDate;
+                //ajat.alku_aika = startDate;
 
 
                 db.Ajat.Add(ajat);
