@@ -32,10 +32,8 @@
             <div class="col-md-10">
                 @* orig: @Html.DropDownList("kesto_id", null, htmlAttributes: new { @class = "form-control" })*@
 
-                @* oletusteksti näkyy: @Html.DropDownList("kesto_id", (List<SelectListItem>)ViewBag.kestoSelectList, htmlAttributes: new { @class = "form-select  mb-4" })*@
-
-                @Html.DropDownListFor(model => model.kesto_id, new List<SelectListItem>
-                          { new SelectListItem{Text="Valitse kesto...", Value="30",Selected =true },
+                @Html.DropDownListFor(model => model.kesto_id, new List<SelectListItem> {
+                            new SelectListItem{Text="Valitse kesto...", Value="30",Selected =true },
                             new SelectListItem{Text="30 min", Value="30"},
                             new SelectListItem{Text="45 min", Value="45"},
                             new SelectListItem{Text="60 min", Value="60"},
@@ -107,15 +105,20 @@
                             <p class="text-black mb-0">Kesto</p>
                             @*@Html.DropDownList("kesto_id", null, htmlAttributes: new { @class = "form-control" })*@
 
-                            @Html.DropDownList("kesto_id", (List<SelectListItem>)ViewBag.kestoSelectList, htmlAttributes: new { @class = "form-select  mb-4" })
+                            @Html.DropDownListFor(model => model.kesto_id, new List<SelectListItem> {
+                            new SelectListItem{Text="Valitse kesto...", Value="30",Selected =true },
+                            new SelectListItem{Text="30 min", Value="30"},
+                            new SelectListItem{Text="45 min", Value="45"},
+                            new SelectListItem{Text="60 min", Value="60"},
+                            new SelectListItem{Text="90 min", Value="90"},}, new { @class = "form-select  mb-4" })
 
                             @*<select class="form-select  mb-4" aria-label="Default select example">
-                                <option selected>Valitse kesto...</option>
-                                <option value="1">30 min</option>
-                                <option value="2">45 min</option>
-                                <option value="3">60 min</option>
-                                <option value="3">90 min</option>
-                            </select>*@
+                                    <option selected>Valitse kesto...</option>
+                                    <option value="1">30 min</option>
+                                    <option value="2">45 min</option>
+                                    <option value="3">60 min</option>
+                                    <option value="3">90 min</option>
+                                </select>*@
 
                             <button href="#" class="btn btn-outline-primary w-100" type="submit">Lähetä</button>
                         </div>
