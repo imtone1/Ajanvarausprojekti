@@ -83,22 +83,30 @@ namespace Ajanvarausprojekti.Controllers
                         //Jos tiedosto on ladattu
                         if (file != null)
                         {
-                            string _FileName = Path.GetFileName(file.FileName);
-                            string _path = Path.Combine(Server.MapPath("~/Opekuvat"), _FileName);
-                            file.SaveAs(_path);
-
-                            //Luodaan ope
-                            string _FileName1 = Path.GetFileName(file.FileName);
-                            Opettajat luoopettaja = new Opettajat
+                            if (file.ContentLength > 0 && file.ContentType.Contains("image"))
                             {
-                                sahkoposti = uusiope.sahkoposti,
-                                etunimi = uusiope.etunimi,
-                                sukunimi = uusiope.sukunimi,
-                                nimike = uusiope.nimike,
-                                kuva = "/Opekuvat/" + _FileName1
-                            };
-                            db.Opettajat.Add(luoopettaja);
-                            db.SaveChanges();
+                                string _FileName = Path.GetFileName(file.FileName);
+                                string _path = Path.Combine(Server.MapPath("~/Opekuvat"), _FileName);
+                                file.SaveAs(_path);
+
+                                //Luodaan ope
+                                string _FileName1 = Path.GetFileName(file.FileName);
+                                Opettajat luoopettaja = new Opettajat
+                                {
+                                    sahkoposti = uusiope.sahkoposti,
+                                    etunimi = uusiope.etunimi,
+                                    sukunimi = uusiope.sukunimi,
+                                    nimike = uusiope.nimike,
+                                    kuva = "/Opekuvat/" + _FileName1
+                                };
+                                db.Opettajat.Add(luoopettaja);
+                                db.SaveChanges();
+                            }
+                            else
+                            {
+                                ViewBag.Message = "Valitsehan jpeg,jpg tai png tiedoston.";
+                                return View();
+                            }
 
                         }
                         //jos tiedosto ei ole ladattu, käytetään default kuvaa
