@@ -58,7 +58,10 @@ namespace Ajanvarausprojekti.Controllers
         }
 
 
-
+        public ActionResult Edit(int id)
+        {
+            return View();
+        }
 
 
 
