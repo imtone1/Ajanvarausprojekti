@@ -294,7 +294,7 @@
                     <div class="col-md-6">
                         @Html.LabelFor(model => model.sukunimi, "Sukunimi", htmlAttributes: new { @class = "col-sm-2 col-form-label" })
                         @Html.EditorFor(model => model.sukunimi, new { htmlAttributes = new { @class = "form-control", placeholder = "Sukunimi" } })
-                        @Html.ValidationMessageFor(model => model.etunimi, "", new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(model => model.sukunimi, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-md-6">
                         @Html.LabelFor(model => model.nimike, "Nimike", htmlAttributes: new { @class = "col-sm-2 col-form-label" })
@@ -332,9 +332,9 @@
                     <div class="col-md-6">
                         <label for="file" class="col-sm-5 col-form-label">Lisää profiilikuva</label>
                         <div class="col-sm-5">
-                            @Html.TextBox("file", "Kuva", new { type = "file", accept = "image/png, image/jpeg", id = "file", onchange = "Filevalidation()", @class="form-control" }) <br />
+                            @Html.TextBox("file", "Kuva", new { type = "file", accept = "image/png, image/jpeg, image/jpg", id = "file", onchange = "Filevalidation()", @class = "form-control" }) <br />
                             <p id="size"></p>
-                            @ViewBag.Message
+                            <p class="text-danger">@ViewBag.Message</p>
                         </div>
                     </div>
                     <div class="col-12 d-flex justify-content-end mt-3">
