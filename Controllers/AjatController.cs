@@ -76,7 +76,7 @@ namespace Ajanvarausprojekti.Controllers
                 //Annetaan tieto epäonnistuneesta ohjausajan lisäyksestä TempDatalle modaali-ikkunaa varten
                 TempData["Errori"] = "Hups! Jokin meni nyt pieleen!";
                 TempData["BodyText1"] = "Ohjausajan lisäys epäonnistui.";
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("LisaaAika", "Ajat");
 
             }
             catch
@@ -84,7 +84,7 @@ namespace Ajanvarausprojekti.Controllers
                 //Annetaan tieto epäonnistuneesta ohjausajan lisäyksestä TempDatalle modaali-ikkunaa varten
                 TempData["Errori"] = "Hups! Jokin meni nyt pieleen!";
                 TempData["BodyText1"] = "Ohjausajan lisäys epäonnistui.";
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("LisaaAika", "Ajat");
             }
 
 

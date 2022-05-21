@@ -48,3 +48,36 @@
 }
 
 
+@section scripts {
+    @*Onnistunut -modaali (varaus, palaute)*@
+    @if (TempData["Successi"] != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                $("#OnnistunutModaali").modal("show"); {
+                    setTimeout(function () { $("#OnnistunutModaali").modal("hide"); }, 3000)
+                };
+            };
+        </script>
+    }
+
+    @*Epäonnistunut -modaali (varaus, palaute)*@
+    @if (TempData["Errori"] != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                $("#EiOnnistunutModaali").modal("show"); {
+                    setTimeout(function () { $("#EiOnnistunutModaali").modal("hide"); }, 3000)
+                };
+            };
+        </script>
+    }
+
+}
+
+@*Varaukseen ja palautteenantoon liittyvien modaali-ikkunoiden renderöinti*@
+
+
+@{ Html.RenderPartial("~/Views/Varaus/_EiOnnistunutModaali.cshtml"); }
+
+@{ Html.RenderPartial("~/Views/Varaus/_OnnistuiModaali.cshtml"); }
