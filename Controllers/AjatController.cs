@@ -32,19 +32,20 @@ namespace Ajanvarausprojekti.Controllers
         // POST: Ohjausaika/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult LisaaAika([Bind(Include = "aika_id,alku_aika,kesto_id,opettaja_id")] Ajat ajat)
+        //public ActionResult LisaaAika([Bind(Include = "aika_id,alku_aika,kesto_id,opettaja_id")] Ajat ajat)
+        public ActionResult LisaaAika([Bind(Include = "aika_id,alku_aika,kesto_id,opettaja_id, startDate, startTime")] Ajat ajat)
         {
             if (ModelState.IsValid)
             {
+                //Opettajan valitsema päivämäärä
                 var startDate = Request["startDate"];
+                //Opettajan valitsema kellonaika
                 var startTime = Request["startTime"];
-                //ajat.alku_aika = startDate + startTime;
+                //Yhdistetään nen samaan muuttujaan
+                var valittuAika = startDate + " " + startTime;
+                //Convertoidaan tietokantaan sopivaksi
+                ajat.alku_aika = Convert.ToDateTime(valittuAika);
 
-                var startDate2 = Convert.ToDateTime(Request["startDate"]);
-                var startTime2 = Convert.ToDateTime(Request["startTime"]);
-                
-
-                //ajat.alku_aika = startDate;
 
 
                 db.Ajat.Add(ajat);
