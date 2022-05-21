@@ -21,6 +21,10 @@ namespace Ajanvarausprojekti.Controllers
         // GET: Ohjausaika/Create
         public ActionResult LisaaAika()
         {
+
+            ViewBag.kesto_id = new SelectList(db.Kestot, "kesto_id", "kesto_id");
+            ViewBag.opettaja_id = new SelectList(db.Opettajat, "opettaja_id", "sahkoposti");
+
             return View();
         }
 
