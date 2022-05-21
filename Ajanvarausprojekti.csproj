@@ -410,6 +410,7 @@
     <Content Include="Views\Palaute\_Delete.cshtml" />
     <Content Include="Views\Palaute\_Create.cshtml" />
     <Content Include="Views\Ajat\LisaaAika.cshtml" />
+    <Content Include="Views\Ajat\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
