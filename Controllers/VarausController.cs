@@ -57,6 +57,19 @@ namespace Ajanvarausprojekti.Controllers
                 //Sessiosta otetaan kirjautuneen opettajan id
                 var opeid = Session["OpettajaID"];
                 int opeOikID = int.Parse(opeid.ToString());
+
+                var alkuaika = (from a in db.Ajat
+                                where a.opettaja_id == opeOikID && a.alku_aika >= DateTime.Today
+                                select a.alku_aika).Take(1).SingleOrDefault();
+
+                var kesto= (from a in db.Ajat
+                            where a.opettaja_id == opeOikID && a.alku_aika >= DateTime.Today
+                            select a.kesto_id).Take(1).SingleOrDefault();
+
+               DateTime aika= alkuaika.AddDays(kesto);
+                
+               
+
                 //Näkyy kirjautuneen opettajan ajat sekä tämänpäiväset tai tulevat ajat
                 var ajatLista = from a in db.Ajat
                                 join op in db.Opettajat on a.opettaja_id equals op.opettaja_id
@@ -65,7 +78,10 @@ namespace Ajanvarausprojekti.Controllers
                                 where op.opettaja_id == opeOikID && a.alku_aika >= DateTime.Today
                                 orderby a.alku_aika
 
-                                select new ajatListaData
+                               
+                
+
+                select new ajatListaData
                                 {
                                     aika_id = (int)a.aika_id,
                                     Alkuaika = (DateTime)a.alku_aika,
@@ -74,7 +90,7 @@ namespace Ajanvarausprojekti.Controllers
                                     Paikka = a.paikka,
                                     opettaja_id = (int)a.opettaja_id,
                                     Varaaja = v.varaaja_nimi,
-                                    Varauspvm = (DateTime)v.varattu_pvm,
+                                    Varauspvm = aika,
                                     varaus_id=v.varaus_id
 
                                 };
@@ -328,8 +344,9 @@ namespace Ajanvarausprojekti.Controllers
         }
 
 
+
        //Irina:yksittäisen varauksen tarkempi kuvaus
-        // GET: Varaukset/Details/5
+       // GET: Varaukset/Details/5
         public ActionResult _VarausListModal(int? id)
         {
             if (id == null)
