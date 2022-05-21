@@ -31,5 +31,9 @@ namespace Ajanvarausprojekti.Models
         public virtual Opettajat Opettajat { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Varaukset> Varaukset { get; set; }
+
+        public DateTime startDate { get; set; }
+
+        public DateTime startTime { get; set; }
     }
 }
