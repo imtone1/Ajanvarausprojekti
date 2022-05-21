@@ -13,35 +13,35 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
 
-        @*<div class="form-group">
+        <div class="form-group">
                 @Html.LabelFor(model => model.alku_aika, "Päivämäärä", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.alku_aika, new { htmlAttributes = new { @class = "date" } })
                     @Html.ValidationMessageFor(model => model.alku_aika, "", new { @class = "text-danger" })
                 </div>
-            </div>*@
+            </div>
 
         <div class="form-group">
             <div class="mb-4">
                 <label for="startDate">Päivämäärä</label>
-                <input id="startDate" class="form-control" type="date" />
+                <input id="startDate" class="form-control" type="date" value="@Request.Form["startDate"]" />
             </div>
 
 
             <div class="mb-4">
                 <label for="startDate">Kellonaika</label>
-                <input id="startTime" class="form-control" type="time" />
+                <input id="startTime" class="form-control" type="time" value="@Request.Form["startTime"]" />
             </div>
         </div>
 
 
-        <div class="form-group">
+        <!--<div class="form-group">
             Valitse päivä : @Html.TextBoxFor(s => s.startDate)
-            <input type="submit" @*value="Generate report"*@ />
+            <input type="submit"--> @*value="Generate report"*@ <!--/>
 
             Valitse kello : @Html.TextBoxFor(s => s.startTime)
-            <input type="submit" @*value="Generate report"*@ />
-        </div>
+            <input type="submit"--> @*value="Generate report"*@ <!--/>
+        </div>-->
 
 
 
@@ -143,7 +143,7 @@
                                     <option value="3">90 min</option>
                                 </select>*@
 
-                            <button href="#" class="btn btn-outline-primary w-100" type="submit">Lähetä</button>
+                        <button href="#" class="btn btn-outline-primary w-100" type="submit">Tallenna aika</button>
                         </div>
                     </div>
                 </div>
