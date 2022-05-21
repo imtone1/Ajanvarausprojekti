@@ -21,11 +21,19 @@ namespace Ajanvarausprojekti.Controllers
         // GET: Ohjausaika/Create
         public ActionResult LisaaAika()
         {
+            if (Session["OpettajaID"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
 
-            ViewBag.kesto_id = new SelectList(db.Kestot, "kesto_id", "kesto_id");
-            ViewBag.opettaja_id = new SelectList(db.Opettajat, "opettaja_id", "sahkoposti");
+                ViewBag.kesto_id = new SelectList(db.Kestot, "kesto_id", "kesto_id");
+                ViewBag.opettaja_id = new SelectList(db.Opettajat, "opettaja_id", "sahkoposti");
 
-            return View();
+                return View();
+
+            }
         }
 
 
@@ -35,27 +43,52 @@ namespace Ajanvarausprojekti.Controllers
         //public ActionResult LisaaAika([Bind(Include = "aika_id,alku_aika,kesto_id,opettaja_id")] Ajat ajat)
         public ActionResult LisaaAika([Bind(Include = "aika_id,alku_aika,kesto_id,opettaja_id, startDate, startTime")] Ajat ajat)
         {
-            if (ModelState.IsValid)
+            try
             {
-                //Opettajan valitsema päivämäärä
-                var startDate = Request["startDate"];
-                //Opettajan valitsema kellonaika
-                var startTime = Request["startTime"];
-                //Yhdistetään nen samaan muuttujaan
-                var valittuAika = startDate + " " + startTime;
-                //Convertoidaan tietokantaan sopivaksi
-                ajat.alku_aika = Convert.ToDateTime(valittuAika);
+
+                if (ModelState.IsValid)
+                {
+                    //Opettajan valitsema päivämäärä
+                    var startDate = Request["startDate"];
+                    //Opettajan valitsema kellonaika
+                    var startTime = Request["startTime"];
+                    //Yhdistetään nen samaan muuttujaan
+                    var valittuAika = startDate + " " + startTime;
+                    //Convertoidaan tietokantaan sopivaksi
+                    ajat.alku_aika = Convert.ToDateTime(valittuAika);
+
+                    //Varauksen tehnyt opettaja tallennetaan tietokantaan Session["OpettajaID"]:n avulla
+                    ajat.opettaja_id = (int)Session["OpettajaID"];
 
 
+                    db.Ajat.Add(ajat);
+                    db.SaveChanges();
 
-                db.Ajat.Add(ajat);
-                db.SaveChanges();
-                return RedirectToAction("LisaaAika", "Ajat");
+                    //Annetaan tieto onnistuneesta ohjausajan lisäyksestä TempDatalle modaali-ikkunaa varten
+                    TempData["Successi"] = "Ohjausajan lisäys onnistui!";
+                    return RedirectToAction("LisaaAika", "Ajat");
+                }
+
+                //ViewBag.kesto_id = new SelectList(db.Kestot, "kesto_id", "kesto_id", ajat.kesto_id);
+                //ViewBag.opettaja_id = new SelectList(db.Opettajat, "opettaja_id", "sahkoposti", ajat.opettaja_id);
+                //return View(ajat);
+
+                //Annetaan tieto epäonnistuneesta ohjausajan lisäyksestä TempDatalle modaali-ikkunaa varten
+                TempData["Errori"] = "Hups! Jokin meni nyt pieleen!";
+                TempData["BodyText1"] = "Ohjausajan lisäys epäonnistui.";
+                return RedirectToAction("Index", "Home");
+
+            }
+            catch
+            {
+                //Annetaan tieto epäonnistuneesta ohjausajan lisäyksestä TempDatalle modaali-ikkunaa varten
+                TempData["Errori"] = "Hups! Jokin meni nyt pieleen!";
+                TempData["BodyText1"] = "Ohjausajan lisäys epäonnistui.";
+                return RedirectToAction("Index", "Home");
             }
 
-            ViewBag.kesto_id = new SelectList(db.Kestot, "kesto_id", "kesto_id", ajat.kesto_id);
-            ViewBag.opettaja_id = new SelectList(db.Opettajat, "opettaja_id", "sahkoposti", ajat.opettaja_id);
-            return View(ajat);
+
+
         }
 
 
