@@ -4,115 +4,6 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>Lisää uusi aika varattavaksi</h4>
-
-        <hr />
-
-
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-
-        @*<div class="form-group">
-                @Html.LabelFor(model => model.alku_aika, "Päivämäärä", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.alku_aika, new { htmlAttributes = new { @class = "date" } })
-                    @Html.ValidationMessageFor(model => model.alku_aika, "", new { @class = "text-danger" })
-                </div>
-            </div>*@
-
-        @*<div class="form-group">
-                <div class="mb-4">
-                    <label for="startDate">Päivämäärä</label>
-                    <input id="startDate" class="form-control" type="date"/>
-                </div>
-
-
-                <div class="mb-4">
-                    <label for="startDate">Kellonaika</label>
-                    <input id="startTime" class="form-control" type="time"/>
-                </div>
-            </div>*@
-
-        <div class="form-group">
-            <div class="mb-4">
-                <label for="startDate">Päivämäärä</label>
-                @Html.TextBoxFor(a => a.startDate, new { @class = "form-control", @id="startDate", @type="date" })
-            </div>
-
-
-            <div class="mb-4">
-                <label for="startDate">Kellonaika</label>
-                @Html.TextBoxFor(a => a.startTime, new { @class = "form-control", @id = "startDate", @type = "time" })
-            </div>
-        </div>
-
-
-        @*<div class="form-group">
-                Valitse päivä : @Html.TextBoxFor(a => a.startDate)
-
-                Valitse kello : @Html.TextBoxFor(a => a.startTime)
-
-            </div>*@
-
-
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.kesto_id, "Kesto", htmlAttributes: new { @class = "control-label col-md-2" })
-
-            <div class="col-md-10">
-                @* orig: @Html.DropDownList("kesto_id", null, htmlAttributes: new { @class = "form-control" })*@
-
-                @Html.DropDownListFor(model => model.kesto_id, new List<SelectListItem> {
-                            new SelectListItem{Text="Valitse kesto...", Value="30",Selected =true },
-                            new SelectListItem{Text="30 min", Value="30"},
-                            new SelectListItem{Text="45 min", Value="45"},
-                            new SelectListItem{Text="60 min", Value="60"},
-                            new SelectListItem{Text="90 min", Value="90"},}, new { @class = "form-select  mb-4" })
-
-                @Html.ValidationMessageFor(model => model.kesto_id, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.opettaja_id, "opettaja_id", htmlAttributes: new { @class = "control-label col-md-2" })
-
-
-            <div class="col-md-10">
-                @Html.DropDownList("opettaja_id", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.opettaja_id, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        @*<div class="form-group">
-                @Html.LabelFor(model => model.aihe, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.aihe, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.aihe, "", new { @class = "text-danger" })
-                </div>
-            </div>*@
-
-        @*<div class="form-group">
-                @Html.LabelFor(model => model.paikka, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.paikka, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.paikka, "", new { @class = "text-danger" })
-                </div>
-            </div>*@
-
-        <br />
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Tallenna aika" class="btn btn-outline-primary w-100" />
-            </div>
-        </div>
-    </div>
-
-    <br />
-
-
-
     <section class="container">
         <div class="row">
             <div class="col-md-12 col-lg-6">
@@ -127,18 +18,17 @@
 
                         <div class="mb-4">
                             <label for="startDate">Päivämäärä</label>
-                            <input id="startDate" class="form-control" type="date" />
+                            @Html.TextBoxFor(a => a.startDate, new { @class = "form-control", @id = "startDate", @type = "date" })
                         </div>
 
 
                         <div class="mb-4">
                             <label for="startDate">Kellonaika</label>
-                            <input id="startTime" class="form-control" type="time" />
+                            @Html.TextBoxFor(a => a.startTime, new { @class = "form-control", @id = "startDate", @type = "time" })
                         </div>
 
                         <div class="mb-4">
                             <p class="text-black mb-0">Kesto</p>
-                            @*@Html.DropDownList("kesto_id", null, htmlAttributes: new { @class = "form-control" })*@
 
                             @Html.DropDownListFor(model => model.kesto_id, new List<SelectListItem> {
                             new SelectListItem{Text="Valitse kesto...", Value="30",Selected =true },
@@ -146,14 +36,6 @@
                             new SelectListItem{Text="45 min", Value="45"},
                             new SelectListItem{Text="60 min", Value="60"},
                             new SelectListItem{Text="90 min", Value="90"},}, new { @class = "form-select  mb-4" })
-
-                            @*<select class="form-select  mb-4" aria-label="Default select example">
-                                    <option selected>Valitse kesto...</option>
-                                    <option value="1">30 min</option>
-                                    <option value="2">45 min</option>
-                                    <option value="3">60 min</option>
-                                    <option value="3">90 min</option>
-                                </select>*@
 
                             <button href="#" class="btn btn-outline-primary w-100" type="submit">Tallenna aika</button>
                         </div>
