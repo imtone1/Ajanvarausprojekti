@@ -122,6 +122,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AjanvarausController.cs" />
+    <Compile Include="Controllers\AjatController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\SuperUserController.cs" />
@@ -412,6 +413,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Opekuvat\" />
+    <Folder Include="Views\Ajat\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
