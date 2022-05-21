@@ -242,6 +242,9 @@ namespace Ajanvarausprojekti.Controllers
                             //Irina: sähköpostilähetys
                             try
                             {
+                                Yhteystiedot ohjelmanyhteystiedot = new Yhteystiedot();
+                                string sahkopostiosoite_ohjelman = ohjelmanyhteystiedot.OhjelmanSahkopostiosoite;
+                                string spostisalasana = ohjelmanyhteystiedot.OhjelmanSpostiSalasana;
                                 //Configuring webMail class to send emails  
                                 //gmail smtp server  
                                 WebMail.SmtpServer = "smtp.gmail.com";
@@ -251,12 +254,12 @@ namespace Ajanvarausprojekti.Controllers
                                 //sending emails with secure protocol  
                                 WebMail.EnableSsl = true;
                                 //EmailId used to send emails from application  
-                                WebMail.UserName = "tivisovellus@gmail.com";
-                                WebMail.Password = "1hAn5!VAiO1k9";
+                                WebMail.UserName = sahkopostiosoite_ohjelman;
+                                WebMail.Password = spostisalasana;
 
 
                                 //Sender email address.  
-                                WebMail.From = "tivisovellus@gmail.com";
+                                WebMail.From = sahkopostiosoite_ohjelman;
 
                                 // Send email
                                 WebMail.Send(to: ajatOpe.sahkoposti,

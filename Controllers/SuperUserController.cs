@@ -77,27 +77,49 @@ namespace Ajanvarausprojekti.Controllers
 
                     else
                     {
-                        //Kuvan tallennus kansioon
-                        if (file.ContentLength > 0)
+                        //Jos file null niin tämä kaatuu
+                        //if (file.ContentLength > 0)
+
+                        //Jos tiedosto on ladattu
+                        if (file != null)
                         {
                             string _FileName = Path.GetFileName(file.FileName);
                             string _path = Path.Combine(Server.MapPath("~/Opekuvat"), _FileName);
                             file.SaveAs(_path);
 
-                        }
+                            //Luodaan ope
+                            string _FileName1 = Path.GetFileName(file.FileName);
+                            Opettajat luoopettaja = new Opettajat
+                            {
+                                sahkoposti = uusiope.sahkoposti,
+                                etunimi = uusiope.etunimi,
+                                sukunimi = uusiope.sukunimi,
+                                nimike = uusiope.nimike,
+                                kuva = "/Opekuvat/" + _FileName1
+                            };
+                            db.Opettajat.Add(luoopettaja);
+                            db.SaveChanges();
 
-                        string _FileName1 = Path.GetFileName(file.FileName);
-                         //Luodaan ope
-                         Opettajat luoopettaja = new Opettajat
+                        }
+                        //jos tiedosto ei ole ladattu, käytetään default kuvaa
+                        else
                         {
-                            sahkoposti = uusiope.sahkoposti,
-                            etunimi = uusiope.etunimi,
-                            sukunimi = uusiope.sukunimi,
-                            nimike = uusiope.nimike,
-                            kuva = "/Opekuvat/" + _FileName1
-                        };
-                        db.Opettajat.Add(luoopettaja);
-                        db.SaveChanges();
+                            //opekuva defalt polku, tällä hetkellä "/Opekuvat/lintu.jpg"
+                            Yhteystiedot ohjelmanyhteystiedot = new Yhteystiedot();
+                            string opekuvadefault = ohjelmanyhteystiedot.OpeDefaultKuva;
+
+                            Opettajat luoopettaja = new Opettajat
+                            {
+                                sahkoposti = uusiope.sahkoposti,
+                                etunimi = uusiope.etunimi,
+                                sukunimi = uusiope.sukunimi,
+                                nimike = uusiope.nimike,
+                                kuva = opekuvadefault
+                            };
+                            db.Opettajat.Add(luoopettaja);
+                            db.SaveChanges();
+
+                        }
 
 
 
@@ -138,6 +160,9 @@ namespace Ajanvarausprojekti.Controllers
 
                                 try
                                 {
+                                    Yhteystiedot ohjelmanyhteystiedot = new Yhteystiedot();
+                                    string sahkopostiosoite_ohjelman = ohjelmanyhteystiedot.OhjelmanSahkopostiosoite;
+                                    string spostisalasana = ohjelmanyhteystiedot.OhjelmanSpostiSalasana;
                                     //Configuring webMail class to send emails  
                                     //gmail smtp server  
                                     WebMail.SmtpServer = "smtp.gmail.com";
@@ -147,11 +172,11 @@ namespace Ajanvarausprojekti.Controllers
                                     //sending emails with secure protocol  
                                     WebMail.EnableSsl = true;
                                     //EmailId used to send emails from application  
-                                    WebMail.UserName = "tivisovellus@gmail.com";
-                                    WebMail.Password = "1hAn5!VAiO1k9";
+                                    WebMail.UserName = sahkopostiosoite_ohjelman;
+                                    WebMail.Password = spostisalasana;
 
                                     //Sender email address.  
-                                    WebMail.From = "tivisovellus@gmail.com";
+                                    WebMail.From = sahkopostiosoite_ohjelman;
 
                                     // Send email
                                     WebMail.Send(to: opettajasposti.sahkoposti,
