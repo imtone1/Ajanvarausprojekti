@@ -43,7 +43,16 @@ namespace Ajanvarausprojekti.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LisaaAika([Bind(Include = "aika_id,alku_aika,kesto_id,opettaja_id")] Ajat ajat)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                db.Ajat.Add(ajat);
+                db.SaveChanges();
+                return RedirectToAction("OpettajienSivu", "Home");
+            }
+
+            ViewBag.kesto_id = new SelectList(db.Kestot, "kesto_id", "kesto_id", ajat.kesto_id);
+            ViewBag.opettaja_id = new SelectList(db.Opettajat, "opettaja_id", "sahkoposti", ajat.opettaja_id);
+            return View(ajat);
         }
 
 
