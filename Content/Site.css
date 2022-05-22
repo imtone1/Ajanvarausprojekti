@@ -125,7 +125,7 @@
 
 .bg-hero-contact {
     background-color: var(--light-grey);
-    background:  url(/Content/Images/keyboard.jpg);
+    background: url(/Content/Images/keyboard.jpg);
     background-size: cover;
 }
 
@@ -294,6 +294,8 @@
     background-position-x: right;
     background-position-y: bottom;
     min-height: 100vh;
+    /*animation: moveDown 1s ease-in-out forwards;*/
+
 }
 
 
@@ -347,6 +349,16 @@ caption {
 
 .table > :not(caption) > * > *{
     background:none;
+}
+
+.animation-ease-in {
+    animation: ease-in 1s ease-in forwards;
+    opacity: 0;
+}
+
+.animation-move-down {
+    animation: moveDown 1s ease-in-out forwards;
+    opacity: 0;
 }
 
 /*Box shadow yms.-jutut kommentoidut for now*/
@@ -434,6 +446,47 @@ select:focus {
             margin-bottom: 1rem;
         }
     }
+
+@keyframes introLoad {
+    from {
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    }
+
+    to {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+}
+
+@keyframes moveDown {
+    from {
+        transform: translateY(-100px);
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes ease-in {
+    from {
+        transform: translateX(-200px);
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+    .animation-move-down {
+        animation: none !important;
+    }
+
+    .animation-ease-in {
+        animation: none!important;
+    }
+}
     /* Set padding to keep content from hitting the edges 
     .body-content {
         padding-left: 15px;
