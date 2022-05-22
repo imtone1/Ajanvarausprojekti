@@ -30,16 +30,13 @@ namespace Ajanvarausprojekti.Controllers
             return PartialView("Opekortit", model);
         }
 
-        public ActionResult _VapaatAjat()
+        public ActionResult _VapaatAjat(int? KlikattuId)
         {
             var ajatLista = from a in db.Ajat
-                            join op in db.Opettajat on a.opettaja_id equals op.opettaja_id
+                            join o in db.Opettajat on a.opettaja_id equals o.opettaja_id
                             join k in db.Kestot on a.kesto_id equals k.kesto_id
                             join v in db.Varaukset on a.aika_id equals v.aika_id
-                            //into al
-                            //from varaus in al.DefaultIfEmpty()
-                                // where-lause  opettaja id tähän jos halutaan, että tietyn opettajan ajat näkyisivät
-                            orderby a.alku_aika
+                            where o.opettaja_id == KlikattuId
 
                             select new ajatListaData
                             {
@@ -47,6 +44,7 @@ namespace Ajanvarausprojekti.Controllers
                                 Alkuaika = (DateTime)a.alku_aika,
                                 Kesto = (int)k.kesto,
                                 opettaja_id = (int)a.opettaja_id,
+                                Paikka = a.paikka
 
                             };
             return PartialView("_VapaatAjat", ajatLista);

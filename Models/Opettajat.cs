@@ -29,7 +29,9 @@ namespace Ajanvarausprojekti.Models
         public string nimike { get; set; }
         public string kuva { get; set; }
         public byte[] opeimage { get; set; }
-    
+
+        public Nullable<int> klikattuId { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Ajat> Ajat { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
