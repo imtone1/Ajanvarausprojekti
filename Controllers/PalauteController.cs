@@ -226,27 +226,20 @@ namespace Ajanvarausprojekti.Controllers
 
         public ActionResult _Details(int? id)
         {
-            if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            var palauteLista = from p in db.Palautteet
-                               join pt in db.Palautetyypit on p.palautetyyppi_id equals pt.palautetyyppi_id
-                               join op in db.Opettajat on p.opettaja_id equals op.opettaja_id
-
-                               orderby p.palaute_id
-
-                               select new palauteListaData
-                               {
-                                   palaute_id = (int)p.palaute_id,
-                                   palaute_pvm = (DateTime)p.palaute_pvm,
-                                   palautetyyppi_id = p.palautetyyppi_id,
-                                   palautetyyppi = pt.palautetyyppi,
-                                   palaute = p.palaute,
-                                   opettaja_id = (int)op.opettaja_id,
-                                   sukunimi = op.sukunimi,
-                                   etunimi = op.etunimi,
-                               };
-            ViewBag.palaute_id = new SelectList(db.Palautteet);
-            return PartialView("_Details", palauteLista);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Palautteet palautteet = db.Palautteet.Find(id);
+            if (palautteet == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.palaute_id = new SelectList(db.Palautteet, "palaute_id", "palaute", palautteet.palaute_id);
+            ViewBag.palaute_id = new SelectList(db.Palautetyypit, "palaute_id", "palautetyyppi", palautteet.palaute_id);
+            return PartialView("_Details", palautteet);
         }
+
 
 
 

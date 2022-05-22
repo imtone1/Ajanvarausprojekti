@@ -23,25 +23,26 @@
         }
         $('.tervehdys').append(viesti);
 
-//_Details modaalin kutsu
+        //_Details modaalin kutsu
         $(function () {
-            $(".getPalauteModal").click(function () {
+            $(".getPalauteID").click(function () {
                 let palaute_id = $(this).data("palauteid");
                 console.log("Klikkasit palautetta: " + palaute_id);
                 var url = "/Palaute/_Details/?id=" + palaute_id;
                 console.log(url);
 
-                $("#Modaltesti").append(" <b>Avataan palautteen " + palaute_id + "tietoja...</b>");
+                $("#lueLisaa").append(" <b>Avataan palautteen " + palaute_id + "tietoja...</b>");
 
-                var $detailDivDetails = $("#Modaltesti");
+                var $detailDivDetails = $("#lueLisaa");
                 $.get(url, function (data) {
                     $detailDivDetails.replaceWith(data);
-                    $("#palauteModaltesti").modal("show");
+                    $("#ModallueLisaa").modal("show");
                 });
             });
         });
 
-       /* Yksittäisen varauksen tarkempi kuvaus*/
+
+        /* Yksittäisen varauksen tarkempi kuvaus*/
         $(function () {
             $(".getOrderId").click(function () {
                 let varaus_id = $(this).data("varaus_id");
@@ -62,31 +63,31 @@
     </script>
 
 
-   
 
-@*Onnistunut varaus -modaali*@
-@if (TempData["Successi"] != null)
-{
-    <script type="text/javascript">
-        window.onload = function () {
-            $("#OnnistunutModaali").modal("show"); {
-            setTimeout(function () { $("#OnnistunutModaali").modal("hide"); }, 3000)
-        };
-        };
-    </script>
-}
 
-@*Varaus epäonnistui -modaali*@
-@if (TempData["Errori"] != null)
-{
-    <script type="text/javascript">
-        window.onload = function () {
-            $("#EiOnnistunutModaali").modal("show"); {
-            setTimeout(function () { $("#EiOnnistunutModaali").modal("hide"); }, 3000)
-        };
-        };
-    </script>
-}
+    @*Onnistunut varaus -modaali*@
+    @if (TempData["Successi"] != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                $("#OnnistunutModaali").modal("show"); {
+                    setTimeout(function () { $("#OnnistunutModaali").modal("hide"); }, 3000)
+                };
+            };
+        </script>
+    }
+
+    @*Varaus epäonnistui -modaali*@
+    @if (TempData["Errori"] != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                $("#EiOnnistunutModaali").modal("show"); {
+                    setTimeout(function () { $("#EiOnnistunutModaali").modal("hide"); }, 3000)
+                };
+            };
+        </script>
+    }
 
 
 }
@@ -98,7 +99,7 @@
 <!---------------------------------TULEVAT OHJAUSAJAT JA TERVEHDYS/KUVAOSIO ALKAA TÄSTÄ------------------------------------------------>
 <!-------------------------------Tulevat ohjausajat-taulukko------------------------------------>
 <section class="container">
-   
+
     <div class="row flex-column-reverse flex-md-column-reverse flex-lg-row">
         <div class="col-md-12 col-lg-7 mt-lg-5 table-responsive-md">
             <h2 class="mb-3">Tulevat ohjausajat</h2>
@@ -529,9 +530,9 @@
 <!---------------------------------------------------UUSIMMAT PALAUTTEET ALKAA TÄSTÄ------------------------------------------------------>
 
 
-@{ @Html.Action("_LueViisi", "Palaute"); }
-<div id="Modaltesti"></div>
-@{ @Html.Action("_Details", "Palaute"); }
+@{Html.RenderAction("_LueViisi", "Palaute");}
+<div id="lueLisaa"></div>
+
 
 <!---------------------------------------------------UUSIMMAT PALAUTTEET LOPPUU TÄHÄN------------------------------------------------------>
 
