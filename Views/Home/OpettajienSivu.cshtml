@@ -23,7 +23,7 @@
         }
         $('.tervehdys').append(viesti);
 
-//_Details modaalin kutsu
+        //_Details modaalin kutsu
         $(function () {
             $(".getPalauteModal").click(function () {
                 let palaute_id = $(this).data("palauteid");
@@ -506,9 +506,8 @@
 <!---------------------------------------------------UUSIMMAT PALAUTTEET ALKAA TÄSTÄ------------------------------------------------------>
 
 
-@{ @Html.Action("_LueViisi", "Palaute"); }
-<div id="Modaltesti"></div>
-@{ @Html.Action("_Details", "Palaute"); }
+@{Html.RenderAction("_LueViisi", "Palaute");}
+
 
 <!---------------------------------------------------UUSIMMAT PALAUTTEET LOPPUU TÄHÄN------------------------------------------------------>
 

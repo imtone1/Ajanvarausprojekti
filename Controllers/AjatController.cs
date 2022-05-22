@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Ajanvarausprojekti.Models;
@@ -116,10 +118,29 @@ namespace Ajanvarausprojekti.Controllers
 
         }
 
-
-        public ActionResult Edit(int id)
+        //modal editin metodi
+        public ActionResult _ModalEdit(int? id)
         {
-            return View();
+            if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            var model = db.Ajat;
+            Ajat ajat = db.Ajat.Find(id);
+            if (ajat == null) return HttpNotFound();
+            ViewBag.kesto_id = new SelectList(db.Kestot, "kesto_id", "kesto", selectedValue: "kesto_id");
+            ViewBag.opettaja_id = new SelectList(db.Opettajat, "opettaja_id", "sahkoposti", selectedValue: "opettaja_id");
+            return PartialView("_ModalEdit", ajat);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken] //Katso https://go.microsoft.com/fwlink/?LinkId=317598
+
+        public ActionResult _ModalEdit([Bind(Include = "aika_id,alku_aika,kesto_id,opettaja_id, startDate, startTime")] Ajat ajat)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(ajat).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return PartialView("_ModalEdit", ajat);
         }
 
 
