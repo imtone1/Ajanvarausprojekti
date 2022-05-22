@@ -50,7 +50,7 @@
 }
 
 
-<!-------------------------Hero section---------------------------------->
+<!-- -----------------------Hero section-------------------------------- -->
 <section class="container-fluid vh-100 bg-hero pb-md-5 pt-5">
     <div class="container py-md-5">
         <div class="col-md-6 pt-md-5">
@@ -59,9 +59,9 @@
                 <p class="lead fs-md-5 my-md-3">Varaa ohjausaika tai anna palautetta Careerian tieto- ja viestintätekniikan opettajille.</p>
                 <div class="d-md-inline-flex">
                     <a href="#ohjausaika" class="btn btn-primary m2-3">Varaa ohjausaika</a>
-                    <div class="my-3"></div><!--Tämä tyhjä div tässä sen takia, että mobiilissa tulisi väli nappuloiden välille-->
+                    <div class="my-3"></div><!-- Tämä tyhjä div tässä sen takia, että mobiilissa tulisi väli nappuloiden välille -->
                     <a href="#palaute" class="btn btn-primary ms-md-3 h-100">Anna palautetta</a>
-                    <div class="my-3"></div><!--Tämä tyhjä div tässä sen takia, että mobiilissa tulisi väli nappuloiden välille-->
+                    <div class="my-3"></div><!-- Tämä tyhjä div tässä sen takia, että mobiilissa tulisi väli nappuloiden välille -->
                     @* Poista varaus nappula *@
                     <a class="btn btn-primary ms-md-3 h-100" id="varausmodal" data-bs-toggle="modal" data-bs-target="#VarausRuutu">Poista varauksesi</a>
                 </div>
@@ -70,11 +70,11 @@
     </div>
 </section>
 
-<!----------------------Ohjausajan varaus-osio--------------------------->
+<!-- --------------------Ohjausajan varaus-osio------------------------- -->
 
 @{Html.RenderAction("Opekortit", "Ope");} <!----Nimi on vähän harhaanjohtava, mutta opekortit kattaa koko opettajakortit ja opettajien vapaat ajat. Ulkonäkö vaatii vielä hiomista-->
 
-<!-------------------------------Palautelomakeosio------------------------->
+<!-- -----------------------------Palautelomakeosio----------------------- -->
 
 <div id="palaute">
     @Html.Action("_Create", "Palaute")

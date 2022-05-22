@@ -382,8 +382,6 @@
     <Content Include="Views\Shared\_NavbarLoggedIn.cshtml" />
     <Content Include="Views\Shared\_FooterLoggedOut.cshtml" />
     <Content Include="Views\Shared\_FooterLoggedIn.cshtml" />
-    <Content Include="Views\Login\Create.cshtml" />
-    <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Login\LogOut.cshtml" />
     <Content Include="Views\Varaus\AikaListaus.cshtml" />
     <Content Include="Views\Login\_LoginModal.cshtml" />
@@ -394,7 +392,6 @@
     <Content Include="Views\Varaus\Index.cshtml" />
     <Content Include="Views\Home\_About.cshtml" />
     <Content Include="Views\Varaus\_VarausPoisto.cshtml" />
-    <Content Include="Views\Varaus\PoistaVaraus.cshtml" />
     <Content Include="Views\Varaus\VarausPoisto.cshtml" />
     <Content Include="Views\Shared\View.cshtml" />
     <Content Include="Views\Home\OpettajienSivu.cshtml" />
