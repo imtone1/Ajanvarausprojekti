@@ -48,9 +48,10 @@ namespace Ajanvarausprojekti.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    //Opettajan valitsema päivämäärä
+                    
+                    //Opettajan valitsema päivämäärä on muuttujassa startDate
                     var startDate = Request["startDate"];
-                    //Opettajan valitsema kellonaika
+                    //Opettajan valitsema kellonaika on muuttujassa startTime
                     var startTime = Request["startTime"];
                     //Yhdistetään nen samaan muuttujaan
                     var valittuAika = startDate + " " + startTime;
@@ -61,12 +62,36 @@ namespace Ajanvarausprojekti.Controllers
                     ajat.opettaja_id = (int)Session["OpettajaID"];
 
 
+
+
+                    ////Tarkistetaan, onko opettajalla jo olemassa kyseinen aika
+                    //var testForAika = from a in db.Ajat
+                    //                  where a.opettaja_id == (int)Session["OpettajaID"] && a.alku_aika == Convert.ToDateTime(valittuAika)
+                    //                  select a;
+
+                    //if (testForAika.Any())
+                    //{
+                    //    //Annetaan tieto epäonnistuneesta ohjausajan lisäyksestä TempDatalle modaali-ikkunaa varten
+                    //    TempData["Errori"] = "Tälle ajankohdalle on jo lisätty ohjausaika.";
+                    //    TempData["BodyText1"] = "Valitse uusi aika.";
+                    //    return RedirectToAction("LisaaAika", "Ajat");
+                    //}
+
+                    //else
+                    //{
+                        
+
+                    //}
+
+
                     db.Ajat.Add(ajat);
                     db.SaveChanges();
 
                     //Annetaan tieto onnistuneesta ohjausajan lisäyksestä TempDatalle modaali-ikkunaa varten
                     TempData["Successi"] = "Ohjausajan lisäys onnistui!";
                     return RedirectToAction("LisaaAika", "Ajat");
+
+
                 }
 
                 //ViewBag.kesto_id = new SelectList(db.Kestot, "kesto_id", "kesto_id", ajat.kesto_id);
