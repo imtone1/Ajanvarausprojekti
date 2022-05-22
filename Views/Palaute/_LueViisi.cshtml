@@ -10,11 +10,12 @@
     <div id="lueLisaa"></div>
     <div class="container pt-5">
         <div class="col-12 table-responsive-md">
-            <div class="d-flex justify-content-between w-100">
+            <div class="d-flex justify-content-start w-100">
                 <h2 class="text-white pb-5" id="TarkastelePalaute">Uusimmat palautteet</h2>
+                <div id="lueLisaa" class="text-info"></div>
             </div>
             <table class="table table-dark table-hover caption table-bordered">
-                <caption>Palautteet</caption>
+                <caption class="text-white-50">Palautteet</caption>
                 <thead>
                     <tr>
                         <th scope="col">Päivämäärä</th>
@@ -29,8 +30,8 @@
                         <tr>
                             <td scope="row">@Html.DisplayFor(modelItem => item.palaute_pvm)</td>
                             <td>@Html.DisplayFor(modelItem => item.palautetyyppi)</td>
-                            <td>@Html.DisplayFor(modelItem => item.palaute)</td>
-                            <td><button class="getPalauteID" data-palauteid="@item.palaute_id">lue lisää</button></td>
+                            <td class="td-truncate">@Html.DisplayFor(modelItem => item.palaute)</td>
+                            <td><button class="getPalauteID btn btn-primary" data-palauteid="@item.palaute_id">lue lisää</button></td>
 
                         </tr>
                     }
