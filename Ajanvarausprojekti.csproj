@@ -124,6 +124,7 @@
     <Compile Include="Controllers\AjanvarausController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\OpeController.cs" />
     <Compile Include="Controllers\SuperUserController.cs" />
     <Compile Include="Controllers\VarausController.cs" />
     <Compile Include="Controllers\PalauteController.cs" />
@@ -410,6 +411,7 @@
     <Content Include="Views\Palaute\_Delete.cshtml" />
     <Content Include="Views\Palaute\_Create.cshtml" />
     <Content Include="Views\Varaus\_VarausListModal.cshtml" />
+    <Content Include="Views\Ope\Opekortit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
