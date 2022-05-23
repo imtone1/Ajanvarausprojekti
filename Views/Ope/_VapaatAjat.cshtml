@@ -1,43 +1,81 @@
 ﻿@model IEnumerable<Ajanvarausprojekti.ViewModels.ajatListaData>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Alkuaika)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.kesto_id)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.opettaja_id)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Kesto)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Paikka)
-        </th>
-        <th></th>
-    </tr>
+@*@section Scripts {
+    <script type="text/javascript">
+        $(function () {
+            $(".valitseAika").click(function () {
+                let aika_id = $(this).data("aikaId");
+                alert("Klikkasit aikaa, jonka aika-id on " + aika_id);
+            });
+        });
+    </script>*@
 
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.Alkuaika)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.kesto_id)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.opettaja_id)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Kesto)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Paikka)
-    </td>
-</tr>
 }
 
-</table>
+@foreach (var item in Model)
+{
+<div class="collapse w-100 collapse show" id="collapse_@item.opettaja_id" data-bs-parent="accordion">
+    <div class="card card-body border-0">
+
+        @*Progress bar*@
+        <div class="position-relative align-self-center m-5 w-75">
+            <div class="progress" style="height: 1px; background-color: var(--primary-color);">
+                <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <button type="button" class="placeholder-glow top-0 start-0 p-0 m-0 translate-middle btn btn-sm btn-primary rounded-pill d-flex justify-content-center align-items-center" style="width: 3.4rem; height: 3.4rem;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" fill="black" class="bi bi-check2 m-0 p-0" viewBox="0 0 16 16">
+                    <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
+                </svg>
+            </button>
+            <button type="button" class="placeholder-glow position-absolute top-0 start-50 translate-middle btn btn-sm btn-outline-primary bg-white rounded-pill d-flex justify-content-center align-items-center" style="width: 3.4rem; height: 3.4rem;">
+            </button>
+            <button type="button" class="placeholder-glow position-absolute top-0 start-100 translate-middle btn btn-sm btn-outline-primary bg-white rounded-pill d-flex justify-content-center align-items-center" style="width: 3.4rem; height: 3.4rem;">
+            </button>
+        </div>
+        @*Progress bar*@
+        <div>
+            <h2 class="placeholder-glow">Valitse varattava aika</h2>
+            <div class="container">
+                <div class="row">
+                    <table class="table">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.aika_id)</th>
+                <th>@Html.DisplayNameFor(model => model.Alkuaika)</th>
+                <th>@Html.DisplayNameFor(model => model.kesto_id)</th>
+                <th>@Html.DisplayNameFor(model => model.opettaja_id)</th>
+                <th>@Html.DisplayNameFor(model => model.Kesto)</th>
+                <th>@Html.DisplayNameFor(model => model.Paikka)</th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+
+                <tr class="valitseRivi" data-aikaId="@item.aika_id">
+                    <td>@Html.DisplayFor(modelItem => item.aika_id)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Alkuaika)</td>
+                    <td>@Html.DisplayFor(modelItem => item.kesto_id)</td>
+                    <td>@Html.DisplayFor(modelItem => item.opettaja_id)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Kesto)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Paikka)</td>
+                </tr>
+            }
+
+        </table>
+
+
+                </div>
+            </div>
+
+
+            <div><a href="/Varaus/TeeVaraus" class="placeholder-glow btn d-grid text-decoration-none btn-outline-primary mt-3" type="submit">Valitse ja jatka</a></div>
+
+        </div>
+
+    </div>
+</div>
+}
+
+
+
+
