@@ -227,6 +227,11 @@
       <DependentUpon>AjanvarausPalauteModel.edmx</DependentUpon>
       <LastGenOutput>AjanvarausPalauteModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Opekuvat\defaultKuva.jpg" />
+    <Content Include="Opekuvat\heli.jpg" />
+    <Content Include="Opekuvat\ilma.jpg" />
+    <Content Include="Opekuvat\taina.jpg" />
+    <Content Include="Opekuvat\testii.jpg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -414,7 +419,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Opekuvat\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

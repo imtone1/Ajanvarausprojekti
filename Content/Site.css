@@ -216,7 +216,8 @@
 .round-img {
     width: 10em;
     height: 10em;
-    background-image: url('Images/portrait-example.jpg');
+    /* kuva kommentoitu, jottei näkyisi renderöidyn kuvan takana*/
+   /* background-image: url('Images/portrait-example.jpg');*/
     background-size: cover;
     display: flex;
     align-self: center;
