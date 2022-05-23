@@ -6,7 +6,11 @@
 }
 
 <section class="container mt-5 mb-5 pb-5" id="ohjausaika">
-    <h2 class="display-6 fw-bolder">Ohjausajan varaus</h2>
+    <div class="d-flex justify-content-between">
+        <h2 class="display-6 fw-bolder">Ohjausajan varaus</h2>
+        @* Poista varaus nappula *@
+        <a class="btn btn-primary ms-md-3 h-100" id="varausmodal" data-bs-toggle="modal" data-bs-target="#VarausRuutu">Poista varauksesi</a>
+    </div>
     <p class="lead">Kenelle tivi-opettajalle haluat varata ajan?</p>
 
     <div id="accordion">
@@ -24,7 +28,7 @@
                         <div class="card-body">
                             @*<h5 class="card-title fw-light placeholder-glow">@item.etunimi @item.sukunimi</h5>*@
                             <h5 class="card-title fw-light placeholder-glow">@Html.DisplayFor(modelItem => item.etunimi) @Html.DisplayFor(modlelItem => item.sukunimi)</h5>
-                            <a href="@Url.Action("AikaListaus", "VarausController", new { valittuOpeId = @item.opettaja_id })" class="btn btn-primary placeholder-glow" data-bs-toggle="collapse" data-bs-target="#OpettajanAjat" aria-expanded="false" aria-controls="collapseExample">Varaa aika</a>
+                            <a href="@Url.Action("AikaListaus", "VarausController", new { valittuOpeId = @item.opettaja_id })" class="btn btn-primary placeholder-glow mt-2" data-bs-toggle="collapse" data-bs-target="#OpettajanAjat" aria-expanded="false" aria-controls="collapseExample">Varaa aika</a>
                         </div>
                     </div>
                 </div>
