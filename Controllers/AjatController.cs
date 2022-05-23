@@ -143,9 +143,26 @@ namespace Ajanvarausprojekti.Controllers
             return PartialView("_ModalEdit", ajat);
         }
 
+        //Modal delete
+        // GET: Palaute/Delete/5
+        public ActionResult _ModalDelete(int? id)
+        {
+            if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            Ajat ajat = db.Ajat.Find(id);
+            if (ajat == null) return HttpNotFound();
+            return PartialView(ajat);
+        }
 
-
-
+        // POST: Palaute/Delete/5
+        [HttpPost, ActionName("_ModalDelete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Ajat ajat = db.Ajat.Find(id);
+            db.Ajat.Remove(ajat);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
 
 
 

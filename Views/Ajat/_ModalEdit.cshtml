@@ -14,8 +14,6 @@
                         </div>
 
                         <div class="modal-body mt-3">
-                            <form action="/Ajat/_ModalEdit" id="ModalEdit" method="post">
-                                <f class="form-horizontal">
                                     @using (Html.BeginForm("_Details", "Palaute", FormMethod.Post, new { id = "editForm" }))
                                     {
                                         @Html.AntiForgeryToken()
@@ -79,7 +77,6 @@
                                         @*Kontrollerin kutsu, jotta peruutus johtaa alkutilanteeseen*@
                                         <a href="@Url.Action("Index", "Ajat")" class="btn btn-primary">peruuta</a>
                                     </div>
-                            </form>
                         </div>
                     </div>
                     <div class="col-5 d-none d-sm-block pe-0">
