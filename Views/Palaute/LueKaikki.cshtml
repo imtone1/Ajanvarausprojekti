@@ -4,18 +4,18 @@
     ViewBag.Title = "LueKaikki";
 }
 
-<h2>LueKaikki</h2>
+<h2>Lue Kaikki</h2>
 
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.palaute)
+            Palaute
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.palaute_pvm)
+            Päivämäärä
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.palautetyyppi)
+            Aihe
         </th>
         <th></th>
     </tr>
@@ -33,7 +33,7 @@
                 @Html.DisplayFor(modelItem => item.palautetyyppi)
             </td>
             <td>
-                @Html.ActionLink("Delete", "_Delete", new { id = item.palaute_id })
+                <button class="btn btn-primary ms-3"> @Html.ActionLink("poista", "_Delete", new { id = item.palaute_id })</button>
             </td>
         </tr>
     }
