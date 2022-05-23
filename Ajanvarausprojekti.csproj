@@ -124,6 +124,7 @@
     <Compile Include="Controllers\AjanvarausController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\OpeController.cs" />
     <Compile Include="Controllers\SuperUserController.cs" />
     <Compile Include="Controllers\VarausController.cs" />
     <Compile Include="Controllers\PalauteController.cs" />
@@ -197,11 +198,13 @@
     <Content Include="Content\Images\business.png" />
     <Content Include="Content\Images\careerian-tiviohjaus-logo.png" />
     <Content Include="Content\Images\careerian-tiviohjaus-logo-musta.png" />
+    <Content Include="Content\Images\error.gif" />
     <Content Include="Content\Images\favicon-16x16.png" />
     <Content Include="Content\Images\favicon-32x32.png" />
     <Content Include="Content\Images\keyboard.jpg" />
     <Content Include="Content\Images\people.jpg" />
     <Content Include="Content\Images\portrait-example.jpg" />
+    <Content Include="Content\Images\success.gif" />
     <Content Include="Content\Images\tietokone-390392.jpg" />
     <Content Include="Content\Images\valot.jpg" />
     <Content Include="Content\Images\woman-1920x1080.jpg" />
@@ -381,8 +384,6 @@
     <Content Include="Views\Shared\_NavbarLoggedIn.cshtml" />
     <Content Include="Views\Shared\_FooterLoggedOut.cshtml" />
     <Content Include="Views\Shared\_FooterLoggedIn.cshtml" />
-    <Content Include="Views\Login\Create.cshtml" />
-    <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Login\LogOut.cshtml" />
     <Content Include="Views\Varaus\AikaListaus.cshtml" />
     <Content Include="Views\Login\_LoginModal.cshtml" />
@@ -393,7 +394,6 @@
     <Content Include="Views\Varaus\Index.cshtml" />
     <Content Include="Views\Home\_About.cshtml" />
     <Content Include="Views\Varaus\_VarausPoisto.cshtml" />
-    <Content Include="Views\Varaus\PoistaVaraus.cshtml" />
     <Content Include="Views\Varaus\VarausPoisto.cshtml" />
     <Content Include="Views\Shared\View.cshtml" />
     <Content Include="Views\Home\OpettajienSivu.cshtml" />
@@ -410,6 +410,7 @@
     <Content Include="Views\Palaute\_Delete.cshtml" />
     <Content Include="Views\Palaute\_Create.cshtml" />
     <Content Include="Views\Varaus\_VarausListModal.cshtml" />
+    <Content Include="Views\Ope\Opekortit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
