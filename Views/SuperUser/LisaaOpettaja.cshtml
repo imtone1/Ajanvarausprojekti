@@ -37,9 +37,9 @@
                     const fsize = fi.files.item(i).size;
                     const file = Math.round((fsize / 1024));
                     // The size of the file.
-                    if (file >= 4096) {
+                    if (file >= 1024) {
                         alert(
-                            "Tiedosto on liian suuri. Tiedoston pitää olla vähemmän kuin 4 MB.");
+                            "Tiedosto on liian suuri. Tiedoston pitää olla vähemmän kuin 1 MB.");
                         $("#LisaaOpeButton").hide();
                         //Tämä kommenteissa lisätään jos täytyy tarkistaa onko tiedosto liian pieni
                         //} else if (file < 2048) {
