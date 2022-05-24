@@ -133,13 +133,24 @@ namespace Ajanvarausprojekti.Controllers
                 Varaukset varauspoisto = db.Varaukset.Find(varausID);
                 db.Varaukset.Remove(varauspoisto);
                 db.SaveChanges();
+                //ONNISTUNUT MODAALI
+                //Annetaan tieto varauksen poiston onnistumisesta TempDatalle modaali-ikkunaa varten
+                TempData["Successi"] = "Varauksen poisto onnistui!";
+                //TempData["BodyText1"] = "";
+                //TempData["BodyText2"] = "";
                 return RedirectToAction("Index", "Home");
            
             //return RedirectToAction("DeleteConfirmed", "Varaus", varausID); //Tässä määritellään mihin onnistunut toiminto johtaa
             }
             else
             {
-                return View("Error");
+                //EionnistunutModaali
+                //Annetaan tieto, että jokin meni pieleen TempDatalle modaali-ikkunaa varten
+                TempData["Errori"] = "Varauksen poisto epäonnistui.";
+                TempData["BodyText1"] = "Tarkistathan varauskoodisi.";
+
+                return RedirectToAction("Index", "Home");
+               
             }
 
         }
@@ -297,7 +308,7 @@ namespace Ajanvarausprojekti.Controllers
                  //ONNISTUNUT MODAALI
                 //Annetaan tieto varauksen onnistumisesta TempDatalle modaali-ikkunaa varten
                 TempData["Successi"] = "Varaus onnistui!";
-                TempData["BodyText1"] = "Saat pian antamaasi sähköpostiosoitteeseen varausvahvistuksen.";
+                TempData["BodyText1"] = "Saat pian antamaasi sähköpostiosoitteeseen varausvahvistuksen, jos annoit sähköpostiosoitteesi..";
                 TempData["BodyText2"] = "Voit tarvittaessa perua varauksen sähköpostissa olevalla peruutuskoodilla.";
                 //jos ope tallennus onnistuu lähettää userin tähän
                   
