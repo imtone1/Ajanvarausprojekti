@@ -14,7 +14,7 @@
                 var url = "/Palaute/_Details/?id=" + palaute_id;
                 console.log(url);
 
-                $("#lueLisaa").append(" <b>Avataan palautteen " + palaute_id + "tietoja...</b>");
+                $("#lueLisaa").append(" <b>Avataan palautteen " + palaute_id + " tietoja...</b>");
 
                 var $detailDivDetails = $("#lueLisaa");
                 $.get(url, function (data) {
@@ -29,7 +29,7 @@
 
 <section class="container mb-5 mt-3">
     <div class="d-flex justify-content-start">
-        <h2 class="mt-2 fw-bold">Lue kaikki</h2>
+        <h1 class="mt-2 fw-bold">Lue kaikki</h1>
         <div id="lueLisaa" class="text-info"></div>
     </div>
     <div class="table-responsive">
@@ -64,11 +64,11 @@
                             @Html.DisplayFor(modelItem => item.palautetyyppi)
                         </td>
                         <td>
-                            <button class="getPalauteID btn btn-primary ms-1" data-palauteid="@item.palaute_id" data-bs-target="#ModallueLisaa">Lue lisää</button>
+                            <button class="getPalauteID btn btn-primary ms-1" role="button" aria-pressed="false" data-palauteid="@item.palaute_id">Lue lisää</button>
                         </td>
 
                         <td>
-                            <button class="btn btn-primary text-decoration-none"> @Html.ActionLink("Poista", "_Delete", new { id = item.palaute_id })</button>
+                            <button class="btn btn-primary text-decoration-none" role="button" aria-pressed="false"> @Html.ActionLink("Poista", "_Delete", new { id = item.palaute_id })</button>
                         </td>
                     </tr>
                 }
@@ -78,7 +78,7 @@
         <div class="d-flex justify-content-start">
             @using (Html.BeginForm("OpettajienSivu", "Home", FormMethod.Get))
             {
-                <button class="btn btn-primary ms-0 text-decoration-none">
+                <button class="btn btn-primary ms-0 text-decoration-none" role="button" aria-pressed="false">
                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-chevron-left me-1" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
                     </svg>
