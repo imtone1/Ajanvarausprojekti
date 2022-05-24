@@ -15,6 +15,15 @@
     margin-right: 0;
 }
 
+a {
+    text-decoration: none;
+    color: var(--black-color);
+}
+
+a:hover {
+    color: var(--black-color);
+}
+
 .btn-primary {
     padding-top: .7em!important;
     padding-bottom: .7em!important;

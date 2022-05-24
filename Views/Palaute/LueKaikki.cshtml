@@ -4,44 +4,86 @@
     ViewBag.Title = "LueKaikki";
 }
 
-<h2>Lue Kaikki</h2>
+@section scripts {
+    <script>
+        //_Details modaalin kutsu
+        $(function () {
+            $(".getPalauteID").click(function () {
+                let palaute_id = $(this).data("palauteid");
+                console.log("Klikkasit palautetta: " + palaute_id);
+                var url = "/Palaute/_Details/?id=" + palaute_id;
+                console.log(url);
 
-<table class="table">
-    <tr>
-        <th>
-            Palaute
-        </th>
-        <th>
-            Päivämäärä
-        </th>
-        <th>
-            Aihe
-        </th>
-        <th></th>
-    </tr>
+                $("#lueLisaa").append(" <b>Avataan palautteen " + palaute_id + "tietoja...</b>");
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.palaute)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.palaute_pvm)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.palautetyyppi)
-            </td>
-            <td>
-                <button class="btn btn-primary ms-3"> @Html.ActionLink("poista", "_Delete", new { id = item.palaute_id })</button>
-            </td>
-        </tr>
-    }
+                var $detailDivDetails = $("#lueLisaa");
+                $.get(url, function (data) {
+                    $detailDivDetails.replaceWith(data);
+                    $("#ModallueLisaa").modal("show");
+                });
+            });
+        });
+    </script>
+}
 
-</table>
-<li>
-    @using (Html.BeginForm("OpettajienSivu", "Home", FormMethod.Get))
-    {
-        <button class="btn btn-primary ms-3">Takaisin</button>
-    }
-</li>
+
+<section class="container mb-5 mt-3">
+        <h2 class="mt-2 fw-bold">Lue kaikki</h2>
+        <p id="lueLisaa" class="text-info"></p>
+    <div class="table-responsive">
+        <table class="table table-hover align-middle">
+            <caption>Lue kaikki palautteet</caption>
+            <thead class="table-dark bg-black">
+                <tr>
+                    <th scope="col">
+                        Palaute
+                    </th>
+                    <th scope="col">
+                        Päivämäärä
+                    </th>
+                    <th scope="col">
+                        Aihe
+                    </th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Reverse())
+                {
+                    <tr>
+                        <td scope="row" class="td-truncate">
+                            @Html.DisplayFor(modelItem => item.palaute)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.palaute_pvm)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.palautetyyppi)
+                        </td>
+                        <td>
+                            <button class="getPalauteID btn btn-primary ms-1" data-palauteid="@item.palaute_id" data-bs-target="#ModallueLisaa">Lue lisää</button>
+                        </td>
+
+                        <td>
+                            <button class="btn btn-primary text-decoration-none"> @Html.ActionLink("Poista", "_Delete", new { id = item.palaute_id })</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+        <div class="d-flex justify-content-start">
+            @using (Html.BeginForm("OpettajienSivu", "Home", FormMethod.Get))
+            {
+                <button class="btn btn-primary ms-0 text-decoration-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-chevron-left me-1" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+                    </svg>
+                    Takaisin
+                </button>
+            }
+        </div>
+    </div>
+</section>
+@{Html.RenderAction("_Details", "Palaute");}
