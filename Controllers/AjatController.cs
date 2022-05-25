@@ -55,59 +55,68 @@ namespace Ajanvarausprojekti.Controllers
                     var startDate = Request["startDate"];
                     //Opettajan valitsema kellonaika on muuttujassa startTime
                     var startTime = Request["startTime"];
-                    //Yhdistetään nen samaan muuttujaan
-                    var valittuAika = startDate + " " + startTime;
+                    //Yhdistetään nen samaan string-muuttujaan
+                    var strAika = startDate + " " + startTime;
                     //Convertoidaan tietokantaan sopivaksi
-                    ajat.alku_aika = Convert.ToDateTime(valittuAika);
+                    ajat.alku_aika = Convert.ToDateTime(strAika);
 
                     //Varauksen tehnyt opettaja tallennetaan tietokantaan Session["OpettajaID"]:n avulla
                     ajat.opettaja_id = (int)Session["OpettajaID"];
 
+                    //Sijoitetaan opettajan antamat arvot apumuuttujiin LINQ-kyselyä varten
+                    var valittuAika = Convert.ToDateTime(strAika);
+                    var opeID = (int)Session["OpettajaID"];
 
+                    //Haetaan tietokannasta opettajan kaikki samana päivänä vapaana olevat ajat
+                    var alkuajatLista = db.Ajat.Where(a => a.opettaja_id == opeID && a.alku_aika.Day == valittuAika.Day && a.alku_aika.Month == valittuAika.Month)
+                                          .Select(a => a.alku_aika);
 
+                    //Haetaan tietokannasta kaikki samana päivänä vapaana olevien aikojen kestot
+                    var kestoListaLinq = db.Ajat.Where(a => a.opettaja_id == opeID && a.alku_aika.Day == valittuAika.Day && a.alku_aika.Month == valittuAika.Month)
+                                       .Select(a => a.kesto_id);
+                    //sijoitetaan linq-kyselyllä haetut kestot listaan
+                    var kestoLista = kestoListaLinq.ToList();
 
-                    //Tarkistetaan, onko opettajalla jo olemassa kyseinen aika.
-                    //Ensin haetaan ajat tietokannasta.
-                    var alkuaika = (from a in db.Ajat
-                                       where a.opettaja_id == (int)Session["OpettajaID"] && a.alku_aika >= Convert.ToDateTime(valittuAika)
-                                       select a.alku_aika).Take(1).SingleOrDefault();
-
-                    //Sitten lisätään niihin kesto.
-                    var kesto = (from a in db.Ajat
-                                 where a.opettaja_id == (int)Session["OpettajaID"] && a.alku_aika >= Convert.ToDateTime(valittuAika)
-                                 select a.kesto_id).Take(1).SingleOrDefault();
-
-                    //Luodaan muuttuja aika, joka sisältää alkamisajan ja keston.
-                    DateTime aika = alkuaika.AddDays(kesto);
-
-                    if (aika != null)
+                    foreach (var alkuaika in alkuajatLista)
                     {
-                        //Annetaan tieto epäonnistuneesta ohjausajan lisäyksestä TempDatalle modaali-ikkunaa varten
-                        TempData["Errori"] = "Tälle ajankohdalle on jo lisätty ohjausaika.";
-                        TempData["BodyText1"] = "Valitse uusi aika.";
-                        return RedirectToAction("LisaaAika", "Ajat");
+                        //annetaan muuttujalle kesto listalla olevan ensimmäisen ohjausajan kesto
+                        var kesto = kestoLista[0];
+
+                        //Luodaan muuttuja lopetusAika, joka lasketaan keston perusteella
+                        DateTime lopetusAika = alkuaika.AddMinutes(kesto);
+
+                        //Vertaillaan datetimeja Comparen avulla
+                        //Ensin vertaillaan valittua aikaa ja alkuaikaa
+                        int vertailu1 = DateTime.Compare(valittuAika, alkuaika);
+                        //Sitten vertaillaan valittua aikaa ja lopetuaikaa
+                        int vertailu2 = DateTime.Compare(valittuAika, lopetusAika);
+                        //Comparen palauttama arvo riippuu siitä, onko t1 aiemmin<0, sama=0, myöhemmin>0 kuin t2
+
+                        //tarkastetaan vertailujen palauttamat arvot
+                        if (vertailu1 >= 0 && vertailu2 < 0)
+                        {
+                            //Jos mennään tähän lohkoon, Kyseiselle ajankohdalle on jo laitettu ohjausaika.
+
+                            //Annetaan tieto epäonnistuneesta lisäyksestä TempDatalle modaali-ikkunaa varten
+                            TempData["Errori"] = "Tälle ajalle on jo ohjausaika!";
+                            TempData["BodyText1"] = "Ohjausajan lisäystä ei voi tehdä. Valitse uusi aika.";
+                            return RedirectToAction("LisaaAika", "Ajat");
+                        }
+                        //Ennen kuin siirrytään silmukassa tarkastelemaan seuraavaa aikaa,
+                        //poistetaan aikojen kestolistalta listan ensimmäinen int
+                        kestoLista.RemoveAt(0);
+
                     }
+                    //Jos tullaan ulos silmukasta, ohjausajan lisäyksen voi tehdä
+                    db.Ajat.Add(ajat);
+                    db.SaveChanges();
 
-                    else
-                    {
-
-                        db.Ajat.Add(ajat);
-                        db.SaveChanges();
-
-                        //Annetaan tieto onnistuneesta ohjausajan lisäyksestä TempDatalle modaali-ikkunaa varten
-                        TempData["Successi"] = "Ohjausajan lisäys onnistui!";
-                        return RedirectToAction("LisaaAika", "Ajat");
-
-                    }
-
-
-
+                    //Annetaan tieto onnistuneesta ohjausajan lisäyksestä TempDatalle modaali-ikkunaa varten
+                    TempData["Successi"] = "Ohjausajan lisäys onnistui!";
+                    return RedirectToAction("LisaaAika", "Ajat");
 
                 }
 
-                //ViewBag.kesto_id = new SelectList(db.Kestot, "kesto_id", "kesto_id", ajat.kesto_id);
-                //ViewBag.opettaja_id = new SelectList(db.Opettajat, "opettaja_id", "sahkoposti", ajat.opettaja_id);
-                //return View(ajat);
 
                 //Annetaan tieto epäonnistuneesta ohjausajan lisäyksestä TempDatalle modaali-ikkunaa varten
                 TempData["Errori"] = "Hups! Jokin meni nyt pieleen!";
