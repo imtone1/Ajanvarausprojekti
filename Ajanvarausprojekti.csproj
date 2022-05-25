@@ -409,7 +409,6 @@
     <Content Include="Views\Palaute\_Details.cshtml" />
     <Content Include="Views\Palaute\_Delete.cshtml" />
     <Content Include="Views\Palaute\_Create.cshtml" />
-    <Content Include="Views\Ajat\LisaaAika.cshtml" />
     <Content Include="Views\Ajat\_ModalEdit.cshtml" />
     <Content Include="Views\Ajat\_ModalDelete.cshtml" />
     <Content Include="Views\Ajat\_LisaaAika.cshtml" />
