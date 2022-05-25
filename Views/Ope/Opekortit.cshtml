@@ -24,7 +24,7 @@
                 <div class="col">
                         <div class="card bg-black text-white d-flex justify-content-center text-center pt-3 h-100">
                             @*<img src="@item.kuva" class="round-img" />*@
-                            <img src="@Html.DisplayFor(modelItem => item.kuva)" class="round-img" />
+                            <img src="@Html.DisplayFor(modelItem => item.kuva)" class="round-img" alt="opettajan kuva" />
                             <div class="card-body">
                                 @*<h5 class="card-title fw-light placeholder-glow">@item.etunimi @item.sukunimi</h5>*@
                                 <h5 class="card-title lead placeholder-glow text-break">@Html.DisplayFor(modelItem => item.etunimi) @Html.DisplayFor(modlelItem => item.sukunimi)</h5>
