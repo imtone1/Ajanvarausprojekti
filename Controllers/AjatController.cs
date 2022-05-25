@@ -100,7 +100,10 @@ namespace Ajanvarausprojekti.Controllers
                             //Annetaan tieto epäonnistuneesta lisäyksestä TempDatalle modaali-ikkunaa varten
                             TempData["Errori"] = "Tälle ajalle on jo ohjausaika!";
                             TempData["BodyText1"] = "Ohjausajan lisäystä ei voi tehdä. Valitse uusi aika.";
-                            return RedirectToAction("OpettajienSivu", "Home");
+                            //return RedirectToAction("OpettajienSivu", "Home");
+
+                            //Tämä ohjaus oikeaan kohtaan (eli uuden ajan lisäykseen) toimisi, mutta errormodaali ehtii tulla väliin 
+                            //return new RedirectResult(Url.Action("OpettajienSivu", "Home") + "#LisaaAika");
                         }
                         //Ennen kuin siirrytään silmukassa tarkastelemaan seuraavaa aikaa,
                         //poistetaan aikojen kestolistalta listan ensimmäinen int
