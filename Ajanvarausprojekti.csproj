@@ -412,6 +412,7 @@
     <Content Include="Views\Ajat\LisaaAika.cshtml" />
     <Content Include="Views\Ajat\_ModalEdit.cshtml" />
     <Content Include="Views\Ajat\_ModalDelete.cshtml" />
+    <Content Include="Views\Ajat\_LisaaAika.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
