@@ -22,15 +22,15 @@
             @foreach (var item in Model)
             {
                 <div class="col">
-                    <div class="card bg-black text-white d-flex justify-content-center text-center pt-3">
-                        @*<img src="@item.kuva" class="round-img" />*@
-                        <img src="@Html.DisplayFor(modelItem => item.kuva)" class="round-img" />
-                        <div class="card-body">
-                            @*<h5 class="card-title fw-light placeholder-glow">@item.etunimi @item.sukunimi</h5>*@
-                            <h5 class="card-title fw-light placeholder-glow">@Html.DisplayFor(modelItem => item.etunimi) @Html.DisplayFor(modlelItem => item.sukunimi)</h5>
-                            <a href="@Url.Action("AikaListaus", "VarausController", new { valittuOpeId = @item.opettaja_id })" class="btn btn-primary placeholder-glow mt-2" data-bs-toggle="collapse" data-bs-target="#OpettajanAjat" aria-expanded="false" aria-controls="collapseExample">Varaa aika</a>
+                        <div class="card bg-black text-white d-flex justify-content-center text-center pt-3 h-100">
+                            @*<img src="@item.kuva" class="round-img" />*@
+                            <img src="@Html.DisplayFor(modelItem => item.kuva)" class="round-img" />
+                            <div class="card-body">
+                                @*<h5 class="card-title fw-light placeholder-glow">@item.etunimi @item.sukunimi</h5>*@
+                                <h5 class="card-title lead placeholder-glow text-break">@Html.DisplayFor(modelItem => item.etunimi) @Html.DisplayFor(modlelItem => item.sukunimi)</h5>
+                                <a href="@Url.Action("AikaListaus", "VarausController", new { valittuOpeId = @item.opettaja_id })" class="btn btn-primary placeholder-glow mt-2" data-bs-toggle="collapse" data-bs-target="#OpettajanAjat" aria-expanded="false" aria-controls="collapseExample">Varaa aika</a>
+                            </div>
                         </div>
-                    </div>
                 </div>
             }
 
