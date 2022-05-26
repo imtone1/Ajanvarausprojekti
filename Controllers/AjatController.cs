@@ -22,23 +22,17 @@ namespace Ajanvarausprojekti.Controllers
             return View();
         }
 
-        // GET: Ajat
-        public async Task<ActionResult> _Ajat()
-        {
-            var ajat = db.Ajat.Include(a => a.Kestot).Include(a => a.Opettajat);
-            return View(await ajat.ToListAsync());
-        }
-
 
         // GET: Ajat : Helin versio
-        public ActionResult _VapaatAjat(int? KlikattuId)
+        public ActionResult _VapaatAjat()
         {
             // LIstataan kaikki kyseisen opettajan ajat
 
+            var opeID = (int)Session["OpettajaID"];
             var ajatLista = (from a in db.Ajat
                              join o in db.Opettajat on a.opettaja_id equals o.opettaja_id
                              join k in db.Kestot on a.kesto_id equals k.kesto_id
-                             where o.opettaja_id == KlikattuId
+                             where o.opettaja_id == opeID
 
                              select new ajatListaData
                              {
@@ -57,7 +51,7 @@ namespace Ajanvarausprojekti.Controllers
                            join o in db.Opettajat on a.opettaja_id equals o.opettaja_id
                            join k in db.Kestot on a.kesto_id equals k.kesto_id
                            join v in db.Varaukset on a.aika_id equals v.aika_id
-                           where o.opettaja_id == KlikattuId
+                           where o.opettaja_id == opeID
                            where a.aika_id == v.aika_id
 
                            select new ajatListaData
