@@ -23,13 +23,15 @@ namespace Ajanvarausprojekti
             //4.5.2022: Vaihdoin bootstrap.js -> bootstrap.bundle.js sillä muuten dropdown listit ei toimi
             bundles.Add(new Bundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.bundle.js"));
-            
+
+            //allaoleva kohta lisätty 22.5.
+            bundles.Add(new ScriptBundle("~/bundles/popper").Include(
+            "~/Scripts/umd/popper.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/Site.css"));
 
-    
 
         }
     }
