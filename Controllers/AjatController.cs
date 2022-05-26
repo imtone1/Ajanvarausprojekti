@@ -203,7 +203,7 @@ namespace Ajanvarausprojekti.Controllers
                                        kesto_id = a.kesto_id,
                                        opettaja_id = (int)o.opettaja_id,
                                    };
-                return View("_OhjausALista", ohjausALista);
+                return PartialView("_OhjausALista", ohjausALista);
             }
         }
 
