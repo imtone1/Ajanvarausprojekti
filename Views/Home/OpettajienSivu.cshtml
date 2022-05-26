@@ -491,41 +491,11 @@
 </section>
 <!-- -------------------------------VARATTAVISSA OLEVAT OHJAUSAJAT (SIMPPELIMPI) LOPPUU TÄHÄN---------------------------------------------- -->
 <!-- -------------------------------LISÄÄ UUSI AIKA VARATTAVAKSI ALKAA TÄSTÄ--------------------------------------------------------------- -->
-<section class="container">
-    <div class="row">
-        <div class="col-md-12 col-lg-6">
-            <div class="bg-UusiAika custom-bg-mobile">
 
-            </div>
-        </div>
-        <div class="col-md-12 col-lg-6 d-flex justify-content-center mt-5">
-            <div class="form-group">
-                <h2>Lisää uusi aika varattavaksi</h2>
-                <div class="input-group d-flex flex-column justify-content-center">
-                    <div class="mb-4">
-                        <label for="startDate">Päivämäärä</label>
-                        <input id="startDate" class="form-control" type="date" />
-                    </div>
-                    <div class="mb-4">
-                        <label for="startDate">Kellonaika</label>
-                        <input id="startTime" class="form-control" type="time" />
-                    </div>
-                    <div class="mb-4">
-                        <p class="text-black mb-0">Kesto</p>
-                        <select class="form-select  mb-4" aria-label="Default select example">
-                            <option selected>Valitse kesto...</option>
-                            <option value="1">30 min</option>
-                            <option value="2">45 min</option>
-                            <option value="3">60 min</option>
-                            <option value="3">90 min</option>
-                        </select>
-                        <button href="#" class="btn btn-outline-primary w-100" type="submit">Lähetä</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+<div id="LisaaAika">
+    @Html.Action("_LisaaAika", "Ajat")
+</div>
+
 <!-- -------------------------------------------------LISÄÄ UUSI AIKA VARATTAVAKSI LOPPUU TÄHÄN------------------------------------------ -->
 <!-- -------------------------------------------------UUSIMMAT PALAUTTEET ALKAA TÄSTÄ---------------------------------------------------- -->
 
