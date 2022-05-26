@@ -416,10 +416,10 @@
     <Content Include="Views\Palaute\_Create.cshtml" />
     <Content Include="Views\Varaus\_VarausListModal.cshtml" />
     <Content Include="Views\Ope\Opekortit.cshtml" />
+    <Content Include="Views\Ajat\_LisaaAika.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Ajat\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
