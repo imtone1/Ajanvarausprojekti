@@ -61,12 +61,19 @@ namespace Ajanvarausprojekti.Controllers
              
             }
             else
-            {
-                ViewBag.LoginMessage = "Login unsuccessfull";
-                ViewBag.LoggedStatus = "Out";
-                ViewBag.LoginError = 1;
-                LoginModel.LoginErrorMessage = "Tuntematon käyttäjätunnus tai salasana.";
-                return View("Login", LoginModel);
+            {  
+                //ViewBag.LoginMessage = "Login unsuccessfull";
+                //ViewBag.LoggedStatus = "Out";
+                //ViewBag.LoginError = 1;
+                //LoginModel.LoginErrorMessage = "Tuntematon käyttäjätunnus tai salasana.";
+                //EionnistunutModaali
+                //Annetaan tieto, että jokin meni pieleen TempDatalle modaali-ikkunaa varten
+                TempData["Errori"] = "Kirjautuminen epäonnistui!";
+                TempData["BodyText1"] = "Tarkista käyttäjätunnus ja salasana.";
+
+                return RedirectToAction("Index", "Home");
+              
+                //return View("Login", LoginModel);
             }
         }
 
