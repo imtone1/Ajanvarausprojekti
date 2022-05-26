@@ -96,11 +96,11 @@
         $(function () {
             $(".getModalEdit").click(function () {
                 let ajat_id = $(this).data("ajatid");
-                console.log("Klikkasit tilausnumeroa: " + ajat_id);
+                console.log("Klikkasit aikaa: " + ajat_id);
                 var url = "/Ajat/_ModalEdit/?id=" + ajat_id;
                 console.log(url);
 
-                $("#orderEdit").append(" <b>Avataan tilauksen " + ajat_id + " muokkausikkuna...</b>");
+                $("#ajatEdit").append(" <b>Avataan tilauksen " + ajat_id + " muokkausikkuna...</b>");
 /*                tälle pitää muistaa laittaa divi*/
                 var $detailDivEdit = $("#ajatEdit");
                 $.get(url, function (data) {

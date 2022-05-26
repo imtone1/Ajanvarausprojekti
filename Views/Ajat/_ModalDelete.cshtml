@@ -61,7 +61,7 @@
 
                                 </dl>
 
-                               
+
                             </div>
                             <div class="modal-footer">
                                 @using (Html.BeginForm())
@@ -90,3 +90,24 @@
         </div>
     </div>
 </div>
+
+@*scripti siirretään opettajiensivulle kun valmis*@
+@section scripts {
+    <script type="text/javascript">
+        $(function () {
+            $(".delAjatid").click(function () {
+                let ajat_id = $(this).data("ajatid");
+                console.log("Klikkasit poistettavaa aikaa: " + ajat_id);
+                var url = "/Ajat/_ModalDelete/?id=" + ajat_id;
+                console.log(url);
+
+                $("#ajatDelete").append(" <b>Avataan tilauksen " + ajat_id + " poistoikkuna...</b>");
+/*                tälle pitää muistaa laittaa divi*/
+                var $detailDivDelete = $("#ajatDelete");
+                $.get(url, function (data) {
+                    $detailDivEdit.replaceWith(data);
+                    $('#ModalDelete').modal('show');
+                });
+            });
+        });
+    </script>

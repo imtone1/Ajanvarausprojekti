@@ -6,6 +6,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Ajanvarausprojekti.Models;
+using Ajanvarausprojekti.ViewModels;
 
 namespace Ajanvarausprojekti.Controllers
 {
@@ -177,6 +178,33 @@ namespace Ajanvarausprojekti.Controllers
             db.Ajat.Remove(ajat);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult _OhjausALista()
+        {
+            if (Session["UserName"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                //Sessiosta otetaan kirjautuneen opettajan id
+                var opeid = Session["OpettajaID"];
+                int opeOikID = int.Parse(opeid.ToString());
+                //Näkyy kirjautuneen opettajan palautteet
+                var ohjausALista = from a in db.Ajat
+                                   join o in db.Opettajat on a.aika_id equals o.opettaja_id
+                                   where o.opettaja_id == opeOikID
+
+                                   select new ohjausAListaData
+                                   {
+                                       aika_id = (int)a.aika_id,
+                                       alku_aika = (DateTime)a.alku_aika,
+                                       kesto_id = a.kesto_id,
+                                       opettaja_id = (int)o.opettaja_id,
+                                   };
+                return View("_OhjausALista", ohjausALista);
+            }
         }
 
 

@@ -40,5 +40,7 @@ namespace Ajanvarausprojekti.Models
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Poistarivit");
         }
+
+        public System.Data.Entity.DbSet<Ajanvarausprojekti.ViewModels.ohjausAListaData> ohjausAListaDatas { get; set; }
     }
 }
