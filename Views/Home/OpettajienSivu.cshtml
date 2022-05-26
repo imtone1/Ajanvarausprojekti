@@ -115,13 +115,13 @@
 
         <div class="col-lg-5 bg-opesivu px-0 mt-lg-0 animation-move-down">
             <div class="card mx-md-5 border-0 bg-transparent">
-                <div class="row">
-                    <div class="col-sm-7 col-6">
+                <div class="d-flex">
+                    <div class="col-6">
                         <div class="card-body d-sm-inline-flex mt-4">
-                            <h4 class="card-title fw-bold"><span class="tervehdys"></span> @Session["Opettaja"]</h4>
+                            <h4 class="card-title fw-bold"><span class="tervehdys"></span> @Session["Opettaja"]!</h4>
                         </div>
                     </div>
-                    <div class="col-sm-5 col-6 d-sm-inline-flex d-flex justify-content-end mt-md-4">
+                    <div class="col-6 d-sm-inline-flex d-flex justify-content-end mt-4 pe-4">
                         <div class="round-img-ope"></div>
                     </div>
                 </div>
@@ -129,12 +129,13 @@
                     <a href="#LisaaAika" class="btn btn-primary ms-3">Lisää ohjausaikoja</a><!-- Button hypähtää klikatessa tällä hetkellä haastavampaan Varattavissa olevat ohjausajat kohtaan. -->
 
                     <a href="#TarkastelePalaute" class="btn btn-primary ms-3 mt-3">Tarkastele palautteita</a><!-- Button hypähtää klikatessa Uusimmat palautteet kohtaan -->
-
-                    @{ if (Session["Admin"] != null)
-                        {
-                            <a href="/SuperUser/LisaaOpettaja" class="btn btn-primary ms-3 mt-3">Lisää uusi opettaja</a><!-- Button hypähtää klikatessa uuden opettajan lisäykseen -->
-                        }
-                    }
+                    @*
+                                @{ if (Session["Admin"] != null)
+            {
+                <a href="/SuperUser/LisaaOpettaja" class="btn btn-primary ms-3 mt-3">Lisää uusi opettaja</a><!-- Button hypähtää klikatessa uuden opettajan lisäykseen -->
+            }
+        }
+                    *@
                 </div>
             </div>
 
