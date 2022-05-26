@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Ajanvarausprojekti.Models;
@@ -21,6 +22,12 @@ namespace Ajanvarausprojekti.Controllers
             return View();
         }
 
+        // GET: Ajats
+        public async Task<ActionResult> _Ajat()
+        {
+            var ajat = db.Ajat.Include(a => a.Kestot).Include(a => a.Opettajat);
+            return View(await ajat.ToListAsync());
+        }
 
         // GET: Ohjausaika/Create
         public ActionResult _LisaaAika()

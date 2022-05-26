@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Ajanvarausprojekti.Models.Ajat>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.alku_aika)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.aihe)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.paikka)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Kestot.kesto_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Opettajat.sahkoposti)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.alku_aika)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.aihe)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.paikka)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Kestot.kesto_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Opettajat.sahkoposti)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.aika_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.aika_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.aika_id })
+        </td>
+    </tr>
+}
+
+</table>
