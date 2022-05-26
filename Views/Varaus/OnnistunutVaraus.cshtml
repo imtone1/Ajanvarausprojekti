@@ -1,0 +1,70 @@
+﻿@model Ajanvarausprojekti.Models.Varaukset
+
+@{
+    ViewBag.Title = "Onnistunut varaus";
+}
+
+<h2>Varauksen teko onnistui</h2>
+
+<div>
+    <h4>Varaustietosi</h4>
+    <hr />
+    <h5>Saat pian antamaasi sähköpostiosoitteeseen myös tämän varausvahvistuksen. <br />Jos et ole antanut sähköpostiosoitetta laitathan seuraavat tiedot talteen.</h5>
+    <dl class="dl-horizontal">
+
+
+        <dt>
+            Varattu aikasi
+        </dt>
+
+        <dd>
+            @*@Html.DisplayFor(model => model.Ajat.alku_aika)*@
+            @TempData["aika"]
+
+        </dd>
+        <dt>
+            Tapaamisen kesto
+        </dt>
+
+        <dd>
+            @*@Html.DisplayFor(model => model.Ajat.kesto_id)*@
+            @TempData["kesto"]
+        </dd>
+        <dt>
+            Ilmoittamasi varaaja
+        </dt>
+
+        <dd>
+            @TempData["varaaja"]@*@Html.DisplayFor(model => model.varaaja_sahkoposti)*@
+        </dd>
+
+        <dt>
+            Voit tarvittaessa perua varauksen alla olevalla peruutuskoodilla. Jos olet antanut toimivan sähköpostiosoitteen, saat pian antamaasi sähköpostiosoitteeseen myös tämän varausvahvistuksen.
+        </dt>
+
+        <dd>
+            @TempData["varausnro"]@*@Html.DisplayFor(model => model.id_hash)*@
+        </dd>
+
+        <dt>
+            Ilmoittamasi aihe
+        </dt>
+
+        <dd>
+            @TempData["aihe"] @*@Html.DisplayFor(model => model.aihe)*@
+        </dd>
+
+        <dt>
+            Teams-linkki tapaamiseen
+        </dt>
+
+        <dd>
+            <a href="@TempData["paikka"]">Suora linkki Teams-kokoukseen</a>
+            <p>@TempData["paikka"]</p>
+        </dd>
+
+    </dl>@*@Html.DisplayFor(model => model.Ajat.paikka)*@
+</div>
+<p>
+    <a href="/Home/Index">Takaisin etusivulle</a>
+</p>

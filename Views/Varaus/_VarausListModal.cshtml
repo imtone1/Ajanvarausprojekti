@@ -23,7 +23,7 @@
 
                         <div class="modal-body mt-3">
                             <div>
-                                <h4>Varaus @Html.DisplayFor(model => model.Ajat.alku_aika) </h4>
+                                <h4>Varaus @Html.DisplayFor(model => model.Ajat.alku_aika) <a href="@Html.DisplayFor(model => model.Ajat.paikka)" class="btn btn-primary ms-3 mt-3">Linkki Teams-kokoukseen</a></h4>
                                 <dl class="dl-horizontal">
 
                                     <dt>
@@ -61,8 +61,8 @@
                                         Paikka/Paikkalinkki
                                     </dt>
 
-                                    <dd>
-                                        @Html.DisplayFor(model => model.Ajat.paikka)
+                                    <dd><a href="@Html.DisplayFor(model => model.Ajat.paikka)" class="btn btn-primary ms-3 mt-3">Linkki Teams-kokoukseen</a>
+                                     
                                     </dd>
                                     <dt>
                                         Varattu pvm
