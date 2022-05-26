@@ -284,12 +284,18 @@ namespace Ajanvarausprojekti.Controllers
                                 WebMail.Send(to: varaus.Varaaja,
                                             subject: "Varausvahvistus: Ohjausaika TiVi-opettajalle",
                                             body: "<b><p>Hei!</p></b><br>" +
-                                            "Olet tehnyt ohjausajanvarauksen opettajalle Tivi-ohjaus-sovelluksen kautta." +
+                                            "Olet tehnyt ohjausajanvarauksen opettajalle Tivi-ohjaus-sovelluksen kautta." + "<p>Varauksen aika " + varausAika.alku_aika + "</p><br>Tapaamisen kesto " + varausAika.kesto_id + " minuuttia. </p><br>" + "</p><br>Teams linkki: " + varausAika.paikka + " </p><br>" +
                                             "<p>Jos haluat perua ajan, voit tehdä sen peruutuskoodin avulla Tivi-ohjaus-sovelluksen kautta.<p><br><p>Peruutuskoodisi:  " + varauksesi.id_hash + "</p><br>Terveisin, <br> Tivi-ohjaus</p><br>" +
                                             "Tähän viestiin ei voi vastata.", isBodyHtml: true
                                         );
                                 ViewBag.Status = "Sähköposti lähetetty. Tarkista sähköpostisi, myös roskapostiviesteistä.";
-
+                                @TempData["varausnro"] = varauksesi.id_hash;
+                                @TempData["varaaja"] = varaus.Varaaja;
+                                @TempData["aihe"] = varaus.Aihe;
+                                @TempData["paikka"] = varauksesi.Ajat.paikka;
+                                @TempData["aika"] = varausAika.alku_aika;
+                                @TempData["kesto"] = varausAika.kesto_id;
+                                //return RedirectToAction("OnnistunutVaraus");
 
                             }
                             catch (Exception)
@@ -307,14 +313,14 @@ namespace Ajanvarausprojekti.Controllers
                     }
                  //ONNISTUNUT MODAALI
                 //Annetaan tieto varauksen onnistumisesta TempDatalle modaali-ikkunaa varten
-                TempData["Successi"] = "Varaus onnistui!";
-                TempData["BodyText1"] = "Saat pian antamaasi sähköpostiosoitteeseen varausvahvistuksen, jos annoit sähköpostiosoitteesi..";
-                TempData["BodyText2"] = "Voit tarvittaessa perua varauksen sähköpostissa olevalla peruutuskoodilla.";
-                //jos ope tallennus onnistuu lähettää userin tähän
-                  
+                //TempData["Successi"] = "Varaus onnistui!";
+                //TempData["BodyText1"] = "Saat pian antamaasi sähköpostiosoitteeseen varausvahvistuksen, jos annoit sähköpostiosoitteesi..";
+                //TempData["BodyText2"] = "Voit tarvittaessa perua varauksen sähköpostissa olevalla peruutuskoodilla.";
+                //    //jos ope tallennus onnistuu lähettää userin tähän
+
                     //jos ope tallennus onnistuu lähettää userin tähän
-                    return RedirectToAction("Index", "Home");
-                       
+                    return RedirectToAction("OnnistunutVaraus");
+
 
                 }
 
@@ -338,8 +344,12 @@ namespace Ajanvarausprojekti.Controllers
 
         }
 
+        public ActionResult OnnistunutVaraus()
+        {
+            return View();
+        }
 
-       //Irina:yksittäisen varauksen tarkempi kuvaus
+        //Irina:yksittäisen varauksen tarkempi kuvaus
         // GET: Varaukset/Details/5
         public ActionResult _VarausListModal(int? id)
         {
