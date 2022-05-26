@@ -29,6 +29,59 @@ namespace Ajanvarausprojekti.Controllers
             return View(await ajat.ToListAsync());
         }
 
+
+        // GET: Ajat : Helin versio
+        public ActionResult _VapaatAjat(int? KlikattuId)
+        {
+            // LIstataan kaikki kyseisen opettajan ajat
+
+            var ajatLista = (from a in db.Ajat
+                             join o in db.Opettajat on a.opettaja_id equals o.opettaja_id
+                             join k in db.Kestot on a.kesto_id equals k.kesto_id
+                             where o.opettaja_id == KlikattuId
+
+                             select new ajatListaData
+                             {
+                                 Etunimi = o.etunimi,
+                                 Sukunimi = o.sukunimi,
+                                 aika_id = (int)a.aika_id,
+                                 Alkuaika = (DateTime)a.alku_aika,
+                                 Kesto = (int)k.kesto,
+                                 opettaja_id = (int)a.opettaja_id,
+                                 Paikka = a.paikka
+                             }).ToList();
+
+            // Listataan kyseisen opettajan varatut ajat
+
+            var varatut = (from a in db.Ajat
+                           join o in db.Opettajat on a.opettaja_id equals o.opettaja_id
+                           join k in db.Kestot on a.kesto_id equals k.kesto_id
+                           join v in db.Varaukset on a.aika_id equals v.aika_id
+                           where o.opettaja_id == KlikattuId
+                           where a.aika_id == v.aika_id
+
+                           select new ajatListaData
+                           {
+                               Etunimi = o.etunimi,
+                               Sukunimi = o.sukunimi,
+                               aika_id = (int)a.aika_id,
+                               Alkuaika = (DateTime)a.alku_aika,
+                               Kesto = (int)k.kesto,
+                               opettaja_id = (int)a.opettaja_id,
+                               Paikka = a.paikka
+                           }).ToList();
+
+            // Listataan vapaat ajat poistamalla kaikista ajoista varatut ajat
+
+            var vapaatAjat = (from a in ajatLista
+                              where !varatut.Any(x => x.aika_id == a.aika_id)
+                              select a).ToList();
+
+            return PartialView("_VapaatAjat", vapaatAjat);
+        }
+
+
+
         // GET: Ohjausaika/Create
         public ActionResult _LisaaAika()
         {

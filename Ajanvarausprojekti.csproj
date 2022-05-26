@@ -415,6 +415,7 @@
     <Content Include="Views\Ajat\_LisaaAika.cshtml" />
     <Content Include="Views\Ajat\_OhjausALista.cshtml" />
     <Content Include="Views\Ajat\_Ajat.cshtml" />
+    <Content Include="Views\Ajat\_VapaatAjat.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
