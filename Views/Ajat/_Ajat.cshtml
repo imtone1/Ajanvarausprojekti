@@ -9,6 +9,15 @@
             @Html.DisplayNameFor(model => model.alku_aika)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.opettaja_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Opettajat.etunimi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Opettajat.sukunimi)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.aihe)
         </th>
         <th>
@@ -24,28 +33,37 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.alku_aika)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.aihe)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.paikka)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Kestot.kesto_id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Opettajat.sahkoposti)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.aika_id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.aika_id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.aika_id })
-        </td>
-    </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.alku_aika)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.opettaja_id)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Opettajat.etunimi)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Opettajat.sukunimi)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.aihe)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.paikka)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Kestot.kesto_id)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Opettajat.sahkoposti)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.aika_id }) |
+        @Html.ActionLink("Details", "Details", new { id = item.aika_id }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.aika_id })
+    </td>
+</tr>
 }
 
 </table>

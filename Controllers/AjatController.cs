@@ -22,7 +22,7 @@ namespace Ajanvarausprojekti.Controllers
             return View();
         }
 
-        // GET: Ajats
+        // GET: Ajat
         public async Task<ActionResult> _Ajat()
         {
             var ajat = db.Ajat.Include(a => a.Kestot).Include(a => a.Opettajat);
