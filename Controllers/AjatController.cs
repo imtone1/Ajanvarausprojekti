@@ -97,17 +97,7 @@ namespace Ajanvarausprojekti.Controllers
                         if (vertailu1 >= 0 && vertailu2 < 0)
                         {
                             //Jos mennään tähän lohkoon, Kyseiselle ajankohdalle on jo laitettu ohjausaika.
-
-                            //Annetaan tieto epäonnistuneesta lisäyksestä TempDatalle modaali-ikkunaa varten
-                            //TempData["Errori"] = "Tälle ajalle on jo ohjausaika!";
-                            //TempData["BodyText1"] = "Ohjausajan lisäystä ei voi tehdä. Valitse uusi aika.";
-                            //return RedirectToAction("OpettajienSivu", "Home");
-
                             TempData["AikaError"] = "Tälle ajankohdalle on jo olemassa ohjausaika, valitse uusi aika.";
-                            
-                            
-
-                            //Tämä ohjaus oikeaan kohtaan (eli uuden ajan lisäykseen) toimisi, mutta errormodaali ehtii tulla väliin 
                             return new RedirectResult(Url.Action("OpettajienSivu", "Home") + "#LisaaAika");
                         }
                         //Ennen kuin siirrytään silmukassa tarkastelemaan seuraavaa aikaa,
@@ -119,30 +109,15 @@ namespace Ajanvarausprojekti.Controllers
                     db.Ajat.Add(ajat);
                     db.SaveChanges();
 
-
                     TempData["AikaSuccess"] = "Uuden ohjausajan lisäys onnistui!";
                     return new RedirectResult(Url.Action("OpettajienSivu", "Home") + "#LisaaAika");
 
-                    //Annetaan tieto onnistuneesta ohjausajan lisäyksestä TempDatalle modaali-ikkunaa varten
-                    //TempData["Successi"] = "Ohjausajan lisäys onnistui!";
-                    //return RedirectToAction("OpettajienSivu", "Home");
-
                 }
-                //Annetaan tieto epäonnistuneesta ohjausajan lisäyksestä TempDatalle modaali-ikkunaa varten
-                //TempData["Errori"] = "Hups! Jokin meni nyt pieleen!";
-                //TempData["BodyText1"] = "Ohjausajan lisäys epäonnistui.";
-                //return RedirectToAction("OpettajienSivu", "Home");
-
                 TempData["AikaError"] = "Jotain meni pieleen, ajan lisäys epäonnistui. Yritä uudelleen.";
                 return new RedirectResult(Url.Action("OpettajienSivu", "Home") + "#LisaaAika");
             }
             catch
             {
-                //Annetaan tieto epäonnistuneesta ohjausajan lisäyksestä TempDatalle modaali-ikkunaa varten
-                //TempData["Errori"] = "Hups! Jokin meni nyt pieleen!";
-                //TempData["BodyText1"] = "Ohjausajan lisäys epäonnistui.";
-                //return RedirectToAction("OpettajienSivu", "Home");
-
                 TempData["AikaError"] = "Jotain meni pieleen, ajan lisäys epäonnistui. Yritä uudelleen.";
                 return new RedirectResult(Url.Action("OpettajienSivu", "Home") + "#LisaaAika");
             }
