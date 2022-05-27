@@ -57,11 +57,12 @@
     <table class="table table-hover">
         <thead class="thead-dark">
             <tr>
-                <th>Opettajan nimi</th>
+                <th>Opettajan nimi (käytössä vain testailuvaiheessa)</th>
                 <th>Päivämäärä</th>
-                <th>Kellonaika</th>
+                <th>Alkuaika</th>
+                <th>Päättymisaika En vielä osaa lasketa tätä</th>
+                <th>Tapaamisen kesto (käytössä vain testailuvaiheessa)</th>
                 <th>Ajan id-numero (käytössä vain testailuvaiheessa)</th>
-                <th>Tapaamisen kesto</th>
                 <th></th>
                 <th></th>
             </tr>
@@ -71,12 +72,11 @@
 
     <tr class="valitseRivi" data-aikaId="@item.aika_id">
         <td>@Html.DisplayFor(modelItem => item.Etunimi) @Html.DisplayFor(modelItem => item.Sukunimi)</td>
-        <td>@Html.DisplayFor(modelItem => item.Alkuaika)</td>
-        <td>@Html.DisplayFor(modelItem => item.Alkuaika)</td>
-        <td>@Html.DisplayFor(modelItem => item.aika_id)</td>
+        <td>@Convert.ToDateTime(item.Alkuaika).ToString("d.M.")</td>
+        <td>@Convert.ToDateTime(item.Alkuaika).ToString("HH.mm")</td>
+        <td>@Convert.ToDateTime(item.Alkuaika).ToString("HH.mm")</td>
         <td>@Html.DisplayFor(modelItem => item.Kesto) minuuttia</td>
-        <td><a href="#" class="btn btn-primary">Valitse aika</a></td>
-
+        <td>@Html.DisplayFor(modelItem => item.aika_id)</td>
         <td><button class="getModalEdit" data-aikaId="@item.aika_id">Muokkaa</button></td>
         <td><button class="delAjatid" data-aikaId="@item.aika_id">Poista</button></td>
     </tr>
