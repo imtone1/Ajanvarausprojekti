@@ -69,6 +69,7 @@ namespace Ajanvarausprojekti.Controllers
 
             var vapaatAjat = (from a in ajatLista
                               where !varatut.Any(x => x.aika_id == a.aika_id)
+                              orderby a.Alkuaika
                               select a).ToList();
 
             return PartialView("_VapaatAjat", vapaatAjat);
