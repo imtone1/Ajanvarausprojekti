@@ -40,6 +40,41 @@
                 });
             });
         });
+/*        Ajat modal edit*/
+        $(function () {
+            $(".getModalEdit").click(function () {
+                let aika_id = $(this).data("aikaId");
+                console.log("Klikkasit aikaa: " + aika_id);
+                var url = "/Ajat/_ModalEdit/?id=" + aika_id;
+                console.log(url);
+
+                $("#ajatEdit").append(" <b>Avataan ajan " + aika_id + " muokkausikkuna...</b>");
+
+                var $detailDivEdit = $("#ajatEdit");
+                $.get(url, function (data) {
+                    $detailDivEdit.replaceWith(data);
+                    $('#ModalEdit').modal('show');
+                });
+            });
+        });
+
+        /*        Ajat modal delete*/
+        $(function () {
+            $(".delAjatid").click(function () {
+                let aika_id = $(this).data("aikaId");
+                console.log("Klikkasit poistettavaa aikaa: " + aika_id);
+                var url = "/Ajat/_ModalDelete/?id=" + aika_id;
+                console.log(url);
+
+                $("#ajatDelete").append(" <b>Avataan ajan " + aika_id + " poistoikkuna...</b>");
+
+                var $detailDivDelete = $("#ajatDelete");
+                $.get(url, function (data) {
+                    $detailDivDelete.replaceWith(data);
+                    $('#ModalDelete').modal('show');
+                });
+            });
+        });
     </script>
 
     @*Onnistunut varaus -modaali*@
@@ -467,7 +502,7 @@
 </section>-->
 <!---------------------------------LISÄTTY oHJAUSAIKOJEN LISTAUS----------------------------------------------------------------->
 
-@{Html.RenderAction("_OhjausALista", "Ajat");}
+@{Html.RenderAction("_VapaatAjat", "Ajat");}
 
 <!---------------------------------VARATTAVISSA OLEVAT OHJAUSAJAT (SIMPPELIMPI) LOPPUU TÄHÄN------------------------------------------------>
 <!---------------------------------LISÄÄ UUSI AIKA VARATTAVAKSI ALKAA TÄSTÄ----------------------------------------------------------------->

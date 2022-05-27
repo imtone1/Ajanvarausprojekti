@@ -11,7 +11,7 @@
         </script>
     }*@
 
-@section Scripts {
+@*@section Scripts {
     <script type="text/javascript">
         $(function () {
             $(".getModalEdit").click(function () {
@@ -20,7 +20,7 @@
                 var url = "/Ajat/_ModalEdit/?id=" + aika_id;
                 console.log(url);
 
-                $("#ajatEdit").append(" <b>Avataan tilauksen " + aikat_id + " muokkausikkuna...</b>");
+                $("#ajatEdit").append(" <b>Avataan ajan " + aikat_id + " muokkausikkuna...</b>");
 
                 var $detailDivEdit = $("#ajatEdit");
                 $.get(url, function (data) {
@@ -37,7 +37,7 @@
                 var url = "/Ajat/_ModalDelete/?id=" + aika_id;
                 console.log(url);
 
-                $("#ajatDelete").append(" <b>Avataan tilauksen " + aika_id + " poistoikkuna...</b>");
+                $("#ajatDelete").append(" <b>Avataan ajan " + aika_id + " poistoikkuna...</b>");
 
                 var $detailDivDelete = $("#ajatDelete");
                 $.get(url, function (data) {
@@ -46,42 +46,52 @@
                 });
             });
         });
-    </script>
-    }
+    </script>*@
+}
 
-    @*Modaalien paikkamerkit edit ja delete, Jquery luo rutiinin avulla modaalit*@
-    <div id="ajatEdit"></div>
-    <div id="ajatDelete"></div>
+<section class="container-fluid bg-black pt-lg-3 pb-5 ">
+    <div class="container pt-5">
+        <div class="col-12 table-responsive-md">
+            <div class="d-flex justify-content-between w-100">
+                <h2 class="text-white pb-5">Varattavissa olevat ajat</h2>
+            </div>
 
+            @*Modaalien paikkamerkit edit ja delete, Jquery luo rutiinin avulla modaalit*@
+            <div id="ajatEdit"></div>
+            <div id="ajatDelete"></div>
+            @*<div id="ajatEdit" class="text-info"></div>*@
 
-    <table class="table table-hover">
-        <thead class="thead-dark">
-            <tr>
-                <th>Opettajan nimi (käytössä vain testailuvaiheessa)</th>
-                <th>Päivämäärä</th>
-                <th>Alkuaika</th>
-                <th>Päättymisaika En vielä osaa lasketa tätä</th>
-                <th>Tapaamisen kesto (käytössä vain testailuvaiheessa)</th>
-                <th>Ajan id-numero (käytössä vain testailuvaiheessa)</th>
-                <th></th>
-                <th></th>
-            </tr>
-        </thead>
-        @foreach (var item in Model)
-        {
+            <table class="table table-dark table-hover caption table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Opettajan nimi (käytössä vain testailuvaiheessa)</th>
+                        <th>Päivämäärä</th>
+                        <th>Alkuaika</th>
+                        <th>Päättymisaika En vielä osaa lasketa tätä</th>
+                        <th>Tapaamisen kesto (käytössä vain testailuvaiheessa)</th>
+                        <th>Ajan id-numero (käytössä vain testailuvaiheessa)</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
 
-    <tr class="valitseRivi" data-aikaId="@item.aika_id">
-        <td>@Html.DisplayFor(modelItem => item.Etunimi) @Html.DisplayFor(modelItem => item.Sukunimi)</td>
-        <td>@Convert.ToDateTime(item.Alkuaika).ToString("d.M.")</td>
-        <td>@Convert.ToDateTime(item.Alkuaika).ToString("HH.mm")</td>
-        <td>@Convert.ToDateTime(item.Alkuaika).ToString("HH.mm")</td>
-        <td>@Html.DisplayFor(modelItem => item.Kesto) minuuttia</td>
-        <td>@Html.DisplayFor(modelItem => item.aika_id)</td>
-        <td><button class="getModalEdit" data-aikaId="@item.aika_id">Muokkaa</button></td>
-        <td><button class="delAjatid" data-aikaId="@item.aika_id">Poista</button></td>
-    </tr>
-        }
+                @foreach (var item in Model)
+                {
 
-    </table>
+                    <tr class="valitseRivi" data-aikaId="@item.aika_id">
+                        <td>@Html.DisplayFor(modelItem => item.Etunimi) @Html.DisplayFor(modelItem => item.Sukunimi)</td>
+                        <td>@Convert.ToDateTime(item.Alkuaika).ToString("d.M.")</td>
+                        <td>@Convert.ToDateTime(item.Alkuaika).ToString("HH.mm")</td>
+                        <td>@Convert.ToDateTime(item.Alkuaika).ToString("HH.mm")</td>
+                        <td>@Html.DisplayFor(modelItem => item.Kesto) minuuttia</td>
+                        <td>@Html.DisplayFor(modelItem => item.aika_id)</td>
+                        <td><button class="getModalEdit btn btn-primary ms-1" data-aikaId="@item.aika_id">Muokkaa</button></td>
+                        <td><button class="delAjatid btn btn-primary ms-1" data-aikaId="@item.aika_id">Poista</button></td>
+                    </tr>
+                }
 
+            </table>
+        </div>
+    </div>
+</section>
 

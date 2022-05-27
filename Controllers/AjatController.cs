@@ -180,12 +180,18 @@ namespace Ajanvarausprojekti.Controllers
         //modal editin metodi
         public ActionResult _ModalEdit(int? id)
         {
-            if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            var model = db.Ajat;
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
             Ajat ajat = db.Ajat.Find(id);
-            if (ajat == null) return HttpNotFound();
-            ViewBag.kesto_id = new SelectList(db.Kestot, "kesto_id", "kesto", selectedValue: "kesto_id");
-            ViewBag.opettaja_id = new SelectList(db.Opettajat, "opettaja_id", "sahkoposti", selectedValue: "opettaja_id");
+            if (ajat == null)
+            { 
+            return HttpNotFound();
+            }
+            ViewBag.aika_id = new SelectList(db.Ajat, "aika_id", "alku_aika", ajat.aika_id);
+            ViewBag.kesto_id = new SelectList(db.Kestot, "aika_id", "kesto", ajat.aika_id);
+
             return PartialView("_ModalEdit", ajat);
         }
         [HttpPost]
@@ -199,6 +205,8 @@ namespace Ajanvarausprojekti.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.aika_id = new SelectList(db.Ajat, "aika_id", "alku_aika", ajat.aika_id);
+            ViewBag.kesto_id = new SelectList(db.Kestot, "aika_id", "kesto", ajat.aika_id);
             return PartialView("_ModalEdit", ajat);
         }
 
