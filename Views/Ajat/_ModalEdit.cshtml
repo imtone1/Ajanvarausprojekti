@@ -14,7 +14,7 @@
                         </div>
 
                         <div class="modal-body mt-3">
-                                    @using (Html.BeginForm("_Details", "Palaute", FormMethod.Post, new { id = "editForm" }))
+                                    @using (Html.BeginForm("_ModalEdit", "Ajat", FormMethod.Post, new { id = "editForm" }))
                                     {
                                         @Html.AntiForgeryToken()
                                         <h4>Muokkaa aikaa</h4>
@@ -92,7 +92,7 @@
 
 @*scripti siirretään opettajiensivulle kun valmis*@
 @section scripts {
-    <script type="text/javascript">
+    @*<script type="text/javascript">
         $(function () {
             $(".getModalEdit").click(function () {
                 let ajat_id = $(this).data("ajatid");
@@ -109,5 +109,5 @@
                 });
             });
         });
-    </script>
+    </script>*@
 }

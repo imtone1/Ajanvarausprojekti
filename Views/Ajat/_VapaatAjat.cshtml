@@ -11,31 +11,77 @@
         </script>
     }*@
 
+@section Scripts {
+    <script type="text/javascript">
+        $(function () {
+            $(".getModalEdit").click(function () {
+                let aika_id = $(this).data("aikaId");
+                console.log("Klikkasit aikaa: " + aika_id);
+                var url = "/Ajat/_ModalEdit/?id=" + aika_id;
+                console.log(url);
 
-<table class="table table-hover">
-    <thead class="thead-dark">
-        <tr>
-            <th>Opettajan nimi</th>
-            <th>Päivämäärä</th>
-            <th>Kellonaika</th>
-            <th>Ajan id-numero (käytössä vain testailuvaiheessa)</th>
-            <th>Tapaamisen kesto</th>
-            <th></th>
-        </tr>
-    </thead>
-    @foreach (var item in Model)
-    {
+                $("#ajatEdit").append(" <b>Avataan tilauksen " + aikat_id + " muokkausikkuna...</b>");
 
-        <tr class="valitseRivi" data-aikaId="@item.aika_id">
-            <td>@Html.DisplayFor(modelItem => item.Etunimi) @Html.DisplayFor(modelItem => item.Sukunimi)</td>
-            <td>@Html.DisplayFor(modelItem => item.Alkuaika)</td>
-            <td>@Html.DisplayFor(modelItem => item.Alkuaika)</td>
-            <td>@Html.DisplayFor(modelItem => item.aika_id)</td>
-            <td>@Html.DisplayFor(modelItem => item.Kesto) minuuttia</td>
-            <td><a href="#" class="btn btn-primary">Valitse aika</a></td>
-        </tr>
+                var $detailDivEdit = $("#ajatEdit");
+                $.get(url, function (data) {
+                    $detailDivEdit.replaceWith(data);
+                    $('#ModalEdit').modal('show');
+                });
+            });
+        });
+
+        $(function () {
+            $(".delAjatid").click(function () {
+                let aika_id = $(this).data("aikaId");
+                console.log("Klikkasit poistettavaa aikaa: " + aika_id);
+                var url = "/Ajat/_ModalDelete/?id=" + aika_id;
+                console.log(url);
+
+                $("#ajatDelete").append(" <b>Avataan tilauksen " + aika_id + " poistoikkuna...</b>");
+
+                var $detailDivDelete = $("#ajatDelete");
+                $.get(url, function (data) {
+                    $detailDivDelete.replaceWith(data);
+                    $('#ModalDelete').modal('show');
+                });
+            });
+        });
+    </script>
     }
 
-</table>
+    @*Modaalien paikkamerkit edit ja delete, Jquery luo rutiinin avulla modaalit*@
+    <div id="ajatEdit"></div>
+    <div id="ajatDelete"></div>
+
+
+    <table class="table table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>Opettajan nimi</th>
+                <th>Päivämäärä</th>
+                <th>Kellonaika</th>
+                <th>Ajan id-numero (käytössä vain testailuvaiheessa)</th>
+                <th>Tapaamisen kesto</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+
+    <tr class="valitseRivi" data-aikaId="@item.aika_id">
+        <td>@Html.DisplayFor(modelItem => item.Etunimi) @Html.DisplayFor(modelItem => item.Sukunimi)</td>
+        <td>@Html.DisplayFor(modelItem => item.Alkuaika)</td>
+        <td>@Html.DisplayFor(modelItem => item.Alkuaika)</td>
+        <td>@Html.DisplayFor(modelItem => item.aika_id)</td>
+        <td>@Html.DisplayFor(modelItem => item.Kesto) minuuttia</td>
+        <td><a href="#" class="btn btn-primary">Valitse aika</a></td>
+
+        <td><button class="getModalEdit" data-aikaId="@item.aika_id">Muokkaa</button></td>
+        <td><button class="delAjatid" data-aikaId="@item.aika_id">Poista</button></td>
+    </tr>
+        }
+
+    </table>
 
 

@@ -76,7 +76,7 @@
                                 @*Formin lähettävä button*@
                                 <button type="submit" value="Delete" class="btn btn-primary" @*form="deleteForm"*@>poista</button>
                                 @*Kontrollerin kutsu, jotta peruutus johtaa alkutilanteeseen*@
-                                <a href="@Url.Action("Index", "Ajat")" class="btn btn-primary">peruuta</a>
+                                <a href="@Url.Action("_VapaatAjat", "Ajat")" class="btn btn-primary">peruuta</a>
                             </div>
 
                         </div>
@@ -93,7 +93,7 @@
 
 @*scripti siirretään opettajiensivulle kun valmis*@
 @section scripts {
-    <script type="text/javascript">
+    @*<script type="text/javascript">
         $(function () {
             $(".delAjatid").click(function () {
                 let ajat_id = $(this).data("ajatid");
@@ -110,4 +110,4 @@
                 });
             });
         });
-    </script>
+    </script>*@

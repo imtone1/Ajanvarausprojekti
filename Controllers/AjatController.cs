@@ -209,7 +209,7 @@ namespace Ajanvarausprojekti.Controllers
             if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             Ajat ajat = db.Ajat.Find(id);
             if (ajat == null) return HttpNotFound();
-            return PartialView(ajat);
+            return PartialView("_VapaatAjat", ajat);
         }
 
         // POST: Palaute/Delete/5
@@ -220,7 +220,7 @@ namespace Ajanvarausprojekti.Controllers
             Ajat ajat = db.Ajat.Find(id);
             db.Ajat.Remove(ajat);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("_VapaatAjat");
         }
 
         public ActionResult _OhjausALista()
