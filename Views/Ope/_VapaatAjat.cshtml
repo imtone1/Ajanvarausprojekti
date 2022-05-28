@@ -13,29 +13,31 @@
     }*@
 
 
-                    <table class="table table-hover">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th>Opettajan nimi</th>
-                                <th>Päivämäärä</th>
-                                <th>Kellonaika</th>
-                                <th>Ajan id-numero (käytössä vain testailuvaiheessa)</th>
-                                <th>Tapaamisen kesto</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        @foreach (var item in Model)
-                        {
+<table class="table table-sm table-hover caption">
+    <thead class="thead-dark bg-black">
+        <tr>
+            <th scope="col">Opettajan nimi</th>
+            <th scope="col">Päivämäärä</th>
+            <th scope="col">Kellonaika</th>
+            <th scope="col">Tapaamisen kesto</th>
+            <th scope="col"></th>
+            <th scope="col">Aika_id (käytössä vain testailuvaiheessa)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
 
-                            <tr class="valitseRivi" data-aikaId="@item.aika_id">
-                                <td>@Html.DisplayFor(modelItem => item.Etunimi) @Html.DisplayFor(modelItem => item.Sukunimi)</td>
-                                <td>@Html.DisplayFor(modelItem => item.Alkuaika)</td>
-                                <td>@Html.DisplayFor(modelItem => item.Alkuaika)</td>
-                                <td>@Html.DisplayFor(modelItem => item.aika_id)</td>
-                                <td>@Html.DisplayFor(modelItem => item.Kesto) minuuttia</td>
-                                <td><a href="#" class="btn btn-primary">Valitse aika</a></td>
-                            </tr>
-                        }
+            <tr>
+                <td>@item.Etunimi @item.Sukunimi</td>
+                <td>@item.Alkuaika.Value.ToString("dd.MM")</td>
+                <td>@item.Alkuaika.Value.ToShortTimeString()</td>
+                <td>@item.Kesto min</td>
+                <td @*class="valitseAika" data-aikaId="@item.aika_id"*@><a href="#" class="btn btn-primary">Valitse aika</a></td>
+                <td>@item.aika_id</td>
+            </tr>
+        }
+    </tbody>
 
-                    </table>
+</table>
 
