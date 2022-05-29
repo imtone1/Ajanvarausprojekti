@@ -38,8 +38,10 @@ namespace Ajanvarausprojekti.Controllers
                             join o in db.Opettajat on a.opettaja_id equals o.opettaja_id
                             join k in db.Kestot on a.kesto_id equals k.kesto_id
                             where o.opettaja_id == opeid
+                             where a.alku_aika >= DateTime.Today
+                             orderby a.alku_aika
 
-                            select new ajatListaData
+                             select new ajatListaData
                             {
                                 Etunimi = o.etunimi,
                                 Sukunimi = o.sukunimi,
@@ -57,7 +59,10 @@ namespace Ajanvarausprojekti.Controllers
                              join k in db.Kestot on a.kesto_id equals k.kesto_id
                              join v in db.Varaukset on a.aika_id equals v.aika_id
                              where o.opettaja_id == opeid
+                             where a.alku_aika >= DateTime.Today
                              where a.aika_id == v.aika_id
+                             orderby a.alku_aika
+                           
 
                              select new ajatListaData
                              {
@@ -76,7 +81,7 @@ namespace Ajanvarausprojekti.Controllers
                        where !varatut.Any(x => x.aika_id == a.aika_id)
                        select a).ToList();
 
-            return PartialView(/*"_VapaatAjat", */vapaatAjat);
+            return PartialView(vapaatAjat);
         }
 
 protected override void Dispose(bool disposing)

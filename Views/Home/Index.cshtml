@@ -6,29 +6,22 @@
 
 @section scripts {
 
-    <!--Alla olevan kutusun pitäisi avata opettajan vapaat ajat collapse-näkymään, mutta jostain syystä ajat eivät tule näkyviin-->
+    <!--Avaa opettajan vapaat ajat collapse-näkymään-->
 
     <script type="text/javascript">
         $(function () {
-            $(".naytaOpettajanAjat").click(function () { }
-                        let opeid = $(this).data("opettaja_id");
-            var url = "~/Ope/_VapaatAjat/?Opettaja_id=" + opeid;
+            $(".naytaOpettajanAjat").click(function () {
+                let opeid = $(this).data("opettaja_id");
+            /*alert("Klikkasit opettajaa, jonka id on: " + opeid);*/ /*Toimii*/
+            var url = "/Ope/_VapaatAjat/?Opettaja_id=" + opeid;
             $("#opettajanAjat_" + opeid).append("Ladataan aikoja.");
             var $ajatDiv = $("#opettajanAjat_" + opeid)
             $.get(url, function (data) {
                 $ajatDiv.replaceWith(data);
+                });
             });
         });
-     });
-    </script>
 
-    <script type="text/javascript">
-        $(function () {
-            $("#valitseOpettaja").click(function () {
-                let nimi = $(this).data("etunimi");
-                alert("Klikkasit opettaja, jonka nimi on " + nimi);
-            });
-        });
     </script>
 
     @*Onnistunut -modaali (varaus, palaute)*@

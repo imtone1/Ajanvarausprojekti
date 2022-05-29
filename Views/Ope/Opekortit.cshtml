@@ -1,23 +1,8 @@
 ﻿@model IEnumerable<Ajanvarausprojekti.Models.Opettajat>
 
 
-<!--Alla olevan kutusun pitäisi avata opettajan vapaat ajat collapse-näkymään, mutta jostain syystä ajat eivät tule näkyviin-->
+<!--Toimintoa kutsuva jQuery Home indexissä-->
 
-@*@section scripts {
-    <script type="text/javascript">
-        $(function () {
-            $(".naytaOpettajanAjat").click(function () { }
-            let opeid = $(this).data("opettaja_id");
-            var url = "~/Ope/_VapaatAjat/?Opettaja_id=" + opeid;
-            $("#opettajanAjat_" + opeid).append("Ladataan aikoja.");
-            var $ajatDiv = $("#opettajanAjat_" + opeid)
-            $.get(url, function (data) {
-                $ajatDiv.replaceWith(data);
-                });
-            });
-         });
-    </script>
-}*@
 
 <section class="container mt-5 mb-5 pb-5" id="ohjausaika">
     <div class="d-flex justify-content-between">
@@ -71,11 +56,9 @@
                             <h2 class="placeholder-glow">Valitse varattava aika</h2>
                             <div class="container">
                                 <div class="row">
-                                    <!--Tähän pitäsii tulla ko. opettajan aikalistaus alla olevan paikkamerkin perusteella-->
+                                    <!--Tähän tulee opettajan aikalistaus paikkamerkin perusteella-->
 
                                     <div id="opettajanAjat_@item.opettaja_id"></div>
-
-                                    @*<p>Ladataan opettajan @item.etunimi @item.sukunimi vapaita aikoja.</p> Testailuun, toimii, eli näyttää oikean nimen*@
 
                                     <a href="@Url.Action("_VapaatAjat", "Ope", new { opeid = @item.opettaja_id })">Avaa ajat uuteen ikkunaan (tässä vaiheessa näin)</a> @*Testailuun, jotta saadaan oikeat ajat näkyviin edes jotenkin*@
                                     @{Html.Action("_VapaatAjat", "Ope");}
