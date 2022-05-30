@@ -410,6 +410,7 @@
     <Content Include="Views\Varaus\_VarausListModal.cshtml" />
     <Content Include="Views\Ope\Opekortit.cshtml" />
     <Content Include="Views\Ope\_VapaatAjat.cshtml" />
+    <Content Include="Views\Ope\VapaatAjatKoko.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

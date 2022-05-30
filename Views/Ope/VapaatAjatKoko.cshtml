@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Ajanvarausprojekti.ViewModels.ajatListaData>
+
+
+@section Scripts {
+    <script type="text/javascript">
+        $(function () {
+            $(".valitseAika").click(function () {
+                let aika_id = $(this).data("aikaId");
+                alert("Klikkasit aikaa, jonka id on: " + aika_id);
+                $('#TeeVaraus').modal('show');
+            });
+        });
+    </script>
+
+}
+<table class="table table-sm table-hover caption">
+    <thead>
+        <tr>
+            <th scope="col">Opettajan nimi</th>
+            <th scope="col">Päivämäärä</th>
+            <th scope="col">Kellonaika</th>
+            <th scope="col">Tapaamisen kesto</th>
+            <th scope="col"></th>
+            <th scope="col">Aika_id (käytössä vain testailuvaiheessa)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Etunimi @item.Sukunimi</td>
+                <td>@item.Alkuaika.Value.ToString("dd.MM")</td>
+                <td>@item.Alkuaika.Value.ToShortTimeString() - @item.Alkuaika.Value.ToShortDateString().AddHours(@item.Kesto)</td>
+                <td>@item.Kesto min</td>
+                <td><button class="valitseAika" data-aikaId="@item.aika_id">Valitse aika</button></td>
+                <td>@item.aika_id</td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
