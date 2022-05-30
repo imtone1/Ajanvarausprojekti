@@ -61,37 +61,39 @@
             <div id="ajatDelete"></div>
             @*<div id="ajatEdit" class="text-info"></div>*@
 
-            <table class="table table-dark table-hover caption table-bordered">
-                <thead class="thead-dark">
-                    <tr>
-                        <th>Opettajan nimi (käytössä vain testailuvaiheessa)</th>
-                        <th>Päivämäärä</th>
-                        <th>Alkuaika</th>
-                        <th>Päättymisaika En vielä osaa lasketa tätä</th>
-                        <th>Tapaamisen kesto (käytössä vain testailuvaiheessa)</th>
-                        <th>Ajan id-numero (käytössä vain testailuvaiheessa)</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                </thead>
+        <table class="table table-dark table-hover caption table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Opettajan nimi (käytössä vain testailuvaiheessa)</th>
+                    <th>Päivämäärä</th>
+                    <th>Alkuaika</th>
+                    <th>Päättymisaika En vielä osaa lasketa tätä</th>
+                    <th>Tapaamisen kesto (käytössä vain testailuvaiheessa)</th>
+                    <th>Ajan id-numero (käytössä vain testailuvaiheessa)</th>
+                    <th></th>
+                </tr>
+            </thead>
 
-                @foreach (var item in Model)
-                {
+            @foreach (var item in Model)
+            {
 
-                    <tr class="valitseRivi" data-aikaId="@item.aika_id">
-                        <td>@Html.DisplayFor(modelItem => item.Etunimi) @Html.DisplayFor(modelItem => item.Sukunimi)</td>
-                        <td>@Convert.ToDateTime(item.Alkuaika).ToString("d.M.")</td>
-                        <td>@Convert.ToDateTime(item.Alkuaika).ToString("HH.mm")</td>
-                        <td>@Convert.ToDateTime(item.Alkuaika).ToString("HH.mm")</td>
-                        <td>@Html.DisplayFor(modelItem => item.Kesto) minuuttia</td>
-                        <td>@Html.DisplayFor(modelItem => item.aika_id)</td>
-                        <td><button class="getModalEdit btn btn-primary ms-1" data-aikaId="@item.aika_id">Muokkaa</button></td>
-                        <td><button class="delAjatid btn btn-primary ms-1" data-aikaId="@item.aika_id">Poista</button></td>
-                    </tr>
+        <tr class="valitseRivi" data-aikaId="@item.aika_id">
+            <td>@Html.DisplayFor(modelItem => item.Etunimi) @Html.DisplayFor(modelItem => item.Sukunimi)</td>
+            <td>@Convert.ToDateTime(item.Alkuaika).ToString("d.M.")</td>
+            <td>@Convert.ToDateTime(item.Alkuaika).ToString("HH.mm")</td>
+            <td>@Convert.ToDateTime(item.Alkuaika).ToString("HH.mm")</td>
+            <td>@Html.DisplayFor(modelItem => item.Kesto) minuuttia</td>
+            <td>@Html.DisplayFor(modelItem => item.aika_id)</td>
+            @*<td><button class="getModalEdit btn btn-primary ms-1" data-aikaIdED="@item.aika_id">Muokkaa</button></td>
+        <td><button class="delAjatid btn btn-primary ms-1" data-aikaIdDE="@item.aika_id">Poista</button></td>*@
+            <td>
+                <button class="btn btn-primary ms-1"> @Html.ActionLink("Poista", "AjatDelete", new { id = item.aika_id })</button>
+            </td>
+
+            </tr>
                 }
-
             </table>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 

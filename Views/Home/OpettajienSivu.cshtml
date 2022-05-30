@@ -43,7 +43,7 @@
 /*        Ajat modal edit*/
         $(function () {
             $(".getModalEdit").click(function () {
-                let aika_id = $(this).data("aikaId");
+                let aika_id = $(this).data("aikaIdED");
                 console.log("Klikkasit aikaa: " + aika_id);
                 var url = "/Ajat/_ModalEdit/?id=" + aika_id;
                 console.log(url);
@@ -53,7 +53,7 @@
                 var $detailDivEdit = $("#ajatEdit");
                 $.get(url, function (data) {
                     $detailDivEdit.replaceWith(data);
-                    $('#ModalEdit').modal('show');
+                    $('#ModalEdit').modal("show");
                 });
             });
         });
@@ -61,7 +61,7 @@
         /*        Ajat modal delete*/
         $(function () {
             $(".delAjatid").click(function () {
-                let aika_id = $(this).data("aikaId");
+                let aika_id = $(this).data("aikaIdDE");
                 console.log("Klikkasit poistettavaa aikaa: " + aika_id);
                 var url = "/Ajat/_ModalDelete/?id=" + aika_id;
                 console.log(url);
@@ -71,7 +71,7 @@
                 var $detailDivDelete = $("#ajatDelete");
                 $.get(url, function (data) {
                     $detailDivDelete.replaceWith(data);
-                    $('#ModalDelete').modal('show');
+                    $('#ModalDelete').modal("show");
                 });
             });
         });

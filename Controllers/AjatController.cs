@@ -178,22 +178,32 @@ namespace Ajanvarausprojekti.Controllers
             }
         }
 
+
+ 
         //modal editin metodi
         public ActionResult _ModalEdit(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Ajat ajat = db.Ajat.Find(id);
-            if (ajat == null)
-            { 
-            return HttpNotFound();
-            }
-            ViewBag.aika_id = new SelectList(db.Ajat, "aika_id", "alku_aika", ajat.aika_id);
-            ViewBag.kesto_id = new SelectList(db.Kestot, "aika_id", "kesto", ajat.aika_id);
+            if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            var ajatLista = from a in db.Ajat
+                            join o in db.Opettajat on a.opettaja_id equals o.opettaja_id
+                            join k in db.Kestot on a.kesto_id equals k.kesto_id
 
-            return PartialView("_ModalEdit", ajat);
+                            orderby a.aika_id
+
+                            select new ajatListaData
+                            {
+                                Etunimi = o.etunimi,
+                                Sukunimi = o.sukunimi,
+                                aika_id = (int)a.aika_id,
+                                Alkuaika = (DateTime)a.alku_aika,
+                                Kesto = (int)k.kesto,
+                                opettaja_id = (int)a.opettaja_id,
+                                Paikka = a.paikka
+                            };
+
+            ViewBag.aika_id = new SelectList(db.Ajat);
+
+            return PartialView("_ModalEdit", ajatLista);
         }
         [HttpPost]
         [ValidateAntiForgeryToken] //Katso https://go.microsoft.com/fwlink/?LinkId=317598
@@ -213,23 +223,44 @@ namespace Ajanvarausprojekti.Controllers
 
         //Modal delete
         // GET: Palaute/Delete/5
-        public ActionResult _ModalDelete(int? id)
+        //public ActionResult _ModalDelete(int? id)
+        //{
+        //    if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    Ajat ajat = db.Ajat.Find(id);
+        //    if (ajat == null) return HttpNotFound();
+        //    return PartialView("_VapaatAjat", ajat);
+        //}
+
+        //// POST: Palaute/Delete/5
+        //[HttpPost, ActionName("_ModalDelete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    Ajat ajat = db.Ajat.Find(id);
+        //    db.Ajat.Remove(ajat);
+        //    db.SaveChanges();
+        //    return RedirectToAction("_VapaatAjat");
+        //}
+
+        //Modal delete
+        // GET: Palaute/Delete/5
+        public ActionResult AjatDelete(int? id)
         {
             if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             Ajat ajat = db.Ajat.Find(id);
             if (ajat == null) return HttpNotFound();
-            return PartialView("_VapaatAjat", ajat);
+            return View("AjatDelete", ajat);
         }
 
         // POST: Palaute/Delete/5
-        [HttpPost, ActionName("_ModalDelete")]
+        [HttpPost, ActionName("AjatDelete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             Ajat ajat = db.Ajat.Find(id);
             db.Ajat.Remove(ajat);
             db.SaveChanges();
-            return RedirectToAction("_VapaatAjat");
+            return new RedirectResult(Url.Action("OpettajienSivu", "Home") + "#LisaaAika");
         }
 
         public ActionResult _OhjausALista()

@@ -42,5 +42,7 @@ namespace Ajanvarausprojekti.Models
         }
 
         public System.Data.Entity.DbSet<Ajanvarausprojekti.ViewModels.ohjausAListaData> ohjausAListaDatas { get; set; }
+
+        public System.Data.Entity.DbSet<Ajanvarausprojekti.ViewModels.ajatListaData> ajatListaDatas { get; set; }
     }
 }

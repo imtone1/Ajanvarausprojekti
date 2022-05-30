@@ -1,0 +1,59 @@
+﻿@model Ajanvarausprojekti.Models.Ajat
+
+@{
+    ViewBag.Title = "AjatDelete";
+}
+
+<
+<section class="container-fluid bg-black pt-lg-3">
+    <div class="container pt-lg-5">
+        <div class="row gy-5 gy-lg-0 pb-lg-0 flex-column-reverse flex-md-column-reverse flex-lg-row">
+            <div class="col-md-12 col-lg-6 table-responsive-md pe-lg-5">
+                <div class="d-flex justify-content-between w-100">
+                    <h2 class="text-white pb-5">Haluatko varmasti poistaa ajan?</h2>
+
+                </div>
+
+                <div>
+                    <hr />
+                    <dl class="dl-horizontal">
+                        @*<dd class="text-white pb-5">
+                            @Html.DisplayFor(model => model.aika_id)
+                        </dd>*@
+                        <dt class="text-white pb-5">
+                             Ajankohta 
+                        </dt>
+                        <dd class="text-white pb-5">
+                            @Html.DisplayFor(model => model.alku_aika)
+                        </dd>
+                        <dt class="text-white pb-5">
+                            Kesto
+                        </dt>
+                        <dd class="text-white pb-5">
+                            @Html.DisplayFor(model => model.Kestot.kesto_id) min
+                        </dd>
+                    </dl>
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-actions no-color">
+                            <input type="submit" value="Poista" class="btn btn-primary ms-3" />|
+                            @using (Html.BeginForm("OpettajienSivu", "Home", FormMethod.Get))
+                            {
+                                <button class="btn btn-primary ms-3">Takaisin</button>
+                            }
+
+                        </div>
+                    }
+                </div>
+
+            </div>
+
+
+            @*Sateenvarjokuva*@
+            <div class="col-md-12 col-lg-6 bg-ohjausajat mb-sm-3 mb-lg-5"></div>
+                    </div>
+                </div>
+            </section>

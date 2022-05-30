@@ -11,7 +11,12 @@ namespace Ajanvarausprojekti.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using System.Linq;
+    using System.Web;
+
+
+
     public partial class Ajat
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,7 +24,7 @@ namespace Ajanvarausprojekti.Models
         {
             this.Varaukset = new HashSet<Varaukset>();
         }
-    
+        [Key]
         public int aika_id { get; set; }
         public System.DateTime alku_aika { get; set; }
         public int kesto_id { get; set; }
