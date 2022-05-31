@@ -4,6 +4,24 @@
 @* Kaikki scriptit tähän sectioniin *@
 
 @section scripts {
+
+    <!--Avaa opettajan vapaat ajat collapse-näkymään-->
+
+    <script type="text/javascript">
+        $(function () {
+            $(".naytaOpettajanAjat").click(function () {
+                let opeid = $(this).data("opettaja_id");
+                /*alert("Klikkasit opettajaa, jonka id on: " + opeid);*/ /*Toimii*/
+                var url = "/Ope/_VapaatAjat/?Opettaja_id=" + opeid;
+                $("#opettajanAjat_" + opeid).append("Ladataan aikoja.");
+                var $ajatDiv = $("#opettajanAjat_" + opeid)
+                $.get(url, function (data) {
+                    $ajatDiv.replaceWith(data);
+                });
+            });
+        });
+    </script>
+
     @*Onnistunut -modaali (varaus, palaute)*@
     @if (TempData["Successi"] != null)
     {
@@ -73,7 +91,6 @@
 <!-- --------------------Ohjausajan varaus-osio------------------------- -->
 
 @{Html.RenderAction("Opekortit", "Ope");} <!----Nimi on vähän harhaanjohtava, mutta opekortit kattaa koko opettajakortit ja opettajien vapaat ajat. Ulkonäkö vaatii vielä hiomista-->
-
 <!-- -----------------------------Palautelomakeosio----------------------- -->
 
 <div id="palaute">

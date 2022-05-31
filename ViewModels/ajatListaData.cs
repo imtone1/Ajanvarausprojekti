@@ -4,10 +4,14 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Web;
+    using System.ComponentModel.DataAnnotations;
 
     public class ajatListaData
     {
+        [Key]
         public int aika_id { get; set; }
+        public string Etunimi { get; set; }
+        public string Sukunimi { get; set; }
         public Nullable<System.DateTime> Alkuaika { get; set; }
         public int kesto_id { get; set; }
         public int opettaja_id { get; set; }
