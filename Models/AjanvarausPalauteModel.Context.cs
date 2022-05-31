@@ -40,7 +40,5 @@ namespace Ajanvarausprojekti.Models
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Poistarivit");
         }
-
-        public System.Data.Entity.DbSet<Ajanvarausprojekti.ViewModels.ajatListaData> ajatListaDatas { get; set; }
     }
 }

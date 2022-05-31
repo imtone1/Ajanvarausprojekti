@@ -4,215 +4,214 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="aikapalauteModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Ajat">
-          <Key>
-            <PropertyRef Name="aika_id" />
-          </Key>
-          <Property Name="aika_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="alku_aika" Type="datetime" Nullable="false" />
-          <Property Name="kesto_id" Type="int" Nullable="false" />
-          <Property Name="opettaja_id" Type="int" Nullable="false" />
-          <Property Name="aihe" Type="varchar(max)" />
-          <Property Name="paikka" Type="varchar" MaxLength="2000" />
-        </EntityType>
-        <EntityType Name="Kayttajatunnukset">
-          <Key>
-            <PropertyRef Name="kayttajatunnus_id" />
-          </Key>
-          <Property Name="kayttajatunnus_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="kayttajatunnus" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="salasana" Type="varchar" MaxLength="200" Nullable="false" />
-          <Property Name="opettaja_id" Type="int" Nullable="false" />
-          <Property Name="oikeudet_id" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Kestot">
-          <Key>
-            <PropertyRef Name="kesto_id" />
-          </Key>
-          <Property Name="kesto_id" Type="int" Nullable="false" />
-          <Property Name="kesto" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Opettajat">
-          <Key>
-            <PropertyRef Name="opettaja_id" />
-          </Key>
-          <Property Name="opettaja_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="sahkoposti" Type="varchar" MaxLength="150" Nullable="false" />
-          <Property Name="etunimi" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="sukunimi" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="nimike" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="kuva" Type="varchar" MaxLength="250" />
-          <Property Name="opeimage" Type="image" />
-        </EntityType>
-        <EntityType Name="Palautetyypit">
-          <Key>
-            <PropertyRef Name="palautetyyppi_id" />
-          </Key>
-          <Property Name="palautetyyppi_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="palautetyyppi" Type="varchar" MaxLength="50" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Palautteet">
-          <Key>
-            <PropertyRef Name="palaute_id" />
-          </Key>
-          <Property Name="palaute_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="palaute" Type="varchar(max)" Nullable="false" />
-          <Property Name="palaute_pvm" Type="datetime" Nullable="false" />
-          <Property Name="palautetyyppi_id" Type="int" />
-          <Property Name="opettaja_id" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Varaukset">
-          <Key>
-            <PropertyRef Name="varaus_id" />
-          </Key>
-          <Property Name="varaus_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="varaaja_nimi" Type="varchar" MaxLength="50" />
-          <Property Name="varattu_pvm" Type="datetime" Nullable="false" />
-          <Property Name="aika_id" Type="int" Nullable="false" />
-          <Property Name="varaaja_sahkoposti" Type="varchar" MaxLength="250" />
-          <Property Name="id_hash" Type="varchar" MaxLength="350" />
-          <Property Name="aihe" Type="varchar(max)" />
-        </EntityType>
-        <EntityType Name="Yllapitooikeudet">
-          <Key>
-            <PropertyRef Name="oikeudet_id" />
-          </Key>
-          <Property Name="oikeudet_id" Type="int" Nullable="false" />
-          <Property Name="oikeudet" Type="varchar" MaxLength="25" />
-        </EntityType>
-        <Association Name="FK_kestot">
-          <End Role="Kestot" Type="Self.Kestot" Multiplicity="1" />
-          <End Role="Ajat" Type="Self.Ajat" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Kestot">
-              <PropertyRef Name="kesto_id" />
-            </Principal>
-            <Dependent Role="Ajat">
-              <PropertyRef Name="kesto_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_oikeudet">
-          <End Role="Yllapitooikeudet" Type="Self.Yllapitooikeudet" Multiplicity="1" />
-          <End Role="Kayttajatunnukset" Type="Self.Kayttajatunnukset" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Yllapitooikeudet">
-              <PropertyRef Name="oikeudet_id" />
-            </Principal>
-            <Dependent Role="Kayttajatunnukset">
-              <PropertyRef Name="oikeudet_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_opentunnus">
-          <End Role="Opettajat" Type="Self.Opettajat" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Kayttajatunnukset" Type="Self.Kayttajatunnukset" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Opettajat">
-              <PropertyRef Name="opettaja_id" />
-            </Principal>
-            <Dependent Role="Kayttajatunnukset">
-              <PropertyRef Name="opettaja_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_opettajanaika">
-          <End Role="Opettajat" Type="Self.Opettajat" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Ajat" Type="Self.Ajat" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Opettajat">
-              <PropertyRef Name="opettaja_id" />
-            </Principal>
-            <Dependent Role="Ajat">
-              <PropertyRef Name="opettaja_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_palautetyyppi">
-          <End Role="Palautetyypit" Type="Self.Palautetyypit" Multiplicity="0..1" />
-          <End Role="Palautteet" Type="Self.Palautteet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Palautetyypit">
-              <PropertyRef Name="palautetyyppi_id" />
-            </Principal>
-            <Dependent Role="Palautteet">
-              <PropertyRef Name="palautetyyppi_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_palautteet">
-          <End Role="Opettajat" Type="Self.Opettajat" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Palautteet" Type="Self.Palautteet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Opettajat">
-              <PropertyRef Name="opettaja_id" />
-            </Principal>
-            <Dependent Role="Palautteet">
-              <PropertyRef Name="opettaja_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_varausaika">
-          <End Role="Ajat" Type="Self.Ajat" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Varaukset" Type="Self.Varaukset" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Ajat">
-              <PropertyRef Name="aika_id" />
-            </Principal>
-            <Dependent Role="Varaukset">
-              <PropertyRef Name="aika_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Function Name="Poistarivit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <EntityContainer Name="aikapalauteModelStoreContainer">
-          <EntitySet Name="Ajat" EntityType="Self.Ajat" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Kayttajatunnukset" EntityType="Self.Kayttajatunnukset" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Kestot" EntityType="Self.Kestot" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Opettajat" EntityType="Self.Opettajat" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Palautetyypit" EntityType="Self.Palautetyypit" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Palautteet" EntityType="Self.Palautteet" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Varaukset" EntityType="Self.Varaukset" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Yllapitooikeudet" EntityType="Self.Yllapitooikeudet" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_kestot" Association="Self.FK_kestot">
-            <End Role="Kestot" EntitySet="Kestot" />
-            <End Role="Ajat" EntitySet="Ajat" />
-          </AssociationSet>
-          <AssociationSet Name="FK_oikeudet" Association="Self.FK_oikeudet">
-            <End Role="Yllapitooikeudet" EntitySet="Yllapitooikeudet" />
-            <End Role="Kayttajatunnukset" EntitySet="Kayttajatunnukset" />
-          </AssociationSet>
-          <AssociationSet Name="FK_opentunnus" Association="Self.FK_opentunnus">
-            <End Role="Opettajat" EntitySet="Opettajat" />
-            <End Role="Kayttajatunnukset" EntitySet="Kayttajatunnukset" />
-          </AssociationSet>
-          <AssociationSet Name="FK_opettajanaika" Association="Self.FK_opettajanaika">
-            <End Role="Opettajat" EntitySet="Opettajat" />
-            <End Role="Ajat" EntitySet="Ajat" />
-          </AssociationSet>
-          <AssociationSet Name="FK_palautetyyppi" Association="Self.FK_palautetyyppi">
-            <End Role="Palautetyypit" EntitySet="Palautetyypit" />
-            <End Role="Palautteet" EntitySet="Palautteet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_palautteet" Association="Self.FK_palautteet">
-            <End Role="Opettajat" EntitySet="Opettajat" />
-            <End Role="Palautteet" EntitySet="Palautteet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_varausaika" Association="Self.FK_varausaika">
-            <End Role="Ajat" EntitySet="Ajat" />
-            <End Role="Varaukset" EntitySet="Varaukset" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema></edmx:StorageModels>
+    <Schema Namespace="aikapalauteModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="aikapalauteModelStoreContainer">
+    <EntitySet Name="Ajat" EntityType="aikapalauteModel.Store.Ajat" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Kayttajatunnukset" EntityType="aikapalauteModel.Store.Kayttajatunnukset" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Kestot" EntityType="aikapalauteModel.Store.Kestot" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Opettajat" EntityType="aikapalauteModel.Store.Opettajat" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Palautetyypit" EntityType="aikapalauteModel.Store.Palautetyypit" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Palautteet" EntityType="aikapalauteModel.Store.Palautteet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Varaukset" EntityType="aikapalauteModel.Store.Varaukset" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Yllapitooikeudet" EntityType="aikapalauteModel.Store.Yllapitooikeudet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_kestot" Association="aikapalauteModel.Store.FK_kestot">
+      <End Role="Kestot" EntitySet="Kestot" />
+      <End Role="Ajat" EntitySet="Ajat" />
+    </AssociationSet>
+    <AssociationSet Name="FK_opettajanaika" Association="aikapalauteModel.Store.FK_opettajanaika">
+      <End Role="Opettajat" EntitySet="Opettajat" />
+      <End Role="Ajat" EntitySet="Ajat" />
+    </AssociationSet>
+    <AssociationSet Name="FK_varausaika" Association="aikapalauteModel.Store.FK_varausaika">
+      <End Role="Ajat" EntitySet="Ajat" />
+      <End Role="Varaukset" EntitySet="Varaukset" />
+    </AssociationSet>
+    <AssociationSet Name="FK_oikeudet" Association="aikapalauteModel.Store.FK_oikeudet">
+      <End Role="Yllapitooikeudet" EntitySet="Yllapitooikeudet" />
+      <End Role="Kayttajatunnukset" EntitySet="Kayttajatunnukset" />
+    </AssociationSet>
+    <AssociationSet Name="FK_opentunnus" Association="aikapalauteModel.Store.FK_opentunnus">
+      <End Role="Opettajat" EntitySet="Opettajat" />
+      <End Role="Kayttajatunnukset" EntitySet="Kayttajatunnukset" />
+    </AssociationSet>
+    <AssociationSet Name="FK_palautteet" Association="aikapalauteModel.Store.FK_palautteet">
+      <End Role="Opettajat" EntitySet="Opettajat" />
+      <End Role="Palautteet" EntitySet="Palautteet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_palautetyyppi" Association="aikapalauteModel.Store.FK_palautetyyppi">
+      <End Role="Palautetyypit" EntitySet="Palautetyypit" />
+      <End Role="Palautteet" EntitySet="Palautteet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Ajat">
+    <Key>
+      <PropertyRef Name="aika_id" />
+    </Key>
+    <Property Name="aika_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="alku_aika" Type="datetime" Nullable="false" />
+    <Property Name="kesto_id" Type="int" Nullable="false" />
+    <Property Name="opettaja_id" Type="int" Nullable="false" />
+    <Property Name="aihe" Type="varchar(max)" Nullable="true" />
+    <Property Name="paikka" Type="varchar" Nullable="true" MaxLength="2000" />
+  </EntityType>
+  <EntityType Name="Kayttajatunnukset">
+    <Key>
+      <PropertyRef Name="kayttajatunnus_id" />
+    </Key>
+    <Property Name="kayttajatunnus_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="kayttajatunnus" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="salasana" Type="varchar" Nullable="false" MaxLength="200" />
+    <Property Name="opettaja_id" Type="int" Nullable="false" />
+    <Property Name="oikeudet_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Kestot">
+    <Key>
+      <PropertyRef Name="kesto_id" />
+    </Key>
+    <Property Name="kesto_id" Type="int" Nullable="false" />
+    <Property Name="kesto" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Opettajat">
+    <Key>
+      <PropertyRef Name="opettaja_id" />
+    </Key>
+    <Property Name="opettaja_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="sahkoposti" Type="varchar" Nullable="false" MaxLength="150" />
+    <Property Name="etunimi" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="sukunimi" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="nimike" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="kuva" Type="varchar" Nullable="true" MaxLength="250" />
+    <Property Name="opeimage" Type="varbinary(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Palautetyypit">
+    <Key>
+      <PropertyRef Name="palautetyyppi_id" />
+    </Key>
+    <Property Name="palautetyyppi_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="palautetyyppi" Type="varchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Palautteet">
+    <Key>
+      <PropertyRef Name="palaute_id" />
+    </Key>
+    <Property Name="palaute_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="palaute" Type="varchar(max)" Nullable="false" />
+    <Property Name="palaute_pvm" Type="datetime" Nullable="false" />
+    <Property Name="palautetyyppi_id" Type="int" Nullable="true" />
+    <Property Name="opettaja_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Varaukset">
+    <Key>
+      <PropertyRef Name="varaus_id" />
+    </Key>
+    <Property Name="varaus_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="varaaja_nimi" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="varattu_pvm" Type="datetime" Nullable="false" />
+    <Property Name="aika_id" Type="int" Nullable="false" />
+    <Property Name="varaaja_sahkoposti" Type="varchar" Nullable="true" MaxLength="250" />
+    <Property Name="id_hash" Type="varchar" Nullable="true" MaxLength="350" />
+    <Property Name="aihe" Type="varchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Yllapitooikeudet">
+    <Key>
+      <PropertyRef Name="oikeudet_id" />
+    </Key>
+    <Property Name="oikeudet_id" Type="int" Nullable="false" />
+    <Property Name="oikeudet" Type="varchar" Nullable="true" MaxLength="25" />
+  </EntityType>
+  <Association Name="FK_kestot">
+    <End Role="Kestot" Type="aikapalauteModel.Store.Kestot" Multiplicity="1" />
+    <End Role="Ajat" Type="aikapalauteModel.Store.Ajat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kestot">
+        <PropertyRef Name="kesto_id" />
+      </Principal>
+      <Dependent Role="Ajat">
+        <PropertyRef Name="kesto_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_opettajanaika">
+    <End Role="Opettajat" Type="aikapalauteModel.Store.Opettajat" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Ajat" Type="aikapalauteModel.Store.Ajat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Opettajat">
+        <PropertyRef Name="opettaja_id" />
+      </Principal>
+      <Dependent Role="Ajat">
+        <PropertyRef Name="opettaja_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_varausaika">
+    <End Role="Ajat" Type="aikapalauteModel.Store.Ajat" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Varaukset" Type="aikapalauteModel.Store.Varaukset" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ajat">
+        <PropertyRef Name="aika_id" />
+      </Principal>
+      <Dependent Role="Varaukset">
+        <PropertyRef Name="aika_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_oikeudet">
+    <End Role="Yllapitooikeudet" Type="aikapalauteModel.Store.Yllapitooikeudet" Multiplicity="1" />
+    <End Role="Kayttajatunnukset" Type="aikapalauteModel.Store.Kayttajatunnukset" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Yllapitooikeudet">
+        <PropertyRef Name="oikeudet_id" />
+      </Principal>
+      <Dependent Role="Kayttajatunnukset">
+        <PropertyRef Name="oikeudet_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_opentunnus">
+    <End Role="Opettajat" Type="aikapalauteModel.Store.Opettajat" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Kayttajatunnukset" Type="aikapalauteModel.Store.Kayttajatunnukset" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Opettajat">
+        <PropertyRef Name="opettaja_id" />
+      </Principal>
+      <Dependent Role="Kayttajatunnukset">
+        <PropertyRef Name="opettaja_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_palautteet">
+    <End Role="Opettajat" Type="aikapalauteModel.Store.Opettajat" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Palautteet" Type="aikapalauteModel.Store.Palautteet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Opettajat">
+        <PropertyRef Name="opettaja_id" />
+      </Principal>
+      <Dependent Role="Palautteet">
+        <PropertyRef Name="opettaja_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_palautetyyppi">
+    <End Role="Palautetyypit" Type="aikapalauteModel.Store.Palautetyypit" Multiplicity="0..1" />
+    <End Role="Palautteet" Type="aikapalauteModel.Store.Palautteet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Palautetyypit">
+        <PropertyRef Name="palautetyyppi_id" />
+      </Principal>
+      <Dependent Role="Palautteet">
+        <PropertyRef Name="palautetyyppi_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="aikapalauteModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -441,96 +440,94 @@
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="aikapalauteModelStoreContainer" CdmEntityContainer="aikapalauteEntities">
-          <EntitySetMapping Name="Ajat">
-            <EntityTypeMapping TypeName="aikapalauteModel.Ajat">
-              <MappingFragment StoreEntitySet="Ajat">
-                <ScalarProperty Name="aika_id" ColumnName="aika_id" />
-                <ScalarProperty Name="alku_aika" ColumnName="alku_aika" />
-                <ScalarProperty Name="kesto_id" ColumnName="kesto_id" />
-                <ScalarProperty Name="opettaja_id" ColumnName="opettaja_id" />
-                <ScalarProperty Name="aihe" ColumnName="aihe" />
-                <ScalarProperty Name="paikka" ColumnName="paikka" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Kayttajatunnukset">
-            <EntityTypeMapping TypeName="aikapalauteModel.Kayttajatunnukset">
-              <MappingFragment StoreEntitySet="Kayttajatunnukset">
-                <ScalarProperty Name="kayttajatunnus_id" ColumnName="kayttajatunnus_id" />
-                <ScalarProperty Name="kayttajatunnus" ColumnName="kayttajatunnus" />
-                <ScalarProperty Name="salasana" ColumnName="salasana" />
-                <ScalarProperty Name="opettaja_id" ColumnName="opettaja_id" />
-                <ScalarProperty Name="oikeudet_id" ColumnName="oikeudet_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Kestot">
-            <EntityTypeMapping TypeName="aikapalauteModel.Kestot">
-              <MappingFragment StoreEntitySet="Kestot">
-                <ScalarProperty Name="kesto_id" ColumnName="kesto_id" />
-                <ScalarProperty Name="kesto" ColumnName="kesto" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Opettajat">
-            <EntityTypeMapping TypeName="aikapalauteModel.Opettajat">
-              <MappingFragment StoreEntitySet="Opettajat">
-                <ScalarProperty Name="opettaja_id" ColumnName="opettaja_id" />
-                <ScalarProperty Name="sahkoposti" ColumnName="sahkoposti" />
-                <ScalarProperty Name="etunimi" ColumnName="etunimi" />
-                <ScalarProperty Name="sukunimi" ColumnName="sukunimi" />
-                <ScalarProperty Name="nimike" ColumnName="nimike" />
-                <ScalarProperty Name="kuva" ColumnName="kuva" />
-                <ScalarProperty Name="opeimage" ColumnName="opeimage" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Palautetyypit">
-            <EntityTypeMapping TypeName="aikapalauteModel.Palautetyypit">
-              <MappingFragment StoreEntitySet="Palautetyypit">
-                <ScalarProperty Name="palautetyyppi_id" ColumnName="palautetyyppi_id" />
-                <ScalarProperty Name="palautetyyppi" ColumnName="palautetyyppi" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Palautteet">
-            <EntityTypeMapping TypeName="aikapalauteModel.Palautteet">
-              <MappingFragment StoreEntitySet="Palautteet">
-                <ScalarProperty Name="palaute_id" ColumnName="palaute_id" />
-                <ScalarProperty Name="palaute" ColumnName="palaute" />
-                <ScalarProperty Name="palaute_pvm" ColumnName="palaute_pvm" />
-                <ScalarProperty Name="palautetyyppi_id" ColumnName="palautetyyppi_id" />
-                <ScalarProperty Name="opettaja_id" ColumnName="opettaja_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Varaukset">
-            <EntityTypeMapping TypeName="aikapalauteModel.Varaukset">
-              <MappingFragment StoreEntitySet="Varaukset">
-                <ScalarProperty Name="aihe" ColumnName="aihe" />
-                <ScalarProperty Name="id_hash" ColumnName="id_hash" />
-                <ScalarProperty Name="varaaja_sahkoposti" ColumnName="varaaja_sahkoposti" />
-                <ScalarProperty Name="varaus_id" ColumnName="varaus_id" />
-                <ScalarProperty Name="varaaja_nimi" ColumnName="varaaja_nimi" />
-                <ScalarProperty Name="varattu_pvm" ColumnName="varattu_pvm" />
-                <ScalarProperty Name="aika_id" ColumnName="aika_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Yllapitooikeudet">
-            <EntityTypeMapping TypeName="aikapalauteModel.Yllapitooikeudet">
-              <MappingFragment StoreEntitySet="Yllapitooikeudet">
-                <ScalarProperty Name="oikeudet_id" ColumnName="oikeudet_id" />
-                <ScalarProperty Name="oikeudet" ColumnName="oikeudet" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="Poistarivit" FunctionName="aikapalauteModel.Store.Poistarivit" />
-        </EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="aikapalauteModelStoreContainer" CdmEntityContainer="aikapalauteEntities">
+    <EntitySetMapping Name="Ajat">
+      <EntityTypeMapping TypeName="IsTypeOf(aikapalauteModel.Ajat)">
+        <MappingFragment StoreEntitySet="Ajat">
+          <ScalarProperty Name="aika_id" ColumnName="aika_id" />
+          <ScalarProperty Name="alku_aika" ColumnName="alku_aika" />
+          <ScalarProperty Name="kesto_id" ColumnName="kesto_id" />
+          <ScalarProperty Name="opettaja_id" ColumnName="opettaja_id" />
+          <ScalarProperty Name="aihe" ColumnName="aihe" />
+          <ScalarProperty Name="paikka" ColumnName="paikka" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kayttajatunnukset">
+      <EntityTypeMapping TypeName="IsTypeOf(aikapalauteModel.Kayttajatunnukset)">
+        <MappingFragment StoreEntitySet="Kayttajatunnukset">
+          <ScalarProperty Name="kayttajatunnus_id" ColumnName="kayttajatunnus_id" />
+          <ScalarProperty Name="kayttajatunnus" ColumnName="kayttajatunnus" />
+          <ScalarProperty Name="salasana" ColumnName="salasana" />
+          <ScalarProperty Name="opettaja_id" ColumnName="opettaja_id" />
+          <ScalarProperty Name="oikeudet_id" ColumnName="oikeudet_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kestot">
+      <EntityTypeMapping TypeName="IsTypeOf(aikapalauteModel.Kestot)">
+        <MappingFragment StoreEntitySet="Kestot">
+          <ScalarProperty Name="kesto_id" ColumnName="kesto_id" />
+          <ScalarProperty Name="kesto" ColumnName="kesto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Opettajat">
+      <EntityTypeMapping TypeName="IsTypeOf(aikapalauteModel.Opettajat)">
+        <MappingFragment StoreEntitySet="Opettajat">
+          <ScalarProperty Name="opettaja_id" ColumnName="opettaja_id" />
+          <ScalarProperty Name="sahkoposti" ColumnName="sahkoposti" />
+          <ScalarProperty Name="etunimi" ColumnName="etunimi" />
+          <ScalarProperty Name="sukunimi" ColumnName="sukunimi" />
+          <ScalarProperty Name="nimike" ColumnName="nimike" />
+          <ScalarProperty Name="kuva" ColumnName="kuva" />
+          <ScalarProperty Name="opeimage" ColumnName="opeimage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Palautetyypit">
+      <EntityTypeMapping TypeName="IsTypeOf(aikapalauteModel.Palautetyypit)">
+        <MappingFragment StoreEntitySet="Palautetyypit">
+          <ScalarProperty Name="palautetyyppi_id" ColumnName="palautetyyppi_id" />
+          <ScalarProperty Name="palautetyyppi" ColumnName="palautetyyppi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Palautteet">
+      <EntityTypeMapping TypeName="IsTypeOf(aikapalauteModel.Palautteet)">
+        <MappingFragment StoreEntitySet="Palautteet">
+          <ScalarProperty Name="palaute_id" ColumnName="palaute_id" />
+          <ScalarProperty Name="palaute" ColumnName="palaute" />
+          <ScalarProperty Name="palaute_pvm" ColumnName="palaute_pvm" />
+          <ScalarProperty Name="palautetyyppi_id" ColumnName="palautetyyppi_id" />
+          <ScalarProperty Name="opettaja_id" ColumnName="opettaja_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Varaukset">
+      <EntityTypeMapping TypeName="IsTypeOf(aikapalauteModel.Varaukset)">
+        <MappingFragment StoreEntitySet="Varaukset">
+          <ScalarProperty Name="varaus_id" ColumnName="varaus_id" />
+          <ScalarProperty Name="varaaja_nimi" ColumnName="varaaja_nimi" />
+          <ScalarProperty Name="varattu_pvm" ColumnName="varattu_pvm" />
+          <ScalarProperty Name="aika_id" ColumnName="aika_id" />
+          <ScalarProperty Name="varaaja_sahkoposti" ColumnName="varaaja_sahkoposti" />
+          <ScalarProperty Name="id_hash" ColumnName="id_hash" />
+          <ScalarProperty Name="aihe" ColumnName="aihe" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Yllapitooikeudet">
+      <EntityTypeMapping TypeName="IsTypeOf(aikapalauteModel.Yllapitooikeudet)">
+        <MappingFragment StoreEntitySet="Yllapitooikeudet">
+          <ScalarProperty Name="oikeudet_id" ColumnName="oikeudet_id" />
+          <ScalarProperty Name="oikeudet" ColumnName="oikeudet" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
@@ -544,7 +541,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>

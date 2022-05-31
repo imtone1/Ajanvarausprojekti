@@ -220,6 +220,7 @@
       <LastGenOutput>AjanvarausPalauteModel.Context.cs</LastGenOutput>
       <DependentUpon>AjanvarausPalauteModel.edmx</DependentUpon>
     </Content>
+    <Content Include="Models\AjanvarausPalauteModel.edmx.sql" />
     <Content Include="Models\AjanvarausPalauteModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>AjanvarausPalauteModel.edmx</DependentUpon>
