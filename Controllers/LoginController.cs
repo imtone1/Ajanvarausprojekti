@@ -45,7 +45,9 @@ namespace Ajanvarausprojekti.Controllers
                     Session["Opettaja"] = LoggedUser.Opettajat.etunimi.ToString();
                     Session["KirjautunutOpe"] = LoggedUser.Opettajat.etunimi.ToString() + " " + LoggedUser.Opettajat.sukunimi.ToString(); ;
                     Session["OpettajaID"] = LoggedUser.Opettajat.opettaja_id;
-                    TempData["OpettajaKuva"] = LoggedUser.Opettajat.kuva;
+
+                    Session["OpettajaKuva"] = LoggedUser.Opettajat.kuva;
+
                     //Session["AccessLevel"] = LoggedUser.oikeudet_id;
 
                     //tarkistetaan oikeudet 1 on superuser
