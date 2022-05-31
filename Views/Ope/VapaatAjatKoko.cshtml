@@ -30,7 +30,6 @@
             <tr>
                 <td>@item.Etunimi @item.Sukunimi</td>
                 <td>@item.Alkuaika.Value.ToString("dd.MM")</td>
-                <td>@item.Alkuaika.Value.ToShortTimeString() - @item.Alkuaika.Value.ToShortDateString().AddHours(@item.Kesto)</td>
                 <td>@item.Kesto min</td>
                 <td><button class="valitseAika" data-aikaId="@item.aika_id">Valitse aika</button></td>
                 <td>@item.aika_id</td>
