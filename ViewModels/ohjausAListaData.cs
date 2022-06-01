@@ -9,7 +9,7 @@ namespace Ajanvarausprojekti.ViewModels
 {
     public class ohjausAListaData
     {
-        [Key]
+        //[Key]
         public int aika_id { get; set; }
         public System.DateTime alku_aika { get; set; }
         public int kesto_id { get; set; }
