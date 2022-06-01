@@ -20,7 +20,12 @@ namespace Ajanvarausprojekti.Controllers
         {
             return View();
         }
-
+        // Irina: Listaa opettajat
+        public ActionResult _ListaaOpettajat()
+        {
+            List<Opettajat> model = db.Opettajat.ToList();
+            return PartialView("_ListaaOpettajat", model);
+        }
         //Irina: Lisaa uuden opettajan ja tälle käyttäjätunnuksen ja oikeudet, basicuser defaultina
         public ActionResult LisaaOpettaja()
         {
