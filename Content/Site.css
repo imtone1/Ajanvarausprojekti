@@ -43,7 +43,6 @@ a:hover {
     background-color: var(--black-color);
     color: var(--primary-color);
     padding: .5em;
-
     box-shadow: 1px 1px 8px var(--primary-color);
     border: 1px var(--primary-color) solid;
 
@@ -55,10 +54,10 @@ a:hover {
 
 }
 
-.btn.btn-primary:active:hover {
+/*.btn.btn-primary:active:hover {
     background-color: var(--black-color);
     color: var(--white-color);
-}
+}*/
 
 .btn.btn-primary:active {
     background-color: var(--black-color);
@@ -67,7 +66,6 @@ a:hover {
 
 .btn.btn-primary.active.focus,
 .btn.btn-primary.active:focus,
-.btn.btn-primary.active:hover,
 .btn.btn-primary.active.focus,
 .btn.btn-primary.active:focus,
 .btn.btn-primary.active:focus {
@@ -125,10 +123,8 @@ a:hover {
 .bg-hero {
     background-color: var(--light-grey);
     background: url(/Content/Images/woman-sitting.png) no-repeat fixed;
-    top: 0;
-    left: 0;
-    min-width: 100%;
-    min-height: auto;
+    height: 100vh;
+    width: auto;
     background-size: cover;
 }
 
@@ -149,7 +145,7 @@ a:hover {
 
 .bg-opesivu-btm {
     background-color: var(--light-grey);
-    background: url(/Content/Images/work.jpg) no-repeat;
+    background: url(/Content/Images/work.jpg) no-repeat fixed;
     background-size: cover;
     background-position: bottom;
     height: 75vh;
@@ -223,8 +219,8 @@ a:hover {
 }
 
 .round-img {
-    width: 10em;
-    height: 10em;
+    width: 8em;
+    height: 8em;
     /* kuva kommentoitu, jottei näkyisi renderöidyn kuvan takana*/
    /* background-image: url('Images/portrait-example.jpg');*/
     background-size: cover;
@@ -236,8 +232,8 @@ a:hover {
 }
 
 .round-img-ope {
-    width: 8em;
-    height: 8em;
+    width: 6em;
+    height: 6em;
     background-image: url('Images/portrait-example.jpg');
     background-size: cover;
     display: flex;
@@ -303,30 +299,9 @@ a:hover {
     background-size: cover;
     background-position-x: right;
     background-position-y: bottom;
-    min-height: 100vh;
+    height: 100vh;
     margin-right: 0;
     padding-right: 0;
-    /*animation: moveDown 1s ease-in-out forwards;*/
-
-}
-
-
-.bg-ohjausajat {
-    background-color: var(--light-grey);
-    background: url(/Content/Images/sateenvarjo-logo.png) no-repeat;
-    background-size: cover;
-    background-position-x: center;
-    background-position-y: center;
-    min-height: 100vh;
-}
-
-.bg-UusiAika {
-    background-color: var(--light-grey);
-    background: url(/Content/Images/business.png) no-repeat;
-    background-size: cover;
-    background-position-x: center;
-    background-position-y: center;
-    min-height: 100vh;
 }
 
 .bg-opesivu-btm {
@@ -363,7 +338,80 @@ caption {
     background:none;
 }
 
-.animation-ease-in {
+@media only screen and (max-width: 576px) {
+
+    .bg-hero {
+        background-position-x: right;
+    }
+
+    .bg-index-btm {
+        background-position-x: right;
+    }
+
+    .bg-opesivu {
+        background-color: var(--light-grey);
+        background: linear-gradient(to bottom, rgba(237, 237, 237, 0.30), rgba(237, 237, 237, 0.30)), url('/Content/Images/tools.png') no-repeat;
+        background-size: cover;
+        background-position-x: right;
+        background-position-y: bottom;
+    }
+
+    .bg-opesivu-btm {
+        background-color: var(--light-grey);
+        background: url(/Content/Images/work.jpg) no-repeat;
+        background-size: cover;
+        background-position: bottom;
+        height: 50vh;
+        width: auto;
+        background-position-x: left;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+
+    .bg-hero {
+        background-position-x: right;
+    }
+
+    .bg-mobile-hero {
+        background: linear-gradient(to bottom, rgba(237, 237, 237, 0.85), rgba(237, 237, 237, 0.86));
+        padding: 1em;
+    }
+
+    .w-small-screen-100 {
+        min-width: 100%;
+    }
+
+    .bg-index-btm {
+        background-position-x: center;
+        height: 50vh;
+    }
+
+    .bg-opesivu {
+        height: 50vh;
+    }
+}
+
+
+@media only screen and (min-width:992px) {
+
+    .bg-hero {
+        background-position-x: right;
+    }
+
+    .bg-index-btm {
+        background-position-x: center;
+    }
+
+    .bg-opesivu {
+        background-size: cover;
+        height: 100vh;
+    }
+}
+
+
+
+/*.animation-ease-in {
     animation: ease-in 1s ease-in forwards;
     opacity: 0;
 }
@@ -371,7 +419,7 @@ caption {
 .animation-move-down {
     animation: moveDown 1s ease-in-out forwards;
     opacity: 0;
-}
+}*/
 
 /*Box shadow yms.-jutut kommentoidut for now*/
 /*input[type="date" i]:focus {
@@ -416,20 +464,7 @@ select:focus {
     box-shadow: 1px 1px 8px var(--primary-color);
 }*/
 
-
-
-
-    @media only screen and (max-width:920px) {
-
-        .bg-opesivu {
-            width: 100%;
-            background-size: cover;
-            height: 80vh;
-            margin-bottom: 1rem;
-        }
-    }
-
-@keyframes introLoad {
+/*@keyframes introLoad {
     from {
         clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
     }
@@ -458,9 +493,9 @@ select:focus {
         transform: translateX(0);
         opacity: 1;
     }
-}
+}*/
 
-@media screen and (prefers-reduced-motion: reduce) {
+/*@media screen and (prefers-reduced-motion: reduce) {
     .animation-move-down {
         animation: none !important;
     }
@@ -468,24 +503,4 @@ select:focus {
     .animation-ease-in {
         animation: none!important;
     }
-}
-    /* Set padding to keep content from hitting the edges 
-    .body-content {
-        padding-left: 15px;
-        padding-right: 15px;
-    }
-*/
-    /* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-
-.dl-horizontal dt {
-    white-space: normal;
-}
-*/
-    /* Set width on the form input elements since they're 100% wide by default 
-input,
-select,
-textarea {
-    max-width: 280px;
-}
-*/
+}*/

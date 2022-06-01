@@ -5,17 +5,17 @@
     @Html.AntiForgeryToken()
 
     <section class="container">
-        <div class="row">
-            <div class="col-md-12 col-lg-6">
-                <div class="bg-UusiAika custom-bg-mobile">
-
+        <div class="row flex-column-reverse flex-md-column-reverse flex-lg-row">
+            <div class="col-md-6">
+                <div >
+                    <img src="~/Content/Images/business.png" class="img-fluid" alt="Läppäri, kynä ja vihko" />
                 </div>
             </div>
 
-            <div class="col-md-12 col-lg-6 d-flex justify-content-center mt-5">
+            <div class="col-md-6 col-lg-6 d-flex justify-content-center mt-md-5">
                 <div class="form-group">
-                    <h5 style="color:red;">@TempData["AikaError"]</h5>
-                    <h5 style="color:green;">@TempData["AikaSuccess"]</h5>
+                    <h5 class="text-danger">@TempData["AikaError"]</h5>
+                    <h5 class="text-info">@TempData["AikaSuccess"]</h5>
                     <br />
                     <h2>Lisää uusi aika varattavaksi</h2>
                     <div class="input-group d-flex flex-column justify-content-center">
@@ -39,7 +39,7 @@
                             new SelectListItem{Text="30 min", Value="30"},
                             new SelectListItem{Text="45 min", Value="45"},
                             new SelectListItem{Text="60 min", Value="60"},
-                            new SelectListItem{Text="90 min", Value="90"},}, new { @class = "form-select  mb-4" })
+                            new SelectListItem{Text="90 min", Value="90"},}, new { @class = "form-select mb-4" })
 
                             <button href="#" class="btn btn-outline-primary w-100" type="submit">Tallenna aika</button>
                         </div>
