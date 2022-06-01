@@ -260,6 +260,7 @@ namespace Ajanvarausprojekti.Controllers
             Ajat ajat = db.Ajat.Find(id);
             db.Ajat.Remove(ajat);
             db.SaveChanges();
+            TempData["AikaSuccess"] = "Ajan poisto onnistui!";
             return new RedirectResult(Url.Action("OpettajienSivu", "Home") + "#LisaaAika");
         }
 
