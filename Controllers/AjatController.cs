@@ -87,9 +87,6 @@ namespace Ajanvarausprojekti.Controllers
             else
             {
 
-                ViewBag.kesto_id = new SelectList(db.Kestot, "kesto_id", "kesto_id");
-                ViewBag.opettaja_id = new SelectList(db.Opettajat, "opettaja_id", "sahkoposti");
-
                 return PartialView();
 
             }
@@ -98,7 +95,6 @@ namespace Ajanvarausprojekti.Controllers
         // POST: Ohjausaika/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //public ActionResult LisaaAika([Bind(Include = "aika_id,alku_aika,kesto_id,opettaja_id")] Ajat ajat)
         public ActionResult _LisaaAika([Bind(Include = "aika_id,alku_aika,kesto_id,opettaja_id, startDate, startTime")] Ajat ajat)
         {
             try
