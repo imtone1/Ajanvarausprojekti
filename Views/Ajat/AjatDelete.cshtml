@@ -40,10 +40,7 @@
 
                         <div class="form-actions no-color">
                             <input type="submit" value="Poista" class="btn btn-primary ms-3" />|
-                            @using (Html.BeginForm("OpettajienSivu", "Home", FormMethod.Get))
-                            {
-                                <button class="btn btn-primary ms-3">Takaisin</button>
-                            }
+                            <a href="@Url.Action("OpettajienSivu", "Home")" class="btn btn-primary ms-3">Takaisin</a>
 
                         </div>
                     }
