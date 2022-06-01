@@ -86,9 +86,7 @@ namespace Ajanvarausprojekti.Controllers
             }
             else
             {
-
                 return PartialView();
-
             }
         }
 
@@ -99,17 +97,12 @@ namespace Ajanvarausprojekti.Controllers
         {
             try
             {
-
                 if (ModelState.IsValid)
                 {
-
-                    //Opettajan valitsema päivämäärä on muuttujassa startDate
+                    //sijoitetaan opettajan valitsemat päivämäärä ja kellonaika muuttujiin ja viedään tietokantaan
                     var startDate = Request["startDate"];
-                    //Opettajan valitsema kellonaika on muuttujassa startTime
                     var startTime = Request["startTime"];
-                    //Yhdistetään nen samaan string-muuttujaan
                     var strAika = startDate + " " + startTime;
-                    //Convertoidaan tietokantaan sopivaksi
                     ajat.alku_aika = Convert.ToDateTime(strAika);
 
                     //Varauksen tehnyt opettaja tallennetaan tietokantaan Session["OpettajaID"]:n avulla
@@ -119,19 +112,21 @@ namespace Ajanvarausprojekti.Controllers
                     var valittuAika = Convert.ToDateTime(strAika);
                     var opeID = (int)Session["OpettajaID"];
 
-                    //Haetaan tietokannasta opettajan kaikki samana päivänä vapaana olevat ajat
+                    //Haetaan tietokannasta opettajan kaikki saman päivän ajat
                     var alkuajatLista = db.Ajat.Where(a => a.opettaja_id == opeID && a.alku_aika.Day == valittuAika.Day && a.alku_aika.Month == valittuAika.Month)
                                           .Select(a => a.alku_aika);
 
-                    //Haetaan tietokannasta kaikki samana päivänä vapaana olevien aikojen kestot
+                    //Haetaan tietokannasta kyseisten päivien kestot
                     var kestoListaLinq = db.Ajat.Where(a => a.opettaja_id == opeID && a.alku_aika.Day == valittuAika.Day && a.alku_aika.Month == valittuAika.Month)
                                        .Select(a => a.kesto_id);
-                    //sijoitetaan linq-kyselyllä haetut kestot listaan
+                    //sijoitetaan kestot listaan
                     var kestoLista = kestoListaLinq.ToList();
 
+                    //Käydään silmukassa läpi jokainen aika + kesto ja tehdään tarkistus,
+                    //onko aika jos tietokannassa vai voiko sen lisätä
                     foreach (var alkuaika in alkuajatLista)
                     {
-                        //annetaan muuttujalle kesto listalla olevan ensimmäisen ohjausajan kesto
+                        //annetaan muuttujalle listalla olevan ensimmäisen ohjausajan kesto
                         var kesto = kestoLista[0];
 
                         //Luodaan muuttuja lopetusAika, joka lasketaan keston perusteella
