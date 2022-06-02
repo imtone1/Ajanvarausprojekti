@@ -233,7 +233,12 @@ namespace Ajanvarausprojekti.Controllers
                         db.Varaukset.Add(varauksesi);
                         db.SaveChanges();
 
-                      
+                       
+                         int varausi = varaus.aika_id;
+                        int varausID = (from v in db.Varaukset
+                                        where v.aika_id == varausi
+                                        select v.varaus_id).Take(1).SingleOrDefault();
+
 
                         //Tarkistetaan onko olemassa ja mikä on tän open id  
                         var ajatOpe = (from op in db.Opettajat
@@ -279,7 +284,7 @@ namespace Ajanvarausprojekti.Controllers
                                             "<p>Sinulle on tehty ohjausajanvaraus Tivi-ohjaus-sovelluksen kautta ajalle " + varausAika.alku_aika.ToShortDateString() + " " + varausAika.alku_aika.ToShortTimeString() + ". (kesto " + varausAika.kesto_id + " minuuttia.</p><br><p>Paikkana on " + varausAika.paikka + "</p><br><p>Ongelmatilanteissa voit olla yhteydessä sovelluksen pääkäyttäjään Simo Sireniin.</p><br><br>Terveisin, <br> Tivi-ohjaus</p><br>" +
                                             "Tähän viestiin ei voi vastata.", isBodyHtml: true
                                         );
-                                ViewBag.Status = "Sähköposti lähetetty. Tarkista sähköpostisi, myös roskapostiviesteistä.";
+                               
                                 // Send email
                                 WebMail.Send(to: varaus.Varaaja,
                                             subject: "Varausvahvistus: Ohjausaika TiVi-opettajalle",
@@ -289,13 +294,14 @@ namespace Ajanvarausprojekti.Controllers
                                             "Tähän viestiin ei voi vastata.", isBodyHtml: true
                                         );
                                 ViewBag.Status = "Sähköposti lähetetty. Tarkista sähköpostisi, myös roskapostiviesteistä.";
-                                @TempData["varausnro"] = varauksesi.id_hash;
-                                @TempData["varaaja"] = varaus.Varaaja;
-                                @TempData["aihe"] = varaus.Aihe;
-                                @TempData["paikka"] = varauksesi.Ajat.paikka;
-                                @TempData["aika"] = varausAika.alku_aika;
-                                @TempData["kesto"] = varausAika.kesto_id;
-                                //return RedirectToAction("OnnistunutVaraus");
+                                //@TempData["varausnro"] = varauksesi.id_hash;
+                                //@TempData["varaaja"] = varaus.Varaaja;
+                                //@TempData["aihe"] = varaus.Aihe;
+                                //@TempData["paikka"] = varauksesi.Ajat.paikka;
+                                //@TempData["aika"] = varausAika.alku_aika;
+                                //@TempData["kesto"] = varausAika.kesto_id;
+                                return RedirectToAction("OnnistunutVaraus", new System.Web.Routing.RouteValueDictionary(new { Controller = "Varaus", Action = "OnnistunutVaraus", Id = varausID }));
+
 
                             }
                             catch (Exception)
@@ -304,7 +310,7 @@ namespace Ajanvarausprojekti.Controllers
 
                             }
 
-
+                            return RedirectToAction("OnnistunutVaraus", varausID );
                         }
                         else
                         {
@@ -319,7 +325,7 @@ namespace Ajanvarausprojekti.Controllers
                 //    //jos ope tallennus onnistuu lähettää userin tähän
 
                     //jos ope tallennus onnistuu lähettää userin tähän
-                    return RedirectToAction("OnnistunutVaraus");
+                    //return RedirectToAction("OnnistunutVaraus");
 
 
                 }
@@ -344,8 +350,24 @@ namespace Ajanvarausprojekti.Controllers
 
         }
 
-        public ActionResult OnnistunutVaraus()
+        public ActionResult OnnistunutVaraus(int Id)
         {
+            var ajatLista = from a in db.Ajat
+                            join op in db.Opettajat on a.opettaja_id equals op.opettaja_id
+                            join k in db.Kestot on a.kesto_id equals k.kesto_id
+                            join v in db.Varaukset on a.aika_id equals v.aika_id
+                            where v.varaus_id==Id
+
+            select new ajatListaData
+                            {
+                               
+                                Alkuaika = (DateTime)a.alku_aika,
+                                Kesto = (int)k.kesto,
+                                Aihe = v.aihe,
+                                Paikka = a.paikka,
+                                Varaaja = v.varaaja_sahkoposti,
+                                id_hash=v.id_hash
+                            };
             return View();
         }
 
