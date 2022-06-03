@@ -19,7 +19,7 @@
 
         <dd>
             @*@Html.DisplayFor(model => model.Ajat.alku_aika)*@
-            @TempData["aika"]
+            @Session["aika"]
 
         </dd>
         <dt>
@@ -28,14 +28,14 @@
 
         <dd>
             @*@Html.DisplayFor(model => model.Ajat.kesto_id)*@
-            @TempData["kesto"]
+            @Session["kesto"]
         </dd>
         <dt>
             Ilmoittamasi varaaja
         </dt>
 
         <dd>
-            @TempData["varaaja"]@*@Html.DisplayFor(model => model.varaaja_sahkoposti)*@
+            @Session["varaaja"]@*@Html.DisplayFor(model => model.varaaja_sahkoposti)*@
         </dd>
 
         <dt>
@@ -43,7 +43,7 @@
         </dt>
 
         <dd>
-            @TempData["varausnro"]@*@Html.DisplayFor(model => model.id_hash)*@
+            @Session["varausnro"]@*@Html.DisplayFor(model => model.id_hash)*@
         </dd>
 
         <dt>
@@ -51,7 +51,7 @@
         </dt>
 
         <dd>
-            @TempData["aihe"] @*@Html.DisplayFor(model => model.aihe)*@
+            @Session["aihe"] @*@Html.DisplayFor(model => model.aihe)*@
         </dd>
 
         <dt>
@@ -59,8 +59,8 @@
         </dt>
 
         <dd>
-            <a href="@TempData["paikka"]">Suora linkki Teams-kokoukseen</a>
-            <p>@TempData["paikka"]</p>
+            <a href="@Session["paikka"]">Suora linkki Teams-kokoukseen</a>
+            <p>@Session["paikka"]</p>
         </dd>
 
     </dl>@*@Html.DisplayFor(model => model.Ajat.paikka)*@

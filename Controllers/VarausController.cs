@@ -289,12 +289,12 @@ namespace Ajanvarausprojekti.Controllers
                                             "Tähän viestiin ei voi vastata.", isBodyHtml: true
                                         );
                                 ViewBag.Status = "Sähköposti lähetetty. Tarkista sähköpostisi, myös roskapostiviesteistä.";
-                                @TempData["varausnro"] = varauksesi.id_hash;
-                                @TempData["varaaja"] = varaus.Varaaja;
-                                @TempData["aihe"] = varaus.Aihe;
-                                @TempData["paikka"] = varauksesi.Ajat.paikka;
-                                @TempData["aika"] = varausAika.alku_aika;
-                                @TempData["kesto"] = varausAika.kesto_id;
+                                Session["varausnro"] = varauksesi.id_hash;
+                                Session["varaaja"] = varaus.Varaaja;
+                                Session["aihe"] = varaus.Aihe;
+                                Session["paikka"] = varauksesi.Ajat.paikka;
+                                Session["aika"] = varausAika.alku_aika;
+                                Session["kesto"] = varausAika.kesto_id;
                                 //return RedirectToAction("OnnistunutVaraus");
 
                             }
