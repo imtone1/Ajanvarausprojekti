@@ -8,7 +8,7 @@
 
     public class ajatListaData
     {
-        [Key]
+        //[Key]
         public int aika_id { get; set; }
         public string Etunimi { get; set; }
         public string Sukunimi { get; set; }
