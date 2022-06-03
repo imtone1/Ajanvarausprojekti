@@ -8,7 +8,7 @@
 @section Scripts{
     @Scripts.Render("~/bundles/jqueryval")
     <script>
-        //Tarkistetaan, että salasanat täsmää
+        //Irina: Tarkistetaan, että salasanat täsmää
         $(function () {
             var salasana = "";
             var vahvistus = "";
@@ -28,6 +28,7 @@
             })
         })
 
+       /* Tarkistetaan tiedoston, onko image ja onko alle 1MB*/
         Filevalidation = () => {
             const fi = document.getElementById('file');
             // Check if any file is selected.
@@ -53,6 +54,24 @@
                 }
             }
         }
+
+        /* Irina: Opettajan poistomodaali*/
+        $(function () {
+            $(".getOpeId").click(function () {
+                let opettaja_id = $(this).data("opettaja_id");
+                console.log("Klikkasit opettajaa:" + opettaja_id);
+                var url = "/SuperUser/_PoistaOpettaja/?id=" + opettaja_id;
+                console.log(url);
+
+                $("#Opepoisto").append(" <b>Avataan opettaja " + opettaja_id + " poistoikkuna...</b>");
+
+                var $detailDivEdit = $("#Opepoisto");
+                $.get(url, function (data) {
+                    $detailDivEdit.replaceWith(data);
+                    $('#ModalOpettajaPoisto').modal('show');
+                });
+            });
+        });
 
     </script>
 }
@@ -104,8 +123,10 @@
                     <tr>
                         <th scope="col">Käyttäjät</th>
                         @*<th scope="col"></th>*@
+                        @*Tällä näytetään opettaja-id, kun odotetaan, että modaali-ikkuna avautuu. Voidaan tarvittaessa poistaa*@
+                    <th id="Opepoisto"></th>
                     </tr>
-                </thead>
+                </thead>     
                 @Html.Action("_ListaaOpettajat")
             </table>
         </div>
