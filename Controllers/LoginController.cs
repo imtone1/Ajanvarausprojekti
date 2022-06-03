@@ -60,6 +60,27 @@ namespace Ajanvarausprojekti.Controllers
                     ViewBag.LoggedStatus = "In";
                     ViewBag.LoginError = 0;
 
+                    //Irina: vanhemmat kuin 14 pv ajat poisto järjestelmästä !!! TESTAUSVAIHEESSA on 30 pv LOPULLISESSA TÄYTYY MUUTTAA 14 PÄIVÄKSI!!!
+                    DateTime neljatoista = DateTime.Today.AddDays(-30);
+
+
+                    var aikaolemassa = from a in db.Ajat
+                                       where a.alku_aika < neljatoista
+                                       select a;
+
+                    while (aikaolemassa.Any())
+                    {
+                        int aikaID = (from a in db.Ajat
+                                      where a.alku_aika < neljatoista
+                                      select a.aika_id).Take(1).SingleOrDefault();
+
+                        Ajat aikapoisto = db.Ajat.Find(aikaID);
+                        db.Ajat.Remove(aikapoisto);
+
+                        db.SaveChanges();
+
+                    }
+
                     return RedirectToAction("OpettajienSivu", "Home"); //Tässä määritellään mihin onnistunut kirjautuminen johtaa
 
 
