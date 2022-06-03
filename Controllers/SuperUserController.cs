@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
@@ -117,7 +118,7 @@ namespace Ajanvarausprojekti.Controllers
                         //jos tiedosto ei ole ladattu, käytetään default kuvaa
                         else
                         {
-                            //opekuva defalt polku, tällä hetkellä "/Opekuvat/lintu.jpg"
+                            //opekuva defalt polku, tällä hetkellä "/Opekuvat/defaultKuva.jpg"
                             Yhteystiedot ohjelmanyhteystiedot = new Yhteystiedot();
                             string opekuvadefault = ohjelmanyhteystiedot.OpeDefaultKuva;
 
@@ -199,7 +200,7 @@ namespace Ajanvarausprojekti.Controllers
                                                 "<p>Ole yhteydessä TiVi-sivuston pääkäyttäjään </p><br><br>Terveisin, <br> Tivi</p><br> +" +
                                                 "Tähän viestiin ei voi vastata.", isBodyHtml: true
                                             );
-                                    ViewBag.Status = "Sähköposti lähetetty. Tarkista sähköpostisi, myös roskapostiviesteistä.";
+                                    //ViewBag.Status = "Sähköposti lähetetty. Tarkista sähköpostisi, myös roskapostiviesteistä.";
                                 }
                                 catch (Exception)
                                 {
@@ -236,23 +237,38 @@ namespace Ajanvarausprojekti.Controllers
 
         }
 
-       
-        //Irina: Opekuvan poisto, tulee myöhemmin käyttöön
-        //public ActionResult Delete(string fileName)
-        //{
-        //    string fullPath = Path.Combine(Server.MapPath("~/Opekuvat"), fileName);
-        //    byte[] fileBytes = System.IO.File.ReadAllBytes(fullPath);
+        // Irina: Poistetaan opettaja
+        public ActionResult _PoistaOpettaja(int? id)
+        {
+            if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            Opettajat opettaja = db.Opettajat.Find(id);
+            if (opettaja == null) return HttpNotFound();
+            return PartialView("_PoistaOpettaja", opettaja);
+        }
 
-        //    if (System.IO.File.Exists(fullPath))
-        //    {
-        //        System.IO.File.Delete(fullPath);
-        //    }
+        // Irina: POST: Opettaja/Delete/5
+        [HttpPost]
+        //[ValidateAntiForgeryToken]
+        public ActionResult _PoistaOpettaja(int id)
+        {
+            Opettajat opettaja = db.Opettajat.Find(id);
+            db.Opettajat.Remove(opettaja);
+            db.SaveChanges();
 
-        //    return RedirectToAction("Index", "Home");
-
-        //}
-
-      
+         //Poistetaan myös tiedostoista opettajan kuvan, jos ei ole default kuva
+            if (opettaja.kuva != "/Opekuvat/defaultKuva.jpg") {
+            //opettajan kuvan poisto
+            string _FileName = opettaja.kuva;
+             
+                //string fullPath = Path.Combine(Server.MapPath("~"), _FileName);
+                string fullPath = _FileName;
+                if (System.IO.File.Exists(fullPath))
+            {
+                System.IO.File.Delete(fullPath);
+            }
+            }
+            return RedirectToAction("LisaaOpettaja");
+        }
 
         //Dispose pakko olla, tätä ei saa poistaa!
         protected override void Dispose(bool disposing)
