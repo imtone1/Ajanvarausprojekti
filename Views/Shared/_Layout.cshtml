@@ -28,8 +28,8 @@ $('#LoginRuutu').modal('show');
     @{ if (Session["UserName"] == null)
         {
             Html.RenderPartial("_NavbarLoggedOut");
-            Html.RenderPartial("~/Views/Login/_LoginModal.cshtml");
-        
+            //Html.RenderPartial("~/Views/Login/_LoginModal.cshtml");
+
         }
         else
         {

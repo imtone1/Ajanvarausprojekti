@@ -294,9 +294,9 @@ namespace Ajanvarausprojekti.Controllers
                                             "Tähän viestiin ei voi vastata.", isBodyHtml: true
                                         );
                                 ViewBag.Status = "Sähköposti lähetetty. Tarkista sähköpostisi, myös roskapostiviesteistä.";
-                                //@TempData["varausnro"] = varauksesi.id_hash;
-                                //@TempData["varaaja"] = varaus.Varaaja;
-                                //@TempData["aihe"] = varaus.Aihe;
+                                Session["varausnro"] = varauksesi.id_hash;
+                                Session["varaaja"] = varaus.Varaaja;
+                                Session["aihe"] = varaus.Aihe;
                                 //@TempData["paikka"] = varauksesi.Ajat.paikka;
                                 //@TempData["aika"] = varausAika.alku_aika;
                                 //@TempData["kesto"] = varausAika.kesto_id;
@@ -309,8 +309,16 @@ namespace Ajanvarausprojekti.Controllers
                                 ViewBag.Status = "Et ole antanut sähköpostiosoitetta.";
 
                             }
+                            //return RedirectToRoute(new
+                            //{
+                            //    controller = "Varaus",
+                            //    action = "OnnistunutVaraus",
+                            //    Id =varausID
 
-                            return RedirectToAction("OnnistunutVaraus", varausID );
+                            //});
+                            //return RedirectToAction("OnnistunutVaraus", "Varaus", new { Id=varausID });
+                            //return RedirectToAction("OnnistunutVaraus", new System.Web.Routing.RouteValueDictionary(new { Controller = "Varaus", Action = "OnnistunutVaraus", Id = varausID }));
+                            //return RedirectToAction("OnnistunutVaraus", varausID );
                         }
                         else
                         {
@@ -352,7 +360,7 @@ namespace Ajanvarausprojekti.Controllers
 
         public ActionResult OnnistunutVaraus(int Id)
         {
-            var ajatLista = from a in db.Ajat
+            var ajatLista = (from a in db.Ajat
                             join op in db.Opettajat on a.opettaja_id equals op.opettaja_id
                             join k in db.Kestot on a.kesto_id equals k.kesto_id
                             join v in db.Varaukset on a.aika_id equals v.aika_id
@@ -367,8 +375,8 @@ namespace Ajanvarausprojekti.Controllers
                                 Paikka = a.paikka,
                                 Varaaja = v.varaaja_sahkoposti,
                                 id_hash=v.id_hash
-                            };
-            return View();
+                            }).ToList();
+            return View(ajatLista);
         }
 
         //Irina:yksittäisen varauksen tarkempi kuvaus

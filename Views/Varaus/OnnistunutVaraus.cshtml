@@ -31,7 +31,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayNameFor(model => model.Kesto)
+            @Html.DisplayFor(modelItem => item.Kesto)
             @*@TempData["kesto"]*@
         </dd>
         <dt>
@@ -39,7 +39,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayNameFor(model => model.Varaaja)
+            @Html.DisplayFor(modelItem => item.Varaaja)
         </dd>
 
         <dt>
@@ -47,7 +47,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayNameFor(model => model.id_hash)
+            @Html.DisplayFor(modelItem => item.id_hash)
         </dd>
 
         <dt>
@@ -55,7 +55,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayNameFor(model => model.Aihe)
+            @Html.DisplayFor(modelItem => item.Aihe)
         </dd>
 
         <dt>
@@ -63,8 +63,8 @@
         </dt>
 
         <dd>
-            <a href=" @Html.DisplayNameFor(model => model.Paikka)">Suora linkki Teams-kokoukseen</a>
-            <p> @Html.DisplayNameFor(model => model.Paikka)</p>
+            <a href=" @Html.DisplayFor(modelItem => item.Paikka)">Suora linkki Teams-kokoukseen</a>
+            <p> @Html.DisplayFor(modelItem => item.Paikka)</p>
         </dd>
 
         <!---->@*@Html.DisplayFor(model => model.Ajat.paikka)*@
