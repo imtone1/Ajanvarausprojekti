@@ -24,7 +24,7 @@
                     {
                         <tr>
                             <td scope="row">@Html.ValueFor(model => item.Alkuaika, "{0:dd.MM.yyyy}")</td>
-                            <td>@Html.ValueFor(modelItem => item.Alkuaika, "{0:t}")</td>
+                            <td>@Html.ValueFor(modelItem => item.Alkuaika, "{0:HH:mm}")</td>
                             <td>@Html.ValueFor(modelItem => item.Kesto)</td>
                             <td>@Html.ValueFor(modelItem => item.Varaaja)</td>
                             <!-- Alle luomani td-truncate-luokka tekee aiheen loppuun kolme pistettä mikäli tekstin pituus on liian pitkä sopiakseen soluun. Huom! Bootstrap 5:n oma text-truncate-luokka vaatii toimiakseen display: inline-block or display: block eli ei käy taulukkoon! -->
