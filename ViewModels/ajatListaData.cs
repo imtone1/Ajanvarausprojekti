@@ -21,6 +21,8 @@
         public int Kesto { get; set; }
 
         public string id_hash { get; set; }
+        public string Etunimi { get; set; }
+        public string Sukunimi { get; set; }
 
     }
 }
