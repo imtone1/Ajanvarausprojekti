@@ -420,6 +420,7 @@
     <Content Include="Views\Varaus\OnnistunutVaraus.cshtml" />
     <Content Include="Views\SuperUser\_ListaaOpettajat.cshtml" />
     <Content Include="Views\Ope\_VapaatAjat.cshtml" />
+    <Content Include="Views\SuperUser\_PoistaOpettaja.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
