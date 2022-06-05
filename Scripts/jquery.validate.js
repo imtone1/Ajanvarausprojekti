@@ -1,9 +1,9 @@
 /*!
- * jQuery Validation Plugin v1.19.4
+ * jQuery Validation Plugin v1.19.3
  *
  * https://jqueryvalidation.org/
  *
- * Copyright (c) 2022 Jörn Zaefferer
+ * Copyright (c) 2021 Jörn Zaefferer
  * Released under the MIT license
  */
 (function( factory ) {
@@ -1050,10 +1050,6 @@ $.extend( $.validator, {
 		// meta-characters that should be escaped in order to be used with JQuery
 		// as a literal part of a name/id or any selector.
 		escapeCssMeta: function( string ) {
-			if ( string === undefined ) {
-				return "";
-			}
-
 			return string.replace( /([\\!"#$%&'()*+,./:;<=>?@\[\]^`{|}~])/g, "\\$1" );
 		},
 
@@ -1130,7 +1126,7 @@ $.extend( $.validator, {
 			}
 			delete this.pending[ element.name ];
 			$( element ).removeClass( this.settings.pendingClass );
-			if ( valid && this.pendingRequest === 0 && this.formSubmitted && this.form() && this.pendingRequest === 0 ) {
+			if ( valid && this.pendingRequest === 0 && this.formSubmitted && this.form() ) {
 				$( this.currentForm ).submit();
 
 				// Remove the hidden input that was used as a replacement for the
@@ -1236,7 +1232,7 @@ $.extend( $.validator, {
 
 			// Exception: the jquery validate 'range' method
 			// does not test for the html5 'range' type
-			rules[ type === "date" ? "dateISO" : method ] = true;
+			rules[ method ] = true;
 		}
 	},
 
