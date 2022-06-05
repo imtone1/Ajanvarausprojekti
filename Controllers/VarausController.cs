@@ -73,7 +73,7 @@ namespace Ajanvarausprojekti.Controllers
                                     Aihe = v.aihe,
                                     Paikka = a.paikka,
                                     opettaja_id = (int)a.opettaja_id,
-                                    Varaaja = v.varaaja_nimi,
+                                    Varaaja = v.varaaja_sahkoposti,
                                     Varauspvm = (DateTime)v.varattu_pvm,
                                     varaus_id=v.varaus_id
 
@@ -272,7 +272,7 @@ namespace Ajanvarausprojekti.Controllers
                                 //Sender email address.  
                                 WebMail.From = sahkopostiosoite_ohjelman;
 
-                                // Send email
+                                // Send email opettajalle
                                 WebMail.Send(to: ajatOpe.sahkoposti,
                                             subject: "Ohjausaika varattu Tivi-ohjaussovelluksen kautta",
                                             body: "<b><p>Hei!</p></b><br>" +
@@ -280,11 +280,11 @@ namespace Ajanvarausprojekti.Controllers
                                             "Tähän viestiin ei voi vastata.", isBodyHtml: true
                                         );
                                 ViewBag.Status = "Sähköposti lähetetty. Tarkista sähköpostisi, myös roskapostiviesteistä.";
-                                // Send email
+                                // Send email varaajalle
                                 WebMail.Send(to: varaus.Varaaja,
                                             subject: "Varausvahvistus: Ohjausaika TiVi-opettajalle",
                                             body: "<b><p>Hei!</p></b><br>" +
-                                            "Olet tehnyt ohjausajanvarauksen opettajalle Tivi-ohjaus-sovelluksen kautta." + "<p>Varauksen aika " + varausAika.alku_aika + "</p><br>Tapaamisen kesto " + varausAika.kesto_id + " minuuttia. </p><br>" + "</p><br>Teams linkki: " + varausAika.paikka + " </p><br>" +
+                                            "Olet tehnyt ohjausajanvarauksen opettajalle Tivi-ohjaus-sovelluksen kautta opettajalle "+ varausAika.Opettajat.etunimi +" "+ varausAika.Opettajat.sukunimi + ". <p>Varauksen aika " + varausAika.alku_aika.ToShortDateString() + " " + varausAika.alku_aika.ToShortTimeString() + " </p><br>Tapaamisen kesto " + varausAika.kesto_id + " minuuttia. </p><br>" + "</p><br>Teams linkki: " + varausAika.paikka + " </p><br>" +
                                             "<p>Jos haluat perua ajan, voit tehdä sen peruutuskoodin avulla Tivi-ohjaus-sovelluksen kautta.<p><br><p>Peruutuskoodisi:  " + varauksesi.id_hash + "</p><br>Terveisin, <br> Tivi-ohjaus</p><br>" +
                                             "Tähän viestiin ei voi vastata.", isBodyHtml: true
                                         );
