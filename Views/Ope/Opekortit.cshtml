@@ -23,8 +23,7 @@
 
                         <!--Nappula, joka avaa vapaiden aikojen modaali-ikkunan-->
                         <button type="button" class="btn btn-primary placeholder-glow" id="vapaatAjatModal" data-bs-toggle="modal"
-                                data-bs-target="#AjatRuutu" @*data-opettaja_id="@item.opettaja_id"*@>
-                            Varaa aika
+                                data-bs-target="#AjatRuutu_@item.opettaja_id">Varaa aika
                         </button>
 
                     </div>
@@ -38,7 +37,7 @@
             <div class="container">
 
                 @*Modal*@
-                <div class="modal fade" id="AjatRuutu">
+                <div class="modal fade" id="AjatRuutu_@item.opettaja_id">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header"><h2 class="placeholder-glow">Valitse varattava aika</h2></div>
