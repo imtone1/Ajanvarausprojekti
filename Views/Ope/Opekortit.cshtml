@@ -22,8 +22,9 @@
                         <h5 class="card-title fw-light placeholder-glow">@item.etunimi @item.sukunimi</h5>
 
                         <!--Nappula, joka avaa vapaiden aikojen modaali-ikkunan-->
-                        <button type="button" class="btn btn-primary placeholder-glow" id="vapaatAjatModal" data-bs-toggle="modal"
-                                data-bs-target="#AjatRuutu_@item.opettaja_id">Varaa aika
+                        <button type="button" class="btn btn-primary placeholder-glow" id="AvaavapaatAjatModal" data-bs-toggle="modal"
+                                data-bs-target="#AjatRuutu_@item.opettaja_id">
+                            Varaa aika
                         </button>
 
                     </div>
@@ -40,14 +41,27 @@
                 <div class="modal fade" id="AjatRuutu_@item.opettaja_id">
                     <div class="modal-dialog">
                         <div class="modal-content">
-                            <div class="modal-header"><h2 class="placeholder-glow">Valitse varattava aika</h2></div>
+                            <div class="modal-header">
+                                <!--Progress bar-->
+                                <div class="position-relative align-self-center m-5 w-75">
+                                    <div class="progress" style="height: 1px; background-color: var(--primary-color);">
+                                        <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <button type="button" class="placeholder-glow top-0 start-0 p-0 m-0 translate-middle btn btn-sm btn-primary rounded-pill d-flex justify-content-center align-items-center" style="width: 3.4rem; height: 3.4rem;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" fill="black" class="bi bi-check2 m-0 p-0" viewBox="0 0 16 16">
+                                            <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
+                                        </svg>
+                                    </button>
+                                    <button type="button" class="placeholder-glow position-absolute top-0 start-50 translate-middle btn btn-sm btn-outline-primary bg-white rounded-pill d-flex justify-content-center align-items-center" style="width: 3.4rem; height: 3.4rem;">
+                                    </button>
+                                    <button type="button" class="placeholder-glow position-absolute top-0 start-100 translate-middle btn btn-sm btn-outline-primary bg-white rounded-pill d-flex justify-content-center align-items-center" style="width: 3.4rem; height: 3.4rem;">
+                                    </button>
+                                </div>
+                            </div>
+                            <h2 class="placeholder-glow">Valitse varattava aika</h2>
 
                             @{Html.RenderAction("_VapaatAjat", "Ope", new { opeid = @item.opettaja_id });}
 
-                            <div class="modal-footer">
-
-                                <a href="/Varaus/TeeVaraus" class="placeholder-glow btn d-grid text-decoration-none btn-outline-primary mt-3" type="submit">Valitse ja jatka</a>
-                            </div>
                         </div>
                     </div>
                 </div>

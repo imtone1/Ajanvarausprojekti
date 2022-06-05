@@ -1,8 +1,5 @@
 ﻿@model Ajanvarausprojekti.ViewModels.ajatListaData
 
-<div class="modal" id="TeeVaraus"> @* TeeVaraus id.tä ei vielä käytetä missään *@
-    <div class="modal-dialog">
-        <div class="modal-content">
             <div class="modal-header">
                 <h4>Olet varaamassa ohjausaikaa ajalle (päivämäärä ja kellonaika-aikaväli)</h4>
             </div>
@@ -56,6 +53,3 @@
                 @*Kontrollerin kutsu url.Action -komennolla, jotta peruuttaminen johtaa alkutilanteeseen*@
                 <a href="@Url.Action("Index", "Home")" class="btn btn-outline-primary">Peruuta</a>
             </div>
-        </div>
-    </div>
-</div>

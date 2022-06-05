@@ -1,20 +1,8 @@
 ﻿@model IEnumerable<Ajanvarausprojekti.ViewModels.ajatListaData>
 
-@section Scripts {
-    <script type="text/javascript">
-        $(function () {
-            $(".valitseAika").click(function () {
-                let aika_id = $(this).data("aikaId");
-                $('#TeeVaraus').modal('show');
-            });
-        });
-    </script>
-}
-
 <table class="table table-sm table-hover caption">
     <thead>
         <tr>
-            <th scope="col">Opettajan nimi</th>
             <th scope="col">Päivämäärä</th>
             <th scope="col">Kellonaika</th>
             <th scope="col">Aika_id (käytössä vain testailuvaiheessa)</th>
@@ -24,7 +12,6 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>@item.Etunimi @item.Sukunimi</td>
                 <td>@item.Alkuaika.Value.ToString("dd.MM")</td>
                 <td><button class="valitseAika btn btn-primary" data-aikaId="@item.aika_id">@item.Alkuaika.Value.ToShortTimeString() - @Convert.ToDateTime(item.Alkuaika).AddMinutes(item.Kesto).ToShortTimeString()</button></td>
                 <td>@item.aika_id</td>
@@ -32,3 +19,37 @@
         }
     </tbody>
 </table>
+
+<div class="modal-footer">
+
+    <!--Nappula, joka avaa varauksen seuraavan vaiheen-->
+
+    <button class="placeholder-glow btn d-grid text-decoration-none btn-outline-primary mt-3" id="AvaaVarausModal" data-bs-toggle="modal"
+            data-bs-target="#TeeVarausRuutu" type="submit">
+        Jatka varaukseen
+    </button>
+
+    @*<a href="/Varaus/TeeVaraus" class="placeholder-glow btn d-grid text-decoration-none btn-outline-primary mt-3">Jatka varaukseen</a>*@
+
+    <!--Peruutusnappula-->
+    <button type="button" class="placeholder-glow btn d-grid text-decoration-none btn-outline-primary mt-3" data-bs-dismiss="modal">Takaisin</button>
+</div>
+
+@foreach (var item in Model)
+{
+    <div class="container">
+        @*Modal*@
+        <div class="modal" id="TeeVarausRuutu">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    @{Html.RenderAction("TeeVaraus", "Varaus", new { aikaid = @item.aika_id });}
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+}
+
+
