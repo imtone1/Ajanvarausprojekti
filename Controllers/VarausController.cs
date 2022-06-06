@@ -293,7 +293,7 @@ namespace Ajanvarausprojekti.Controllers
                                 Session["varaaja"] = varaus.Varaaja;
                                 Session["aihe"] = varaus.Aihe;
                                 Session["paikka"] = varauksesi.Ajat.paikka;
-                                Session["aika"] = varausAika.alku_aika;
+                                Session["aika"] = varausAika.alku_aika.ToString("dd.MM.yyyy HH:mm");
                                 Session["kesto"] = varausAika.kesto_id;
                                 //return RedirectToAction("OnnistunutVaraus");
 
