@@ -23,65 +23,65 @@
 
                         <div class="modal-body mt-3">
                             <div>
-                                <h4>Varaus @Html.DisplayFor(model => model.Ajat.alku_aika) <a href="@Html.DisplayFor(model => model.Ajat.paikka)" class="btn btn-primary ms-3 mt-3">Linkki Teams-kokoukseen</a></h4>
+                                <h4>Varaus @Html.TextBoxFor(model => model.Ajat.alku_aika, "{0:dd.MM.yyyy HH:mm}", new {@style = "border: none; outline: none", @readonly = true }) <a href="@Html.DisplayFor(model => model.Ajat.paikka)" class="btn btn-primary ms-3 mt-3">Linkki Teams-kokoukseen</a></h4>
                                 <dl class="dl-horizontal">
+                                                                <dt>
+                                                                    Varaaja
+                                                                </dt>
 
-                                    <dt>
-                                       Varaaja
-                                    </dt>
+                                                                <dd>
+                                                                    @Html.DisplayFor(model => model.varaaja_sahkoposti)
+                                                                </dd>
 
-                                    <dd>
-                                        @Html.DisplayFor(model => model.varaaja_sahkoposti)
-                                    </dd>
+                                                                <dt>
+                                                                    Alkuaika
+                                                                </dt>
 
-                                    <dt>
-                                        Alkuaika
-                                    </dt>
+                                                                <dd>
+                                                                    @Html.TextBoxFor(model => model.Ajat.alku_aika, "{0:dd.MM.yyyy HH:mm}", new { @style = "border: none; outline: none", @readonly = true })
+                                                                </dd>
 
-                                    <dd>
-                                        @Html.DisplayFor(model => model.Ajat.alku_aika)
-                                    </dd>
+                                                                <dt>
+                                                                    Kesto
+                                                                </dt>
 
-                                    <dt>
-                                       Kesto
-                                    </dt>
+                                                                <dd>
+                                                                    @Html.DisplayFor(model => model.Ajat.kesto_id)
+                                                                </dd>
 
-                                    <dd>
-                                        @Html.DisplayFor(model => model.Ajat.kesto_id)
-                                    </dd>
+                                                                <dt>
+                                                                    Aihe
+                                                                </dt>
 
-                                    <dt>
-                                       Aihe
-                                    </dt>
+                                                                <dd>
+                                                                    @Html.DisplayFor(model => model.aihe)
+                                                                </dd>
+                                                                <dt>
+                                                                    Paikka/Paikkalinkki
+                                                                </dt>
 
-                                    <dd>
-                                        @Html.DisplayFor(model => model.aihe)
-                                    </dd>
-                                    <dt>
-                                        Paikka/Paikkalinkki
-                                    </dt>
+                                                                <dd>
+                                                                    <a href="@Html.DisplayFor(model => model.Ajat.paikka)" class="btn btn-primary ms-3 mt-3">Linkki Teams-kokoukseen</a>
 
-                                    <dd><a href="@Html.DisplayFor(model => model.Ajat.paikka)" class="btn btn-primary ms-3 mt-3">Linkki Teams-kokoukseen</a>
-                                     
-                                    </dd>
-                                    <dt>
-                                        Varattu pvm
-                                    </dt>
+                                                                </dd>
+                                                                <dt>
+                                                                    Varattu pvm
+                                                                </dt>
 
-                                    <dd>
-                                        @Html.DisplayFor(model => model.varattu_pvm)
-                                    </dd>
+                                                                <dd>
+                                                                    @Html.TextBoxFor(model => model.varattu_pvm, "{0:dd.MM.yyyy HH:mm}", new { @style = "border: none; outline: none", @readonly = true })
+                                                                </dd>
 
 
-                                    <dt>
-                                        Varauksen peruutukseen tarvittava salasana
-                                    </dt>
+                                                                <dt>
+                                                                    Varauksen peruutukseen tarvittava salasana
+                                                                </dt>
 
-                                    <dd>
-                                        @Html.DisplayFor(model => model.id_hash)
-                                    </dd>
+                                                                <dd>
+                                                                    @Html.DisplayFor(model => model.id_hash)
+                                                                </dd>
 
-                                </dl>
+                                                            </dl>
                             </div>
                            
                         </div>

@@ -252,8 +252,7 @@ namespace Ajanvarausprojekti.Controllers
         public ActionResult _PoistaOpettaja(int id)
         {
             Opettajat opettaja = db.Opettajat.Find(id);
-            db.Opettajat.Remove(opettaja);
-            db.SaveChanges();
+          
 
          //Poistetaan myös tiedostoista opettajan kuvan, jos ei ole default kuva
             if (opettaja.kuva != "/Opekuvat/defaultKuva.jpg") {
@@ -267,6 +266,9 @@ namespace Ajanvarausprojekti.Controllers
                 System.IO.File.Delete(fullPath);
             }
             }
+            db.Opettajat.Remove(opettaja);
+            db.SaveChanges();
+
             return RedirectToAction("LisaaOpettaja");
         }
 
