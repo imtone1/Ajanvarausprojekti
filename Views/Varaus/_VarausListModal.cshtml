@@ -9,11 +9,11 @@
 
 <!-- Modal -->
 <div class="modal fade" id="ModalOrderEdit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog  modal-lg">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="container">
                 <div class="row">
-                    <div class="col mt-1 ms-2 me-0 pe-0 pb-5">
+                    <div class="mt-1 ms-md-2 me-0 pe-0 pb-5">
                         <div class="d-flex justify-content-end align-items-end">
                             <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close" onclick="window.location.reload()"></button>
                         </div>
@@ -21,11 +21,11 @@
                             <p class="modal-title"><img src="~/Content/Images/careerian-tiviohjaus-logo.png" class="d-flex justify-content-center align-items-center w-75 h-auto mb-1" alt="Careerian Tivi-ohjaus Logo" aria-label="Careerian Tivi-Ohjaus"><span class="fw-light pt-3 fs-6 text-uppercase">Opettajille</span></p>
                         </div>
 
-                        <div class="modal-body mt-1">
+                        <div class="modal-body mt-1 px-0 px-lg-3">
                             <h2 class="fs-6 mb-1 fw-light pb-0">Tulevat ohjausajat | Tarkastele varausta</h2>
                             <div class="row">
-                                <div class="col-md-6">
-                                    <div class="d-flex flex-column bg-light px-5 py-4 h-100 rounded-3">
+                                <div class="col-12 col-md-6">
+                                    <div class="d-flex flex-column bg-light px-2 px-md-5 py-4 h-100 rounded-3">
                                         <h3 class="fs-4">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-calendar-date" viewBox="0 0 16 16">
                                                 <path d="M6.445 11.688V6.354h-.633A12.6 12.6 0 0 0 4.5 7.16v.695c.375-.257.969-.62 1.258-.777h.012v4.61h.675zm1.188-1.305c.047.64.594 1.406 1.703 1.406 1.258 0 2-1.066 2-2.871 0-1.934-.781-2.668-1.953-2.668-.926 0-1.797.672-1.797 1.809 0 1.16.824 1.77 1.676 1.77.746 0 1.23-.376 1.383-.79h.027c-.004 1.316-.461 2.164-1.305 2.164-.664 0-1.008-.45-1.05-.82h-.684zm2.953-2.317c0 .696-.559 1.18-1.184 1.18-.601 0-1.144-.383-1.144-1.2 0-.823.582-1.21 1.168-1.21.633 0 1.16.398 1.16 1.23z" />
@@ -52,7 +52,7 @@
                                         </dl>
                                     </div>
                                 </div>
-                                    <div class="col-md-6">
+                                    <div class="col-12 col-md-6">
                                         <img src="~/Content/Images/work.jpg" alt="Alternate Text" class="img-fluid rounded-3" />
                                     </div>
                             </div>
@@ -77,13 +77,13 @@
                                             @Html.TextBoxFor(model => model.Ajat.alku_aika, "{0:dd.MM.yyyy HH:mm}", new { @class = "border-0 outline-0 bg-light w-50", @readonly = true })
                                         </dd>
 
-                                        <dt>
+                                        @*<dt>
                                             Kesto
                                         </dt>
 
                                         <dd>
                                             @Html.DisplayFor(model => model.Ajat.kesto_id)
-                                        </dd>
+                                        </dd>*@
 
                                         <dt>
                                             Aihe
