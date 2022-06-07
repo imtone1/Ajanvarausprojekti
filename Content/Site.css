@@ -119,6 +119,9 @@ a:hover {
     color: var(--white-color);
 }
 
+.outline-0 {
+    outline: none!important;
+}
 
 .bg-hero {
     background-color: var(--light-grey);
@@ -130,7 +133,7 @@ a:hover {
 
 .bg-hero-contact {
     background-color: var(--light-grey);
-    background: url(/Content/Images/keyboard.jpg);
+    background: linear-gradient( rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) ), url(/Content/Images/keyboard.jpg);
     background-size: cover;
 }
 
