@@ -421,6 +421,8 @@
     <Content Include="Views\SuperUser\_ListaaOpettajat.cshtml" />
     <Content Include="Views\Ope\_VapaatAjat.cshtml" />
     <Content Include="Views\SuperUser\_PoistaOpettaja.cshtml" />
+    <Content Include="Views\Ajat\_VapaatAjat.cshtml" />
+    <Content Include="Views\Ajat\AjatDelete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
