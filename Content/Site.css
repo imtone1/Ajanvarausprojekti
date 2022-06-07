@@ -119,6 +119,9 @@ a:hover {
     color: var(--white-color);
 }
 
+.outline-0 {
+    outline: none!important;
+}
 
 .bg-hero {
     background-color: var(--light-grey);
