@@ -403,7 +403,6 @@
     <Content Include="Views\Shared\View.cshtml" />
     <Content Include="Views\Home\OpettajienSivu.cshtml" />
     <Content Include="Views\SuperUser\LisaaOpettaja.cshtml" />
-    <Content Include="Views\Palaute\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Varaus\_EiOnnistunutModaali.cshtml" />
     <Content Include="Views\Varaus\_OnnistuiModaali.cshtml" />

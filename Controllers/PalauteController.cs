@@ -13,51 +13,21 @@ namespace Ajanvarausprojekti.Controllers
     {
         //Luodaan tietokantayhteys ylätasolla jolloin se näkyy jokaiseen metodiin
         aikapalauteEntities db = new aikapalauteEntities();
+        //vapautetaan olio lopussa omalla metodillaan.
 
-        //vapautetaan olio lopussa omalla metodillaan. Tällöin sitä ei tarvitse vapauttaa jokaisessa metodissa erikseen.
-
-        // GET: Palaute
-        public ActionResult Index()
-        {
-
-            //Listataan kaikki palautteet Palaute-näkymän Index-sivulle (Vews-Palaute-Index)
-            List<Palautteet> model = db.Palautteet.ToList();
-            return View(model);
-        }
-
-        // GET: Palaute/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
 
         // GET: Palaute/Create
         public ActionResult _Create()
         {
-
             //luodaan uusi opettajan valintaan liittyvä lista, jonka avulla saadaan pudotusvalikkoon näkymään oletusteksi "Valitse opettaja..."
             //lista myös näyttää open etunimi+sukunimi
-
             List<SelectListItem> opetListItems = db.Opettajat.Select(o => new SelectListItem()
             {
                 Text = o.etunimi + " " + o.sukunimi,
                 Value = o.opettaja_id.ToString(),
             }).ToList();
-
             opetListItems.Insert(0, new SelectListItem() { Text = "Valitse opettaja...", Value = "0", Selected = true });
             ViewBag.opeSelectList = opetListItems;
-
-
-            //luodaan uusi palautteen aiheeseen liittyvä lista, jonka avulla saadaan pudotusvalikkoon näkymään oletusteksti "Valitse aihe..."
-
-            List<SelectListItem> palauteListItems = db.Palautetyypit.Select(p => new SelectListItem()
-            {
-                Text = p.palautetyyppi,
-                Value = p.palautetyyppi_id.ToString()
-            }).ToList();
-
-            palauteListItems.Insert(0, new SelectListItem() { Text = "Valitse aihe...", Value = "0", Selected = true });
-            ViewBag.PalauteSelectList = palauteListItems;
 
             return PartialView();
         }
@@ -85,21 +55,17 @@ namespace Ajanvarausprojekti.Controllers
                         return RedirectToAction("Index", "Home");
 
                     }
-
                     //Annetaan tieto epäonnistuneesta palautteesta TempDatalle modaali-ikkunaa varten
                     TempData["Errori"] = "Hups! Jokin meni nyt pieleen!";
                     TempData["BodyText1"] = "Palautteen lähetys epäonnistui.";
                     return RedirectToAction("Index", "Home");
-
                 }
                 else
                 {
-
                     //Annetaan tieto epäonnistuneesta palautteesta TempDatalle modaali-ikkunaa varten
                     TempData["Errori"] = "Hups! Jokin meni nyt pieleen!";
                     TempData["BodyText1"] = "Palautteen lähetys epäonnistui.";
                     return RedirectToAction("Index", "Home");
-
                 }
             }
             catch
@@ -109,52 +75,8 @@ namespace Ajanvarausprojekti.Controllers
                 TempData["BodyText1"] = "Palautteen lähetys epäonnistui.";
                 return RedirectToAction("Index", "Home");
             }
-
         }
 
-        // GET: Palaute/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Palaute/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Palaute/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Palaute/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
 
         public ActionResult LueKaikki()
         {
@@ -189,6 +111,8 @@ namespace Ajanvarausprojekti.Controllers
                 return View("LueKaikki", palauteLista);
             }
         }
+
+
         public ActionResult _LueViisi()
         {
             if (Session["UserName"] == null)
@@ -202,23 +126,23 @@ namespace Ajanvarausprojekti.Controllers
                 int opeOikID = int.Parse(opeid.ToString());
                 //Näkyy kirjautuneen opettajan palautteet
                 var palauteLista = from p in db.Palautteet
-                                join pt in db.Palautetyypit on p.palautetyyppi_id equals pt.palautetyyppi_id
-                                join op in db.Opettajat on p.opettaja_id equals op.opettaja_id
-                                where op.opettaja_id == opeOikID
+                                   join pt in db.Palautetyypit on p.palautetyyppi_id equals pt.palautetyyppi_id
+                                   join op in db.Opettajat on p.opettaja_id equals op.opettaja_id
+                                   where op.opettaja_id == opeOikID
 
-                                orderby p.palaute_pvm
+                                   orderby p.palaute_pvm
 
-                                select new palauteListaData
-                                {
-                                    palaute_id = (int)p.palaute_id,
-                                    palaute_pvm = (DateTime)p.palaute_pvm,
-                                    palautetyyppi_id = p.palautetyyppi_id,
-                                    palautetyyppi = pt.palautetyyppi,
-                                    palaute = p.palaute,
-                                    opettaja_id = (int)op.opettaja_id,
-                                    sukunimi = op.sukunimi,
-                                    etunimi = op.etunimi,
-                                };
+                                   select new palauteListaData
+                                   {
+                                       palaute_id = (int)p.palaute_id,
+                                       palaute_pvm = (DateTime)p.palaute_pvm,
+                                       palautetyyppi_id = p.palautetyyppi_id,
+                                       palautetyyppi = pt.palautetyyppi,
+                                       palaute = p.palaute,
+                                       opettaja_id = (int)op.opettaja_id,
+                                       sukunimi = op.sukunimi,
+                                       etunimi = op.etunimi,
+                                   };
                 return PartialView("_LueViisi", palauteLista);
             }
         }
@@ -239,8 +163,6 @@ namespace Ajanvarausprojekti.Controllers
             ViewBag.palaute_id = new SelectList(db.Palautetyypit, "palaute_id", "palautetyyppi", palautteet.palaute_id);
             return PartialView("_Details", palautteet);
         }
-
-
 
 
         // GET: Palaute/Delete/5
@@ -264,8 +186,8 @@ namespace Ajanvarausprojekti.Controllers
         }
 
 
-//vapautetaan tietokantayhteys Disposella
-protected override void Dispose(bool disposing)
+        //vapautetaan tietokantayhteys Disposella
+        protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
