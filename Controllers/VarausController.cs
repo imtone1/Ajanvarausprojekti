@@ -294,6 +294,7 @@ namespace Ajanvarausprojekti.Controllers
                                 Session["aihe"] = varaus.Aihe;
                                 Session["paikka"] = varauksesi.Ajat.paikka;
                                 Session["aika"] = varausAika.alku_aika.ToString("dd.MM.yyyy HH:mm");
+                                Session["loppuaika"] = varausAika.alku_aika.AddMinutes(varausAika.kesto_id).ToString("HH:mm");
                                 Session["kesto"] = varausAika.kesto_id;
                                 //return RedirectToAction("OnnistunutVaraus");
 
@@ -362,6 +363,10 @@ namespace Ajanvarausprojekti.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.Alkupvm = varaus.Ajat.alku_aika.ToString("dd.MM.yyyy");
+            ViewBag.Alkuaika= varaus.Ajat.alku_aika.ToString("HH:mm");
+            ViewBag.Loppuaika = varaus.Ajat.alku_aika.AddMinutes(varaus.Ajat.kesto_id).ToString("HH:mm");
+
             return PartialView("_VarausListModal",varaus);
         }
 
