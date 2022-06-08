@@ -422,6 +422,7 @@
     <Content Include="Views\SuperUser\_PoistaOpettaja.cshtml" />
     <Content Include="Views\Ajat\_VapaatAjat.cshtml" />
     <Content Include="Views\Ajat\AjatDelete.cshtml" />
+    <Content Include="Views\Palaute\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

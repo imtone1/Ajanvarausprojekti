@@ -1,0 +1,70 @@
+﻿@model Ajanvarausprojekti.Models.Palautteet
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<section class="container-fluid bg-black pt-lg-3">
+    <div class="container pt-lg-5">
+        <div class="row gy-5 gy-lg-0 pb-lg-0 flex-column-reverse flex-md-column-reverse flex-lg-row">
+            <div class="col-md-12 col-lg-6 table-responsive-md pe-lg-5">
+                <div class="d-flex justify-content-between w-100">
+                    <h2 class="text-white pb-5">Haluatko varmasti poistaa ajan?</h2>
+
+                </div>
+
+                <div>
+                    <hr />
+                    <dl class="dl-horizontal, text-white pb-5">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.palaute)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.palaute)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.palaute_pvm)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.palaute_pvm)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Opettajat.sahkoposti)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Opettajat.sahkoposti)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Palautetyypit.palautetyyppi)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Palautetyypit.palautetyyppi)
+                        </dd>
+
+                    </dl>
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-actions no-color">
+                            <input type="submit" value="Poista" class="btn btn-primary" /> |
+                            <button class="btn btn-primary">@Html.ActionLink("Takaisin", "LueKaikki")</button>
+                        </div>
+                    }
+                </div>
+            </div>
+
+
+            @*Sateenvarjokuva*@
+            <div class="col-md-12 col-lg-6 bg-ohjausajat mb-sm-3 mb-lg-5"></div>
+        </div>
+    </div>
+</section>

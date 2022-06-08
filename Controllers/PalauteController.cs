@@ -166,16 +166,16 @@ namespace Ajanvarausprojekti.Controllers
 
 
         // GET: Palaute/Delete/5
-        public ActionResult _Delete(int? id)
+        public ActionResult Delete(int? id)
         {
             if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             Palautteet palautteet = db.Palautteet.Find(id);
             if (palautteet == null) return HttpNotFound();
-            return PartialView(palautteet);
+            return View(palautteet);
         }
 
         // POST: Palaute/Delete/5
-        [HttpPost, ActionName("_Delete")]
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
