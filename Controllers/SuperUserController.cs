@@ -229,8 +229,8 @@ namespace Ajanvarausprojekti.Controllers
             {
                 //EionnistunutModaali
                 //Annetaan tieto, että jokin meni pieleen TempDatalle modaali-ikkunaa varten
-                TempData["Errori"] = "Hups! Jokin meni nyt pieleen!";
-                TempData["BodyText1"] = "Opettajan lisäys epäonnistui.";
+                TempData["Errori"] = "Opettajan lisäys epäonnistui.";
+                //TempData["BodyText1"] = "Opettajan lisäys epäonnistui.";
                 ViewBag.Status = "Syöttämissäsi tiedoissa jo jokin virhe.";
                 return View();
             }
@@ -252,10 +252,13 @@ namespace Ajanvarausprojekti.Controllers
         public ActionResult _PoistaOpettaja(int id)
         {
             Opettajat opettaja = db.Opettajat.Find(id);
-          
 
-         //Poistetaan myös tiedostoista opettajan kuvan, jos ei ole default kuva
-            if (opettaja.kuva != "/Opekuvat/defaultKuva.jpg") {
+
+            //Poistetaan myös tiedostoista opettajan kuvan, jos ei ole default kuva
+            //opekuva defalt polku, tällä hetkellä "/Opekuvat/defaultKuva.jpg"
+            Yhteystiedot ohjelmanyhteystiedot = new Yhteystiedot();
+            string opekuvadefault = ohjelmanyhteystiedot.OpeDefaultKuva;
+            if (opettaja.kuva != opekuvadefault) {
             //opettajan kuvan poisto
             string _FileName = opettaja.kuva;
              
