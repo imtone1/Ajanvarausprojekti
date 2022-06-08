@@ -279,7 +279,7 @@ namespace Ajanvarausprojekti.Controllers
                                             "<p>Sinulle on tehty ohjausajanvaraus Tivi-ohjaus-sovelluksen kautta ajalle " + varausAika.alku_aika.ToString("dd.MM.yyyy") + " " + varausAika.alku_aika.ToShortTimeString() + ". (kesto " + varausAika.kesto_id + " minuuttia).</p><br><p>Paikkana on " + varausAika.paikka + "</p><br><p>Ongelmatilanteissa voit olla yhteydessä sovelluksen pääkäyttäjään Simo Sireniin.</p><br><br>Terveisin, <br> Tivi-ohjaus</p><br>" +
                                             "Tähän viestiin ei voi vastata.", isBodyHtml: true
                                         );
-                                ViewBag.Status = "Sähköposti lähetetty. Tarkista sähköpostisi, myös roskapostiviesteistä.";
+                               
                                 // Send email varaajalle
                                 WebMail.Send(to: varaus.Varaaja,
                                             subject: "Varausvahvistus: Ohjausaika TiVi-opettajalle",
@@ -289,6 +289,14 @@ namespace Ajanvarausprojekti.Controllers
                                             "Tähän viestiin ei voi vastata.", isBodyHtml: true
                                         );
                                 ViewBag.Status = "Sähköposti lähetetty. Tarkista sähköpostisi, myös roskapostiviesteistä.";
+                           
+
+                            }
+                            catch (Exception)
+                            {
+                                ViewBag.Status = "Et ole antanut sähköpostiosoitetta.";
+
+                            }
                                 Session["varausnro"] = varauksesi.id_hash;
                                 Session["varaaja"] = varaus.Varaaja;
                                 Session["aihe"] = varaus.Aihe;
@@ -297,14 +305,6 @@ namespace Ajanvarausprojekti.Controllers
                                 Session["loppuaika"] = varausAika.alku_aika.AddMinutes(varausAika.kesto_id).ToString("HH:mm");
                                 Session["kesto"] = varausAika.kesto_id;
                                 //return RedirectToAction("OnnistunutVaraus");
-
-                            }
-                            catch (Exception)
-                            {
-                                ViewBag.Status = "Et ole antanut sähköpostiosoitetta.";
-
-                            }
-
 
                         }
                         else
@@ -340,6 +340,7 @@ namespace Ajanvarausprojekti.Controllers
                 //EPAONNISTUNUT MODAALI
                 //Annetaan tieto, että jokin meni pieleen TempDatalle modaali-ikkunaa varten
                 TempData["Errori"] = "Hups! Jokin meni nyt pieleen!";
+                TempData["BodyText1"] = "Varauksen tekeminen epäonnistui.";
                 return RedirectToAction("Index", "Home");
             }
 
