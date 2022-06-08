@@ -61,7 +61,7 @@
 }
 
 
-<!-- -----------------------Hero section-------------------------------- -->
+<!--Hero section-->
 <section class="container-fluid vh-100 bg-hero pt-5 pt-lg-3">
     <div class="container py-lg-5">
         <div class="col-lg-6 pt-lg-5">
@@ -72,7 +72,7 @@
                     <div class="d-flex">
                         <a href="#ohjausaika" class="btn btn-primary w-100">Varaa ohjausaika</a>
                     </div>
-                    <div class="my-3"></div><!-- Tämä tyhjä div tässä sen takia, että mobiilissa tulisi väli nappuloiden välille -->
+                    <div class="my-3"></div><!--Tämä tyhjä div tässä sen takia, että mobiilissa tulisi väli nappuloiden välille-->
                     <div class="d-flex">
                         <a href="#palaute" class="btn btn-primary ms-md-3 w-100">Anna palautetta</a>
                     </div>
@@ -82,16 +82,17 @@
     </div>
 </section>
 
-<!-- --------------------Ohjausajan varaus-osio------------------------- -->
+<!--Ohjausajan varaus-osio-->
 
-@{Html.RenderAction("Opekortit", "Ope");} <!----Nimi on vähän harhaanjohtava, mutta opekortit kattaa koko opettajakortit ja opettajien vapaat ajat. Ulkonäkö vaatii vielä hiomista-->
-<!-- -----------------------------Palautelomakeosio----------------------- -->
+@{Html.RenderAction("Opekortit", "Ope");} <!--Nimi on vähän harhaanjohtava, mutta opekortit kattaa koko opettajakortit ja opettajien vapaat ajat. Ulkonäkö vaatii vielä hiomista-->
+
+<!--Palautelomakeosio-->
 
 <div id="palaute">
     @Html.Action("_Create", "Palaute")
 </div>
 
-
+<!--Sivun alaosan kuva-->
 <div class="container-fluid bg-index-btm"></div>
 
 @* Varaajan varauksen poisto toiminto, kutsuu modaali-ikkunan. Button ja modaali kaipaa muotoilua*@
