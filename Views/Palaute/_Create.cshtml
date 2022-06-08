@@ -1,8 +1,8 @@
 ﻿@model Ajanvarausprojekti.Models.Palautteet
 
 <div class="container-fluid bg-black mt-5">
-    <!-------------------------------Palautelomakeosio------------------------->
-    @using (Html.BeginForm("_Create", "Palaute", FormMethod.Post, new { id = "palauteForm" }))
+    <!---Palautelomakeosio------------------------->
+    @using (Html.BeginForm("_Create", "Palaute", FormMethod.Post, new { id = "palauteForm", onsubmit = "javascript:return jsOpeError(document.getElementById('palauteForm'))" }))
     {
         @Html.AntiForgeryToken()
 
@@ -21,52 +21,30 @@
                     </div>
 
                     <div class="col-md-5 p-0 ps-md-3">
+                        @*Opettajan valinta *@
+                        <p class="text-white mb-0 mt-2">Tivi-opettaja, jota palaute koskee</p>
+                        @Html.DropDownList("opettaja_id", (List<SelectListItem>)ViewBag.opeSelectList, new { @class = "form-select", @id = "ope_id" }) @*id:n avulla siirretään javascriptiin ope_id tarkistusta varten*@
+                        @*ErrorMessage tulee näkyviin JavaScriptin avulla, jos opettajaa ei ole valittu*@
+                        <label class="text-danger" id="opeError"></label>
 
-                        @*Opettajan valinta - otsikko*@
-
-                        @Html.LabelFor(model => model.opettaja_id, "Tivi-opettaja, jota palaute koskee", htmlAttributes: new { @class = "text-white mb-0 mt-2" })
-
-                        @*Opettajan valinta - listaus kontrollerin puolelta*@
-
-                        @Html.DropDownList("opettaja_id", (List<SelectListItem>)ViewBag.opeSelectList, new { @class = "form-select" })
-
-                        @*Opettajan valinta - error-messagen kenttä, ei vielä toiminnassa*@
-
-                        @Html.ValidationMessageFor(model => model.opettaja_id, "", new { @class = "text-danger" })
-
-
-                        @*Palautetyypin valinta - otsikko*@
-
-                        @Html.LabelFor(model => model.palautetyyppi_id, "Palautteen aihe", htmlAttributes: new { @class = "text-white mt-4 mb-0" })
-
-                        @*Palautetyypin valinta - listaus kontrollerin puolelta*@
-
-                        @Html.DropDownList("palautetyyppi_id", (List<SelectListItem>)ViewBag.PalauteSelectList, new { @class = "form-select" })
-
-                        @*Palautetyypin valinta - error-messagen kenttä, ei vielä toiminnassa*@
-
-                        @Html.ValidationMessageFor(model => model.palautetyyppi_id, "", new { @class = "text-danger" })
+                        @*Palautetyypin valinta*@
+                        <p class="text-white mt-4 mb-0">Palautteen aihe</p>
+                        @Html.DropDownListFor(model => model.palautetyyppi_id, new List<SelectListItem> {
+                            new SelectListItem{Text="Valitse aihe...", Value="2",Selected =true },
+                            new SelectListItem{Text="Kehittämisideat", Value="1"},
+                            new SelectListItem{Text="Muu palaute", Value="2"},
+                            new SelectListItem{Text="Kurssipalaute", Value="3"},}, new { @class = "form-select", @id = "pal_id" })
 
                     </div>
 
                     <div class="ms-0 ps-0 pt-4 px-0">
-
-                        @*Palautteen kirjoitus - otsikko*@
-
-                        @Html.LabelFor(model => model.palaute, "Palautteesi", htmlAttributes: new { @class = "form-label text-white" })
-
-                        @*Palautteen kirjoitus - tekstikenttä kirjoittamista varten*@
-
+                        @*Palautteen kirjoitus*@
+                        <label for="exampleFormControlTextarea1" class="form-label text-white">Palautteesi</label>
                         @Html.EditorFor(model => model.palaute, new { htmlAttributes = new { @rows = "4", @class = "form-control mx-0", @name = "palaute", @id = "exampleFormControlTextarea1", @placeholder = "Kirjoita palautteesi tähän..." } })
 
-                        @*Palautteen kirjoitus - error-messagen kenttä, ei vielä toiminnassa*@
-
-                        @Html.ValidationMessageFor(model => model.palaute, "", new { @class = "text-danger" })
-
                         <div class="d-flex justify-content-end align-self-end align-items-end mt-4 pb-5 row-cols-1 row-cols-md-5">
-                            <input type="submit" value="Anna palautetta"  form="palauteForm" class="btn btn-primary ms-md-3" />
+                            <button type="button" class="btn btn-primary ms-md-3" onclick="jsOpeError(document.getElementById('palauteForm'))">Anna palautetta</button>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -74,3 +52,21 @@
     }
 
 </div>
+
+<script type="text/javascript">
+
+    //Tarkistetaan javascriptin avulla, onko opettaja valittu.
+    //Jos ei ole, lomaketta ei lähetetä vaan tulee error-viesti 'Valitse opettaja listalta'
+
+    function jsOpeError() {
+        var select = document.getElementById("ope_id");
+        var value = select.options[select.selectedIndex].value;
+        if (value == 0) {
+            $("#opeError").text("Valitse opettaja listalta").show;
+        }
+        else {
+            document.getElementById("palauteForm").submit();
+        }
+    };
+
+</script>

@@ -37,39 +37,22 @@
             <caption>Lue kaikki palautteet</caption>
             <thead class="table-dark bg-black">
                 <tr>
-                    <th scope="col">
-                        Palaute
-                    </th>
-                    <th scope="col">
-                        Päivämäärä
-                    </th>
-                    <th scope="col">
-                        Aihe
-                    </th>
-                    <th></th>
-                    <th></th>
+                    <th scope="col">Palaute</th>
+                    <th scope="col">Päivämäärä</th>
+                    <th scope="col">Aihe</th>
+                    <td scope="col"></td>
+                    <td scope="col"></td>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model.Reverse())
                 {
                     <tr>
-                        <td scope="row" class="td-truncate">
-                            @Html.DisplayFor(modelItem => item.palaute)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.palaute_pvm)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.palautetyyppi)
-                        </td>
-                        <td>
-                            <button class="getPalauteID btn btn-primary ms-1" role="button" aria-pressed="false" data-palauteid="@item.palaute_id">Lue lisää</button>
-                        </td>
-
-                        <td>
-                            <button class="btn btn-primary text-decoration-none" role="button" aria-pressed="false"> @Html.ActionLink("Poista", "_Delete", new { id = item.palaute_id })</button>
-                        </td>
+                        <td scope="row" class="td-truncate"> @Html.DisplayFor(modelItem => item.palaute) </td>
+                        <td> @Html.DisplayFor(modelItem => item.palaute_pvm)</td>
+                        <td> @Html.DisplayFor(modelItem => item.palautetyyppi) </td>
+                        <td><button class="getPalauteID btn btn-primary ms-1" role="button" aria-pressed="false" data-palauteid="@item.palaute_id">Lue lisää</button></td>
+                        <td><button class="btn btn-primary text-decoration-none" role="button" aria-pressed="false"> @Html.ActionLink("Poista", "Delete", new { id = item.palaute_id })</button></td>
                     </tr>
                 }
             </tbody>
