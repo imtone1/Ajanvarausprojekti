@@ -3,7 +3,24 @@
 @{
     ViewBag.Title = "Onnistunut varaus";
 }
+@section Scripts{
+    <script type="text/javascript">
+        function LinkinKopioiminen() {
+    /* Get the text field */
+    var copyText = document.getElementById("TeamsLinkki");
 
+    /* Select the text field */
+    copyText.select();
+    copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+    /* Copy the text inside the text field */
+    navigator.clipboard.writeText(copyText.value);
+
+    /* Alert the copied text */
+    alert("Kopioitu linkki: " + copyText.value);
+    }
+    </script>
+    }
 <div class="container-fluid h-50 pt-5 pt-lg-3 pb-lg-3" style="background-color: #2CDA94;">
     <div class="container mt-5">
         <div class="d-flex flex-column text-white">
@@ -33,13 +50,13 @@
 
                     </dd>
                     <!--<dt class="col-sm-4">
-        Ohjausajan kesto
-    </dt>
+                        Ohjausajan kesto
+                    </dt>
 
-    <dd class="col-sm-7">-->
+                    <dd class="col-sm-7">-->
                     @*@Html.DisplayFor(model => model.Ajat.kesto_id)
-        <!--@Session["kesto"]
-                    </dd>*@
+                        <!--@Session["kesto"]
+                                    </dd>*@
 
                     <dt class="col-sm-4">
                         Varaaja
@@ -63,7 +80,7 @@
 
                     <dd class="col-sm-7">
                         <a href="@Session["paikka"]">Suora linkki Teams-kokoukseen</a>
-                        <p>@Session["paikka"]</p>
+                        <input type="text" value="@Session["paikka"]" id="TeamsLinkki"> <button onclick="LinkinKopioiminen()">Kopioi linkki</button>
                     </dd>
 
                     <dt class="col-sm-4">
