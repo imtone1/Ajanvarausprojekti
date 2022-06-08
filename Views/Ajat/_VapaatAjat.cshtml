@@ -75,8 +75,8 @@
                     <tr class="valitseRivi" data-aikaId="@item.aika_id">
                         @*<td>@Html.DisplayFor(modelItem => item.Etunimi) @Html.DisplayFor(modelItem => item.Sukunimi)</td>*@
                         <td>@Convert.ToDateTime(item.Alkuaika).ToString("d.M.")</td>
-                        <td>@Convert.ToDateTime(item.Alkuaika).ToString("HH.mm")</td>
-                        <td>@Convert.ToDateTime(item.Alkuaika).AddMinutes(item.Kesto).ToString("HH.mm")</td>
+                        <td>@Convert.ToDateTime(item.Alkuaika).ToString("HH:mm")</td>
+                        <td>@Convert.ToDateTime(item.Alkuaika).AddMinutes(item.Kesto).ToString("HH:mm")</td>
                         @*<td>@Html.DisplayFor(modelItem => item.Kesto) minuuttia</td>
                                 <td>@Html.DisplayFor(modelItem => item.aika_id)</td>
                                 <td><button class="getModalEdit btn btn-primary ms-1" data-aikaIdED="@item.aika_id">Muokkaa</button></td>
