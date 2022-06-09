@@ -11,28 +11,18 @@
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">Päivämäärä</th>
-                        <th scope="col">Alkuaika klo</th>
-                        <th scope="col">Päättymisaika</th>
-                        <th scope="col">Kokonaisaika näkyy AM/PM</th>
-                        <th scope="col">Kokonaisaika kokeilu</th>
-                        <th scope="col">Kokonaisaika kokeilu2</th>
+                        <th scope="col">Kellonaika</th>
                         <td scope="col"></td>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model)
                     {
-
                         <tr class="valitseRivi" data-aikaId="@item.aika_id">
                             <td scope="row">@Html.ValueFor(model => item.Alkuaika, "{0:dd.MM.yyyy}")</td>
-                            <td>@Html.ValueFor(modelItem => item.Alkuaika, "{0:HH:mm}")</td>
-                            <td>@Convert.ToDateTime(item.Alkuaika).AddMinutes(item.Kesto).ToString("klo " + "HH:mm")</td>
-                            <td>@item.Alkuaika.Value.ToShortTimeString() - @Convert.ToDateTime(item.Alkuaika).AddMinutes(item.Kesto).ToShortTimeString()</td>
                             <td>@Html.ValueFor(modelItem => item.Alkuaika, "{0:HH:mm}") - @Convert.ToDateTime(item.Alkuaika).AddMinutes(item.Kesto).ToString("HH:mm")</td>
-                            <td>@item.Alkuaika.Value.ToShortTimeString() - @Convert.ToDateTime(item.Alkuaika).AddMinutes(item.Kesto).ToString("HH:mm")</td>
                             @*Buttoni joka vie ajan poistoon*@
                             <td> <button class="btn btn-primary ms-1"> @Html.ActionLink("Poista", "AjatDelete", new { id = item.aika_id })</button> </td>
-
                         </tr>
                     }
                 </tbody>
