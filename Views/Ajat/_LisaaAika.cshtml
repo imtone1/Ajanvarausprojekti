@@ -14,8 +14,8 @@
 
             <div class="col-md-6 col-lg-6 d-flex justify-content-center mt-md-5">
                 <div class="form-group">
-                    <h5 class="text-danger">@TempData["AikaError"]</h5>
-                    <h5 class="text-info">@TempData["AikaSuccess"]</h5>
+                    <p class="text-danger">@TempData["AikaError"]</p>
+                    <p class="text-info">@TempData["AikaSuccess"]</p>
                     <br />
                     <h2>Lisää uusi aika varattavaksi</h2>
                     <div class="input-group d-flex flex-column justify-content-center">
@@ -24,16 +24,13 @@
                             <label for="startDate">Päivämäärä</label>
                             @Html.TextBoxFor(a => a.startDate, new { @class = "form-control", @id = "startDate", @type = "date" })
                         </div>
-
-
                         <div class="mb-4">
-                            <label for="startDate">Kellonaika</label>
-                            @Html.TextBoxFor(a => a.startTime, new { @class = "form-control", @id = "startDate", @type = "time" })
+                            <label for="startTime">Kellonaika</label>
+                            @Html.TextBoxFor(a => a.startTime, new { @class = "form-control", @id = "startTime", @type = "time" })
                         </div>
 
                         <div class="mb-4">
-                            <p class="text-black mb-0">Kesto</p>
-
+                            <label for="kesto_id" class="text-black mb-0">Kesto</label>
                             @Html.DropDownListFor(model => model.kesto_id, new List<SelectListItem> {
                             new SelectListItem{Text="Valitse kesto...", Value="30",Selected =true },
                             new SelectListItem{Text="30 min", Value="30"},
