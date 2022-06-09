@@ -24,20 +24,27 @@
                         <div class="modal-body mt-1 px-0 px-lg-3">
                             <h2 class="fs-6 mb-1 fw-light pb-0">Tulevat ohjausajat | Tarkastele varausta</h2>
                             <div class="row">
-                                <div class="col-12 col-md-6">
-                                    <div class="d-flex flex-column bg-light px-2 px-md-5 py-4 h-100 rounded-3">
-                                        <h3 class="fs-4">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-calendar-date" viewBox="0 0 16 16">
-                                                <path d="M6.445 11.688V6.354h-.633A12.6 12.6 0 0 0 4.5 7.16v.695c.375-.257.969-.62 1.258-.777h.012v4.61h.675zm1.188-1.305c.047.64.594 1.406 1.703 1.406 1.258 0 2-1.066 2-2.871 0-1.934-.781-2.668-1.953-2.668-.926 0-1.797.672-1.797 1.809 0 1.16.824 1.77 1.676 1.77.746 0 1.23-.376 1.383-.79h.027c-.004 1.316-.461 2.164-1.305 2.164-.664 0-1.008-.45-1.05-.82h-.684zm2.953-2.317c0 .696-.559 1.18-1.184 1.18-.601 0-1.144-.383-1.144-1.2 0-.823.582-1.21 1.168-1.21.633 0 1.16.398 1.16 1.23z" />
-                                                <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
-                                            </svg> Pvm.
-                                            @Html.TextBoxFor(model => model.Ajat.alku_aika, "{0:dd.MM.yyyy}", new { @class = "border-0 fs-4 outline-0 bg-light w-50", @readonly = true })
+                                <div class="col-12 col-lg-6">
+                                    <div class="d-flex flex-column bg-light px-2 px-lg-5 py-4 h-100 rounded-3 ">
+                                        <h3 class="fs-4 ms-lg-0 ps-lg-0">
+                                            <label for="label_id_pvm" class="fw-bolder">
+                                                <!-- Lisäsin Ajat.alku_aika-textboxiin id:n nimeltä label_id_pvm johon tämä label osoittaa. Pakko olla koska textbox tarvitsee labelin. -->
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-calendar-date" viewBox="0 0 16 16">
+                                                    <path d="M6.445 11.688V6.354h-.633A12.6 12.6 0 0 0 4.5 7.16v.695c.375-.257.969-.62 1.258-.777h.012v4.61h.675zm1.188-1.305c.047.64.594 1.406 1.703 1.406 1.258 0 2-1.066 2-2.871 0-1.934-.781-2.668-1.953-2.668-.926 0-1.797.672-1.797 1.809 0 1.16.824 1.77 1.676 1.77.746 0 1.23-.376 1.383-.79h.027c-.004 1.316-.461 2.164-1.305 2.164-.664 0-1.008-.45-1.05-.82h-.684zm2.953-2.317c0 .696-.559 1.18-1.184 1.18-.601 0-1.144-.383-1.144-1.2 0-.823.582-1.21 1.168-1.21.633 0 1.16.398 1.16 1.23z" />
+                                                    <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+                                                </svg> Päivä:
+                                            </label>
+                                            @Html.TextBoxFor(model => model.Ajat.alku_aika, "{0:dd.MM.yyyy}", new { @class = "border-0 fs-4 outline-0 bg-light w-50", @readonly = true, @id = "label_id_pvm" })
                                         </h3>
-                                        <h3 class="fs-4">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
-                                                <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
-                                                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
-                                            </svg> Klo. @ViewBag.Alkuaika - @ViewBag.Loppuaika
+                                        <h3 class="fs-4 fw-normal">
+                                            <span class="fs-4 fw-bolder">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+                                                    <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
+                                                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
+                                                </svg>
+                                                Aika:
+                                            </span>
+                                            @ViewBag.Alkuaika - @ViewBag.Loppuaika
                                         </h3>
                                         <dl class="mb-0 pb-0 pt-2">
                                             <dd>
@@ -51,15 +58,15 @@
                                         </dl>
                                     </div>
                                 </div>
-                                    <div class="col-12 col-md-6">
+                                    <div class="col-12 col-lg-6">
                                         <img src="~/Content/Images/work.jpg" alt="Alternate Text" class="img-fluid rounded-3" />
                                     </div>
                             </div>
 
-                                <div class="col-12 bg-light rounded-3 mt-3">
-                                    <h4 class="d-flex flex-column px-3 pb-0 pt-3">Varauksen tiedot</h4>
+                                <div class="col-12 bg-light rounded-3 mt-3 py-1 px-2 py-md-2 px-md-3 py-lg-4 px-lg-5">
+                                    <h4 class="d-flex flex-column pb-0">Varauksen tiedot</h4>
                                     @*<h4>Varaus @Html.DisplayFor(model => model.Ajat.alku_aika) <a href="@Html.DisplayFor(model => model.Ajat.paikka)" class="btn btn-primary ms-3 mt-3">Linkki Teams-kokoukseen</a></h4>*@
-                                    <dl class="row p-3">
+                                    <dl class="row mb-0">
                                         <dt>
                                             Varaaja
                                         </dt>
@@ -102,11 +109,11 @@
             </dd>*@
 
                                         <dt>
-                                            Varattu pvm
+                                            <label for="label_id_varattu_pvm">Varattu pvm</label> <!-- Lisäsin varattu_pvm-textboksiin id:n nimeltä label_id_varattu_pvm johon tämän rivin label osoittaa. Pakko olla koska textbox tarvitsee labelin. -->
                                         </dt>
 
                                         <dd>
-                                            @Html.TextBoxFor(model => model.varattu_pvm, "{0:dd.MM.yyyy HH:mm}", new { @class = "border-0 outline-0 bg-light w-50", @readonly = true })
+                                            @Html.TextBoxFor(model => model.varattu_pvm, "{0:dd.MM.yyyy HH:mm}", new { @class = "border-0 outline-0 bg-light w-50 pe-0 me-0", @readonly = true, @id = "label_id_varattu_pvm" })
                                             @*@Html.DisplayFor(model => model.varattu_pvm)*@
                                         </dd>
 
