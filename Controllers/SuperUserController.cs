@@ -16,6 +16,10 @@ namespace Ajanvarausprojekti.Controllers
     {
         //Tätä ei saa täältä poistaa, sitä käytetään kaikkialla kontrollerissa
         private aikapalauteEntities db = new aikapalauteEntities();
+
+        //Yhteystiedot-olio
+        private Yhteystiedot ohjelmanyhteystiedot = new Yhteystiedot();
+
         // GET: SuperUser
         public ActionResult Index()
         {
@@ -119,7 +123,7 @@ namespace Ajanvarausprojekti.Controllers
                         else
                         {
                             //opekuva defalt polku, tällä hetkellä "/Opekuvat/defaultKuva.jpg"
-                            Yhteystiedot ohjelmanyhteystiedot = new Yhteystiedot();
+                           
                             string opekuvadefault = ohjelmanyhteystiedot.OpeDefaultKuva;
 
                             Opettajat luoopettaja = new Opettajat
@@ -240,6 +244,7 @@ namespace Ajanvarausprojekti.Controllers
         // Irina: Poistetaan opettaja
         public ActionResult _PoistaOpettaja(int? id)
         {
+            ViewBag.SivustonNimi = ohjelmanyhteystiedot.SivustonNimi;
             if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             Opettajat opettaja = db.Opettajat.Find(id);
             if (opettaja == null) return HttpNotFound();
@@ -256,7 +261,7 @@ namespace Ajanvarausprojekti.Controllers
 
             //Poistetaan myös tiedostoista opettajan kuvan, jos ei ole default kuva
             //opekuva defalt polku, tällä hetkellä "/Opekuvat/defaultKuva.jpg"
-            Yhteystiedot ohjelmanyhteystiedot = new Yhteystiedot();
+            
             string opekuvadefault = ohjelmanyhteystiedot.OpeDefaultKuva;
             if (opettaja.kuva != opekuvadefault) {
             //opettajan kuvan poisto
