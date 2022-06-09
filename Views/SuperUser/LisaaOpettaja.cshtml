@@ -171,7 +171,7 @@
                     </div>
                     <div class="col-md-6">
                         @Html.LabelFor(model => model.kayttajatunnus, "Käyttäjätunnus", htmlAttributes: new { @class = "col-sm-2 col-form-label" })
-                        @Html.EditorFor(model => model.kayttajatunnus, new { htmlAttributes = new { @class = "form-control", placeholder = "Käyttäjätunnus", } })
+                        @Html.EditorFor(model => model.kayttajatunnus, new { htmlAttributes = new { @class = "form-control", placeholder = "Käyttäjätunnus" } })
                         @Html.ValidationMessageFor(model => model.kayttajatunnus, "", new { @class = "text-danger" })
                         <p class="text-danger text-">@ViewBag.Kayttajaolemassa</p>
                     </div>
