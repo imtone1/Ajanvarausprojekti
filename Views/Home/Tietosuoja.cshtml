@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Privacy";
+    ViewBag.Title = "Tietosuoja";
 }
 
 <section class="container mt-5 mb-5">
@@ -27,11 +27,11 @@
     </p>
 
     <h2>Rekisterinpitäjä</h2>
-    <p>Simo Siren, simo.siren@careeria.fi, TÄHÄN PUH</p>
+    <p>@ViewBag.Rekisterinpitaja</p>
     <ul>
-        <li>Rekisterinpitäjän yhteyshenkilö: Opettaja Simo Siren</li>
-        <li>Henkilörekisterin vastuuhenkilö: Opettaja Simo Siren</li>
-        <li>Tietosuojavastaava: Simo Siren, simo.siren@careeria.fi</li>
+        <li>Rekisterinpitäjän yhteyshenkilö: @ViewBag.Rekisterinpitäjan_yhteyshenkilo</li>
+        <li>Henkilörekisterin vastuuhenkilö: @ViewBag.Henkilorekisterin_vastuuhenkilo</li>
+        <li>Tietosuojavastaava: @ViewBag.Tietosuojavastaava</li>
     </ul>
     <p>
         Rekisteröidyn oikeuksiin liittyvistä pyynnöistä, kuten tietojen tarkastuksesta tai virheiden oikaisusta vastaa
@@ -73,12 +73,12 @@
     </ul>
     <h2>Kuinka kauan säilytämme henkilötietoja?</h2>
     <p>
-        Varaajan tiedot säilytetään enintään 14vrk varatun ajan jälkeen.
+        Varaajan tiedot säilytetään 14vrk varatun ajan jälkeen, jonka jälkeen ne poistetaan automaattisesti.
         Opettajien tiedot säilytetään niin kauan kuin opettaja on rekisteröitynä Ajanvaraus-/Palautesivustolle.
     </p>
     <h2>Mistä saamme henkilötietoja?</h2>
     <ul>
-        <li>Suoraan asiakkaalta</li>
+        <li>Suoraan palvelun käyttäjältä</li>
     </ul>
     <h2>Tietojen siirto EU:n tai ETA:n ulkopuolelle</h2>
     <p>Tietoja ei siirretä EU:n tai Euroopan talousalueen ulkopuolelle.</p>
@@ -86,12 +86,12 @@
     <ul>
         <li>
             Henkilötietoja käsittelee opettajien osalta itse asianomainen opettaja sekä tarvittaessa
-            Ajanvaraus-/Palautesivuston pääkäyttäjäopettaja poistaessa/lisätessään/muokatessaan opettajien sivustoon
+            Ajanvaraus-/Palautesivuston pääkäyttäjäopettaja poistaessa/lisätessään@*/muokatessaan*@ opettajien sivustoon
             tallentamat henkilötiedot.
         </li>
         <li>
             Varaajien osalta henkilötietoja käsittelee se opettaja, jolle varaus on tehty sekä
-            Ajanvaraus-/Palautesivuston pääkäyttäjäopettajalla.
+            Ajanvaraus-/Palautesivuston pääkäyttäjäopettaja.
         </li>
         <li>Muuten tietoja ei varsinaisesti siirretä tai luovuteta mihinkään.</li>
     </ul>
@@ -100,6 +100,7 @@
         Rekisterin tietojen käsittelyssä huolehditaan siitä, ettei sidosryhmien yksityisyyttä perusteettomasti vaaranneta.
         Tietojen käsittelyssä noudatetaan tietosuojaan liittyvää lainsäädäntöä sekä Careerian tietoturva- ja tietosuojaohjeita.
         Henkilötiedot ovat vain niiden henkilöiden käytettävissä, jotka tarvitsevat niitä tehtäviensä hoitamiseksi.
+        Varaajan henkilötiedot poistetaan automaattisesti 14vrk varatun ajan jälkeen.
     </p>
     <p>Sähköisesti käsiteltävät tiedot</p>
     <ul>

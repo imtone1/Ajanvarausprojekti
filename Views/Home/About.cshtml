@@ -6,9 +6,9 @@
     <div class="container py-md-5">
         <div class="pt-md-5">
             <div class="p-sm-0 d-flex flex-column justify-content-center align-items-center text-center">
-                <p class="pt-5 mb-0 text-primary text-uppercase">Careerian Tivi-ohjaus</p>
+                <p class="pt-5 mb-0 text-primary text-uppercase">@ViewBag.SivustonNimi</p>
                 <h1 class="display-3 fw-bold text-white">Tietoa palvelusta</h1>
-                <p class=" lead fs-5 my-3 text-white ">Tältä sivulta löydät infoa Careerian Tivi-ohjaus-palvelusta.</p>
+                <p class=" lead fs-5 my-3 text-white ">Tältä sivulta löydät infoa @ViewBag.SivustonNimi-palvelusta.</p>
             </div>
         </div>
     </div>
@@ -19,9 +19,9 @@
     <div class="card border-0">
         <div class="row">
             <div class="col-md-7 card-body flex-column d-flex justify-content-start align-items-start ">
-                <h2 class="card-title fw-bold">Mikä Careerian Tivi-ohjaus?</h2>
+                <h2 class="card-title fw-bold">Mikä @ViewBag.SivustonNimi?</h2>
                 <p class="d-flex align-self-start card-text lead">
-                    Careerian Tivi-ohjaus on palvelu, jonka avulla Careerian tieto- ja viestintätekniikan opettajat
+                    @ViewBag.SivustonNimi on palvelu, jonka avulla Careerian tieto- ja viestintätekniikan opettajat
                     (eli tivi-opettajat) voivat helposti julkaista vapaita ohjausaikoja oppilaiden varattavaksi. Oppilaat pystyvät
                     myös varaamaan palvelussa ohjausaikoja ja lähettämään palautetta omalle tivi-opettajalleen.
                 </p>
@@ -60,7 +60,7 @@
                     </h2>
                     <div id="collapse2_ohjausaika" class="accordion-collapse collapse" aria-labelledby="heading2_ohjausaika" data-bs-parent="#accordionOhjausaika">
                         <div class="accordion-body">
-                            <p>Ohjausaikojen pituus selviää ohjausaikaa varatessa. Ajat ilmoitetaan aina "Klo. ALKUAIKA-LOPPUAIKA"-muodossa eli esim. Klo. 12.00-12.30</p>
+                            <p>Ohjausaikojen pituus selviää ohjausaikaa varatessa. Ajat ilmoitetaan aina "Klo. ALKUAIKA-LOPPUAIKA"-muodossa eli esim. Klo. 12:00-12:30</p>
                         </div>
                     </div>
                 </div>
@@ -148,7 +148,7 @@
                     </h2>
                     <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                            <p>Palautteet tallennetaan Careerian tivi-ohjausjärjestelmään ja ne menevät suoraan sille opettajalle, jolle olet palautteesi osoittanut.</p>
+                            <p>Palautteet tallennetaan @ViewBag.SivustonNimi järjestelmään ja ne menevät suoraan sille opettajalle, jolle olet palautteesi osoittanut.</p>
                         </div>
                     </div>
                 </div>
@@ -189,9 +189,9 @@
     <div class="container">
         <div class="col-12 pt-md-2">
             <div class="d-flex flex-column justify-content-center align-items-center text-center">
-                <p class="pt-5 text-primary text-uppercase">Careerian Tivi-ohjaus</p>
+                <p class="pt-5 text-primary text-uppercase">@ViewBag.SivustonNimi</p>
                 <h2 class=" fw-bold text-white">Kiinnostaako sinua tietosuojaan liittyvät asiat?</h2>
-                <p class="lead fs-md-5 my-md-3 text-white">Careerian tivi-ohjaus-palvelun tietosuojaselosteen löydät <a href="/Home/Privacy" class="text-primary text-decoration-none">täältä</a> ja käyttäehdot <a href="/Home/Terms" class="text-primary text-decoration-none">täältä</a>.</p>
+                <p class="lead fs-md-5 my-md-3 text-white">@ViewBag.SivustonNimi-palvelun tietosuojaselosteen löydät <a href="/Home/Tietosuoja" class="text-primary text-decoration-none">täältä</a> ja käyttäehdot <a href="/Home/Kayttoehdot" class="text-primary text-decoration-none">täältä</a>.</p>
             </div>
         </div>
     </div>

@@ -3,7 +3,26 @@
 @{
     ViewBag.Title = "Tee Varaus";
 }
+@section Scripts{
+    <script type="text/javascript">
 
+        //Tarkistetaan käyttöehdot ja tietosuoja hyväksytty vai ei
+        function Kayttoehdothyvaksytty() {
+            // Get the checkbox
+            var checkBox = document.getElementById("kayttoehdothyvaksytty");
+
+
+            // Jos käyttöehdot hyväksytty niin aktivoidaan varausnappulan
+            if (checkBox.checked == true) {
+                document.getElementById("vahvistaVaraus").disabled = false;
+            } else {
+                document.getElementById("vahvistaVaraus").disabled = true;
+            }
+        }
+
+    </script>
+    @Scripts.Render("~/bundles/jqueryval")
+}
 <h2>Tee varaus</h2>
 
 
@@ -41,21 +60,16 @@
         </div>
 
         <p>@ViewBag.Status</p>
-
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="kayttoehdothyvaksytty" onclick="Kayttoehdothyvaksytty()">
+            @*<label class="form-check-label" for="kayttoehdothyvaksytty">Olen tutustunut tietosuojaselosteeseen ja käyttöehtoihin. Hyväksyn, että tietojani säilytetään ja käytetään tietosuojaselosteen mukaisesti.</label>*@
+            Olen tutustunut <a href="/Home/Tietosuoja" style="text-decoration: underline">tietosuojaselosteeseen</a> ja <a href="/Home/Kayttoehdot" style="text-decoration: underline">käyttöehtoihin</a>. Hyväksyn, että tietojani säilytetään ja käytetään tietosuojaselosteen mukaisesti.
+        </div>
         <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Vahvista varaus" class="btn btn-default" />
-                </div>
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" id="vahvistaVaraus" value="Vahvista varaus" class="btn btn-default" disabled />
             </div>
+        </div>
     </div>
 
-}
-
-
-@*<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>*@
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
 }
