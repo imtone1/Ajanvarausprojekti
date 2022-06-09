@@ -30,7 +30,7 @@ namespace Ajanvarausprojekti.Controllers
                              join o in db.Opettajat on a.opettaja_id equals o.opettaja_id
                              join k in db.Kestot on a.kesto_id equals k.kesto_id
                              where o.opettaja_id == opeID
-                             where a.alku_aika >= DateTime.Today
+                             where a.alku_aika >= DateTime.Now
 
                              select new ajatListaData
                              {
@@ -51,7 +51,7 @@ namespace Ajanvarausprojekti.Controllers
                            join v in db.Varaukset on a.aika_id equals v.aika_id
                            where o.opettaja_id == opeID
                            where a.aika_id == v.aika_id
-                           where a.alku_aika >= DateTime.Today
+                           where a.alku_aika >= DateTime.Now
 
                            select new ajatListaData
                            {
