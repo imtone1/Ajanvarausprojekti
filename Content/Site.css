@@ -7,6 +7,8 @@
     --white-color: #FFFFFF;
     --light-grey: #e7e7e9;
     --dark-grey: #a4a4a6;
+    --success-color: #1e9666;
+    --success-hover: #187851;
 }
 
 * {
@@ -109,6 +111,14 @@ a:hover {
     box-shadow: 1px 1px 8px var(--primary-color);
 }
 
+.btn.btn-success {
+    background-color: var(--success-color)!important;
+}
+
+.btn.btn-success:hover {
+    background-color: var(--success-hover)!important;
+}
+
 .input-group .btn:focus {
     box-shadow: 1px 1px 8px var(--primary-color);
 }
@@ -168,15 +178,19 @@ a:hover {
 }
 
 .bg-dark {
-    background-color: var(--black-color);
+    background-color: var(--black-color)!important;
 }
 
 .bg-white {
-    background-color: var(--white-color);
+    background-color: var(--white-color)!important;
 }
 
 .bg-grey {
-    background-color: var(--dark-grey);
+    background-color: var(--dark-grey)!important;
+}
+
+.bg-success {
+    background-color: var(--success-color)!important;
 }
 
 .text-primary {
@@ -344,7 +358,7 @@ caption {
 @media only screen and (max-width: 576px) {
 
     .bg-hero {
-        background-position-x: right;
+        background-position-x: center;
     }
 
     .bg-index-btm {
@@ -370,8 +384,18 @@ caption {
     }
 }
 
-@media only screen and (max-width: 768px) {
+/*Tämä lisätty jotta pelkistä iconeista koostuvat buttonit olisivat saavutettavia.*/
+.visually-hidden:not(:focus):not(:active) {
+    clip: rect(0 0 0 0);
+    clip-path: inset(100%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
 
+@media only screen and (max-width: 768px) {
     .bg-hero {
         background-position-x: right;
     }
