@@ -1,7 +1,7 @@
 ﻿@model Ajanvarausprojekti.Models.Palautteet
 
 <div class="container-fluid bg-black mt-5">
-    <!---Palautelomakeosio------------------------->
+    <!---Palautelomakeosio-->
     @using (Html.BeginForm("_Create", "Palaute", FormMethod.Post, new { id = "palauteForm", onsubmit = "javascript:return jsOpeError(document.getElementById('palauteForm'))" }))
     {
         @Html.AntiForgeryToken()
