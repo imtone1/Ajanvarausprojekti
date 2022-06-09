@@ -77,7 +77,8 @@
             {
 
         <div>
-
+            @{aika = Convert.ToDateTime(item.Alkuaika).ToString("dd.MM.yyyy");
+            }
             @if (@Convert.ToDateTime(item.Alkuaika).ToString("dd.MM.yyyy") == aika || aika == "")
             {
 
@@ -97,8 +98,7 @@
             @*</tr>*@
             pvm = @Convert.ToDateTime(item.Alkuaika).ToString("dd.MM.yyyy");
         }
-            @{aika = Convert.ToDateTime(item.Alkuaika).ToString("dd.MM.yyyy");
-            }
+           
         </div>
 
                 @*<td>@Html.DisplayFor(modelItem => item.Etunimi) @Html.DisplayFor(modelItem => item.Sukunimi)</td>*@
