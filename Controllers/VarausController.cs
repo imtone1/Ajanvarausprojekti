@@ -192,7 +192,7 @@ namespace Ajanvarausprojekti.Controllers
         // Irina: POST: Varaukset/TeeVaraus
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult TeeVaraus([Bind(Include = "aika_id, Varaaja, Aihe, id_hash")] ajatListaData varaus)
+        public ActionResult TeeVaraus([Bind(Include = "aika_id, Varaaja, Aihe")] ajatListaData varaus)
         {
             try
             {
