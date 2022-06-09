@@ -1,11 +1,9 @@
 ﻿@model Ajanvarausprojekti.Models.Palautteet
 
 <div class="container-fluid bg-black mt-5">
-    <!---Palautelomakeosio------------------------->
-    @using (Html.BeginForm("_Create", "Palaute", FormMethod.Post, new { id = "palauteForm", onsubmit = "javascript:return jsOpeError(document.getElementById('palauteForm'))" }))
+    @using (Html.BeginForm("_Create", "Palaute", FormMethod.Post, new { id = "palauteForm", onsubmit = "javascript:return jsOpeCheck(document.getElementById('palauteForm'))" }))
     {
         @Html.AntiForgeryToken()
-
 
         <form>
             <div class="container">
@@ -22,28 +20,28 @@
 
                     <div class="col-md-5 p-0 ps-md-3">
                         @*Opettajan valinta *@
-                        <p class="text-white mb-0 mt-2">Tivi-opettaja, jota palaute koskee</p>
+                        <label for="opettaja_id" class="text-white mb-0 mt-2">Tivi-opettaja, jota palaute koskee</label>
                         @Html.DropDownList("opettaja_id", (List<SelectListItem>)ViewBag.opeSelectList, new { @class = "form-select", @id = "ope_id" }) @*id:n avulla siirretään javascriptiin ope_id tarkistusta varten*@
                         @*ErrorMessage tulee näkyviin JavaScriptin avulla, jos opettajaa ei ole valittu*@
-                        <label class="text-danger" id="opeError"></label>
+                        <p class="text-danger" id="opeError"></p>
 
                         @*Palautetyypin valinta*@
-                        <p class="text-white mt-4 mb-0">Palautteen aihe</p>
+                        <label for="palautetyyppi_id" class="text-white mt-4 mb-0">Palautteen aihe</label>
                         @Html.DropDownListFor(model => model.palautetyyppi_id, new List<SelectListItem> {
                             new SelectListItem{Text="Valitse aihe...", Value="2",Selected =true },
                             new SelectListItem{Text="Kehittämisideat", Value="1"},
                             new SelectListItem{Text="Muu palaute", Value="2"},
-                            new SelectListItem{Text="Kurssipalaute", Value="3"},}, new { @class = "form-select", @id = "pal_id" })
+                            new SelectListItem{Text="Kurssipalaute", Value="3"},}, new { @class = "form-select"})
 
                     </div>
 
                     <div class="ms-0 ps-0 pt-4 px-0">
                         @*Palautteen kirjoitus*@
-                        <label for="exampleFormControlTextarea1" class="form-label text-white">Palautteesi</label>
-                        @Html.EditorFor(model => model.palaute, new { htmlAttributes = new { @rows = "4", @class = "form-control mx-0", @name = "palaute", @id = "exampleFormControlTextarea1", @placeholder = "Kirjoita palautteesi tähän..." } })
+                        <label for="Textarea" class="form-label text-white">Palautteesi</label>
+                        @Html.EditorFor(model => model.palaute, new { htmlAttributes = new { @rows = "4", @class = "form-control mx-0", @name = "palaute", @id = "Textarea", @placeholder = "Kirjoita palautteesi tähän..." } })
 
                         <div class="d-flex justify-content-end align-self-end align-items-end mt-4 pb-5 row-cols-1 row-cols-md-5">
-                            <button type="button" class="btn btn-primary ms-md-3" onclick="jsOpeError(document.getElementById('palauteForm'))">Anna palautetta</button>
+                            <button type="button" class="btn btn-primary ms-md-3" onclick="jsOpeCheck(document.getElementById('palauteForm'))">Anna palautetta</button>
                         </div>
                     </div>
                 </div>
@@ -58,7 +56,7 @@
     //Tarkistetaan javascriptin avulla, onko opettaja valittu.
     //Jos ei ole, lomaketta ei lähetetä vaan tulee error-viesti 'Valitse opettaja listalta'
 
-    function jsOpeError() {
+    function jsOpeCheck() {
         var select = document.getElementById("ope_id");
         var value = select.options[select.selectedIndex].value;
         if (value == 0) {
