@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ajanvarausprojekti.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,34 +9,53 @@ namespace Ajanvarausprojekti.Controllers
 {
     public class HomeController : Controller
     {
-       
+        private Yhteystiedot ohjelmanyhteystiedot = new Yhteystiedot();
+        
         public ActionResult Index()
         {
+            ViewBag.SivustonNimi = ohjelmanyhteystiedot.SivustonNimi;
             ViewBag.LoginError = 0;
             return View();
         }
 
         public ActionResult About()
         {
+            ViewBag.SivustonNimi = ohjelmanyhteystiedot.SivustonNimi;
             ViewBag.Message = "Your application description page.";
 
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult Yhteystiedot()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.SivustonNimi = ohjelmanyhteystiedot.SivustonNimi;
+            //Careerian Tivi-ohjaus-palvelun ylläpidosta vastaa 
+            ViewBag.YllapitoyhtTiedot = ohjelmanyhteystiedot.YllapitoyhtTiedot;
+        //mailto:
+        ViewBag.EmailYhteystiedot = ohjelmanyhteystiedot.EmailYhteystiedot;
+        //puh.nro Yhteystiedot sivulla
+        ViewBag.Puhnro = ohjelmanyhteystiedot.Puhnro;
+        ViewBag.Message = "Your contact page.";
 
             return View();
         }
 
-        public ActionResult Privacy()
+        public ActionResult Tietosuoja()
         {
+            //yhteystiedot , tällä hetkellä ""
+            
+            ViewBag.Rekisterinpitaja = ohjelmanyhteystiedot.Rekisterinpitaja;
+            ViewBag.Rekisterinpitäjan_yhteyshenkilo = ohjelmanyhteystiedot.Rekisterinpitäjan_yhteyshenkilo;
+            ViewBag.Henkilorekisterin_vastuuhenkilo = ohjelmanyhteystiedot.Henkilorekisterin_vastuuhenkilo;
+            ViewBag.Tietosuojavastaava = ohjelmanyhteystiedot.Tietosuojavastaava;
+
+
             return View();
         }
 
-        public ActionResult Terms()
+        public ActionResult Kayttoehdot()
         {
+            ViewBag.SivustonNimi = ohjelmanyhteystiedot.SivustonNimi;
             return View();
         }
 

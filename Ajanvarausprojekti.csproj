@@ -374,7 +374,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Yhteystiedot.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper.js.flow" />
@@ -391,8 +391,8 @@
     <Content Include="Views\Shared\_FooterLoggedOut.cshtml" />
     <Content Include="Views\Shared\_FooterLoggedIn.cshtml" />
     <Content Include="Views\Login\_LoginModal.cshtml" />
-    <Content Include="Views\Home\Privacy.cshtml" />
-    <Content Include="Views\Home\Terms.cshtml" />
+    <Content Include="Views\Home\Tietosuoja.cshtml" />
+    <Content Include="Views\Home\Kayttoehdot.cshtml" />
     <Content Include="Views\Varaus\_AikaListaus.cshtml" />
     <Content Include="Views\Varaus\_VarausListaus.cshtml" />
     <Content Include="Views\Varaus\Index.cshtml" />

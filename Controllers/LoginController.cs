@@ -15,11 +15,13 @@ namespace Ajanvarausprojekti.Controllers
     {
 
         private aikapalauteEntities db = new aikapalauteEntities();
-        
-        
+        //Yhteystiedot-olio
+        private Yhteystiedot ohjelmanyhteystiedot = new Yhteystiedot();
+
         // Irina:Kirjautuminen ja sessioiden luominen
         public ActionResult Login()
         {
+            ViewBag.SivustonNimi = ohjelmanyhteystiedot.SivustonNimi;
             return View();
         }
 

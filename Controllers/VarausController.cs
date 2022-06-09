@@ -17,6 +17,9 @@ namespace Ajanvarausprojekti.Controllers
         //Tätä ei saa täältä poistaa, sitä käytetään kaikkialla kontrollerissa
         private aikapalauteEntities db = new aikapalauteEntities();
 
+        //Yhteystiedot-olio
+        private Yhteystiedot ohjelmanyhteystiedot = new Yhteystiedot();
+
         //Irina: AikaListaus on kokeiluversio, tarkoitettu pohjaksi, lopullisessa voi poistaa, jos tule käyttöön
         public ActionResult AikaListaus()
         {
@@ -96,7 +99,7 @@ namespace Ajanvarausprojekti.Controllers
         public ActionResult VarausPoisto()
         {
             //var varaus = db.Varaukset;
-
+            ViewBag.SivustonNimi = ohjelmanyhteystiedot.SivustonNimi;
             return PartialView();
         }
         public ActionResult Delete(int? id)
@@ -189,7 +192,7 @@ namespace Ajanvarausprojekti.Controllers
         // Irina: POST: Varaukset/TeeVaraus
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult TeeVaraus([Bind(Include = "aika_id, Varaaja, Aihe, id_hash")] ajatListaData varaus)
+        public ActionResult TeeVaraus([Bind(Include = "aika_id, Varaaja, Aihe")] ajatListaData varaus)
         {
             try
             {
@@ -253,7 +256,7 @@ namespace Ajanvarausprojekti.Controllers
                             //Irina: sähköpostilähetys
                             try
                             {
-                                Yhteystiedot ohjelmanyhteystiedot = new Yhteystiedot();
+                                
                                 string sahkopostiosoite_ohjelman = ohjelmanyhteystiedot.OhjelmanSahkopostiosoite;
                                 string spostisalasana = ohjelmanyhteystiedot.OhjelmanSpostiSalasana;
                                 //Configuring webMail class to send emails  
@@ -364,6 +367,7 @@ namespace Ajanvarausprojekti.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.SivustonNimi = ohjelmanyhteystiedot.SivustonNimi;
             ViewBag.Alkupvm = varaus.Ajat.alku_aika.ToString("dd.MM.yyyy");
             ViewBag.Alkuaika= varaus.Ajat.alku_aika.ToString("HH:mm");
             ViewBag.Loppuaika = varaus.Ajat.alku_aika.AddMinutes(varaus.Ajat.kesto_id).ToString("HH:mm");
