@@ -16,10 +16,10 @@
         @foreach (var item in Model)
         {
             <div class="col">
-                <div class="card bg-black text-white d-flex justify-content-center text-center pt-3">
-                    <img src="@item.kuva" class="round-img" />
+                <div class="card bg-black text-white d-flex justify-content-center text-center pt-3 h-100"> <!--h-100 pitää olla tai muuten kortit menee erikokoisiksi mikäli nimet pitkiä-->
+                    <img src="@item.kuva" class="round-img" alt="@item.etunimi @item.sukunimi" /> <!--Alt-tekstiin lisätty etunimi ja sukunimi jotta alt-teksti olisi aina yksilöllinen-->
                     <div class="card-body">
-                        <h5 class="card-title fw-light placeholder-glow">@item.etunimi @item.sukunimi</h5>
+                        <h3 class="card-title fw-light placeholder-glow fs-5">@item.etunimi @item.sukunimi</h3>
 
                         <!--Nappula, joka avaa vapaiden aikojen modaali-ikkunan-->
                         <button type="button" class="btn btn-primary placeholder-glow" id="vapaatAjatModal" data-bs-toggle="modal"

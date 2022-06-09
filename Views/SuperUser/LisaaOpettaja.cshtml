@@ -113,9 +113,9 @@
 
 
 <section class="container mt-5 mb-5">
-    <h2>Käyttäjähallinta</h2>
+    <h1>Käyttäjähallinta</h1>
     <hr />
-    <h3>Poista käyttäjä</h3>
+    <h2>Poista käyttäjä</h2>
     <div class="row">
         <div class="col-md-5 d-flex flex-column justify-content-center align-items-center">
             <table class="table table-borderless d-flex flex-column justify-content-center align-items-center">
@@ -124,7 +124,7 @@
                         <th scope="col">Käyttäjät</th>
                         @*<th scope="col"></th>*@
                         @*Tällä näytetään opettaja-id, kun odotetaan, että modaali-ikkuna avautuu. Voidaan tarvittaessa poistaa*@
-                    <th id="Opepoisto"></th>
+                    <td id="Opepoisto" scope="col"></td>
                     </tr>
                 </thead>     
                 @Html.Action("_ListaaOpettajat")
@@ -144,7 +144,7 @@
         <div class="container mt-5">
             <div class="row">
 
-                <h3>Lisää uusi käyttäjä</h3>
+                <h2>Lisää uusi käyttäjä</h2>
                 <form class="row g-3">
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
@@ -176,12 +176,13 @@
                         <p class="text-danger text-">@ViewBag.Kayttajaolemassa</p>
                     </div>
                     <div class="col-md-6">
-                        @Html.LabelFor(model => model.salasana, "Salasana", htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                        <label for="salasanaInput" class="col-sm-2 col-form-label">Salasana</label> <!-- Muutettu label tällaiseksi koska en tiennyt miten tuollainen Html.LabelFor osoitetaan id:hen -->
+                        @*@Html.LabelFor(model => model.salasana, "Salasana", htmlAttributes: new { @class = "col-sm-2 col-form-label" })*@
                         @Html.EditorFor(model => model.salasana, new { htmlAttributes = new { @class = "form-control", @id = "salasanaInput" } })
                         @Html.ValidationMessageFor(model => model.salasana, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-md-6">
-                        <label class="col-sm-3 col-form-label">Vahvista salasana</label>
+                        <label class="col-sm-3 col-form-label" for="vahvistusInput">Vahvista salasana</label>
                         <input class="form-control" id="vahvistusInput" type="password" />
                         <p class="text-danger" id="varoitus"></p>
                     </div>
