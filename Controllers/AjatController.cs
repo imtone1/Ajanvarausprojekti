@@ -15,12 +15,6 @@ namespace Ajanvarausprojekti.Controllers
         aikapalauteEntities db = new aikapalauteEntities();
 
         // GET: Ajat
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        // GET: Ajat : Helin versio
         public ActionResult _VapaatAjat()
         {
             // LIstataan kaikki kyseisen opettajan ajat
@@ -30,6 +24,7 @@ namespace Ajanvarausprojekti.Controllers
                              join o in db.Opettajat on a.opettaja_id equals o.opettaja_id
                              join k in db.Kestot on a.kesto_id equals k.kesto_id
                              where o.opettaja_id == opeID
+                             where a.alku_aika >= DateTime.UtcNow
 
                              select new ajatListaData
                              {
@@ -50,6 +45,7 @@ namespace Ajanvarausprojekti.Controllers
                            join v in db.Varaukset on a.aika_id equals v.aika_id
                            where o.opettaja_id == opeID
                            where a.aika_id == v.aika_id
+                           where a.alku_aika >= DateTime.UtcNow
 
                            select new ajatListaData
                            {
@@ -93,7 +89,6 @@ namespace Ajanvarausprojekti.Controllers
         // POST: Ohjausaika/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //public ActionResult LisaaAika([Bind(Include = "aika_id,alku_aika,kesto_id,opettaja_id")] Ajat ajat)
         public ActionResult _LisaaAika([Bind(Include = "aika_id,alku_aika,kesto_id,opettaja_id, startDate, startTime")] Ajat ajat)
         {
             try
@@ -102,13 +97,10 @@ namespace Ajanvarausprojekti.Controllers
                 if (ModelState.IsValid)
                 {
 
-                    //Opettajan valitsema päivämäärä on muuttujassa startDate
+                    //Tuodaan uuden ajan lisäykseen tarvittavat tiedot muutujiin ja sijoitetana tietokantaan
                     var startDate = Request["startDate"];
-                    //Opettajan valitsema kellonaika on muuttujassa startTime
                     var startTime = Request["startTime"];
-                    //Yhdistetään nen samaan string-muuttujaan
                     var strAika = startDate + " " + startTime;
-                    //Convertoidaan tietokantaan sopivaksi
                     ajat.alku_aika = Convert.ToDateTime(strAika);
 
                     //Varauksen tehnyt opettaja tallennetaan tietokantaan Session["OpettajaID"]:n avulla
@@ -118,14 +110,11 @@ namespace Ajanvarausprojekti.Controllers
                     var valittuAika = Convert.ToDateTime(strAika);
                     var opeID = (int)Session["OpettajaID"];
 
-                    //Haetaan tietokannasta opettajan kaikki samana päivänä vapaana olevat ajat
+                    //Haetaan tietokannasta opettajan kaikki samana päivänä vapaana olevat ajat ja kestot
                     var alkuajatLista = db.Ajat.Where(a => a.opettaja_id == opeID && a.alku_aika.Day == valittuAika.Day && a.alku_aika.Month == valittuAika.Month)
                                           .Select(a => a.alku_aika);
-
-                    //Haetaan tietokannasta kaikki samana päivänä vapaana olevien aikojen kestot
                     var kestoListaLinq = db.Ajat.Where(a => a.opettaja_id == opeID && a.alku_aika.Day == valittuAika.Day && a.alku_aika.Month == valittuAika.Month)
                                        .Select(a => a.kesto_id);
-                    //sijoitetaan linq-kyselyllä haetut kestot listaan
                     var kestoLista = kestoListaLinq.ToList();
 
                     foreach (var alkuaika in alkuajatLista)
