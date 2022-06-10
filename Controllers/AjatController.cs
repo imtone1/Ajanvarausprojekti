@@ -96,12 +96,13 @@ namespace Ajanvarausprojekti.Controllers
 
                 if (ModelState.IsValid)
                 {
-
-                    //Tuodaan uuden ajan lisäykseen tarvittavat tiedot muutujiin ja sijoitetana tietokantaan
+                    //Tuodaan uuden ajan lisäykseen tarvittavat tiedot muutujiin
                     var startDate = Request["startDate"];
                     var startTime = Request["startTime"];
                     var strAika = startDate + " " + startTime;
                     ajat.alku_aika = Convert.ToDateTime(strAika);
+                    var kesto_id = Request["kesto_id"];
+                    int kesto_int = Int32.Parse(kesto_id);
 
                     //Varauksen tehnyt opettaja tallennetaan tietokantaan Session["OpettajaID"]:n avulla
                     ajat.opettaja_id = (int)Session["OpettajaID"];
@@ -119,31 +120,35 @@ namespace Ajanvarausprojekti.Controllers
 
                     foreach (var alkuaika in alkuajatLista)
                     {
-                        //annetaan muuttujalle kesto listalla olevan ensimmäisen ohjausajan kesto
                         var kesto = kestoLista[0];
-
-                        //Luodaan muuttuja lopetusAika, joka lasketaan keston perusteella
                         DateTime lopetusAika = alkuaika.AddMinutes(kesto);
-
                         //Vertaillaan datetimeja Comparen avulla
-                        //Ensin vertaillaan valittua aikaa ja alkuaikaa
                         int vertailu1 = DateTime.Compare(valittuAika, alkuaika);
-                        //Sitten vertaillaan valittua aikaa ja lopetuaikaa
                         int vertailu2 = DateTime.Compare(valittuAika, lopetusAika);
-                        //Comparen palauttama arvo riippuu siitä, onko t1 aiemmin<0, sama=0, myöhemmin>0 kuin t2
-
-                        //tarkastetaan vertailujen palauttamat arvot
                         if (vertailu1 >= 0 && vertailu2 < 0)
                         {
                             //Jos mennään tähän lohkoon, Kyseiselle ajankohdalle on jo laitettu ohjausaika.
                             TempData["AikaError"] = "Tälle ajankohdalle on jo olemassa ohjausaika, valitse uusi aika.";
                             return new RedirectResult(Url.Action("OpettajienSivu", "Home") + "#LisaaAika");
                         }
-                        //Ennen kuin siirrytään silmukassa tarkastelemaan seuraavaa aikaa,
-                        //poistetaan aikojen kestolistalta listan ensimmäinen int
-                        kestoLista.RemoveAt(0);
 
+
+                        for (int i = 0; i < Int32.Parse(kesto_id); i++)
+                        {
+                            DateTime aikaTarkistus = valittuAika.AddMinutes(i);
+                            int vertailu3 = DateTime.Compare(aikaTarkistus, alkuaika);
+                            int vertailu4 = DateTime.Compare(aikaTarkistus, lopetusAika);
+                            if (vertailu3 >= 0 && vertailu4 < 0)
+                            {
+                                //Jos mennään tähän lohkoon, Kyseiselle ajankohdalle on jo laitettu ohjausaika.
+                                TempData["AikaError"] = "Tälle ajankohdalle on jo olemassa ohjausaika, valitse uusi aika.";
+                                return new RedirectResult(Url.Action("OpettajienSivu", "Home") + "#LisaaAika");
+                            }
+                        }
+
+                        kestoLista.RemoveAt(0);
                     }
+
                     //Jos tullaan ulos silmukasta, ohjausajan lisäyksen voi tehdä
                     db.Ajat.Add(ajat);
                     db.SaveChanges();
