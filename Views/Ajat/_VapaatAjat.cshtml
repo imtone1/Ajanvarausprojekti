@@ -46,82 +46,89 @@
 
 <section class="container-fluid bg-black pt-lg-3 pb-5 ">
     <div class="container pt-5">
-        <div class="col-12 table-responsive-md">
+        <div class="col-12">
             <div class="d-flex justify-content-between w-100">
                 <h2 class="text-white pb-5">Varattavissa olevat ajat</h2>
             </div>
+            <div class="col-12">
+                <div class="row text-white">
 
-            @*Modaalien paikkamerkit edit ja delete, Jquery luo rutiinin avulla modaalit*@
-            <div id="ajatEdit"></div>
-            <div id="ajatDelete"></div>
-            @*<div id="ajatEdit" class="text-info"></div>*@
+                    @*Modaalien paikkamerkit edit ja delete, Jquery luo rutiinin avulla modaalit*@
+                    <div id="ajatEdit"></div>
+                    <div id="ajatDelete"></div>
+                    @*<div id="ajatEdit" class="text-info"></div>*@
 
-            <!--<table class="table table-dark table-hover caption table-bordered">
-    <thead class="thead-dark">
-        <tr>-->
-            @*<th>Opettajan nimi (käytössä vain testailuvaiheessa)</th>*@
-            <!--<th>Päivämäärä</th>
-    <th>Alkuaika</th>
-    <th>Päättymisaika</th>-->
-            @*<th>Tapaamisen kesto (käytössä vain testailuvaiheessa)</th>
-        <th>Ajan id-numero (käytössä vain testailuvaiheessa)</th>*@
-            <!--<th></th>
-        </tr>
-    </thead>-->
-            @{
-                string aika = "";
-                string pvm = "1";
+                    <!--<table class="table table-dark table-hover caption table-bordered">
+        <thead class="thead-dark">
+            <tr>-->
+                    @*<th>Opettajan nimi (käytössä vain testailuvaiheessa)</th>*@
+                    <!--<th>Päivämäärä</th>
+        <th>Alkuaika</th>
+        <th>Päättymisaika</th>-->
+                    @*<th>Tapaamisen kesto (käytössä vain testailuvaiheessa)</th>
+            <th>Ajan id-numero (käytössä vain testailuvaiheessa)</th>*@
+                    <!--<th></th>
+            </tr>
+        </thead>-->
+                    @{
+                        string aika = "";
+                        string pvm = "1";
 
-            }
-            @foreach (var item in Model)
-            {
+                    }
+                    @foreach (var item in Model)
+                    {
 
-        <div>
-            @{aika = Convert.ToDateTime(item.Alkuaika).ToString("dd.MM.yyyy");
-            }
-            @if (@Convert.ToDateTime(item.Alkuaika).ToString("dd.MM.yyyy") == aika || aika == "")
-            {
+                        <div class="col-2 mb-3">
+                            @{aika = Convert.ToDateTime(item.Alkuaika).ToString("dd.MM.yyyy");
+                            }
+                            @if (@Convert.ToDateTime(item.Alkuaika).ToString("dd.MM.yyyy") == aika || aika == "")
+                            {
 
-                if (aika != pvm)
-                {@Convert.ToDateTime(item.Alkuaika).ToString("dd.MM.yyyy")
-            }
-            @*<tr class="valitseRivi" data-aikaId="@item.aika_id">*@
+                                if (aika != pvm)
+                                {@Convert.ToDateTime(item.Alkuaika).ToString("dd.MM.yyyy")
+                            }
+                            @*<tr class="valitseRivi" data-aikaId="@item.aika_id">*@
 
 
-            @*<h1>Tämä tulee näkyviin</h1>*@
+                            @*<h1>Tämä tulee näkyviin</h1>*@
 
-            @*<td></td>*@
-            <div>
+                            @*<td></td>*@
 
-                @*<td>*@<button class="btn btn-primary ms-1" onclick="location.href='@Url.Action("AjatDelete", "Ajat", new { id = item.aika_id })'">@Convert.ToDateTime(item.Alkuaika).ToString("HH:mm") - @Convert.ToDateTime(item.Alkuaika).AddMinutes(item.Kesto).ToString("HH:mm")  </button>@*</td>*@
+                            @*</tr>*@
+
+                            pvm = @Convert.ToDateTime(item.Alkuaika).ToString("dd.MM.yyyy");
+                        }
+                        </div>
+
+                        <div class="col-10 mb-3">
+                            <div class="d-inline-flex">
+                                @*<td>*@<button class="btn btn-primary d-flex" type="button" onclick="location.href='@Url.Action("AjatDelete", "Ajat", new { id = item.aika_id })'">@Convert.ToDateTime(item.Alkuaika).ToString("HH:mm") - @Convert.ToDateTime(item.Alkuaika).AddMinutes(item.Kesto).ToString("HH:mm")  </button>@*</td>*@
+                            </div>
+                        </div>
+
+                        @*<td>@Html.DisplayFor(modelItem => item.Etunimi) @Html.DisplayFor(modelItem => item.Sukunimi)</td>*@
+
+                        @*<td>@Html.DisplayFor(modelItem => item.Kesto) minuuttia</td>
+                    <td>@Html.DisplayFor(modelItem => item.aika_id)</td>
+                    <td><button class="getModalEdit btn btn-primary ms-1" data-aikaIdED="@item.aika_id">Muokkaa</button></td>
+                <td><button class="delAjatid btn btn-primary ms-1" data-aikaIdDE="@item.aika_id">Poista</button></td>*@
+                        @*Buttoni joka vie ajan poistoon,ns perinteinen tekstillä*@
+
+                        @*Button ruksilla Deleteen*@
+                        @*<td>
+                    <a href="~/Ajat/AjatDelete/@item.aika_id" class="mt-3 mt-sm-0 ms-3">
+                        <<svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" fill="var(--black-color)" class="bi bi-x-lg bg-white rounded-3 p-2 mt-3" viewbox="0 0 16 16">
+                            <path fill-rule="evenodd" d="m13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0z" />
+                            <path fill-rule="evenodd" d="m2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0z" />
+                        </svg>
+                    </a>
+                </td>*@
+                        //aika = Convert.ToDateTime(item.Alkuaika).ToString("dd.MM.yyyy");
+
+                    }
+                    @*</table>*@
+                </div>
             </div>
-            @*</tr>*@
-            pvm = @Convert.ToDateTime(item.Alkuaika).ToString("dd.MM.yyyy");
-        }
-           
-        </div>
-
-                @*<td>@Html.DisplayFor(modelItem => item.Etunimi) @Html.DisplayFor(modelItem => item.Sukunimi)</td>*@
-
-                @*<td>@Html.DisplayFor(modelItem => item.Kesto) minuuttia</td>
-                <td>@Html.DisplayFor(modelItem => item.aika_id)</td>
-                <td><button class="getModalEdit btn btn-primary ms-1" data-aikaIdED="@item.aika_id">Muokkaa</button></td>
-            <td><button class="delAjatid btn btn-primary ms-1" data-aikaIdDE="@item.aika_id">Poista</button></td>*@
-                @*Buttoni joka vie ajan poistoon,ns perinteinen tekstillä*@
-
-                @*Button ruksilla Deleteen*@
-                @*<td>
-                <a href="~/Ajat/AjatDelete/@item.aika_id" class="mt-3 mt-sm-0 ms-3">
-                    <<svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" fill="var(--black-color)" class="bi bi-x-lg bg-white rounded-3 p-2 mt-3" viewbox="0 0 16 16">
-                        <path fill-rule="evenodd" d="m13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0z" />
-                        <path fill-rule="evenodd" d="m2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0z" />
-                    </svg>
-                </a>
-            </td>*@
-                    //aika = Convert.ToDateTime(item.Alkuaika).ToString("dd.MM.yyyy");
-
-                }
-            @*</table>*@
         </div>
     </div>
 </section>
