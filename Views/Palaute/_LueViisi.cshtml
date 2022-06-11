@@ -4,9 +4,6 @@
     ViewBag.Title = "Palautelistaus";
 }
 
-
-
-
 <section class="container-fluid bg-black pt-lg-3 pb-5 ">
     <div class="container pt-5">
         <div class="col-12 table-responsive-md">
@@ -20,9 +17,9 @@
                 <caption class="text-white-50">Palautteet</caption>
                 <thead>
                     <tr>
-                        <th scope="col">Päivämäärä</th>
-                        <th scope="col">Aihe</th>
                         <th scope="col">Palaute</th>
+                        <th scope="col">Aihe</th>
+                        <th scope="col">Päivämäärä</th>
                         <td scope="col"></td>
                     </tr>
                 </thead>
@@ -30,11 +27,10 @@
                     @foreach (var item in Model.Reverse().Take(5))
                     {
                         <tr>
-                            <td scope="row">@Html.DisplayFor(modelItem => item.palaute_pvm)</td>
+                            <td scope="row" class="td-truncate">@Html.DisplayFor(modelItem => item.palaute)</td>
                             <td>@Html.DisplayFor(modelItem => item.palautetyyppi)</td>
-                            <td class="td-truncate">@Html.DisplayFor(modelItem => item.palaute)</td>
+                            <td>@Convert.ToDateTime(item.palaute_pvm).ToString("d.M.yyyy")</td>
                             <td><button class="getPalauteID btn btn-primary ms-1" data-palauteid="@item.palaute_id">Lue lisää</button></td>
-
                         </tr>
                     }
                 </tbody>
@@ -43,7 +39,6 @@
             <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-end">
                     <li>
-                        @*<a href="~/Views/Palaute/LueKaikki.cshtml" class="btn btn-primary ms-3">Kaikki Palautteet</a>*@
                         @using (Html.BeginForm("LueKaikki", "Palaute", FormMethod.Get))
                         {
                             <button class="btn btn-primary ms-3">Kaikki Palautteet</button>
