@@ -49,7 +49,7 @@
                 {
                     <tr>
                         <td scope="row" class="td-truncate"> @Html.DisplayFor(modelItem => item.palaute) </td>
-                        <td> @Html.DisplayFor(modelItem => item.palaute_pvm)</td>
+                        <td> @Html.ValueFor(model => item.palaute_pvm, "{0:dd.MM.yyyy}")</td>
                         <td> @Html.DisplayFor(modelItem => item.palautetyyppi) </td>
                         <td><button class="getPalauteID btn btn-primary ms-1" role="button" aria-pressed="false" data-palauteid="@item.palaute_id">Lue lisää</button></td>
                         <td><button class="btn btn-primary text-decoration-none" role="button" aria-pressed="false"> @Html.ActionLink("Poista", "Delete", new { id = item.palaute_id })</button></td>
