@@ -24,6 +24,19 @@
             });
         });
     </script>
+
+    @*Palautteen poisto onnistui- modaalin kutsu*@
+    @if (TempData["Successi"] != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                $("#OnnistunutModaali").modal("show"); {
+                    setTimeout(function () { $("#OnnistunutModaali").modal("hide"); }, 3000)
+                };
+            };
+        </script>
+    }
+
 }
 
 
@@ -72,3 +85,25 @@
         </div>
     </div>
 </section>
+
+@*Palautteen poisto onnistui -modaali-ikkuna*@
+<div class="container">
+    <div class="modal fade" id="OnnistunutModaali" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                @*Modaalin otsikko*@
+                <div class="modal-header border-0 d-flex flex-column align-items-center justify-content-center">
+                    @*//TempData-viesti 'palautteen poisto onnistui' tulee PalauteControllerilta*@
+                    <h1 class="text-center">@TempData["Successi"]</h1>
+                </div>
+                @*Modaalin bodyosio jossa animaatio*@
+                <div class="modal-body">
+                    <div class="d-flex flex-column align-items-center text-center">
+                        <img src="~/Content/Images/success.gif" alt="gif image" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
