@@ -205,6 +205,10 @@ a:hover {
     color: var(--white-color);
 }
 
+.text-grey {
+    color: var(--light-grey);
+}
+
 .navbar-nav .nav-item .nav-link {
     position: relative;
 }
