@@ -22,6 +22,10 @@ a {
     color: var(--black-color);
 }
 
+.text-light-grey {
+    color: var( --light-grey);
+}
+
 a:hover {
     color: var(--black-color);
 }
@@ -321,6 +325,7 @@ a:hover {
     height: 100vh;
     margin-right: 0;
     padding-right: 0;
+    z-index: -1;
 }
 
 .bg-opesivu-btm {
