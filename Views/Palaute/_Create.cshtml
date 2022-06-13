@@ -19,7 +19,7 @@
 
                     <div class="col-md-5 p-0 ps-md-3">
                         @*Opettajan valinta *@
-                        <label for="opettaja_id" class="text-white mb-0 mt-2">Tivi-opettaja, jota palaute koskee</label>
+                        <label for="ope_id" class="text-white mb-0 mt-2">Tivi-opettaja, jota palaute koskee</label>
                         @Html.DropDownList("opettaja_id", (List<SelectListItem>)ViewBag.opeSelectList, new { @class = "form-select", @id = "ope_id" }) @*id:n avulla siirretään javascriptiin ope_id tarkistusta varten*@
                         @*ErrorMessage tulee näkyviin JavaScriptin avulla, jos opettajaa ei ole valittu*@
                         <p class="text-danger" id="opeError"></p>
