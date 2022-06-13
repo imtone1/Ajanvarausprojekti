@@ -239,20 +239,22 @@ a:hover {
     width: 8em;
     height: 8em;
     /* kuva kommentoitu, jottei näkyisi renderöidyn kuvan takana*/
-   /* background-image: url('Images/portrait-example.jpg');*/
+    /* background-image: url('Images/portrait-example.jpg');*/
     background-size: cover;
     display: flex;
     align-self: center;
     border-radius: 125px;
     -webkit-border-radius: 125px;
     -moz-border-radius: 125px;
+    box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02), 6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028), 12.5px 12.5px 10px rgba(0, 0, 0, 0.035), 22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042), 41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05), 100px 100px 80px rgba(0, 0, 0, 0.07);
 }
 
 .round-img-ope {
     width: 6em;
     height: 6em;
-    background-image: url('Images/portrait-example.jpg');
+/*    background-image: url('Images/portrait-example.jpg');*/
     background-size: cover;
+    box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02), 6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028), 12.5px 12.5px 10px rgba(0, 0, 0, 0.035), 22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042), 41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05), 100px 100px 80px rgba(0, 0, 0, 0.07);
     display: flex;
     align-self: flex-end;
     border-radius: 125px;
