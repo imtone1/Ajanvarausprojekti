@@ -90,6 +90,23 @@
     }
 
 
+    @*Mikäli opiskelija on kirjoittanut palautteen loppuun yhteystietonsa... -modaalin kutsu*@
+    <script>
+        var modal = document.getElementById("infoModal");
+        var info = document.getElementById("PalauteInfo");
+        var span = document.getElementsByClassName("close")[0];
+        // Modaali aukeaa, kun käyttäjä painaa [*]
+        info.onclick = function () {
+            modal.style.display = "block";
+        }
+        // Modaali sulkeutuu, kun käyttäjä klikkaa mistä tahansa muualta.
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
 }
 
 @{ Html.RenderPartial("~/Views/Varaus/_EiOnnistunutModaali.cshtml"); }
