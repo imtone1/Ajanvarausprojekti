@@ -1,18 +1,18 @@
 ﻿@model IEnumerable<Ajanvarausprojekti.ViewModels.ajatListaData>
 
 
-<!-- ---------------------------------VARATTAVISSA OLEVAT OHJAUSAJAT (HAASTAVAMPI) ALKAA TÄSTÄ--------------------------------------------- -->
-<section class="container-fluid bg-black pt-5 pb-5 mb-5">
+<!--VARATTAVISSA OLEVAT OHJAUSAJAT (HAASTAVAMPI) ALKAA TÄSTÄ-->
+<section class="container-fluid bg-black pt-5 pb-5">
     <div class="container">
         <div class="d-flex justify-content-between pt-3">
             <h2 class="text-white">Varattavissa olevat vapaat ohjausajat</h2>
-            <a href="#" class="ms-3 mt-1 d-flex justify-content-end">
+            <a href="#LisaaAika2" class="ms-3 mt-1 d-flex justify-content-end" role="button" aria-keyboard-focusable="true" aria-label="Lisää uusi ohjausaika">
                 <svg xmlns="http://www.w3.org/2000/svg" width="2.9rem" height="2.9rem" fill="var(--black-color)" class="bi bi-plus bg-primary rounded-3" viewBox="0 0 16 16">
                     <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
                 </svg>
             </a> 
         </div>
-        <p class="lead text-white mb-5">Ajan poisto onnistuu nappia klikkaamalla.</p>
+        <p class="lead text-grey mb-4">Ajan poisto onnistuu nappia klikkaamalla.</p>
         <div class="text-white justify-content-center align-items-center text-center justify-content-md-start align-items-md-start text-md-start px-0 mx-0">
             @{
                 string aika = "";
@@ -42,8 +42,8 @@
     </div>
 </section>
 
-<!-- -------------------------------VARATTAVISSA OLEVAT OHJAUSAJAT (HAASTAVAMPI) LOPPUU TÄHÄN---------------------------------------------- -->
-<!-- --------------------------VARATTAVISSA OLEVAT OHJAUSAJAT (SIMPPELIMPI) ALKAA TÄSTÄ------------------------------------------------- -->
+<!--VARATTAVISSA OLEVAT OHJAUSAJAT (HAASTAVAMPI) LOPPUU TÄHÄN-->
+<!--VARATTAVISSA OLEVAT OHJAUSAJAT (SIMPPELIMPI) ALKAA TÄSTÄ-->
 @*<section class="container-fluid bg-black pt-lg-3 mb-5">
         <div class="container pt-lg-5">
             <div class="row gy-5 gy-lg-0 pb-lg-0 flex-column-reverse flex-md-column-reverse flex-lg-row">

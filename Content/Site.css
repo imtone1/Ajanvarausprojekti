@@ -205,6 +205,10 @@ a:hover {
     color: var(--white-color);
 }
 
+.text-grey {
+    color: var(--light-grey);
+}
+
 .navbar-nav .nav-item .nav-link {
     position: relative;
 }
@@ -382,20 +386,6 @@ caption {
         width: auto;
         background-position-x: left;
     }
-}
-
-/* 
- * Utility class to hide content visually while keeping it screen reader-accessible.
- * Source: https://www.scottohara.me/blog/2017/04/14/inclusively-hidden.html 
- */
-.visually-hidden:not(:focus):not(:active) {
-    clip: rect(0 0 0 0);
-    clip-path: inset(100%);
-    height: 1px;
-    overflow: hidden;
-    position: absolute;
-    white-space: nowrap;
-    width: 1px;
 }
 
 @media only screen and (max-width: 768px) {
