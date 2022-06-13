@@ -6,6 +6,7 @@ using System.Net;
 using System.Web.Mvc;
 using Ajanvarausprojekti.Models;
 using Ajanvarausprojekti.ViewModels;
+using PagedList;
 
 namespace Ajanvarausprojekti.Controllers
 {
@@ -15,8 +16,20 @@ namespace Ajanvarausprojekti.Controllers
         aikapalauteEntities db = new aikapalauteEntities();
 
         // GET: Ajat
-        public ActionResult _VapaatAjat()
+        public ActionResult _VapaatAjat(string sortOrder, string currentFilter, string searchString, int? page)
         {
+            ViewBag.CurrentSort = sortOrder;
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
             // LIstataan kaikki kyseisen opettajan ajat
 
             var opeID = (int)Session["OpettajaID"];
@@ -64,8 +77,9 @@ namespace Ajanvarausprojekti.Controllers
                               where !varatut.Any(x => x.aika_id == a.aika_id)
                               orderby a.Alkuaika
                               select a).ToList();
-
-            return PartialView("_VapaatAjat", vapaatAjat);
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return PartialView("_VapaatAjat", vapaatAjat.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Ohjausaika/Create
