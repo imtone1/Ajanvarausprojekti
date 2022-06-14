@@ -357,15 +357,13 @@
 
 </section>-->
 <!--VARATTAVISSA OLEVAT OHJAUSAJAT (HAASTAVAMPI) LOPPUU TÄHÄN-->
-<!--LISÄTTY oHJAUSAIKOJEN LISTAUS-->
+<!--OHJAUSAIKOJEN LISTAUS-->
 
 @{Html.RenderAction("_VapaatAjat", "Ajat");}
 
 <!--LISÄÄ UUSI AIKA VARATTAVAKSI ALKAA TÄSTÄ-->
 
-<div id="LisaaAika">
-    @Html.Action("_LisaaAika", "Ajat")
-</div>
+@Html.Action("_LisaaAika", "Ajat")
 
 <!--LISÄÄ UUSI AIKA VARATTAVAKSI LOPPUU TÄHÄN-->
 <!--UUSIMMAT PALAUTTEET ALKAA TÄSTÄ-->
