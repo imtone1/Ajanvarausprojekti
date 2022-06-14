@@ -4,17 +4,16 @@
     ViewBag.Title = "Delete";
 }
 
-<section class="container-fluid bg-black pt-lg-3">
+<section class="container-fluid bg-white pt-lg-3 pb-5">
     <div class="container pt-lg-5">
         <div class="row gy-5 gy-lg-0 pb-lg-0 flex-column-reverse flex-md-column-reverse flex-lg-row">
             <div class="col-md-12 col-lg-6 table-responsive-md pe-lg-5">
                 <div class="d-flex justify-content-between w-100">
-                    <h2 class="text-white pb-5">Haluatko varmasti poistaa tämän palautteen?</h2>
+                    <h2 class="text-black pb-4">Haluatko varmasti poistaa tämän palautteen?</h2>
                 </div>
 
                 <div>
-                    <hr />
-                    <dl class="dl-horizontal, text-white pb-5">
+                    <dl class="dl-horizontal, text-black pb-2">
                         <dt> Palaute </dt>
                         <dd> @Html.DisplayFor(model => model.palaute) </dd>
 
@@ -33,8 +32,13 @@
                         @Html.AntiForgeryToken()
 
                         <div class="form-actions no-color">
-                            <input type="submit" value="Poista" class="btn btn-primary" /> |
-                            <button class="btn btn-primary">@Html.ActionLink("Takaisin", "LueKaikki")</button>
+                            <button class="btn btn-primary">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-chevron-left me-1" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+                                </svg>
+                                @Html.ActionLink("Takaisin", "LueKaikki")
+                            </button>
+                            <input type="submit" value="Poista" class="btn btn-primary" />
                         </div>
                     }
                 </div>
@@ -42,9 +46,9 @@
 
 
             @*Sateenvarjokuva*@
-            <div class="col-md-12 col-lg-6 bg-ohjausajat mb-sm-3 mb-lg-5">
-            <img src="~/Content/Images/sateenvarjo-logo.png" alt="Nainen sateenvarjon kanssa ja Careerian logo" class="img-fluid" />
-            </div>
+            @*<div class="col-md-12 col-lg-6 bg-ohjausajat mb-sm-3 mb-lg-5">
+                <img src="~/Content/Images/sateenvarjo-logo.png" alt="Nainen sateenvarjon kanssa ja Careerian logo" class="img-fluid" />
+            </div>*@
         </div>
     </div>
 </section>
