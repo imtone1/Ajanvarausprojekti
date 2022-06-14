@@ -205,8 +205,13 @@ namespace Ajanvarausprojekti.Controllers
 
                     if (testForID.Any())
                     {
-                        ViewBag.Status = "Tämä aika on jo varattu.";
-                        return View();
+                        //ViewBag.Status = "Tämä aika on jo varattu.";
+                        //return View();
+                        //EPAONNISTUNUT MODAALI
+                        //Annetaan tieto, että jokin meni pieleen TempDatalle modaali-ikkunaa varten
+                        TempData["Errori"] = "Valitsemasi aika on jo varattu!";
+                        TempData["BodyText1"] = "Valitsethan toisen ajan.";
+                        return RedirectToAction("Index", "Home");
                     }
 
                     else
