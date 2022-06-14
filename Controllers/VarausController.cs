@@ -81,6 +81,15 @@ namespace Ajanvarausprojekti.Controllers
                                     varaus_id=v.varaus_id
 
                                 };
+
+                if (ajatLista.Count() > 0)
+                {
+                    ViewBag.EiVarauksia = "Sinulla ei ole varauksia.";
+                }
+                else
+                {
+                    ViewBag.EiVarauksia = "";
+                }
                 return PartialView("_VarausListaus", ajatLista);
             }
 

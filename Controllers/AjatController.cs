@@ -228,6 +228,15 @@ namespace Ajanvarausprojekti.Controllers
             var vapaatAjat = (from a in ajatLista
                               where !varatut.Any(x => x.aika_id == a.aika_id)
                               select a).ToList();
+            if (vapaatAjat.Count() > 0)
+            {
+                ViewBag.EiVarauksia = "Opettajalla ei ole vapaita aikoja.";
+            }
+            else
+            {
+                ViewBag.EiVarauksia = "";
+            }
+
 
             return PartialView("_VapaatAjatOpiskelijalle", vapaatAjat);
         }

@@ -4,7 +4,7 @@
 @*@Html.DisplayFor(modelItem => item.Paikka)
     @Html.DisplayFor(modelItem => item.Kesto)*@
 
-@if (Model != null)
+@if (@ViewBag.EiVarauksia != "")
 {
     <table class="table table-hover caption">
         <caption>Tulevat ohjausajat</caption>
