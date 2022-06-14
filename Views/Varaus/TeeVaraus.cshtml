@@ -30,46 +30,44 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>Olet varaamassa aikaa ajalle (päivämäärä ja kellonaika-aikaväli)</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<div class="form-horizontal">
+    @*<h4>Olet varaamassa aikaa ajalle (päivämäärä ja kellonaika-aikaväli)</h4> Tuota voi koittaa toteuttaa jos ehtii*@
+    <h4>Varauksen lisätiedot</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.aika_id, "aika_id (valittava tietokannasta käyttömätön, tulee myöhemmin automaattisesti)", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.aika_id, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.aika_id, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Aihe, "Kuvaa lyhyesti tapaamisen aihe, esim. HOKS-keskustelu", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Aihe, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Aihe, "", new { @class = "text-danger" })
-            </div>
-        </div>
+    @*Tässä annetaan valittu aika-id*@
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Varaaja, "Sähköpostiosoitteesi", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Varaaja, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Varaaja, "", new { @class = "text-danger" })
-            </div>
-        </div>
+    <input type="hidden" name="aika_id" value="@ViewBag.aika_id" />
 
-        <p>@ViewBag.Status</p>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="kayttoehdothyvaksytty" onclick="Kayttoehdothyvaksytty()">
-            @*<label class="form-check-label" for="kayttoehdothyvaksytty">Olen tutustunut tietosuojaselosteeseen ja käyttöehtoihin. Hyväksyn, että tietojani säilytetään ja käytetään tietosuojaselosteen mukaisesti.</label>*@
-            Olen tutustunut <a href="/Home/Tietosuoja" style="text-decoration: underline">tietosuojaselosteeseen</a> ja <a href="/Home/Kayttoehdot" style="text-decoration: underline">käyttöehtoihin</a>. Hyväksyn, että tietojani säilytetään ja käytetään tietosuojaselosteen mukaisesti.
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" id="vahvistaVaraus" value="Vahvista varaus" class="btn btn-default" disabled />
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Aihe, "Kuvaa lyhyesti tapaamisen aihe, esim. HOKS-keskustelu", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Aihe, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Aihe, "", new { @class = "text-danger" })
         </div>
     </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Varaaja, "Sähköpostiosoitteesi", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Varaaja, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Varaaja, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <p>@ViewBag.Status</p>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="kayttoehdothyvaksytty" onclick="Kayttoehdothyvaksytty()">
+        @*<label class="form-check-label" for="kayttoehdothyvaksytty">Olen tutustunut tietosuojaselosteeseen ja käyttöehtoihin. Hyväksyn, että tietojani säilytetään ja käytetään tietosuojaselosteen mukaisesti.</label>*@
+        Olen tutustunut <a href="/Home/Tietosuoja" style="text-decoration: underline">tietosuojaselosteeseen</a> ja <a href="/Home/Kayttoehdot" style="text-decoration: underline">käyttöehtoihin</a>. Hyväksyn, että tietojani säilytetään ja käytetään tietosuojaselosteen mukaisesti.
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" id="vahvistaVaraus" value="Vahvista varaus" class="btn btn-default" disabled />
+        </div>
+    </div>
+</div>
 
 }

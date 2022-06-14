@@ -415,7 +415,7 @@
     <Content Include="Views\Ajat\_LisaaAika.cshtml" />
     <Content Include="Views\Varaus\OnnistunutVaraus.cshtml" />
     <Content Include="Views\SuperUser\_ListaaOpettajat.cshtml" />
-    <Content Include="Views\Ope\_VapaatAjat.cshtml" />
+    <Content Include="Views\Ajat\_VapaatAjatOpiskelijalle.cshtml" />
     <Content Include="Views\SuperUser\_PoistaOpettaja.cshtml" />
     <Content Include="Views\Ajat\_VapaatAjat.cshtml" />
     <Content Include="Views\Ajat\AjatDelete.cshtml" />

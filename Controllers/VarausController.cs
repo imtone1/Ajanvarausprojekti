@@ -87,8 +87,6 @@ namespace Ajanvarausprojekti.Controllers
 
         }
 
-
-
         public ActionResult Index()
         {
 
@@ -155,22 +153,19 @@ namespace Ajanvarausprojekti.Controllers
                 return RedirectToAction("Index", "Home");
                
             }
-
         }
-        // Irina: Tee varauksen (aika_id tulee vielä itse syöttää)
-        public ActionResult TeeVaraus()
-        {
-            ViewBag.aika_id = new SelectList(db.Ajat, "aika_id", "aika_id");
 
-            //left join, jotta näkyisi kaikki ajat, myös ne joissa ei varausta
-            var ajatLista = from a in db.Ajat
+        public ActionResult TeeVaraus(int? id)
+        {
+            ViewBag.aika_id = id;
+
+            var varattava = from a in db.Ajat
                             join op in db.Opettajat on a.opettaja_id equals op.opettaja_id
                             join k in db.Kestot on a.kesto_id equals k.kesto_id
                             join v in db.Varaukset on a.aika_id equals v.aika_id
                             into gj
                             from varaus in gj.DefaultIfEmpty()
-                                // where-lause  opettaja id tähän jos halutaan, että tietyn opettajan ajat näkyisivät
-                            orderby a.alku_aika
+                            where a.aika_id == id
 
                             select new ajatListaData
                             {
@@ -183,9 +178,8 @@ namespace Ajanvarausprojekti.Controllers
                                 Varaaja = varaus.varaaja_sahkoposti,
                                 Varauspvm = (DateTime)varaus.varattu_pvm,
                                 id_hash = varaus.id_hash
-
-
                             };
+
             return View();
         }
 

@@ -16,14 +16,16 @@
         @foreach (var item in Model)
         {
             <div class="col">
-                <div class="card bg-black text-white d-flex justify-content-center text-center pt-3 h-100"> <!--h-100 pitää olla tai muuten kortit menee erikokoisiksi mikäli nimet pitkiä-->
+                <div class="card bg-black text-white d-flex justify-content-center text-center pt-3 h-100">
+                    <!--h-100 pitää olla tai muuten kortit menee erikokoisiksi mikäli nimet pitkiä-->
                     <img src="@item.kuva" class="round-img" alt="@item.etunimi @item.sukunimi" /> <!--Alt-tekstiin lisätty etunimi ja sukunimi jotta alt-teksti olisi aina yksilöllinen-->
                     <div class="card-body">
                         <h3 class="card-title fw-light placeholder-glow fs-5">@item.etunimi @item.sukunimi</h3>
 
                         <!--Nappula, joka avaa vapaiden aikojen modaali-ikkunan-->
                         <button type="button" class="btn btn-primary placeholder-glow" id="vapaatAjatModal" data-bs-toggle="modal" role="button" aria-keyboard-focusable="true"
-                                data-bs-target="#AjatRuutu_@item.opettaja_id">Varaa aika
+                                data-bs-target="#AjatRuutu_@item.opettaja_id">
+                            Varaa aika
                         </button>
 
                     </div>
@@ -42,12 +44,8 @@
                         <div class="modal-content">
                             <div class="modal-header"><h2 class="placeholder-glow">Valitse varattava aika</h2></div>
 
-                            @{Html.RenderAction("_VapaatAjat", "Ope", new { opeid = @item.opettaja_id });}
+                            @{Html.RenderAction("_VapaatAjatOpiskelijalle", "Ajat", new { opeid = @item.opettaja_id });}
 
-                            <div class="modal-footer">
-
-                                <a href="/Varaus/TeeVaraus" class="placeholder-glow btn d-grid text-decoration-none btn-outline-primary mt-3" type="submit">Valitse ja jatka</a>
-                            </div>
                         </div>
                     </div>
                 </div>

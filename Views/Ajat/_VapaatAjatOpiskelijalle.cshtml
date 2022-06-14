@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Ajanvarausprojekti.ViewModels.ajatListaData>
+
+<div class="modal-body">
+
+    @if (Model != null) //Tämä ei jostain syystä toimi, kuten Irinalla.
+    {
+        string aika = "";
+        string pvm = "";
+
+        foreach (var item in Model)
+        {
+            aika = Convert.ToDateTime(item.Alkuaika).ToString("dd.MM.yyyy");
+
+
+            if (aika != pvm)
+            {<div class="col mb-2 fw-bold fs-5"> @Convert.ToDateTime(item.Alkuaika).ToString("dd.MM.yyyy")</div>
+
+
+            foreach (var item1 in Model)
+            {
+                if (@Convert.ToDateTime(item1.Alkuaika).ToString("dd.MM.yyyy") == aika)
+                {
+                    <button class="btn btn-primary" onclick="location.href='@Url.Action("TeeVaraus", "Varaus", new { id = item.aika_id } )'">
+                        @item1.Alkuaika.Value.ToShortTimeString() - @Convert.ToDateTime(item1.Alkuaika).AddMinutes(item1.Kesto).ToShortTimeString()
+                    </button>
+                    pvm = @Convert.ToDateTime(item1.Alkuaika).ToString("dd.MM.yyyy");
+                }
+            }
+        }
+    }
+}
+else
+{
+    <h3>Tällä opettajalla ei ole vapaita aikoja varattavissa. Olethan tarvittaessa opettajaan yhteydessä sähköpostitse.</h3>
+}
+
+    <div class="modal-footer">
+
+        <!--Peruutusnappula, Rastina yläkulmassa olisi parempi-->
+        <button type="button" class="placeholder-glow btn d-grid text-decoration-none btn-outline-primary mt-3" data-bs-dismiss="modal">Takaisin</button>
+    </div>
+</div>
