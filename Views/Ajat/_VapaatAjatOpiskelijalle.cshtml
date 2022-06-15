@@ -1,42 +1,52 @@
 ﻿@model IEnumerable<Ajanvarausprojekti.ViewModels.ajatListaData>
 
 <div class="modal-body">
+        <!--Progress bar-->
+        <div class="position-relative align-self-center mx-5 mb-1 mt-5 w-75">
+            <div class="progress" style="height: 1px; background-color: var(--primary-color);">
+                <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <button class="placeholder-glow top-0 start-0 p-0 m-0 translate-middle btn btn-sm btn-primary rounded-pill d-flex justify-content-center align-items-center" style="width: 3.4rem; height: 3.4rem;" aria-valuenow="0" aria-label="Vaihe 1/3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" fill="black" class="bi bi-check2 m-0 p-0" viewBox="0 0 16 16">
+                    <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
+                </svg>
+            </button>
+            <button class="placeholder-glow position-absolute top-0 start-50 translate-middle btn btn-sm btn-outline-primary bg-white rounded-pill d-flex justify-content-center align-items-center" aria-label="Vaihe 2/3" aria-valuenow="0" style="width: 3.4rem; height: 3.4rem;">
+            </button>
+            <button class="placeholder-glow position-absolute top-0 start-100 translate-middle btn btn-sm btn-outline-primary bg-white rounded-pill d-flex justify-content-center align-items-center" aria-label="Vaihe 3/3"style="width: 3.4rem; height: 3.4rem;">
+            </button>
+        </div>
+        <h2 class="placeholder-glow">Valitse varattava aika</h2>
 
-    @if (@ViewBag.EiVarauksia != "")//Tämä ei jostain syystä toimi, kuten Irinalla.
-    {
-        string aika = "";
-        string pvm = "";
-
-        foreach (var item in Model)
+        @if (@ViewBag.EiVarauksia != "")//Tämä ei jostain syystä toimi, kuten Irinalla.
         {
-            aika = Convert.ToDateTime(item.Alkuaika).ToString("dd.MM.yyyy");
+            string aika = "";
+            string pvm = "";
 
-
-            if (aika != pvm)
-            {<div class="col mb-2 fw-bold fs-5"> @Convert.ToDateTime(item.Alkuaika).ToString("dd.MM")</div>
-
-
-            foreach (var item1 in Model)
+            foreach (var item in Model)
             {
-                if (@Convert.ToDateTime(item1.Alkuaika).ToString("dd.MM.yyyy") == aika)
+                aika = Convert.ToDateTime(item.Alkuaika).ToString("dd.MM.yyyy");
+
+
+                if (aika != pvm)
+                {<div class="col mb-1 fw-bold fs-5"> @Convert.ToDateTime(item.Alkuaika).ToString("dd.MM")</div>
+
+
+                foreach (var item1 in Model)
                 {
-<button class="btn btn-primary" onclick="location.href='@Url.Action("TeeVaraus", "Varaus", new { id = item.aika_id } )'">
-    @Convert.ToDateTime(item1.Alkuaika).ToString("HH:mm") - @Convert.ToDateTime(item1.Alkuaika).AddMinutes(item1.Kesto).ToString("HH:mm")
-</button>
-                    pvm = @Convert.ToDateTime(item1.Alkuaika).ToString("dd.MM.yyyy");
+                    if (@Convert.ToDateTime(item1.Alkuaika).ToString("dd.MM.yyyy") == aika)
+                    {
+                        <button class="btn btn-primary mb-3" onclick="location.href='@Url.Action("TeeVaraus", "Varaus", new { id = item.aika_id } )'">
+                            @Convert.ToDateTime(item1.Alkuaika).ToString("HH:mm") - @Convert.ToDateTime(item1.Alkuaika).AddMinutes(item1.Kesto).ToString("HH:mm")
+                        </button>
+                        pvm = @Convert.ToDateTime(item1.Alkuaika).ToString("dd.MM.yyyy");
+                    }
                 }
             }
         }
     }
-}
-else
-{
-    <h3>Tällä opettajalla ei ole vapaita aikoja varattavissa. Olethan tarvittaessa opettajaan yhteydessä sähköpostitse.</h3>
-}
-
-    <div class="modal-footer">
-
-        <!--Peruutusnappula, Rastina yläkulmassa olisi parempi-->
-        <button type="button" class="placeholder-glow btn d-grid text-decoration-none btn-outline-primary mt-3" data-bs-dismiss="modal">Takaisin</button>
+    else
+    {
+        <h3 class="fs-5">Tällä opettajalla ei ole vapaita aikoja varattavissa. Olethan tarvittaessa opettajaan yhteydessä sähköpostitse.</h3>
+    }
     </div>
-</div>

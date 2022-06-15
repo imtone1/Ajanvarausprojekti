@@ -36,20 +36,25 @@
 
         @foreach (var item in Model)
         {
-            <div class="container">
+    <div class="container">
 
-                @*Modal*@
-                <div class="modal fade" id="AjatRuutu_@item.opettaja_id">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header"><h2 class="placeholder-glow">Valitse varattava aika</h2></div>
-
-                            @{Html.RenderAction("_VapaatAjatOpiskelijalle", "Ajat", new { opeid = @item.opettaja_id });}
-
-                        </div>
+        @*Modal*@
+        <div class="modal fade" id="AjatRuutu_@item.opettaja_id">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="d-flex justify-content-end align-items-end pe-2 pt-2">
+                        <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
+                    <div class="modal-header border-0 d-flex flex-column justify-content-center align-items-center text-center py-0 my-0">
+                        <p class="modal-title"><img src="~/Content/Images/careerian-tiviohjaus-logo.png" class="d-flex justify-content-center align-items-center w-75 h-auto mb-1" alt="@ViewBag.SivustonNimi Logo" aria-label="@ViewBag.SivustonNimi"></p>
+                    </div>
+
+                    @{Html.RenderAction("_VapaatAjatOpiskelijalle", "Ajat", new { opeid = @item.opettaja_id });}
+
                 </div>
             </div>
+        </div>
+    </div>
         }
 
     </div>
