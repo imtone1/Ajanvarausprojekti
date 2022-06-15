@@ -241,6 +241,59 @@ namespace Ajanvarausprojekti.Controllers
             return PartialView("_VapaatAjatOpiskelijalle", vapaatAjat);
         }
 
+        public ActionResult VapaatAjatKaikki()
+        {
+            // LIstataan kaikki kyseisen opettajan ajat
+
+            var opeID = (int)Session["OpettajaID"];
+            var ajatLista = (from a in db.Ajat
+                             join o in db.Opettajat on a.opettaja_id equals o.opettaja_id
+                             join k in db.Kestot on a.kesto_id equals k.kesto_id
+                             where o.opettaja_id == opeID
+                             where a.alku_aika >= DateTime.UtcNow
+
+                             select new ajatListaData
+                             {
+                                 Etunimi = o.etunimi,
+                                 Sukunimi = o.sukunimi,
+                                 aika_id = (int)a.aika_id,
+                                 Alkuaika = (DateTime)a.alku_aika,
+                                 Kesto = (int)k.kesto,
+                                 opettaja_id = (int)a.opettaja_id,
+                                 Paikka = a.paikka
+                             }).ToList();
+
+            // Listataan kyseisen opettajan varatut ajat
+
+            var varatut = (from a in db.Ajat
+                           join o in db.Opettajat on a.opettaja_id equals o.opettaja_id
+                           join k in db.Kestot on a.kesto_id equals k.kesto_id
+                           join v in db.Varaukset on a.aika_id equals v.aika_id
+                           where o.opettaja_id == opeID
+                           where a.aika_id == v.aika_id
+                           where a.alku_aika >= DateTime.UtcNow
+
+                           select new ajatListaData
+                           {
+                               Etunimi = o.etunimi,
+                               Sukunimi = o.sukunimi,
+                               aika_id = (int)a.aika_id,
+                               Alkuaika = (DateTime)a.alku_aika,
+                               Kesto = (int)k.kesto,
+                               opettaja_id = (int)a.opettaja_id,
+                               Paikka = a.paikka
+                           }).ToList();
+
+            // Listataan vapaat ajat poistamalla kaikista ajoista varatut ajat
+
+            var vapaatAjat = (from a in ajatLista
+                              where !varatut.Any(x => x.aika_id == a.aika_id)
+                              orderby a.Alkuaika
+                              select a).ToList();
+
+            return View("VapaatAjatKaikki", vapaatAjat);
+        }
+
 
         //vapautetaan lopussa tietokantayhteys Disposella
         protected override void Dispose(bool disposing)

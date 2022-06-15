@@ -10,7 +10,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="2.9rem" height="2.9rem" fill="var(--black-color)" class="bi bi-plus bg-primary rounded-3" viewBox="0 0 16 16">
                     <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
                 </svg>
-            </a> 
+            </a>
         </div>
         <p class="lead text-grey mb-4">Ajan poisto onnistuu nappia klikkaamalla.</p>
         <div class="text-white justify-content-center align-items-center text-center justify-content-md-start align-items-md-start text-md-start px-0 mx-0">
@@ -27,7 +27,7 @@
                 {<div class="col mb-2 fw-bold fs-5"> @Convert.ToDateTime(item.Alkuaika).ToString("dd.MM")</div>
 
 
-                foreach (var item1 in Model)
+                foreach (var item1 in Model.Take(10))
                 {
                     if (@Convert.ToDateTime(item1.Alkuaika).ToString("dd.MM.yyyy") == aika)
                     {
@@ -38,8 +38,18 @@
             }
         }
         </div>
-       
+
     </div>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-end">
+            <li>
+                @using (Html.BeginForm("VapaatAjatKaikki", "Ajat", FormMethod.Get))
+                {
+                    <button class="btn btn-primary ms-3">Näytä kaikki</button>
+                }
+            </li>
+        </ul>
+    </nav>
 </section>
 
 <!--VARATTAVISSA OLEVAT OHJAUSAJAT (HAASTAVAMPI) LOPPUU TÄHÄN-->

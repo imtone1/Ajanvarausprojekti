@@ -20,7 +20,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model.Take(3))
+            @foreach (var item in Model)
             {
                 <tr>
                     <td scope="row">@Html.ValueFor(model => item.Alkuaika, "{0:dd.MM.yyyy}")</td>
@@ -57,7 +57,7 @@
         </tbody>
     </table>
     <!-- Sivunumerokomponentti -->
-    @*<nav aria-label="Page navigation example">
+    <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-end">
             <li class="page-item">
                 <a class="page-link" href="#" aria-label="Previous">
@@ -73,20 +73,21 @@
                 </a>
             </li>
         </ul>
-    </nav>*@
+    </nav>
 }
 @*Tämä näytetään, jos käyttäjällä ei ole tulevia varauksia*@
 else
 {
     <h3>Sinulla ei ole tulevia varauksia.</h3>
 }
-<nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-end">
-        <li>
-            @using (Html.BeginForm("VarausListausKaikki", "Varaus", FormMethod.Get))
-            {
-                <button class="btn btn-primary ms-3">Näytä kaikki</button>
-            }
-        </li>
-    </ul>
-</nav>
+<div class="d-flex justify-content-start">
+    @using (Html.BeginForm("OpettajienSivu", "Home", FormMethod.Get))
+    {
+        <button class="btn btn-primary ms-0 text-decoration-none" role="button" aria-pressed="false">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-chevron-left me-1" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+            </svg>
+            Takaisin
+        </button>
+    }
+</div>

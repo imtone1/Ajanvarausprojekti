@@ -420,6 +420,8 @@
     <Content Include="Views\Ajat\_VapaatAjat.cshtml" />
     <Content Include="Views\Ajat\AjatDelete.cshtml" />
     <Content Include="Views\Palaute\Delete.cshtml" />
+    <Content Include="Views\Ajat\VapaatAjatKaikki.cshtml" />
+    <Content Include="Views\Varaus\VarausListausKaikki.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

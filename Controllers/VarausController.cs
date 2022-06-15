@@ -383,6 +383,53 @@ namespace Ajanvarausprojekti.Controllers
             return PartialView("_VarausListModal",varaus);
         }
 
+        public ActionResult VarausListausKaikki()
+        {
+            if (Session["UserName"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                //Sessiosta otetaan kirjautuneen opettajan id
+                var opeid = Session["OpettajaID"];
+                int opeOikID = int.Parse(opeid.ToString());
+                //Näkyy kirjautuneen opettajan ajat sekä tämänpäiväset tai tulevat ajat
+                var ajatLista = from a in db.Ajat
+                                join op in db.Opettajat on a.opettaja_id equals op.opettaja_id
+                                join k in db.Kestot on a.kesto_id equals k.kesto_id
+                                join v in db.Varaukset on a.aika_id equals v.aika_id
+                                where op.opettaja_id == opeOikID && a.alku_aika >= DateTime.Today
+                                orderby a.alku_aika
+
+                                select new ajatListaData
+                                {
+                                    aika_id = (int)a.aika_id,
+                                    Alkuaika = (DateTime)a.alku_aika,
+                                    Kesto = (int)k.kesto,
+                                    Aihe = v.aihe,
+                                    Paikka = a.paikka,
+                                    opettaja_id = (int)a.opettaja_id,
+                                    Varaaja = v.varaaja_sahkoposti,
+                                    Varauspvm = (DateTime)v.varattu_pvm,
+                                    varaus_id = v.varaus_id
+
+                                };
+
+                if (ajatLista.Count() > 0)
+                {
+                    ViewBag.EiVarauksia = "Sinulla ei ole varauksia.";
+                }
+                else
+                {
+                    ViewBag.EiVarauksia = "";
+                }
+                return View("VarausListausKaikki", ajatLista);
+            }
+
+
+        }
+
         //Dispose pakko olla, sitä ei saa poistaa
         protected override void Dispose(bool disposing)
         {
