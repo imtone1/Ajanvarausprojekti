@@ -11,15 +11,22 @@
                 @*Modaalin otsikko*@
                 <div class="modal-header border-0 d-flex flex-column align-items-center justify-content-center">
                     @*//TempData OnnistunutVaraus tuo viestin VarausControllerilta = Varaus onnistui!*@
-                    <h2 class="text-center">@TempData["Successi"]</h2>
+                    @if (TempData["Successi"] != null) { 
+                        <h2 class="text-center">@TempData["Successi"]</h2>
+                        }
                 </div>
 
                 @*Modaalin bodyosio jossa animaatio*@
             <div class="modal-body">
                 <div class="d-flex flex-column align-items-center text-center">
                     <img src="~/Content/Images/success.gif" alt="gif image" />
-                    <h3 class="mt-2">@TempData["BodyText1"]</h3>
-                    <p class="lead">@TempData["BodyText2"]</p>
+                    @if (TempData["BodyText1"] != null)
+                    {
+                        <h3 class="mt-2">@TempData["BodyText1"]</h3>
+                    }
+                    @if (TempData["BodyText2"] != null) { 
+                        <p class="lead">@TempData["BodyText2"]</p>
+                        }
                 </div>
             </div>
             </div>
