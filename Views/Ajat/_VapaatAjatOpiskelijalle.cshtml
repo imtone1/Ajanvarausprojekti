@@ -24,23 +24,28 @@
         <h2 class="placeholder-glow">Minkä ajan haluat varata?</h2>
         foreach (var item in Model)
         {
-            aika = Convert.ToDateTime(item.Alkuaika).ToString("dd.MM.yyyy");
-
-
-            if (aika != pvm)
-            {<div class="col mb-1 fw-bold fs-5"> @Convert.ToDateTime(item.Alkuaika).ToString("dd.MM")</div>
-
-
-            foreach (var item1 in Model)
+            if (item.Alkuaika > DateTime.Now)
             {
-                if (@Convert.ToDateTime(item1.Alkuaika).ToString("dd.MM.yyyy") == aika)
+                aika = Convert.ToDateTime(item.Alkuaika).ToString("dd.MM.yyyy");
+
+
+                if (aika != pvm)
+                {<div class="col mb-1 fw-bold fs-5"> @Convert.ToDateTime(item.Alkuaika).ToString("dd.MM")</div>
+
+
+                foreach (var item1 in Model)
                 {
-                    <button class="btn btn-primary mb-3" onclick="location.href='@Url.Action("TeeVaraus", "Varaus", new { id = item1.aika_id } )'">
-                        @Convert.ToDateTime(item1.Alkuaika).ToString("HH:mm") - @Convert.ToDateTime(item1.Alkuaika).AddMinutes(item1.Kesto).ToString("HH:mm")
-                    </button>
-                    pvm = @Convert.ToDateTime(item1.Alkuaika).ToString("dd.MM.yyyy");
+                    if (@Convert.ToDateTime(item1.Alkuaika).ToString("dd.MM.yyyy") == aika)
+                    {
+                        <button class="btn btn-primary mb-3" onclick="location.href='@Url.Action("TeeVaraus", "Varaus", new { id = item1.aika_id } )'">
+                            @Convert.ToDateTime(item1.Alkuaika).ToString("HH:mm") - @Convert.ToDateTime(item1.Alkuaika).AddMinutes(item1.Kesto).ToString("HH:mm")
+                        </button>
+                        pvm = @Convert.ToDateTime(item1.Alkuaika).ToString("dd.MM.yyyy");
+                    }
                 }
+
             }
+
         }
     }
 }
