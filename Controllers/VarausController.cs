@@ -164,6 +164,8 @@ namespace Ajanvarausprojekti.Controllers
             }
         }
 
+        // Tämä antaa valitun ajan id:n varaukselle.
+
         public ActionResult TeeVaraus(int? id)
         {
             ViewBag.aika_id = id;
