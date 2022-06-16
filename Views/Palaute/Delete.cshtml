@@ -31,7 +31,6 @@
                     @using (Html.BeginForm())
                     {
                         @Html.AntiForgeryToken()
-
                         <div class="form-actions no-color">
 
                             <button class="btn btn-primary">
@@ -40,6 +39,8 @@
                                 </svg>
                                 @Html.ActionLink("Takaisin", "LueKaikki")
                             </button>
+
+
                             <input type="submit" value="Poista" class="btn btn-primary" />
                         </div>
                     }

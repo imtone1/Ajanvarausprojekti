@@ -4,53 +4,65 @@
     ViewBag.Title = "AjatDelete";
 }
 
-<
-<section class="container-fluid bg-black pt-lg-3">
+
+<section class="container-fluid bg-white pt-lg-3">
     <div class="container pt-lg-5">
         <div class="row gy-5 gy-lg-0 pb-lg-0 flex-column-reverse flex-md-column-reverse flex-lg-row">
             <div class="col-md-12 col-lg-6 table-responsive-md pe-lg-5">
                 <div class="d-flex justify-content-between w-100">
-                    <h2 class="text-white pb-5">Haluatko varmasti poistaa ajan?</h2>
+                    <h2 class="text-black pb-3">Haluatko varmasti poistaa ajan?</h2>
 
                 </div>
 
                 <div>
                     <hr />
-                    <dl class="dl-horizontal">
-                        @*<dd class="text-white pb-5">
-                                @Html.DisplayFor(model => model.aika_id)
-                            </dd>*@
-                        <dt class="text-white pb-5">
-                            Ajankohta
-                        </dt>
-                        <dd class="text-white pb-5">
-                            @Html.DisplayFor(model => model.alku_aika)
-                        </dd>
-                        <dt class="text-white pb-5">
-                            Kesto
-                        </dt>
-                        <dd class="text-white pb-5">
-                            @Html.DisplayFor(model => model.Kestot.kesto_id) min
-                        </dd>
+                    <dl class="dl-horizontal, text-black pb-5">
+
+                        <dt>Päivämäärä</dt>
+                        <dd>@Html.ValueFor(model => model.alku_aika, "{0:dd.MM.yyyy}")</dd>
+
+                        <dt>Kellonaika</dt>
+                        <dd>@Html.ValueFor(model => model.alku_aika, "{0:HH:mm}") - @Convert.ToDateTime(Model.alku_aika).AddMinutes(Model.kesto_id).ToString("HH:mm")</dd>
+
+                        <dt>Kesto</dt>
+                        <dd>@Html.DisplayFor(model => model.Kestot.kesto_id) min</dd>
                     </dl>
 
-                    @using (Html.BeginForm())
-                    {
-                        @Html.AntiForgeryToken()
+                    <div class="form-actions no-color">
 
-                        <div class="form-actions no-color">
-                            <input type="submit" value="Poista" class="btn btn-primary ms-3" />|
-                            <a href="@Url.Action("OpettajienSivu", "Home")" class="btn btn-primary ms-3">Takaisin</a>
 
-                        </div>
-                    }
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-actions no-color">
+                                <input type="submit" value="Poista" class="btn btn-primary ms-3" />|
+
+                                @*Tämä on alkuperäinen Takaisin-nappi*@
+                                <a href="@Url.Action("OpettajienSivu", "Home")" class="btn btn-primary ms-3">Takaisin</a>
+
+                                @*Tässä takaisin-napissa on myös väkänen*@
+                                <button class="btn btn-primary">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-chevron-left me-1" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+                                    </svg>
+                                    @Html.ActionLink("Takaisin", "OpettajienSivu", "Home")
+                                </button>
+
+                            </div>
+                        }
+
+
+                    </div>
                 </div>
 
             </div>
 
 
             @*Sateenvarjokuva*@
-            <div class="col-md-12 col-lg-6 bg-ohjausajat mb-sm-3 mb-lg-5"></div>
+            <div class="col-md-12 col-lg-6 bg-ohjausajat mb-sm-3 mb-lg-5">
+                <img src="~/Content/Images/sateenvarjo-logo.png" alt="Nainen sateenvarjon kanssa ja Careerian logo" class="img-fluid" />
+            </div>
         </div>
     </div>
 </section>
