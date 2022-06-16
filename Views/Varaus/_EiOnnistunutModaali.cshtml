@@ -3,24 +3,23 @@
 <div class="container">
 
     @*Modal: varaus epäonnistui*@
-    <div class="modal fade" id="EiOnnistunutModaali" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="EiOnnistunutModaali" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
 
                 @*Modaalin otsikko*@
                 <div class="modal-header border-0 d-flex flex-column align-items-center justify-content-center">
                     @*//TempData EpaonnistunutVaraus tuo viestin VarausControllerilta = Hups! Jokin meni nyt pieleen!*@
-                    <h1 class="text-center">@TempData["Errori"]</h1>
+                    <h2 class="text-center">@TempData["Errori"]</h2>
                 </div>
 
                 @*Modaalin bodyosio jossa animaatio*@
                 <div class="modal-body">
                     <div class="d-flex flex-column align-items-center text-center">
                         <img src="~/Content/Images/error.gif" alt="gif image" />
-                        <h2 class="mt-5">@TempData["BodyText1"]</h2>
+                        <h3 class="mt-5">@TempData["BodyText1"]</h3>
                         @*<h3>Ole hyvä ja yritä hetken päästä uudelleen.</h3>*@
-
-                           <h3>@TempData["BodyText2"]</h3>
+                           <p class="lead">@TempData["BodyText2"]</p>
                     </div>
                 </div>
             </div>
