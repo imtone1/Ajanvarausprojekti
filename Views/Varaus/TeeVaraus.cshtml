@@ -62,7 +62,7 @@
                     @*Tässä annetaan valittu aika-id*@
 
                     <input type="hidden" name="aika_id" value="@ViewBag.aika_id" />
-
+                    <div>Olet varaamassa ajan @ViewBag.openimi lle. Aikasi on @ViewBag.varausalku - @ViewBag.varausloppu</div>
                     <div class="form-group mb-2">
                         @Html.LabelFor(model => model.Aihe, "Kuvaa lyhyesti tapaamisen aihe (esim. HOKS-keskustelu)", htmlAttributes: new { @class = "control-label col-12 mb-1" })
                         <div class="col-md-10">

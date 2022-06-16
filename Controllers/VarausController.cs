@@ -170,6 +170,22 @@ namespace Ajanvarausprojekti.Controllers
         {
             ViewBag.aika_id = id;
 
+            //Tarkistetaan onko olemassa ja mikä on tän open id  
+            var ope= (from op in db.Opettajat
+                      join a in db.Ajat on op.opettaja_id equals a.opettaja_id
+                      where a.aika_id == id
+                              select op).FirstOrDefault();
+
+            var varausAika = (from op in db.Ajat
+                              join a in db.Opettajat on op.opettaja_id equals a.opettaja_id
+                              where op.aika_id== id
+                              select op).FirstOrDefault();
+
+            ViewBag.openimi = ope.etunimi +" "+ ope.sukunimi;
+            ViewBag.varausalku =varausAika.alku_aika.ToString("dd.MM.yyyy HH:mm");
+            ViewBag.varausloppu=varausAika.alku_aika.AddMinutes(varausAika.kesto_id).ToString("HH:mm");
+
+
             var varattava = from a in db.Ajat
                             join op in db.Opettajat on a.opettaja_id equals op.opettaja_id
                             join k in db.Kestot on a.kesto_id equals k.kesto_id
