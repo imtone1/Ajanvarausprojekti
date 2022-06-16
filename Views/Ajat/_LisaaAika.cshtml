@@ -14,8 +14,11 @@
 
             <div class="col-md-6 col-lg-6 d-flex justify-content-center mt-md-5">
                 <div class="form-group">
-                    <p class="text-danger">@TempData["AikaError"]</p> @*Tuodaan tähän tieto onnistuneesta/epäonnistuneesta ajan lisäyksestä*@
-                    <p class="text-info">@TempData["AikaSuccess"]</p>
+                    @if (TempData["AikaError"] != null) {
+                        <p class="text-danger">@TempData["AikaError"]</p>}
+                    @if (TempData["AikaSuccess"] != null) {
+                        <p class="text-info">@TempData["AikaSuccess"]</p>}
+
                     <br />
                     <h2 id="LisaaAika2">Lisää uusi aika varattavaksi</h2>
                     <div class="input-group d-flex flex-column justify-content-center">
