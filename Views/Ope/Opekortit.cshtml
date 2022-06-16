@@ -5,7 +5,7 @@
     <div class="d-flex justify-content-between">
         <h2 class="display-6 fw-bolder">Ohjausajan varaus</h2>
         @* Poista varaus nappula *@
-        <button class="btn btn-primary" id="varausmodal" data-bs-toggle="modal" data-bs-target="#VarausRuutu" role="button" aria-keyboard-focusable="true">Poista varauksesi</button>
+        <button class="btn btn-primary" id="varausmodal" data-bs-toggle="modal" data-bs-target="#VarausRuutu">Poista varauksesi</button>
     </div>
     <p class="lead">Kenelle tivi-opettajalle haluat varata ajan?</p>
 
@@ -35,7 +35,7 @@
                         <h3 class="card-title fw-light placeholder-glow fs-5">@item.etunimi @item.sukunimi</h3>
 
                         <!--Nappula, joka avaa vapaiden aikojen modaali-ikkunan-->
-                        <button type="button" class="btn btn-primary placeholder-glow" id="vapaatAjatModal" data-bs-toggle="modal"
+                        <button type="button" class="btn btn-primary placeholder-glow" data-id="#vapaatAjatModal_@item.etunimi @item.sukunimi" data-bs-toggle="modal"
                                 data-bs-target="#AjatRuutu_@item.opettaja_id">
                             Varaa aika
                         </button>
