@@ -194,7 +194,7 @@ a:hover {
 }
 
 .text-primary {
-    color: var(--primary-color)!important;
+    color: var(--primary-color) !important;
 }
 
 .text-dark {
@@ -240,7 +240,7 @@ a:hover {
 }
 
 .link-primary {
-    color: var(--black-color)!important;
+    color: #877129!important;
     font-weight: bold;
 }
 
