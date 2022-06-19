@@ -48,6 +48,7 @@ namespace Ajanvarausprojekti.Controllers
             ViewBag.Rekisterinpitäjan_yhteyshenkilo = ohjelmanyhteystiedot.Rekisterinpitäjan_yhteyshenkilo;
             ViewBag.Henkilorekisterin_vastuuhenkilo = ohjelmanyhteystiedot.Henkilorekisterin_vastuuhenkilo;
             ViewBag.Tietosuojavastaava = ohjelmanyhteystiedot.Tietosuojavastaava;
+            ViewBag.Poistointervalli = Math.Abs(ohjelmanyhteystiedot.PoistoIntervalli);
 
 
             return View();

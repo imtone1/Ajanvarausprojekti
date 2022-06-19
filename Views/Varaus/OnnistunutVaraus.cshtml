@@ -16,6 +16,18 @@
             /* Alert the copied text */
             alert("Kopioitu linkki: " + copyText.value);
         }
+
+        function VarausNroKopioiminen() {
+            /* Get the text field */
+            var copyText = document.getElementById("varausnro");
+            /* Select the text field */
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); /* For mobile devices */
+            /* Copy the text inside the text field */
+            navigator.clipboard.writeText(copyText.value);
+            /* Alert the copied text */
+            alert("Kopioitu varausnumero: " + copyText.value);
+        }
     </script>
 }
 <div class="container-fluid h-50 pt-5 pt-lg-4 pb-lg-4 bg-success">
@@ -107,7 +119,7 @@
                         </a>
                         <div>
                             <label for="TeamsLinkki">Kopioi kokouslinkki leikepöydälle</label>
-                            <div class="d-flex justify-content-between align-items-between  mw-100 col-12 mt-1">
+                            <div class="d-flex justify-content-between align-items-between mw-100 col-12 mt-1">
                                 <input type="text" value="@Session["paikka"]" id="TeamsLinkki" class="form-control form-control-color me-1 w-100 h-auto py-0 bg-white" aria-label="kopioitavissa oleva linkki ohjausajan Teams-kokoukseen" readonly>
                                 <button onclick="LinkinKopioiminen()" class="btn btn-success">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" fill="currentColor" class="bi bi-clipboard-check" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
@@ -121,12 +133,25 @@
                         </div>
                     </dd>
 
-                    <dt class="col-12 col-md-4">
+                    <dt class="col-12 col-md-4 mt-2">
                         Varauksen peruutuskoodi
                     </dt>
 
-                    <dd class="col-7">
-                        @Session["varausnro"]@*@Html.DisplayFor(model => model.id_hash)*@
+                    <dd class="col-12 col-md-7 d-flex flex-column justify-content-start align-items-between text-between justify-content-lg-start align-items-lg-start text-lg-start mt-2">
+                        <label for="varausnro">Kopioi peruutuskoodi leikepöydälle</label>
+                        <div>
+                            <div class="d-flex justify-content-between align-items-between mw-100 col-12 mt-1">
+                                <input type="text" value="@Session["varausnro"]" id="varausnro" class="form-control form-control-color me-1 w-100 h-auto py-0 bg-white" aria-label="kopioitavissa oleva varausnumero" readonly>
+                                <button onclick="VarausNroKopioiminen()" class="btn btn-success">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" fill="currentColor" class="bi bi-clipboard-check" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                                        <path fill-rule="evenodd" d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
+                                        <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z" />
+                                        <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z" />
+                                    </svg>
+                                    <span class="visually-hidden">Kopioi varausnumero leikepöydälle</span> <!--Tämä on screen readereitä varten "salainen" otsikko joka kertoo pelkän iconin sisältävän buttonin tarkoituksen-->
+                                </button>
+                            </div>
+                        </div>
                     </dd>
                 </dl>@*@Html.DisplayFor(model => model.Ajat.paikka)*@
             </div>
@@ -136,7 +161,8 @@
         </div>
     </div>
     <div class="my-4">
-        <a href="/Home/Index" class="btn btn-outline-primary text-decoration-none" role="button" aria-pressed="false">
+        <a href="/Home/Index" class="btn btn-outline-primary text-decoration-none" role="button">
+
             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-chevron-left me-1" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
             </svg>
