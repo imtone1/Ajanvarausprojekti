@@ -119,7 +119,7 @@
                         </a>
                         <div>
                             <label for="TeamsLinkki">Kopioi kokouslinkki leikepöydälle</label>
-                            <div class="d-flex justify-content-between align-items-between  mw-100 col-12 mt-1">
+                            <div class="d-flex justify-content-between align-items-between mw-100 col-12 mt-1">
                                 <input type="text" value="@Session["paikka"]" id="TeamsLinkki" class="form-control form-control-color me-1 w-100 h-auto py-0 bg-white" aria-label="kopioitavissa oleva linkki ohjausajan Teams-kokoukseen" readonly>
                                 <button onclick="LinkinKopioiminen()" class="btn btn-success">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" fill="currentColor" class="bi bi-clipboard-check" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
@@ -133,13 +133,14 @@
                         </div>
                     </dd>
 
-                    <dt class="col-12 col-md-4">
+                    <dt class="col-12 col-md-4 mt-2">
                         Varauksen peruutuskoodi
                     </dt>
 
-                    <dd>
+                    <dd class="col-12 col-md-7 d-flex flex-column justify-content-start align-items-between text-between justify-content-lg-start align-items-lg-start text-lg-start mt-2">
+                        <label for="varausnro">Kopioi peruutuskoodi leikepöydälle</label>
                         <div>
-                            <div class="d-flex justify-content-between align-items-between  mw-100 col-12 mt-1">
+                            <div class="d-flex justify-content-between align-items-between mw-100 col-12 mt-1">
                                 <input type="text" value="@Session["varausnro"]" id="varausnro" class="form-control form-control-color me-1 w-100 h-auto py-0 bg-white" aria-label="kopioitavissa oleva varausnumero" readonly>
                                 <button onclick="VarausNroKopioiminen()" class="btn btn-success">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" fill="currentColor" class="bi bi-clipboard-check" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
@@ -150,8 +151,8 @@
                                     <span class="visually-hidden">Kopioi varausnumero leikepöydälle</span> <!--Tämä on screen readereitä varten "salainen" otsikko joka kertoo pelkän iconin sisältävän buttonin tarkoituksen-->
                                 </button>
                             </div>
-                            </div>
-</dd>
+                        </div>
+                    </dd>
                 </dl>@*@Html.DisplayFor(model => model.Ajat.paikka)*@
             </div>
             <div class="col-md-5">
@@ -160,7 +161,7 @@
         </div>
     </div>
     <div class="my-4">
-        <a href="/Home/Index" class="btn btn-primary text-decoration-none" role="button" aria-pressed="false">
+        <a href="/Home/Index" class="btn btn-outline-primary text-decoration-none" role="button" aria-keyboard-focusable="true">
             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-chevron-left me-1" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
             </svg>
