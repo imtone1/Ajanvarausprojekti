@@ -38,6 +38,7 @@ a:hover {
     color: var(--black-color);
     border: none;
     padding: .5em;
+    border: .1rem var(--primary-color) solid;
 }
 
 .btn.btn-primary.focus,
@@ -76,6 +77,13 @@ a:hover {
     outline: none;
     border: none;
     box-shadow: 1px 1px 8px var(--primary-color);
+}
+
+.btn-outline-primary {
+    padding-top: .7em !important;
+    padding-bottom: .7em !important;
+    padding-left: 1em !important;
+    padding-right: 1em !important;
 }
 
 .btn.btn-outline-primary {
