@@ -27,8 +27,8 @@ namespace Ajanvarausprojekti.Services
         //puh.nro Yhteystiedot sivulla
         public string Puhnro = "";
 
-        //määrittelee millä intervallilla poistetaan vanhentuneita varauksia, nyt on 30pv. 
-        public int PoistoIntervalli = -30;
+        //määrittelee millä intervallilla poistetaan vanhentuneita varauksia, nyt on 2pv. 
+        public int PoistoIntervalli = -2;
 
         //default opekuva, tämä on vain polku eli tämän kuvan pitäisi olla lisättynä Opekuva -tiedostoon ensin
         public string OpeDefaultKuva = "/Opekuvat/defaultKuva.jpg";
