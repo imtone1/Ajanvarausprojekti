@@ -25,13 +25,13 @@
                                     @Html.AntiForgeryToken()
 
                                 <div class="form-horizontal">
-                                    <h4>Anna varausnumero</h4>
+                                    <h4>Varauksen peruutus</h4>
 
                                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                                     @Html.HiddenFor(model => model.varaus_id)
 
                                     <div class="form-group">
-                                        <label class="control-label col-md-2" for="id_hash">Varausnumero</label>
+                                        <label class="control-label col-md-8" for="id_hash">Varausvahvistuksessa saamasi poistokoodi</label>
                                         <div class="col-md-10">
                                             @Html.EditorFor(model => model.id_hash, new { htmlAttributes = new { @class = "form-control" } })
                                             @Html.ValidationMessageFor(model => model.id_hash, "", new { @class = "text-danger" })
@@ -44,7 +44,7 @@
                                 </div>
                                 }
                             
-                                <button type="submit" form="varausForm" class="btn btn-primary" role="button" aria-keyboard-focusable="true">Poista varaus</button>
+                                <button type="submit" form="varausForm" class="btn btn-primary" role="button" aria-keyboard-focusable="true">Peruuta varaus</button>
                              
                             </div>
                         </div>
