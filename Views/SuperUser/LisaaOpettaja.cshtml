@@ -126,7 +126,7 @@
                         <th scope="col">Käyttäjät</th>
                         @*<th scope="col"></th>*@
                         @*Tällä näytetään opettaja-id, kun odotetaan, että modaali-ikkuna avautuu. Voidaan tarvittaessa poistaa*@
-                    <td id="Opepoisto" scope="col"></td>
+                    <td id="Opepoisto"></td>
                     </tr>
                 </thead>     
                 @Html.Action("_ListaaOpettajat")
@@ -144,10 +144,8 @@
 
     <!-- Lisää uusi käyttäjä-lomake. -->
         <div class="container mt-5">
-            <div class="row">
-
                 <h2>Lisää uusi käyttäjä</h2>
-                <form class="row g-3">
+                <div class="row g-3">
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
                     <p class="text-danger text-">@ViewBag.Status</p>
@@ -206,8 +204,7 @@
                     <div class="col-12 d-flex justify-content-end mt-3">
                         <button id="LisaaOpeButton" type="submit" class="btn btn-primary">Lisää uusi opettaja</button>
                     </div>
-                </form>
-            </div>
+                </div>
         </div>
     }
 </section>
