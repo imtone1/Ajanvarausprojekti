@@ -94,7 +94,7 @@ namespace Ajanvarausprojekti.Controllers
         // POST: Ohjausaika/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult _LisaaAika([Bind(Include = "aika_id,alku_aika,kesto_id,opettaja_id, startDate, startTime")] Ajat ajat)
+        public ActionResult _LisaaAika([Bind(Include = "aika_id,alku_aika,kesto_id,opettaja_id, startDate, startTime, paikka")] Ajat ajat)
         {
             try
             {
@@ -107,6 +107,7 @@ namespace Ajanvarausprojekti.Controllers
                     var strAika = startDate + " " + startTime;
                     ajat.alku_aika = Convert.ToDateTime(strAika);
                     var kesto_id = Request["kesto_id"];
+                    var paikka = Request["paikka"];
 
                     //Varauksen tehnyt opettaja tallennetaan tietokantaan Session["OpettajaID"]:n avulla
                     ajat.opettaja_id = (int)Session["OpettajaID"];
