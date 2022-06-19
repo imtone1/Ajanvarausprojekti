@@ -36,19 +36,16 @@ a:hover {
 .btn.btn-primary {
     background-color: var(--primary-color);
     color: var(--black-color);
-    border: none;
-    padding: .5em;
+    border: .1rem var(--primary-color) solid;
 }
 
 .btn.btn-primary.focus,
 .btn.btn-primary:focus {
-    background-color: var(--black-color);
+/*    background-color: var(--black-color);*/
     background-color: var(--primary-color);
     color: var(--black-color);
-    padding: .5em;
     box-shadow: 1px 1px 8px var(--primary-color);
     border: 1px var(--primary-color) solid;
-
 }
 
 .btn.btn-primary:hover {
@@ -75,8 +72,14 @@ a:hover {
     background-color: var(--primary-color);
     color: var(--black-color);
     outline: none;
-    border: none;
     box-shadow: 1px 1px 8px var(--primary-color);
+}
+
+.btn-outline-primary {
+    padding-top: .7em !important;
+    padding-bottom: .7em !important;
+    padding-left: 1em !important;
+    padding-right: 1em !important;
 }
 
 .btn.btn-outline-primary {
@@ -95,10 +98,18 @@ a:hover {
     color: var(--white-color);
 }*/
 
+.btn.btn-outline-primary.focus,
+.btn.btn-outline-primary:focus {
+    /*    background-color: var(--black-color);*/
+    background-color: var(--white-color);
+    color: var(--black-color);
+    box-shadow: 1px 1px 8px var(--primary-color);
+    border: 1px var(--primary-color) solid;
+}
+
 .btn.btn-outline-primary:active {
     background-color: var(--primary-color);
     color: var(--black-color);
-    box-shadow: 1px 1px 8px var(--primary-color);
 }
 
 .btn.btn-outline-primary.active.focus,
