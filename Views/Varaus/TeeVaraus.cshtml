@@ -107,16 +107,21 @@
                         @*<label class="form-check-label" for="kayttoehdothyvaksytty">Olen tutustunut tietosuojaselosteeseen ja käyttöehtoihin. Hyväksyn, että tietojani säilytetään ja käytetään tietosuojaselosteen mukaisesti.</label>*@
                         Olen tutustunut <a href="/Home/Tietosuoja" class="link-primary">tietosuojaselosteeseen</a> ja <a href="/Home/Kayttoehdot" class="link-primary">käyttöehtoihin</a>. Hyväksyn, että tietojani säilytetään ja käytetään tietosuojaselosteen mukaisesti.
                     </div>
-                    <div class="form-group mt-3 mb-5 mb-md-0">
-                        <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" id="vahvistaVaraus" value="Vahvista ja lähetä varaus" class="btn btn-primary" disabled />
+                    <div class="form-group mt-3 mb-5 mb-md-0 d-flex">
+                        <div class="">
+                            <a href="javascript:void(0);" onclick="history.go(-1);" class="btn btn-outline-primary" role="button" aria-keyboard-focusable="true">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-chevron-left me-1" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+                                </svg>
+                                Takaisin
+                            </a>
+                            <button type="submit" id="vahvistaVaraus" @*value="Vahvista ja lähetä varaus"*@ class="btn btn-primary">Vahvista ja lähetä varaus</button>
                         </div>
                         @*"Palaa takaisin" button*@
-                        <div class="form-group mt-3 mb-5 mb-md-0">
-    <div class="col-md-offset-2 col-md-10">
-        <a href="javascript:void(0);" onclick="history.go(-1);" class="btn btn-primary">Palaa takaisin</a>
-    </div>
-</div>
+                        <!--<div class="form-group mt-3 mb-5 mb-md-0">
+                            <div class="">
+                            </div>
+                        </div>-->
                     </div>
                     
                 </div>
