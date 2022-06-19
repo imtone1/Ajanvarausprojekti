@@ -33,16 +33,26 @@
                             @Html.TextBoxFor(a => a.startTime, new { @class = "form-control", @id = "startTime", @type = "time" })
                         </div>
 
-                        <div class="mb-4">
+                        <div class="mb-3">
                             <label for="kesto_id" class="text-black mb-0">Valitse ohjausajan kesto</label>
                             @Html.DropDownListFor(model => model.kesto_id, new List<SelectListItem> {
                             new SelectListItem{Text="30 min", Value="30",Selected =true },
                             new SelectListItem{Text="45 min", Value="45"},
                             new SelectListItem{Text="60 min", Value="60"},
                             new SelectListItem{Text="90 min", Value="90"},}, new { @class = "form-select mb-4", @id = "kesto_id" })
-
-                            <button href="#" class="btn btn-outline-primary w-100" type="submit">Tallenna aika</button>
                         </div>
+
+                        <div class="form-group mb-4">
+                            @Html.LabelFor(model => model.paikka, "Teams-linkki (annetaan varaajalle varausvahvistuksessa)", htmlAttributes: new { @class = "control-label col-12 mb-1" })
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.paikka, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.paikka, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <button href="#" class="btn btn-outline-primary w-100" type="submit">Tallenna aika</button>
+
+
                     </div>
                 </div>
             </div>
