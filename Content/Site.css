@@ -43,7 +43,8 @@ a:hover {
 .btn.btn-primary.focus,
 .btn.btn-primary:focus {
     background-color: var(--black-color);
-    color: var(--primary-color);
+    background-color: var(--primary-color);
+    color: var(--black-color);
     padding: .5em;
     box-shadow: 1px 1px 8px var(--primary-color);
     border: 1px var(--primary-color) solid;
@@ -62,8 +63,8 @@ a:hover {
 }*/
 
 .btn.btn-primary:active {
-    background-color: var(--black-color);
-    color: var(--primary-color);
+    background-color: var(--primary-color);
+    color: var(--black-color);
 }
 
 .btn.btn-primary.active.focus,
@@ -71,8 +72,8 @@ a:hover {
 .btn.btn-primary.active.focus,
 .btn.btn-primary.active:focus,
 .btn.btn-primary.active:focus {
-    background-color: var(--black-color);
-    color: var(--primary-color);
+    background-color: var(--primary-color);
+    color: var(--black-color);
     outline: none;
     border: none;
     box-shadow: 1px 1px 8px var(--primary-color);
@@ -89,14 +90,14 @@ a:hover {
     color: var(--black-color);
 }
 
-.btn.btn-outline-primary:active:hover {
+/*.btn.btn-outline-primary:active:hover {
     background-color: var(--black-color);
     color: var(--white-color);
-}
+}*/
 
 .btn.btn-outline-primary:active {
-    background-color: var(--black-color);
-    color: var(--primary-color);
+    background-color: var(--primary-color);
+    color: var(--black-color);
     box-shadow: 1px 1px 8px var(--primary-color);
 }
 
@@ -106,8 +107,8 @@ a:hover {
 .btn.btn-outline-primary.active.focus,
 .btn.btn-outline-primary.active:focus,
 .btn.btn-outline-primary.active:focus {
-    background-color: var(--black-color);
-    color: var(--primary-color);
+    background-color: var(--primary-color);
+    color: var(--black-color);
     box-shadow: 1px 1px 8px var(--primary-color);
 }
 
@@ -362,6 +363,60 @@ caption {
 
 .table > :not(caption) > * > *{
     background:none;
+}
+
+button.getOrderId.btn:focus {
+    border-color: var(--primary-color) !important;
+    box-shadow: 1px 1px 4px var(--primary-color) !important;
+}
+
+.btn-box-shadow:focus {
+    border-color: var(--primary-color) !important;
+    box-shadow: 1px 1px 4px var(--primary-color) !important;
+}
+
+input {
+    color: var(--black-color)!important;
+}
+
+.form-check-input:checked{
+    background-color: var(--primary-color) !important;
+    box-shadow: 1px 1px 4px var(--primary-color) !important;
+    border: var(--primary-color) solid 1px;
+}
+
+.form-check-input:empty {
+    box-shadow: none !important;
+    border: 1px solid #ced4da;
+}
+
+select:focus {
+    border-color: var(--primary-color) !important;
+    box-shadow: 1px 1px 8px var(--primary-color) !important;
+    color: var(--black-color)!important;
+}
+
+.form-control:focus{
+    border-color: var(--primary-color) !important;
+    box-shadow: 1px 1px 8px var(--primary-color) !important;
+    color: var(--black-color) !important;
+}
+
+.accordion-button:focus
+{
+    border-color: var(--primary-color) !important;
+    box-shadow: 1px 1px 8px var(--primary-color) !important;
+    color: var(--black-color) !important;
+}
+
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill:focus,
+input:-webkit-autofill:focus{
+    -webkit-box-shadow: 0 0 0 1000px var(--white-color) inset !important;
+    -webkit-text-fill-color: var(--black-color) !important;
 }
 
 @media only screen and (max-width: 576px) {
