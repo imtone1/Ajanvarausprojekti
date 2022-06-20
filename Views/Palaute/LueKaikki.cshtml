@@ -54,20 +54,20 @@
                     <th scope="col">Palaute</th>
                     <th scope="col">Päivämäärä</th>
                     <th scope="col">Aihe</th>
-                    <td scope="col"></td>
-                    <td scope="col"></td>
+                    <td></td>
+                    <td></td>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model.Reverse())
                 {
-                    <tr>
-                        <td scope="row" class="td-truncate"> @Html.DisplayFor(modelItem => item.palaute) </td>
-                        <td> @Html.ValueFor(model => item.palaute_pvm, "{0:dd.MM.yyyy}")</td>
-                        <td> @Html.DisplayFor(modelItem => item.palautetyyppi) </td>
-                        <td><button class="getPalauteID btn btn-primary ms-1" role="button" aria-pressed="false" data-palauteid="@item.palaute_id">Lue lisää</button></td>
-                        <td><button class="btn btn-primary text-decoration-none" role="button" aria-pressed="false"> @Html.ActionLink("Poista", "Delete", new { id = item.palaute_id })</button></td>
-                    </tr>
+                <tr>
+                    <td class="td-truncate"> @Html.DisplayFor(modelItem => item.palaute) </td>
+                    <td> @Html.ValueFor(model => item.palaute_pvm, "{0:dd.MM.yyyy}")</td>
+                    <td> @Html.DisplayFor(modelItem => item.palautetyyppi) </td>
+                    <td><button class="getPalauteID btn btn-primary ms-1" data-palauteid="@item.palaute_id">Lue lisää</button></td>
+                    <td>@Html.ActionLink("Poista", "Delete", new { id = item.palaute_id }, new { @class = "btn btn-primary text-decoration-none", role = "button" })</td>
+                </tr>
                 }
             </tbody>
 
@@ -75,8 +75,8 @@
         <div class="d-flex justify-content-start">
             @using (Html.BeginForm("OpettajienSivu", "Home", FormMethod.Get))
             {
-                <button class="btn btn-primary ms-0 text-decoration-none" role="button" aria-pressed="false">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-chevron-left me-1" viewBox="0 0 16 16">
+                <button class="btn btn-outline-primary ms-0 text-decoration-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-chevron-left me-1" viewBox="0 0 16 16" aria-hidden="true">
                         <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
                     </svg>
                     Takaisin
