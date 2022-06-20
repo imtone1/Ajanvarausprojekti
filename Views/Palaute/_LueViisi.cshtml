@@ -21,14 +21,14 @@
                         <th scope="col">Palaute</th>
                         <th scope="col">Aihe</th>
                         <th scope="col">Päivämäärä</th>
-                        <td scope="col"></td>
+                        <td></td>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model.Reverse().Take(5))
                     {
                         <tr>
-                            <td scope="row" class="td-truncate">@Html.DisplayFor(modelItem => item.palaute)</td>
+                            <td class="td-truncate">@Html.DisplayFor(modelItem => item.palaute)</td>
                             <td>@Html.DisplayFor(modelItem => item.palautetyyppi)</td>
                             <td>@Convert.ToDateTime(item.palaute_pvm).ToString("d.M.yyyy")</td>
                             <td><button class="getPalauteID btn btn-primary ms-1" data-palauteid="@item.palaute_id">Lue lisää</button></td>

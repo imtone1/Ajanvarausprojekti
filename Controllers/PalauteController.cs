@@ -63,7 +63,7 @@ namespace Ajanvarausprojekti.Controllers
                 else
                 {
                     //Annetaan tieto epäonnistuneesta palautteesta TempDatalle modaali-ikkunaa varten
-                    TempData["Errori"] = "Hups! Jokin meni nyt pieleen!";
+                    TempData["Errori"] = "Kirjoita ensin palaute!";
                     TempData["BodyText1"] = "Palautteen lähetys epäonnistui.";
                     return RedirectToAction("Index", "Home");
                 }
@@ -73,6 +73,7 @@ namespace Ajanvarausprojekti.Controllers
                 //Annetaan tieto epäonnistuneesta palautteesta TempDatalle modaali-ikkunaa varten
                 TempData["Errori"] = "Hups! Jokin meni nyt pieleen!";
                 TempData["BodyText1"] = "Palautteen lähetys epäonnistui.";
+                TempData["BodyText2"] = "Yritä hetken kuluttua uudelleen.";
                 return RedirectToAction("Index", "Home");
             }
         }

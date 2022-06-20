@@ -6,7 +6,7 @@
 
 @if (@ViewBag.EiVarauksia != "")
 {
-    <table class="table table-hover caption">
+    <table class="table table-sm table-hover caption">
         <caption>Tulevat ohjausajat</caption>
         <thead class="table-dark bg-black">
             <tr>
@@ -15,43 +15,43 @@
                 <th scope="col">Loppuaika</th>
                 <th scope="col">Opiskelija</th>
                 <th scope="col">Aihe</th>
-                <td scope="col"></td>
-                <td scope="col"></td>
+                <td></td>
+                <td></td>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td scope="row">@Html.ValueFor(model => item.Alkuaika, "{0:dd.MM.yyyy}")</td>
-                    <td>@Html.ValueFor(modelItem => item.Alkuaika, "{0:HH:mm}")</td>
-                    <td>@Convert.ToDateTime(item.Alkuaika).AddMinutes(item.Kesto).ToString("HH:mm")</td>
+            <tr>
+                <td>@Html.ValueFor(model => item.Alkuaika, "{0:dd.MM.yyyy}")</td>
+                <td>@Html.ValueFor(modelItem => item.Alkuaika, "{0:HH:mm}")</td>
+                <td>@Convert.ToDateTime(item.Alkuaika).AddMinutes(item.Kesto).ToString("HH:mm")</td>
 
-                    <td>@Html.ValueFor(modelItem => item.Varaaja)</td>
-                    <!-- Alle luomani td-truncate-luokka tekee aiheen loppuun kolme pistettä mikäli tekstin pituus on liian pitkä sopiakseen soluun. Huom! Bootstrap 5:n oma text-truncate-luokka vaatii toimiakseen display: inline-block or display: block eli ei käy taulukkoon! -->
-                    <td class="td-truncate">@Html.ValueFor(modelItem => item.Aihe)
-                    <td>
-                    <td>
-                        <button class="getOrderId btn" data-varaus_id="@item.varaus_id" role="button" aria-keyboard-focusable="true" aria-label="Tarkastele ohjausaikavarauksen tietoja">
-                            <!--Tämä on tarkastele varauksen tietoja-nappi-->
-                            <svg xmlns="http://www.w3.org/2000/svg" width="1.3rem" height="1.3rem" fill="var(--primary-color)" class="bi bi-card-list" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
-                                <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z" />
-                                <path d="M5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 5 8zm0-2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-1-5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zM4 8a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm0 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z" />
-                            </svg>
-                        </button>
-                    </td>
-                    <!--<td>
-                    <p>
-                        <a href="#">-->
-                    <!-- Tämä on peru/poista-nappi. -->
-                    <!--<svg xmlns="http://www.w3.org/2000/svg" width="1.1rem" height="1.1rem" fill="var(--primary-color)" class="bi bi-calendar-x" viewBox="0 0 16 16">
-                                    <path d="M6.146 7.146a.5.5 0 0 1 .708 0L8 8.293l1.146-1.147a.5.5 0 1 1 .708.708L8.707 9l1.147 1.146a.5.5 0 0 1-.708.708L8 9.707l-1.146 1.147a.5.5 0 0 1-.708-.708L7.293 9 6.146 7.854a.5.5 0 0 1 0-.708z" />
-                                    <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
-                                </svg>
-                            </a>
-                        </p>
-                    </td>-->
-                </tr>
+                <td>@Html.ValueFor(modelItem => item.Varaaja)</td>
+                <!-- Alle luomani td-truncate-luokka tekee aiheen loppuun kolme pistettä mikäli tekstin pituus on liian pitkä sopiakseen soluun. Huom! Bootstrap 5:n oma text-truncate-luokka vaatii toimiakseen display: inline-block or display: block eli ei käy taulukkoon! -->
+                <td class="td-truncate">@Html.ValueFor(modelItem => item.Aihe)
+                <td>
+                <td>
+                    <button class="getOrderId btn" data-varaus_id="@item.varaus_id" aria-label="Tarkastele ohjausaikavarauksen tietoja">
+                        <!--Tämä on tarkastele varauksen tietoja-nappi-->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1.3rem" height="1.3rem" fill="#D7AF4D" class="bi bi-card-list" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                            <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z" />
+                            <path d="M5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 5 8zm0-2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-1-5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zM4 8a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm0 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z" />
+                        </svg>
+                    </button>
+                </td>
+                <!--<td>
+    <p>
+        <a href="#">-->
+                <!-- Tämä on peru/poista-nappi. -->
+                <!--<svg xmlns="http://www.w3.org/2000/svg" width="1.1rem" height="1.1rem" fill="#DFBE71" class="bi bi-calendar-x" viewBox="0 0 16 16">
+                    <path d="M6.146 7.146a.5.5 0 0 1 .708 0L8 8.293l1.146-1.147a.5.5 0 1 1 .708.708L8.707 9l1.147 1.146a.5.5 0 0 1-.708.708L8 9.707l-1.146 1.147a.5.5 0 0 1-.708-.708L7.293 9 6.146 7.854a.5.5 0 0 1 0-.708z" />
+                    <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+                </svg>
+            </a>
+        </p>
+    </td>-->
+            </tr>
             }
 
         </tbody>

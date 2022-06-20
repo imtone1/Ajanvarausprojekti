@@ -6,11 +6,11 @@
     <div class="container">
         <div class="d-flex justify-content-between pt-3">
             <h2 class="text-white">Varattavissa olevat ohjausaikasi</h2>
-            <a href="#LisaaAika2" class="ms-3 mt-1 d-flex justify-content-end" role="button" aria-keyboard-focusable="true" aria-label="Lisää uusi ohjausaika">
-                <svg xmlns="http://www.w3.org/2000/svg" width="2.9rem" height="2.9rem" fill="var(--black-color)" class="bi bi-plus bg-primary rounded-3" viewBox="0 0 16 16">
-                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-                </svg>
-            </a> 
+            <a href="#LisaaAika2" class="btn d-flex justify-content-end btn-box-shadow" role="button" aria-label="Lisää uusi ohjausaika">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="2.9rem" height="2.9rem" fill="var(--black-color)" class="bi bi-plus bg-primary rounded-3" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                    </svg>
+            </a>
         </div>
         <p class="lead text-grey mb-4">Poista aika klikkaamalla aikanappulaa.</p>
         <div class="text-white justify-content-center align-items-center text-center justify-content-md-start align-items-md-start text-md-start px-0 mx-0">
@@ -20,53 +20,59 @@
             }
             @foreach (var item in Model)
             {
-                aika = Convert.ToDateTime(item.Alkuaika).ToString("dd.MM.yyyy");
-
-
-                if (aika != pvm)
-                {<div class="col mb-2 fw-bold fs-5"> @Convert.ToDateTime(item.Alkuaika).ToString("dd.MM")</div>
-
-
-                foreach (var item1 in Model)
+                if (item.Alkuaika > DateTime.Now)
                 {
-                    if (@Convert.ToDateTime(item1.Alkuaika).ToString("dd.MM.yyyy") == aika)
+                    aika = Convert.ToDateTime(item.Alkuaika).ToString("dd.MM.yyyy");
+
+
+                    if (aika != pvm)
+                    {<div class="col mb-2 fw-bold fs-5"> @Convert.ToDateTime(item.Alkuaika).ToString("dd.MM")</div>
+
+
+                    foreach (var item1 in Model)
                     {
-                        <button class="btn btn-primary mb-3 row-cols-6" type="button" onclick="location.href='@Url.Action("AjatDelete", "Ajat", new { id = item1.aika_id })'">@Convert.ToDateTime(item1.Alkuaika).ToString("HH:mm") - @Convert.ToDateTime(item1.Alkuaika).AddMinutes(item1.Kesto).ToString("HH:mm")  </button>
-                        pvm = Convert.ToDateTime(item1.Alkuaika).ToString("dd.MM.yyyy");
+                        if (@Convert.ToDateTime(item1.Alkuaika).ToString("dd.MM.yyyy") == aika)
+                        {
+                            <button class="btn btn-primary mb-3 row-cols-6" type="button" onclick="location.href='@Url.Action("AjatDelete", "Ajat", new { id = item1.aika_id })'">@Convert.ToDateTime(item1.Alkuaika).ToString("HH:mm") - @Convert.ToDateTime(item1.Alkuaika).AddMinutes(item1.Kesto).ToString("HH:mm")  </button>
+                            pvm = Convert.ToDateTime(item1.Alkuaika).ToString("dd.MM.yyyy");
+                        }
                     }
                 }
+
             }
         }
         </div>
-       
+
     </div>
 </section>
 
 <!--VARATTAVISSA OLEVAT OHJAUSAJAT (HAASTAVAMPI) LOPPUU TÄHÄN-->
 <!--VARATTAVISSA OLEVAT OHJAUSAJAT (SIMPPELIMPI) ALKAA TÄSTÄ-->
 @*<section class="container-fluid bg-black pt-lg-3 mb-5">
-        <div class="container pt-lg-5">
-            <div class="row gy-5 gy-lg-0 pb-lg-0 flex-column-reverse flex-md-column-reverse flex-lg-row">
-                <div class="col-md-12 col-lg-7 table-responsive-md pe-lg-5">
-                    <div class="d-flex justify-content-between w-100">
-                        <h2 class="text-white pb-5">Varattavissa olevat vapaat ohjausajat</h2>
-                        <a href="#LisaaAika" class="ms-3 mt-1 d-flex justify-content-end">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" fill="var(--black-color)" class="bi bi-plus bg-primary rounded-3" viewBox="0 0 16 16">
-                                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-                            </svg>
-                        </a>
-                    </div>
-                    <table class="table table-dark table-hover caption table-bordered">
-                        <caption class="text-white-50">Varattavissa olevat vapaat ohjausajat</caption>
-                        <thead class="thead-dark">
-                            <tr>
-                                <th scope="col">Päivämäärä</th>
-                                <th scope="col">Kellonaika</th>
-                                <td scope="col"></td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model)
+    <div class="container pt-lg-5">
+        <div class="row gy-5 gy-lg-0 pb-lg-0 flex-column-reverse flex-md-column-reverse flex-lg-row">
+            <div class="col-md-12 col-lg-7 table-responsive-md pe-lg-5">
+                <div class="d-flex justify-content-between w-100">
+                    <h2 class="text-white pb-5">Varattavissa olevat vapaat ohjausajat</h2>
+                    <a href="#LisaaAika" class="ms-3 mt-1 d-flex justify-content-end">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" fill="var(--black-color)" class="bi bi-plus bg-primary rounded-3" viewBox="0 0 16 16">
+                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                        </svg>
+                    </a>
+                </div>
+                <table class="table table-dark table-hover caption table-bordered">
+                    <caption class="text-white-50">Varattavissa olevat vapaat ohjausajat</caption>
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Päivämäärä</th>
+                            <th scope="col">Kellonaika</th>
+                            <td scope="col"></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            if (item.Alkuaika > DateTime.Now)
                             {
                                 <tr class="valitseRivi" data-aikaId="@item.aika_id">
                                     <td scope="row">@Html.ValueFor(model => item.Alkuaika, "{0:dd.MM.yyyy}")</td>
@@ -76,13 +82,15 @@
                                     <td> <button class="btn btn-primary ms-1"> @Html.ActionLink("Poista", "AjatDelete", new { id = item.aika_id })</button> </td>
                                 </tr>
                             }
-                        </tbody>
-                    </table>
-                </div>
-                <!--Sateenvarjokuva-->
-                <div class="col-lg-5 bg-ohjausajat mb-sm-3 px-0 img-fluid">
-                    <img src="~/Content/Images/sateenvarjo-logo.png" alt="Nainen sateenvarjon kanssa ja Careerian logo" class="img-fluid" />
-                </div>
+
+                        }
+                    </tbody>
+                </table>
+            </div>*@
+            @*Sateenvarjokuva*@
+            @*<div class="col-lg-5 bg-ohjausajat mb-sm-3 px-0 img-fluid">
+                <img src="~/Content/Images/sateenvarjo-logo.png" alt="Nainen sateenvarjon kanssa ja Careerian logo" class="img-fluid" />
             </div>
         </div>
-    </section>*@
+    </div>
+</section>*@

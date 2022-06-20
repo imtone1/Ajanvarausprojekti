@@ -61,10 +61,11 @@ namespace Ajanvarausprojekti.Controllers
                     ViewBag.LoginMessage = "Successfull login";
                     ViewBag.LoggedStatus = "In";
                     ViewBag.LoginError = 0;
-                    //poistoajan määrittely, tällä hetkellä 30pv
+                    //poistoajan määrittely, tällä hetkellä 2pv
                     Yhteystiedot ohjelmanyhteystiedot = new Yhteystiedot();
                     int poistointervalli= ohjelmanyhteystiedot.PoistoIntervalli;
-                    //Irina: vanhemmat kuin 14 pv ajat poisto järjestelmästä !!! TESTAUSVAIHEESSA on 30 pv LOPULLISESSA TÄYTYY MUUTTAA 14 PÄIVÄKSI!!!
+
+                    //Irina: vanhemmat kuin 2 pv ajat poisto järjestelmästä
                     DateTime neljatoista = DateTime.Today.AddDays(poistointervalli);
 
 

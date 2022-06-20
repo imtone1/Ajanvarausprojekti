@@ -9,7 +9,7 @@
                 <div class="row">
                     <div class="col mt-1 ms-0 ms-md-2 me-0 pe-0 pb-5">
                         <div class="d-flex justify-content-end align-items-end">
-                            <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close" onclick="window.location.reload()"></button>
+                            <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Sulje ikkuna" onclick="window.location.reload()"></button>
                         </div>
                         <div class="modal-header border-0 d-flex flex-column justify-content-center align-items-center text-center">
                             <p><img src="~/Content/Images/careerian-tiviohjaus-logo.png" class="d-flex justify-content-center align-items-center w-75 h-auto mb-1" alt="@ViewBag.SivustonNimi Logo" aria-label="@ViewBag.SivustonNimi"><span class="fw-light pt-3 fs-6 text-uppercase">Opettajille</span></p>
@@ -19,14 +19,15 @@
                                 <div class="d-flex flex-column">
                                     <h2 class="fs-6 mb-1 fw-light pb-0">Käyttäjähallinta | Opettajan poistaminen</h2>
                                     <h3 class="fs-5 pb-3">Oletko varma, että haluat poistaa seuraavan opettajan?</h3>
+
                                 </div>
                                 <dl class="row">
 
-                                    <dt class="col-sm-4">
+                                    <dt class="col-sm-5">
                                         @Html.DisplayFor(model => model.nimike)
                                     </dt>
 
-                                    <dd class="col-sm-8">
+                                    <dd class="col-sm-7">
                                         @Html.DisplayFor(model => model.etunimi)  @Html.DisplayFor(model => model.sukunimi)
                                     </dd>
 

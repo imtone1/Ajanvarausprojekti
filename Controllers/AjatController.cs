@@ -17,6 +17,11 @@ namespace Ajanvarausprojekti.Controllers
         // GET: Ajat
         public ActionResult _VapaatAjat()
         {
+
+            DateTime aikatieto;
+            TimeZoneInfo timezone;
+            timezone = TimeZoneInfo.FindSystemTimeZoneById("FLE Standard Time");
+            aikatieto = TimeZoneInfo.ConvertTime(DateTime.UtcNow, timezone);
             // LIstataan kaikki kyseisen opettajan ajat
 
             var opeID = (int)Session["OpettajaID"];
@@ -24,7 +29,7 @@ namespace Ajanvarausprojekti.Controllers
                              join o in db.Opettajat on a.opettaja_id equals o.opettaja_id
                              join k in db.Kestot on a.kesto_id equals k.kesto_id
                              where o.opettaja_id == opeID
-                             where a.alku_aika >= DateTime.UtcNow
+                             where a.alku_aika >= aikatieto
 
                              select new ajatListaData
                              {
@@ -45,7 +50,7 @@ namespace Ajanvarausprojekti.Controllers
                            join v in db.Varaukset on a.aika_id equals v.aika_id
                            where o.opettaja_id == opeID
                            where a.aika_id == v.aika_id
-                           where a.alku_aika >= DateTime.UtcNow
+                           where a.alku_aika >= aikatieto
 
                            select new ajatListaData
                            {
@@ -89,7 +94,7 @@ namespace Ajanvarausprojekti.Controllers
         // POST: Ohjausaika/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult _LisaaAika([Bind(Include = "aika_id,alku_aika,kesto_id,opettaja_id, startDate, startTime")] Ajat ajat)
+        public ActionResult _LisaaAika([Bind(Include = "aika_id,alku_aika,kesto_id,opettaja_id, startDate, startTime, paikka")] Ajat ajat)
         {
             try
             {
@@ -102,6 +107,7 @@ namespace Ajanvarausprojekti.Controllers
                     var strAika = startDate + " " + startTime;
                     ajat.alku_aika = Convert.ToDateTime(strAika);
                     var kesto_id = Request["kesto_id"];
+                    var paikka = Request["paikka"];
 
                     //Varauksen tehnyt opettaja tallennetaan tietokantaan Session["OpettajaID"]:n avulla
                     ajat.opettaja_id = (int)Session["OpettajaID"];
@@ -180,13 +186,18 @@ namespace Ajanvarausprojekti.Controllers
 
         public ActionResult _VapaatAjatOpiskelijalle(int? opeid)
         {
+
+            DateTime aikatieto;
+            TimeZoneInfo timezone;
+            timezone = TimeZoneInfo.FindSystemTimeZoneById("FLE Standard Time");
+            aikatieto = TimeZoneInfo.ConvertTime(DateTime.UtcNow, timezone);
             // LIstataan kaikki kyseisen opettajan ajat
 
             var ajatLista = (from a in db.Ajat
                              join o in db.Opettajat on a.opettaja_id equals o.opettaja_id
                              join k in db.Kestot on a.kesto_id equals k.kesto_id
                              where o.opettaja_id == opeid
-                             where a.alku_aika >= DateTime.Today
+                             where a.alku_aika >= aikatieto
                              orderby a.alku_aika
 
                              select new ajatListaData
@@ -207,7 +218,7 @@ namespace Ajanvarausprojekti.Controllers
                            join k in db.Kestot on a.kesto_id equals k.kesto_id
                            join v in db.Varaukset on a.aika_id equals v.aika_id
                            where o.opettaja_id == opeid
-                           where a.alku_aika >= DateTime.Today
+                           where a.alku_aika >= aikatieto
                            where a.aika_id == v.aika_id
                            orderby a.alku_aika
 

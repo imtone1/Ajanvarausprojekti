@@ -4,8 +4,8 @@
 <section class="container mt-5 mb-5 pb-5" id="ohjausaika">
     <div class="d-flex justify-content-between">
         <h2 class="display-6 fw-bolder">Ohjausajan varaus</h2>
-        @* Peruuta varaus -nappula *@
-        <button class="btn btn-primary" id="varausmodal" data-bs-toggle="modal" data-bs-target="#VarausRuutu" role="button" aria-keyboard-focusable="true">Peruuta varauksesi</button>
+        @* Peruuta varaus nappula *@
+        <button class="btn btn-primary" id="varausmodal" data-bs-toggle="modal" data-bs-target="#VarausRuutu">Peruuta varauksesi</button>
     </div>
     <p class="lead">Kenelle tivi-opettajalle haluat varata ajan?</p>
 
@@ -35,7 +35,7 @@
                         <h3 class="card-title fw-light placeholder-glow fs-5">@item.etunimi @item.sukunimi</h3>
 
                         <!--Nappula, joka avaa vapaiden aikojen modaali-ikkunan-->
-                        <button type="button" class="btn btn-primary placeholder-glow" id="vapaatAjatModal" data-bs-toggle="modal"
+                        <button type="button" class="btn btn-primary placeholder-glow" data-id="#vapaatAjatModal_@item.etunimi @item.sukunimi" data-bs-toggle="modal"
                                 data-bs-target="#AjatRuutu_@item.opettaja_id">
                             Varaa aika
                         </button>
@@ -55,7 +55,7 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="d-flex justify-content-end align-items-end pe-2 pt-2">
-                                <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
+                                <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Sulje ikkuna"></button>
                             </div>
                             <div class="modal-header border-0 d-flex flex-column justify-content-center align-items-center text-center py-0 my-0">
                                 <p class="modal-title"><img src="~/Content/Images/careerian-tiviohjaus-logo.png" class="d-flex justify-content-center align-items-center w-75 h-auto mb-1" alt="@ViewBag.SivustonNimi Logo" aria-label="@ViewBag.SivustonNimi"></p>
