@@ -41,14 +41,13 @@
                             new SelectListItem{Text="60 min", Value="60"},
                             new SelectListItem{Text="90 min", Value="90"},}, new { @class = "form-select mb-4", @id = "kesto_id" })
                         </div>
-
                         <div class="mb-4">
                             <label for="paikka">Teams-linkki (annetaan varaajalle varausvahvistuksessa)</label>
                             @Html.TextBoxFor(a => a.paikka, new { @class = "form-control", @id = "paikka", @type = "text" })
+                            <button class="btn btn-outline-primary w-100" type="submit">Tallenna aika</button
                         </div>
 
                         <button href="#" class="btn btn-outline-primary w-100" type="submit">Tallenna aika</button>
-
 
                     </div>
                 </div>

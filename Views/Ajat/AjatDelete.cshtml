@@ -4,32 +4,30 @@
     ViewBag.Title = "AjatDelete";
 }
 
-<
-<section class="container-fluid bg-black pt-lg-3">
+<section class="container-fluid bg-white mt-3 mt-md-0 pt-lg-3">
     <div class="container pt-lg-5">
-        <div class="row gy-5 gy-lg-0 pb-lg-0 flex-column-reverse flex-md-column-reverse flex-lg-row">
-            <div class="col-md-12 col-lg-6 table-responsive-md pe-lg-5">
-                <div class="d-flex justify-content-between w-100">
-                    <h2 class="text-white pb-5">Haluatko varmasti poistaa ajan?</h2>
-
+        <div class="row gy-5 gy-lg-0 pb-lg-0 d-flex flex-md-column-reverse flex-lg-row">
+            <div class="col-12 col-lg-6 pe-lg-5">
+                <div class="d-flex flex-column justify-content-start w-100">
+                    <p class="fs-6 mb-1 fw-light pb-0">Varattavissa olevat vapaat ohjausajat | Poista aika</p>
+                    <h2 class="text-black pb-3">Haluatko varmasti poistaa tämän ajan?</h2>
                 </div>
 
                 <div>
-                    <hr />
-                    <dl class="dl-horizontal">
+                    <dl class="dl-horizontal text-black mb-4 bg-light p-2 p-md-5 rounded-3">
                         @*<dd class="text-white pb-5">
                                 @Html.DisplayFor(model => model.aika_id)
                             </dd>*@
-                        <dt class="text-white pb-5">
+                        <dt>
                             Ajankohta
                         </dt>
-                        <dd class="text-white pb-5">
+                        <dd>
                             @Html.DisplayFor(model => model.alku_aika)
                         </dd>
-                        <dt class="text-white pb-5">
+                        <dt>
                             Kesto
                         </dt>
-                        <dd class="text-white pb-5">
+                        <dd>
                             @Html.DisplayFor(model => model.Kestot.kesto_id) min
                         </dd>
                     </dl>
@@ -38,11 +36,15 @@
                     {
                         @Html.AntiForgeryToken()
 
-                        <div class="form-actions no-color">
-                            <input type="submit" value="Poista" class="btn btn-primary ms-3" />|
-                            <a href="@Url.Action("OpettajienSivu", "Home")" class="btn btn-primary ms-3">Takaisin</a>
-
-                        </div>
+                <div class="form-actions">
+                    <a href="@Url.Action("OpettajienSivu", "Home")" class="btn btn-outline-primary ms-0 text-decoration-none me-1" role="button" aria-keyboard-focusable="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-chevron-left me-1" viewBox="0 0 16 16" keyboard-focusable="false" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+                        </svg>
+                        Takaisin
+                    </a>
+                    <button type="submit" value="Poista" class="btn btn-primary ms-3">Poista aika</button>
+                </div>
                     }
                 </div>
 
@@ -50,7 +52,9 @@
 
 
             @*Sateenvarjokuva*@
-            <div class="col-md-12 col-lg-6 bg-ohjausajat mb-sm-3 mb-lg-5"></div>
+        <div class="col-12 col-lg-6 bg-ohjausajat mb-5">
+            <img src="~/Content/Images/sateenvarjo-logo.png" alt="Nainen sateenvarjon kanssa ja Careerian logo" class="img-fluid rounded-3" />
+        </div>
         </div>
     </div>
 </section>
