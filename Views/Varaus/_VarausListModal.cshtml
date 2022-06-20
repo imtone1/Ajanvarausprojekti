@@ -22,7 +22,7 @@
                         </div>
 
                         <div class="modal-body mt-1 px-0 px-lg-3">
-                            <h2 class="fs-6 mb-1 fw-light pb-0">Tulevat ohjausajat | Tarkastele varausta</h2>
+                            <h2 class="fs-6 mb-1 fw-light pb-0">Tulevat ohjausajat | Varauksen tarkemmat tiedot</h2>
                             <div class="row">
                                 <div class="col-12 col-lg-6">
                                     <div class="d-flex flex-column bg-light px-2 px-lg-5 py-4 h-100 rounded-3 ">
@@ -68,7 +68,7 @@
                                     @*<h4>Varaus @Html.DisplayFor(model => model.Ajat.alku_aika) <a href="@Html.DisplayFor(model => model.Ajat.paikka)" class="btn btn-primary ms-3 mt-3">Linkki Teams-kokoukseen</a></h4>*@
                                     <dl class="row mb-0">
                                         <dt>
-                                            Varaaja
+                                            Varaajan sähköpostiosoite tai nimi
                                         </dt>
 
                                         <dd>
@@ -76,7 +76,7 @@
                                         </dd>
 
                                         <dt>
-                                            Alkuaika
+                                            Tapaamisen ajankohta
                                         </dt>
 
                                         <dd>
@@ -93,7 +93,7 @@
                                         </dd>*@
 
                                         <dt>
-                                            Aihe
+                                            Tapaamisen aihe
                                         </dt>
 
                                         <dd>
@@ -109,7 +109,7 @@
             </dd>*@
 
                                         <dt>
-                                            <label for="label_id_varattu_pvm">Varattu pvm</label> <!-- Lisäsin varattu_pvm-textboksiin id:n nimeltä label_id_varattu_pvm johon tämän rivin label osoittaa. Pakko olla koska textbox tarvitsee labelin. -->
+                                            <label for="label_id_varattu_pvm">Varaus on tehty</label> <!-- Lisäsin varattu_pvm-textboksiin id:n nimeltä label_id_varattu_pvm johon tämän rivin label osoittaa. Pakko olla koska textbox tarvitsee labelin. -->
                                         </dt>
 
                                         <dd>
@@ -118,7 +118,7 @@
                                         </dd>
 
                                         <dt>
-                                            Varauksen peruutukseen tarvittava salasana
+                                            Opiskelijan saama varauksen peruutuskoodi
                                         </dt>
 
                                         <dd>
