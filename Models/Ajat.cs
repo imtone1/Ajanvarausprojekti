@@ -26,7 +26,6 @@ namespace Ajanvarausprojekti.Models
         public int opettaja_id { get; set; }
         public string aihe { get; set; }
         public string paikka { get; set; }
-    
         public virtual Kestot Kestot { get; set; }
         public virtual Opettajat Opettajat { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
