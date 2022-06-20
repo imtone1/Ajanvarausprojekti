@@ -304,18 +304,16 @@ namespace Ajanvarausprojekti.Controllers
                                 // Send email opettajalle
                                 WebMail.Send(to: ajatOpe.sahkoposti,
                                             subject: "Ohjausaikavaraus Tivi-ohjaussovelluksen kautta",
-                                            body: "<b><p>Hei,</p></b><br>" +
-                                            "<p>Sinulle on tehty ohjausajanvaraus Tivi-ohjaus-sovelluksen kautta ajalle " + varausAika.alku_aika.ToString("dd.MM.yyyy") + "klo.  " + varausAika.alku_aika.ToString("HH:mm") + " -" + varausAika.alku_aika.AddMinutes(varausAika.kesto_id).ToString("HH:mm") + ". (kesto " + varausAika.kesto_id + " minuuttia).</p><br><p>Tapaamisen linkki: " + varausAika.paikka + "</p><br><p>Olethan ongelmatilanteissa yhteydessä sovelluksen pääkäyttäjään Simo Sireniin.</p><br><br>Terveisin, <br> Tivi-ohjaus</p><br>" +
-                                            "Tähän viestiin ei voi vastata.", isBodyHtml: true
+                                            body: "<b><p>Hei,</p></b>" +
+                                            "<p>Sinulle on tehty ohjausajanvaraus Tivi-ohjaus-sovelluksen kautta ajalle " + varausAika.alku_aika.ToString("dd.MM.yyyy") + "klo.  " + varausAika.alku_aika.ToString("HH:mm") + " -" + varausAika.alku_aika.AddMinutes(varausAika.kesto_id).ToString("HH:mm") + ". (kesto " + varausAika.kesto_id + " minuuttia).</p><br><a href="+ varausAika.paikka +">Tapaamisen linkki</a><br><p>Olethan ongelmatilanteissa yhteydessä sovelluksen pääkäyttäjään "+ohjelmanyhteystiedot.PaakayttajaEmailiin+"iin.<br><br>Terveisin, <br> "+ohjelmanyhteystiedot.Terveisin+"<br></p> <a href = "+ohjelmanyhteystiedot.Sivusto+ ">" + ohjelmanyhteystiedot.SivustonNimi + "</a><br><p> Tähän viestiin ei voi vastata.</p> ", isBodyHtml: true
                                         );
                                
                                 // Send email varaajalle
                                 WebMail.Send(to: varaus.Varaaja,
                                             subject: "Varausvahvistus: Ohjausaika TiVi-opettajalle",
-                                            body: "<b><p>Hei,</p></b><br>" +
-                                            "Olet varannut Tivi-ohjaus-sovelluksen kautta ohjausajan opettajalle " + varausAika.Opettajat.etunimi +" "+ varausAika.Opettajat.sukunimi + ". <p>Varauksen aika " + varausAika.alku_aika.ToString("dd.MM.yyyy") + " klo. " + varausAika.alku_aika.ToString("HH:mm") + " - " + varausAika.alku_aika.AddMinutes(varausAika.kesto_id).ToString("HH:mm") + "</p><br>Tapaamisen kesto on " + varausAika.kesto_id + " minuuttia. </p><br>" + "</p><br>Tapaamisen linkki: " + varausAika.paikka + " </p><br>" +
-                                            "<p>Tarvittaessa voit perua ajan Tivi-ohjaus-sovelluksen kautta koodilla:  " + varauksesi.id_hash + "</p><br>Terveisin, <br> Tivi-ohjaus</p><br>" +
-                                            "Tähän viestiin ei voi vastata.", isBodyHtml: true
+                                            body: "<b><p>Hei,</p></b>" +
+                                            "<p>Olet varannut Tivi-ohjaus-sovelluksen kautta ohjausajan opettajalle " + varausAika.Opettajat.etunimi +" "+ varausAika.Opettajat.sukunimi + ". <br>Varauksen aika " + varausAika.alku_aika.ToString("dd.MM.yyyy") + " klo. " + varausAika.alku_aika.ToString("HH:mm") + " - " + varausAika.alku_aika.AddMinutes(varausAika.kesto_id).ToString("HH:mm") + "<br>Tapaamisen kesto on " + varausAika.kesto_id + " minuuttia. <br><a href=" + varausAika.paikka + ">Tapaamisen linkki</a><br>" +
+                                            "<p>Tarvittaessa voit perua ajan Tivi-ohjaus-sovelluksen kautta koodilla:  " + varauksesi.id_hash + "<br>Terveisin, <br> "+ohjelmanyhteystiedot.Terveisin+"<br></p>" + "<a href="+ohjelmanyhteystiedot.Sivusto+">"+ohjelmanyhteystiedot.SivustonNimi +"</a><br><p>Tähän viestiin ei voi vastata.</p>", isBodyHtml: true
                                         );
                                 ViewBag.Status = "Vahvistusviesti lähetetty antamaasi sähköpostiosoitteeseen. Jos viestiä ei löydy, tarkista roskapostisi.";
                            
