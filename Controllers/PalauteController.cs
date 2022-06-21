@@ -184,7 +184,7 @@ namespace Ajanvarausprojekti.Controllers
             db.Palautteet.Remove(palautteet);
             db.SaveChanges();
             //Annetaan tieto onnistuneesta palautteen poistosta TempDatalle modaali-ikkunaa varten
-            TempData["Successi"] = "Palautteen poisto onnistui!";
+            TempData["Successi"] = "Palaute poistettu!";
             return RedirectToAction("LueKaikki");
         }
 

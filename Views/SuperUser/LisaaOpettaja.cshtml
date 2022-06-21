@@ -40,7 +40,7 @@
                     // The size of the file.
                     if (file >= 1024) {
                         alert(
-                            "Tiedosto on liian suuri. Tiedoston pitää olla vähemmän kuin 1 MB.");
+                            "Valitettavasti tiedostokoko on liian suuri. Tiedoston pitää olla vähemmän kuin 1 MB.");
                         $("#LisaaOpeButton").hide();
                         //Tämä kommenteissa lisätään jos täytyy tarkistaa onko tiedosto liian pieni
                         //} else if (file < 2048) {
@@ -115,7 +115,7 @@
 <section class="container mt-5 mb-5">
     <h1>Käyttäjähallinta</h1>
     <hr />
-    <h2>Poista käyttäjä</h2>
+    <h2>Poista opettaja</h2>
     @if (TempData["Success"] != null) {
     <h3 style="color:red">@TempData["Success"]</h3> }
     <div class="row">
@@ -123,7 +123,7 @@
             <table class="table table-borderless d-flex flex-column justify-content-center align-items-center">
                 <thead>
                     <tr>
-                        <th scope="col">Käyttäjät</th>
+                        <th scope="col">Opettajat</th>
                         @*<th scope="col"></th>*@
                         @*Tällä näytetään opettaja-id, kun odotetaan, että modaali-ikkuna avautuu. Voidaan tarvittaessa poistaa*@
                     <td id="Opepoisto"></td>
@@ -144,8 +144,10 @@
 
     <!-- Lisää uusi käyttäjä-lomake. -->
         <div class="container mt-5">
-                <h2>Lisää uusi käyttäjä</h2>
-                <div class="row g-3">
+            <div class="row">
+
+                <h2>Lisää uusi opettaja</h2>
+                <form class="row g-3">
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
                     <p class="text-danger text-">@ViewBag.Status</p>

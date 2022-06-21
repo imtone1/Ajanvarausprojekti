@@ -10,6 +10,12 @@ namespace Ajanvarausprojekti.Services
         //Nämä gmail osoitteita, koska server gmail
         public string OhjelmanSahkopostiosoite = "tivisovellus@gmail.com";
         public string OhjelmanSpostiSalasana = "kxgkmvavjrqoeubz";
+        //ylläpitäjän tiedot emailiin
+        public string PaakayttajaEmailiin = "Simo Sirén";
+        //terveisin, ....
+        public string Terveisin = "Tivi-ohjaus";
+        //linkki tähän sivustoon
+        public string Sivusto = "https://tiviohjaus.azurewebsites.net/";
 
 
         //sivuston nimi

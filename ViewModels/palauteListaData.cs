@@ -10,11 +10,11 @@ namespace Ajanvarausprojekti.ViewModels
     public class palauteListaData
     {
         public int opettaja_id { get; set; }
-        [Required(ErrorMessage = "Etunimi on annettava")]
+        [Required(ErrorMessage = "Anna etunimi")]
         public string etunimi { get; set; }
-        [Required(ErrorMessage = "Sukunimi on annettava")]
+        [Required(ErrorMessage = "Anna sukunimi")]
         public string sukunimi { get; set; }
-        [Required(ErrorMessage = "Nimike on annettava")]
+        [Required(ErrorMessage = "Anna nimeke")]
         public int palaute_id { get; set; }
         public string palautetyyppi { get; set; }
         public string palaute { get; set; }

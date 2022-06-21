@@ -2,7 +2,7 @@
 
 <div class="modal-body mx-3">
 
-    @if (@ViewBag.EiVarauksia != "")//Tämä ei jostain syystä toimi, kuten Irinalla.
+    @if (@ViewBag.EiVarauksia != "")
     {
         string aika = "";
         string pvm = "";
@@ -21,16 +21,16 @@
             <button class="placeholder-glow position-absolute top-0 start-100 translate-middle btn btn-sm btn-outline-primary bg-white rounded-pill d-flex justify-content-center align-items-center" aria-label="Vaihe 3/3" style="width: 3.4rem; height: 3.4rem;">
             </button>
         </div>
-        <h3 class="placeholder-glow">Minkä ajan haluat varata?</h3>
+    <h2 class="placeholder-glow">Valitse aika</h2>
+    <p class="placeholder-glow">Klikkaa haluamaasi aikaa siirtyäksesi ajanvaraukseen.</p>
         foreach (var item in Model)
         {
             if (item.Alkuaika > DateTime.Now)
             {
                 aika = Convert.ToDateTime(item.Alkuaika).ToString("dd.MM.yyyy");
 
-
                 if (aika != pvm)
-                {<div class="col mb-1 fw-bold fs-5"> @Convert.ToDateTime(item.Alkuaika).ToString("dd.MM")</div>
+                {<div class="col mb-1 fw-bold fs-5"> @Convert.ToDateTime(item.Alkuaika).ToString("dd.MM.")</div>
 
 
                 foreach (var item1 in Model)
