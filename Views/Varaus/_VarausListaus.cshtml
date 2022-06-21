@@ -22,7 +22,7 @@
         <tbody>
             @foreach (var item in Model)
             {
-            <tr>
+            <tr class="bg-light">
                 <td>@Html.ValueFor(model => item.Alkuaika, "{0:dd.MM.yyyy}")</td>
                 <td>@Html.ValueFor(modelItem => item.Alkuaika, "{0:HH:mm}")</td>
                 <td>@Convert.ToDateTime(item.Alkuaika).AddMinutes(item.Kesto).ToString("HH:mm")</td>
