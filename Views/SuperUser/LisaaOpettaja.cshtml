@@ -117,7 +117,7 @@
     <hr />
     <h2>Poista opettaja</h2>
     @if (TempData["Success"] != null) {
-    <h3 style="color:red">@TempData["Success"]</h3> }
+    <p class="text-info">@TempData["Success"]</p> }
     <div class="row">
         <div class="col-md-5 d-flex flex-column justify-content-center align-items-center">
             <table class="table table-borderless d-flex flex-column justify-content-center align-items-center">
@@ -147,7 +147,7 @@
             <div class="row">
 
                 <h2>Lisää uusi opettaja</h2>
-                <form class="row g-3">
+                <div class="row g-3">
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
                     <p class="text-danger text-">@ViewBag.Status</p>
@@ -207,6 +207,7 @@
                         <button id="LisaaOpeButton" type="submit" class="btn btn-primary">Lisää uusi opettaja</button>
                     </div>
                 </div>
+            </div>
         </div>
     }
 </section>
