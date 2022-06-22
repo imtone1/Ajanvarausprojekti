@@ -7,6 +7,8 @@ namespace Ajanvarausprojekti.Services
 {
     public class Yhteystiedot
     {
+        //Irina: Tähän määritellään sivuston yhteystiedot
+
         //Nämä gmail osoitteita, koska server gmail
         public string OhjelmanSahkopostiosoite = "tivisovellus@gmail.com";
         public string OhjelmanSpostiSalasana = "kxgkmvavjrqoeubz";

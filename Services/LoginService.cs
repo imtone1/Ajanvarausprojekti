@@ -9,6 +9,7 @@ namespace Ajanvarausprojekti.Services
 {
     public class LoginService
     {
+        //Irina: salasana hash
         public string md5_string(string password)
         {
             //salasanan hash
@@ -22,7 +23,7 @@ namespace Ajanvarausprojekti.Services
             return md5_password;
         }
 
-        //Irina: Tämä liittyy varauksen salasanan generoimiseen, ei vielä testattu
+        //Irina: Tämä liittyy varauksen salasanan generoimiseen
         public string GeneratePassword(int lowercase, int uppercase, int numerics)
         {
             string lowers = "abcdefghijklmnopqrstuvwxyz";

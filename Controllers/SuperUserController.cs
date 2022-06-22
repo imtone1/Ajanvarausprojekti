@@ -237,7 +237,7 @@ namespace Ajanvarausprojekti.Controllers
                     //ONNISTUNUT Ilmoitus
                    
                     TempData["Success"] = "Käyttäjän lisäys onnistui!";
-                    //TempData["BodyText1"] = "Lisäämäsi opettaja saa pian antamaasi sähköpostiosoitteeseen varausvahvistuksen.";
+                    TempData["BodyText1"] = "Lisäämäsi opettaja saa pian antamaasi sähköpostiosoitteeseen varausvahvistuksen.";
                     //TempData["BodyText2"] = "";
                     //jos ope tallennus onnistuu lähettää userin tähän
                     return RedirectToAction("LisaaOpettaja");
@@ -320,78 +320,6 @@ namespace Ajanvarausprojekti.Controllers
             base.Dispose(disposing);
         }
 
-        //Alla oleva koodi generoitunut automaattisesti, lopullisessa versiossa poistetaan, jos ei ole käyttöä.
-        // GET: SuperUser/Details/5
-        //public ActionResult Details(int id)
-        //{
-        //    return View();
-        //}
-
-        //// GET: SuperUser/Create
-        //public ActionResult Create()
-        //{
-        //    return View();
-        //}
-
-        //// POST: SuperUser/Create
-        //[HttpPost]
-        //public ActionResult Create(FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add insert logic here
-
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
-
-        //// GET: SuperUser/Edit/5
-        //public ActionResult Edit(int id)
-        //{
-        //    return View();
-        //}
-
-        //// POST: SuperUser/Edit/5
-        //[HttpPost]
-        //public ActionResult Edit(int id, FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add update logic here
-
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
-
-        //// GET: SuperUser/Delete/5
-        //public ActionResult Delete(int id)
-        //{
-        //    return View();
-        //}
-
-        //// POST: SuperUser/Delete/5
-        //[HttpPost]
-        //public ActionResult Delete(int id, FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add delete logic here
-
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
     }
 }
 
