@@ -20,7 +20,7 @@ namespace Ajanvarausprojekti.Controllers
         //Yhteystiedot-olio
         private Yhteystiedot ohjelmanyhteystiedot = new Yhteystiedot();
 
-        //Irina: AikaListaus on kokeiluversio, tarkoitettu pohjaksi, lopullisessa voi poistaa, jos tule käyttöön
+        //Irina: AikaListaus tarkoitettu pohjaksi
         public ActionResult AikaListaus()
         {
             //left join, jotta näkyisi kaikki ajat, myös ne joissa ei varausta
@@ -126,7 +126,7 @@ namespace Ajanvarausprojekti.Controllers
 
 
         [HttpPost]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public ActionResult VarausPoisto(Varaukset varaus)
         {
             var varaaja = db.Varaukset.SingleOrDefault(x => x.id_hash == varaus.id_hash);
@@ -226,8 +226,7 @@ namespace Ajanvarausprojekti.Controllers
 
                     if (testForID.Any())
                     {
-                        //ViewBag.Status = "Tämä aika on jo varattu.";
-                        //return View();
+                     
                         //EPAONNISTUNUT MODAALI
                         //Annetaan tieto, että jokin meni pieleen TempDatalle modaali-ikkunaa varten
                         TempData["Errori"] = "Joku muu varasi juuri tämän ajan.";
@@ -339,14 +338,7 @@ namespace Ajanvarausprojekti.Controllers
                             ViewBag.Status = "Opettajaa ei löytynyt";
                         }
                     }
-                 //ONNISTUNUT MODAALI
-                //Annetaan tieto varauksen onnistumisesta TempDatalle modaali-ikkunaa varten
-                //TempData["Successi"] = "Varaus onnistui!";
-                //TempData["BodyText1"] = "Saat pian antamaasi sähköpostiosoitteeseen varausvahvistuksen, jos annoit sähköpostiosoitteesi..";
-                //TempData["BodyText2"] = "Voit tarvittaessa perua varauksen sähköpostissa olevalla peruutuskoodilla.";
-                //    //jos ope tallennus onnistuu lähettää userin tähän
-
-                    //jos ope tallennus onnistuu lähettää userin tähän
+               
                     return RedirectToAction("OnnistunutVaraus");
 
 
@@ -356,8 +348,8 @@ namespace Ajanvarausprojekti.Controllers
 
                 //EionnistunutModaali
                     //Annetaan tieto, että jokin meni pieleen TempDatalle modaali-ikkunaa varten
-                    TempData["Errori"] = "Hups! Jokin meni nyt pieleen!";
-                    TempData["BodyText1"] = "Varauksen lähetys epäonnistui.";
+                    TempData["Errori"] = "Varauksen lähetys epäonnistui.";
+                    TempData["BodyText1"] = "";
                     
                 return RedirectToAction("Index", "Home");
 
@@ -366,8 +358,8 @@ namespace Ajanvarausprojekti.Controllers
             {
                 //EPAONNISTUNUT MODAALI
                 //Annetaan tieto, että jokin meni pieleen TempDatalle modaali-ikkunaa varten
-                TempData["Errori"] = "Hups! Jokin meni nyt pieleen!";
-                TempData["BodyText1"] = "Varauksen tekeminen epäonnistui.";
+                TempData["Errori"] = "Varauksen tekeminen epäonnistui.";
+                TempData["BodyText1"] = "";
                 return RedirectToAction("Index", "Home");
             }
 
@@ -408,99 +400,6 @@ namespace Ajanvarausprojekti.Controllers
             }
             base.Dispose(disposing);
         }
-
-
-
-
-        //// GET: Ajat/Create
-        //public ActionResult Create()
-        //{
-        //    ViewBag.kesto_id = new SelectList(db.Kestot, "kesto_id", "kesto_id");
-        //    ViewBag.opettaja_id = new SelectList(db.Opettajat, "opettaja_id", "sahkoposti");
-        //    return View();
-        //}
-
-        //// POST: Ajat/Create
-        //// To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        //// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create([Bind(Include = "aika_id,alku_aika,kesto_id,opettaja_id,aihe,paikka")] Ajat ajat)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Ajat.Add(ajat);
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-
-        //    ViewBag.kesto_id = new SelectList(db.Kestot, "kesto_id", "kesto_id", ajat.kesto_id);
-        //    ViewBag.opettaja_id = new SelectList(db.Opettajat, "opettaja_id", "sahkoposti", ajat.opettaja_id);
-        //    return View(ajat);
-        //}
-
-        //// GET: Ajat/Edit/5
-        //public ActionResult Edit(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Ajat ajat = db.Ajat.Find(id);
-        //    if (ajat == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    ViewBag.kesto_id = new SelectList(db.Kestot, "kesto_id", "kesto_id", ajat.kesto_id);
-        //    ViewBag.opettaja_id = new SelectList(db.Opettajat, "opettaja_id", "sahkoposti", ajat.opettaja_id);
-        //    return View(ajat);
-        //}
-
-        //// POST: Ajat/Edit/5
-        //// To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        //// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Edit([Bind(Include = "aika_id,alku_aika,kesto_id,opettaja_id,aihe,paikka")] Ajat ajat)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Entry(ajat).State = EntityState.Modified;
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-        //    ViewBag.kesto_id = new SelectList(db.Kestot, "kesto_id", "kesto_id", ajat.kesto_id);
-        //    ViewBag.opettaja_id = new SelectList(db.Opettajat, "opettaja_id", "sahkoposti", ajat.opettaja_id);
-        //    return View(ajat);
-        //}
-
-        // GET: Ajat/Delete/5
-        //public ActionResult Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-
-        //    Varaukset varaus = db.Varaukset.Find(id);
-        //    if (varaus == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(varaus);
-        //}
-
-        // POST: Ajat/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult DeleteConfirmed(int id)
-        //{
-        //    Varaukset varaus = db.Varaukset.Find(id);
-        //    db.Varaukset.Remove(varaus);
-        //    db.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}
-
 
     }
 }

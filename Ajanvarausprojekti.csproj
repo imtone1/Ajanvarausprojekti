@@ -121,7 +121,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\AjanvarausController.cs" />
     <Compile Include="Controllers\AjatController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -385,7 +384,6 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\Ajanvaraus\Index.cshtml" />
     <Content Include="Views\Shared\_NavbarLoggedOut.cshtml" />
     <Content Include="Views\Shared\_NavbarLoggedIn.cshtml" />
     <Content Include="Views\Shared\_FooterLoggedOut.cshtml" />
@@ -393,18 +391,13 @@
     <Content Include="Views\Login\_LoginModal.cshtml" />
     <Content Include="Views\Home\Tietosuoja.cshtml" />
     <Content Include="Views\Home\Kayttoehdot.cshtml" />
-    <Content Include="Views\Varaus\_AikaListaus.cshtml" />
     <Content Include="Views\Varaus\_VarausListaus.cshtml" />
-    <Content Include="Views\Varaus\Index.cshtml" />
-    <Content Include="Views\Home\_About.cshtml" />
     <Content Include="Views\Varaus\VarausPoisto.cshtml" />
-    <Content Include="Views\Shared\View.cshtml" />
     <Content Include="Views\Home\OpettajienSivu.cshtml" />
     <Content Include="Views\SuperUser\LisaaOpettaja.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Varaus\_EiOnnistunutModaali.cshtml" />
     <Content Include="Views\Varaus\_OnnistuiModaali.cshtml" />
-    <Content Include="Views\Varaus\_TeeVaraus.cshtml" />
     <Content Include="Views\Varaus\TeeVaraus.cshtml" />
     <Content Include="Views\Palaute\LueKaikki.cshtml" />
     <Content Include="Views\Palaute\_LueViisi.cshtml" />

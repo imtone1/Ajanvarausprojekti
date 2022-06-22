@@ -42,7 +42,7 @@ namespace Ajanvarausprojekti.Controllers
 
         public ActionResult Tietosuoja()
         {
-            //yhteystiedot , tällä hetkellä ""
+            //yhteystiedot
             
             ViewBag.Rekisterinpitaja = ohjelmanyhteystiedot.Rekisterinpitaja;
             ViewBag.Rekisterinpitäjan_yhteyshenkilo = ohjelmanyhteystiedot.Rekisterinpitäjan_yhteyshenkilo;
