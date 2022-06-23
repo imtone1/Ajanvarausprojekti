@@ -10,7 +10,7 @@
             <div class="col-12 col-lg-6 pe-lg-5">
                 <div class="d-flex flex-column justify-content-start w-100">
                     <p class="fs-6 mb-1 fw-light pb-0">Varattavissa olevat vapaat ohjausajat | Poista aika</p>
-                    <h2 class="text-black pb-3">Haluatko varmasti poistaa tämän ohjausajan?</h2>
+                    <h2 class="text-black pb-3">Haluatko varmasti poistaa tämän ajan?</h2>
                 </div>
 
                 <div>
@@ -21,9 +21,8 @@
                         <dt>
                             Ajankohta
                         </dt>
-                        <dd>
-                            @Html.DisplayFor(model => model.alku_aika)
-                        </dd>
+                        <dd>@Html.ValueFor(model => model.alku_aika, "{0:dd.MM.yyyy}")</dd>
+                        <dd>@Html.ValueFor(model => model.alku_aika, "{0:HH:mm}") - @Convert.ToDateTime(Model.alku_aika).AddMinutes(Model.kesto_id).ToString("HH:mm")</dd>
                         <dt>
                             Kesto
                         </dt>
@@ -36,15 +35,15 @@
                     {
                         @Html.AntiForgeryToken()
 
-                <div class="form-actions">
-                    <a href="@Url.Action("OpettajienSivu", "Home")" class="btn btn-outline-primary ms-0 text-decoration-none me-1" role="button">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-chevron-left me-1" viewBox="0 0 16 16" aria-hidden="true">
-                            <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
-                        </svg>
-                        Takaisin
-                    </a>
-                    <button type="submit" value="Poista" class="btn btn-primary ms-3">Poista aika</button>
-                </div>
+                        <div class="form-actions">
+                            <a href="@Url.Action("OpettajienSivu", "Home")" class="btn btn-outline-primary ms-0 text-decoration-none me-1" role="button" aria-keyboard-focusable="true">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-chevron-left me-1" viewBox="0 0 16 16" keyboard-focusable="false" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+                                </svg>
+                                Takaisin
+                            </a>
+                            <button type="submit" value="Poista" class="btn btn-primary ms-3">Poista aika</button>
+                        </div>
                     }
                 </div>
 
@@ -52,9 +51,9 @@
 
 
             @*Sateenvarjokuva*@
-        <div class="col-12 col-lg-6 bg-ohjausajat mb-5">
-            <img src="~/Content/Images/sateenvarjo-logo.png" alt="Nainen sateenvarjon kanssa ja Careerian logo" class="img-fluid rounded-3" />
-        </div>
+            <div class="col-12 col-lg-6 bg-ohjausajat mb-5">
+                <img src="~/Content/Images/sateenvarjo-logo.png" alt="Nainen sateenvarjon kanssa ja Careerian logo" class="img-fluid rounded-3" />
+            </div>
         </div>
     </div>
 </section>
