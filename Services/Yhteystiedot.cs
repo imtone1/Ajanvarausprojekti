@@ -11,7 +11,7 @@ namespace Ajanvarausprojekti.Services
 
         //Nämä gmail osoitteita, koska server gmail
         public string OhjelmanSahkopostiosoite = "tivisovellus@gmail.com";
-        public string OhjelmanSpostiSalasana = "kxgkmvavjrqoeubz";
+        public string OhjelmanSpostiSalasana = "awlgnsiyptclzdfe";
         //ylläpitäjän tiedot emailiin
         public string PaakayttajaEmailiin = "Simo Sirén";
         //terveisin, ....
