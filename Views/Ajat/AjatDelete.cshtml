@@ -16,14 +16,12 @@
                 <div>
                     <dl class="dl-horizontal text-black mb-4 bg-light p-2 p-md-5 rounded-3">
                         @*<dd class="text-white pb-5">
-                                @Html.DisplayFor(model => model.aika_id)
-                            </dd>*@
+            @Html.DisplayFor(model => model.aika_id)
+        </dd>*@
                         <dt>
                             Ajankohta
                         </dt>
-                        <dd>
-                            @Html.DisplayFor(model => model.alku_aika)
-                        </dd>
+                        <dd>@Html.ValueFor(model => model.alku_aika, "{0:dd.MM.yyyy}") @Html.ValueFor(model => model.alku_aika, "{0:HH:mm}") - @Convert.ToDateTime(Model.alku_aika).AddMinutes(Model.kesto_id).ToString("HH:mm")</dd>
                         <dt>
                             Kesto
                         </dt>
