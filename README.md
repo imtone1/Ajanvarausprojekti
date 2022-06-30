@@ -65,3 +65,5 @@ Käytetyt työkalut: Asp.net mvc, SQL server, Azure, suunnittelu Figma
 ## Admin tunnuksilla pystyy lisäämään uuden opettajan.
 ![image](https://user-images.githubusercontent.com/88165529/176673899-7a6c6c81-9d9c-4b22-822b-c6a3a622bb86.png)
 
+## Tietoa palvelusta
+![image](https://user-images.githubusercontent.com/88165529/176678538-7a4316f4-410a-4c3b-9165-23fd5ae03bd4.png)
