@@ -2,10 +2,12 @@
 Scrum kurssi, Careeria</br>
 Careerian ohjelmistokehittäjä koulutuksessa Scrum-kurssin yhteydessä tehty projektityö. Kyseinen projektityö on ensimmäisenä opiskeluvuotena tehty, koulutuksen ensimmäinen ryhmäprojektityö. 
 
-Sovellus toteutettu todelliseen tosielämän ongelmaan. Opettajat halusivat itselleen sovelluksen, jonka kautta opettajat pystyisivät julkaisemaan aikoja ja opiskelijat pystyisivät valitsemaan aikoja. Sekä varaaja että opettaja saa varauksesta ajanvaraustiedot sähköpostitse.
-Sovelluksessa on myös palautekanava, johon voi antaa palautteen nimettömänä koskien kursseja ja opetusta.
+Sovellus toteutettu todelliseen työelämän ongelmaan. Opettajat halusivat itselleen sovelluksen, jonka kautta opettajat pystyisivät julkaisemaan aikoja ja opiskelijat pystyisivät valitsemaan aikoja. Sekä varaaja että opettaja saa varauksesta ajanvaraustiedot sähköpostitse.
+Sovelluksessa on myös palautekanava, johon voi antaa palautteen nimettömänä koskien kursseja ja opetusta. 
 
 Opettajan näkymään kirjaudutaan (basicuser/admin tunnuksilla) ja pääsee katsomaan aikavarauksia ja julkaisemaan uusia vapaita aikoja.
+
+Sovelluksessa huomioitu yleinen tietosuoja-asetus.
 
 Käytetyt työkalut: Asp.net mvc, SQL server, Azure, suunnittelu Figma
 
